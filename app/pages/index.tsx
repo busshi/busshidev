@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Meta />
-      <Image src="/images/logo.svg" alt="busshiDev" layout="fill" />
+      <img src="/images/logo.svg" alt="busshiDev" width="100%" height="100%" />
     </div>
   );
 };
