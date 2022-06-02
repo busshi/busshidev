@@ -63,101 +63,17 @@ export const jsonldCarousel = {
     {
       "@type": "ListItem",
       position: "1",
-      item: {
-        "@type": "Movie",
-        name: "Article 1",
-        url: `${SITE_URL}/article`,
-        image: `${SITE_URL}/images/logo.svg`,
-        dateCreated: "2022-06-01",
-        director: {
-          "@type": "Person",
-          name: "me",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: "me",
-          },
-          reviewBody: "First article #1",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "99",
-          bestRating: "100",
-          ratingCount: "83644",
-        },
-      },
+      url: `${SITE_URL}/article1`,
     },
     {
       "@type": "ListItem",
       position: "2",
-      item: {
-        "@type": "Movie",
-        name: "Article 2",
-        url: `${SITE_URL}/article`,
-        image: `${SITE_URL}/images/logo2.svg`,
-        dateCreated: "2022-06-02",
-        director: {
-          "@type": "Person",
-          name: "busshiDev",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "4",
-          },
-          author: {
-            "@type": "Person",
-            name: "busshiDev",
-          },
-          reviewBody: "Second article #2",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "81",
-          bestRating: "100",
-          ratingCount: "21985",
-        },
-      },
+      url: `${SITE_URL}/article2`,
     },
     {
       "@type": "ListItem",
       position: "3",
-      item: {
-        "@type": "Movie",
-        name: "Article 3",
-        url: `${SITE_URL}/article`,
-        image: `${SITE_URL}/images/logo3.svg`,
-        dateCreated: "2022-05-29",
-        director: {
-          "@type": "Person",
-          name: "busshi",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-          },
-          author: {
-            "@type": "Person",
-            name: "busshi",
-          },
-          reviewBody: "Third article #3",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "96",
-          bestRating: "100",
-          ratingCount: "88211",
-        },
-      },
+      url: `${SITE_URL}/article3`,
     },
   ],
 };

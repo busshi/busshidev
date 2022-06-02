@@ -78,12 +78,6 @@ const Meta = () => {
           __html: JSON.stringify(jsonldFaq),
         }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonldCarousel),
-        }}
-      />
     </Head>
   );
 };
