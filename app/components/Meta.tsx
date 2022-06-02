@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { SITE_URL } from "../lib/constants";
-import { jsonldFaq, jsonldLogo } from "../lib/jsonld";
+import { jsonldCarousel, jsonldFaq, jsonldLogo } from "../lib/jsonld";
 
 const Meta = () => {
   return (
@@ -76,6 +76,12 @@ const Meta = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonldFaq),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonldCarousel),
         }}
       />
     </Head>

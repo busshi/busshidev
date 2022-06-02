@@ -55,7 +55,7 @@ export const jsonldAriane = {
     },
   ],
 };
-
+*/
 export const jsonldCarousel = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -65,13 +65,13 @@ export const jsonldCarousel = {
       position: "1",
       item: {
         "@type": "Movie",
-        name: "ft_transcendance",
-        url: `${SITE_URL}/posts/ft_transcendance_EN`,
-        image: `${SITE_URL}/assets/projects/transcendance/transcendance_architecture.png`,
-        dateCreated: "2022-03-28",
+        name: "Article 1",
+        url: `${SITE_URL}/article1`,
+        image: `${SITE_URL}/images/logo.svg`,
+        dateCreated: "2022-06-01",
         director: {
           "@type": "Person",
-          name: "busshi",
+          name: "busshiDev",
         },
         review: {
           "@type": "Review",
@@ -81,9 +81,9 @@ export const jsonldCarousel = {
           },
           author: {
             "@type": "Person",
-            name: "busshi",
+            name: "busshiDev",
           },
-          reviewBody: "Last project @42 #born2code",
+          reviewBody: "First article #1",
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -98,13 +98,13 @@ export const jsonldCarousel = {
       position: "2",
       item: {
         "@type": "Movie",
-        name: "YT2mp3",
-        url: `${SITE_URL}/posts/yt2mp3_EN`,
-        image: `${SITE_URL}/assets/projects/yt2mp3/cover.png`,
-        dateCreated: "2022-01-11",
+        name: "Article 2",
+        url: `${SITE_URL}/article2`,
+        image: `${SITE_URL}/images/logo.svg`,
+        dateCreated: "2022-06-02",
         director: {
           "@type": "Person",
-          name: "busshi",
+          name: "busshiDev",
         },
         review: {
           "@type": "Review",
@@ -114,9 +114,9 @@ export const jsonldCarousel = {
           },
           author: {
             "@type": "Person",
-            name: "busshi",
+            name: "busshiDev",
           },
-          reviewBody: "My first app in React",
+          reviewBody: "Second article #2",
         },
         aggregateRating: {
           "@type": "AggregateRating",
@@ -131,13 +131,13 @@ export const jsonldCarousel = {
       position: "3",
       item: {
         "@type": "Movie",
-        name: "cub3D",
-        url: `${SITE_URL}/posts/cub3d_EN`,
-        image: `${SITE_URL}/assets/projects/cub3d/cub3d_cover.png`,
-        dateCreated: "2021-03-06",
+        name: "Article 3",
+        url: `${SITE_URL}/article3`,
+        image: `${SITE_URL}/images/logo.svg`,
+        dateCreated: "2022-05-29",
         director: {
           "@type": "Person",
-          name: "busshi",
+          name: "busshiDev",
         },
         review: {
           "@type": "Review",
@@ -147,48 +147,15 @@ export const jsonldCarousel = {
           },
           author: {
             "@type": "Person",
-            name: "busshi",
+            name: "busshiDev",
           },
-          reviewBody: "Remaking Wolfenstein 3D: My first raycaster",
+          reviewBody: "Third article #3",
         },
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "96",
           bestRating: "100",
           ratingCount: "88211",
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: "4",
-      item: {
-        "@type": "Movie",
-        name: "Telegram Bot",
-        url: `${SITE_URL}/posts/tgbot_EN`,
-        image: `${SITE_URL}/assets/projects/tgbot/cover.png`,
-        dateCreated: "2019-06-21",
-        director: {
-          "@type": "Person",
-          name: "busshi",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "4",
-          },
-          author: {
-            "@type": "Person",
-            name: "busshi",
-          },
-          reviewBody: "My own Telegram bot coded in Python",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "85",
-          bestRating: "100",
-          ratingCount: "9374",
         },
       },
     },
