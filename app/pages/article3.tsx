@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import MetaThree from "../components/Meta";
+import MetaThree from "../components/MetaThree";
 
 const ArticleThree: NextPage = () => {
   return (

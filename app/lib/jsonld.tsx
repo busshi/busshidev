@@ -166,7 +166,7 @@ export const jsonldCarouselOne = {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   headline: "Article headline",
-  image: ["${SITE_URL}/images/logo.svg"],
+  image: [`${SITE_URL}/images/logo.svg`],
   datePublished: "2022-06-01",
   dateModified: "2022-06-01",
   author: [
