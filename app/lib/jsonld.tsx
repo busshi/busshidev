@@ -7,30 +7,29 @@ export const jsonldLogo = {
   logo: `${SITE_URL}/images/logo.svg`,
 };
 
-export const jsonldFaq = (langId: number) => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Who am I?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "I am busshidev",
-        },
+export const jsonldFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Who am I?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "I am busshidev",
       },
-      {
-        "@type": "Question",
-        name: "Phone",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "06 12 34 56 78",
-        },
+    },
+    {
+      "@type": "Question",
+      name: "Phone",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "06 12 34 56 78",
       },
-    ],
-  };
+    },
+  ],
 };
+
 /*
 export const jsonldAriane = {
   "@context": "https://schema.org",
