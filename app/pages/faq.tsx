@@ -5,8 +5,8 @@ import MetaFaq from "../components/MetaFaq";
 const Faq: NextPage = () => {
   return (
     <div>
-      <Meta />
       <MetaFaq />
+      <Meta />
       <div>Who am I?</div>
       <div>I am busshidev</div>
       <div>Phone</div>

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { jsonldFaq } from "../lib/jsonld";
 
-const Meta = () => {
+const MetaFaq = () => {
   return (
     <Head>
       <script
@@ -14,4 +14,4 @@ const Meta = () => {
   );
 };
 
-export default Meta;
+export default MetaFaq;
