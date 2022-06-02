@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Meta from "../components/Meta";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
