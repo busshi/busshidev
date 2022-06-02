@@ -1,13 +1,8 @@
 import Head from "next/head";
 import { SITE_URL } from "../lib/constants";
-import {
-  jsonldCarousel,
-  jsonldCarouselOne,
-  jsonldFaq,
-  jsonldLogo,
-} from "../lib/jsonld";
+import { jsonldCarouselOne, jsonldFaq, jsonldLogo } from "../lib/jsonld";
 
-const Meta = () => {
+const MetaOne = () => {
   return (
     <Head>
       <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
@@ -83,16 +78,14 @@ const Meta = () => {
           __html: JSON.stringify(jsonldFaq),
         }}
       />
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonldCarouselOne),
-          }}
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonldCarouselOne),
+        }}
+      />
     </Head>
   );
 };
 
-export default Meta;
+export default MetaOne;
