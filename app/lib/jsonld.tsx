@@ -64,6 +64,7 @@ export const jsonldCarousel = {
       "@type": "ListItem",
       position: "1",
       item: {
+        url: `${SITE_URL}/article1`,
         name: "Article 1",
         "@type": "NewsArticle",
         headline: "Article headline",
@@ -101,6 +102,7 @@ export const jsonldCarousel = {
       "@type": "ListItem",
       position: "2",
       item: {
+        url: `${SITE_URL}/article2`,
         name: "Article 2",
         "@type": "NewsArticle",
         headline: "Article headline",
@@ -138,7 +140,8 @@ export const jsonldCarousel = {
       "@type": "ListItem",
       position: "3",
       item: {
-        "@type": "Movie",
+        url: `${SITE_URL}/article3`,
+        "@type": "NewsArticle",
         name: "Article 3",
         headline: "Article headline",
         image: [`${SITE_URL}/images/logo.svg`],
