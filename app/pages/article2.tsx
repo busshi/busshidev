@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import Meta from "../components/Meta";
+import MetaTwo from "../components/Meta";
 
 const ArticleTwo: NextPage = () => {
   return (
     <div>
-      <Meta />
+      <MetaTwo />
       <div>
         <h1>Article 2</h1>
         <img src="/images/logo.svg" />

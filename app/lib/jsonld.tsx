@@ -162,6 +162,107 @@ export const jsonldCarousel = {
   ],
 };
 
+export const jsonldCarouselOne = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: "Article headline",
+  image: ["${SITE_URL}/images/logo.svg"],
+  datePublished: "2022-06-01",
+  dateModified: "2022-06-01",
+  author: [
+    {
+      "@type": "Person",
+      name: "busshiDev",
+      url: `${SITE_URL}`,
+    },
+  ],
+  publisher: [
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+  ],
+};
+
+export const jsonldCarouselTwo = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: "Article headline",
+  image: ["${SITE_URL}/images/logo.svg"],
+  datePublished: "2022-06-01",
+  dateModified: "2022-06-01",
+  author: [
+    {
+      "@type": "Person",
+      name: "busshiDev",
+      url: `${SITE_URL}`,
+    },
+  ],
+  publisher: [
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+  ],
+};
+
+export const jsonldCarouselThree = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: "Article headline",
+  image: ["${SITE_URL}/images/logo.svg"],
+  datePublished: "2022-06-01",
+  dateModified: "2022-06-01",
+  author: [
+    {
+      "@type": "Person",
+      name: "busshiDev",
+      url: `${SITE_URL}`,
+    },
+  ],
+  publisher: [
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+    {
+      "@type": "Organization",
+      name: "busshiDev",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.svg`,
+      },
+    },
+  ],
+};
 /* Website */
 
 /*<script
