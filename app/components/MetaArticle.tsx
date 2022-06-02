@@ -72,18 +72,18 @@ const MetaArticle = () => {
           __html: JSON.stringify(jsonldLogo),
         }}
       />
-      <script
+      {/*<script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonldFaq),
         }}
+      />*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonldCarousel),
+        }}
       />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonldCarousel),
-          }}
-        />
     </Head>
   );
 };

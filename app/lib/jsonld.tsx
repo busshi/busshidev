@@ -173,7 +173,7 @@ export const jsonldCarouselOne = {
     {
       "@type": "Person",
       name: "busshiDev",
-      url: `${SITE_URL}`,
+      url: `${SITE_URL}/article1`,
     },
   ],
   publisher: [
@@ -200,14 +200,14 @@ export const jsonldCarouselTwo = {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   headline: "Article headline",
-  image: ["${SITE_URL}/images/logo.svg"],
+  image: [`${SITE_URL}/images/logo.svg`],
   datePublished: "2022-06-01",
-  dateModified: "2022-06-01",
+  dateModified: "2022-06-02",
   author: [
     {
       "@type": "Person",
       name: "busshiDev",
-      url: `${SITE_URL}`,
+      url: `${SITE_URL}/article2`,
     },
   ],
   publisher: [
@@ -216,7 +216,7 @@ export const jsonldCarouselTwo = {
       name: "busshiDev",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
+        url: `${SITE_URL}/images/logo2.svg`,
       },
     },
     {
@@ -224,7 +224,7 @@ export const jsonldCarouselTwo = {
       name: "busshiDev",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
+        url: `${SITE_URL}/images/logo2.svg`,
       },
     },
   ],
@@ -234,14 +234,14 @@ export const jsonldCarouselThree = {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   headline: "Article headline",
-  image: ["${SITE_URL}/images/logo.svg"],
+  image: [`${SITE_URL}/images/logo.svg`],
   datePublished: "2022-06-01",
-  dateModified: "2022-06-01",
+  dateModified: "2022-06-02",
   author: [
     {
       "@type": "Person",
       name: "busshiDev",
-      url: `${SITE_URL}`,
+      url: `${SITE_URL}/article3`,
     },
   ],
   publisher: [
@@ -250,7 +250,7 @@ export const jsonldCarouselThree = {
       name: "busshiDev",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
+        url: `${SITE_URL}/images/logo3.svg`,
       },
     },
     {
@@ -258,7 +258,7 @@ export const jsonldCarouselThree = {
       name: "busshiDev",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
+        url: `${SITE_URL}/images/logo3.svg`,
       },
     },
   ],
