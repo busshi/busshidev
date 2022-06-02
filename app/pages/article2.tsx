@@ -6,7 +6,7 @@ const ArticleTwo: NextPage = () => {
     <div>
       <Meta />
       <div>
-        <h1>Article 1</h1>
+        <h1>Article 2</h1>
         <img src="/images/logo.svg" />
         <p>Created at 2022-06-02</p>
         <p>Directed, authored by busshiDev</p>
