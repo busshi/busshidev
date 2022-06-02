@@ -4,7 +4,6 @@ import MetaThree from "../components/MetaThree";
 const ArticleThree: NextPage = () => {
   return (
     <div>
-      <MetaThree />
       <div>
         <h1>Article 3</h1>
         <img src="/images/logo.svg" />

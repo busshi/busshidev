@@ -64,66 +64,74 @@ export const jsonldCarousel = {
       "@type": "ListItem",
       position: "1",
       item: {
-        "@type": "Movie",
         name: "Article 1",
-        url: `${SITE_URL}/article1`,
-        image: `${SITE_URL}/images/logo.svg`,
-        dateCreated: "2022-06-01",
-        director: {
-          "@type": "Person",
-          name: "me",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-          },
-          author: {
+        "@type": "NewsArticle",
+        headline: "Article headline",
+        image: [`${SITE_URL}/images/logo.svg`],
+        datePublished: "2022-06-01",
+        dateModified: "2022-06-01",
+        author: [
+          {
             "@type": "Person",
-            name: "me",
+            name: "busshiDev",
+            url: `${SITE_URL}/article1`,
           },
-          reviewBody: "First article #1",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "99",
-          bestRating: "100",
-          ratingCount: "83644",
-        },
+        ],
+        publisher: [
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo.svg`,
+            },
+          },
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo.svg`,
+            },
+          },
+        ],
       },
     },
     {
       "@type": "ListItem",
       position: "2",
       item: {
-        "@type": "Movie",
         name: "Article 2",
-        url: `${SITE_URL}/article2`,
-        image: `${SITE_URL}/images/logo2.svg`,
-        dateCreated: "2022-06-02",
-        director: {
-          "@type": "Person",
-          name: "busshiDev",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "4",
-          },
-          author: {
+        "@type": "NewsArticle",
+        headline: "Article headline",
+        image: [`${SITE_URL}/images/logo.svg`],
+        datePublished: "2022-06-01",
+        dateModified: "2022-06-02",
+        author: [
+          {
             "@type": "Person",
             name: "busshiDev",
+            url: `${SITE_URL}/article2`,
           },
-          reviewBody: "Second article #2",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "81",
-          bestRating: "100",
-          ratingCount: "21985",
-        },
+        ],
+        publisher: [
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo2.svg`,
+            },
+          },
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo2.svg`,
+            },
+          },
+        ],
       },
     },
     {
@@ -132,31 +140,35 @@ export const jsonldCarousel = {
       item: {
         "@type": "Movie",
         name: "Article 3",
-        url: `${SITE_URL}/article3`,
-        image: `${SITE_URL}/images/logo3.svg`,
-        dateCreated: "2022-05-29",
-        director: {
-          "@type": "Person",
-          name: "busshi",
-        },
-        review: {
-          "@type": "Review",
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: "5",
-          },
-          author: {
+        headline: "Article headline",
+        image: [`${SITE_URL}/images/logo.svg`],
+        datePublished: "2022-06-01",
+        dateModified: "2022-06-02",
+        author: [
+          {
             "@type": "Person",
-            name: "busshi",
+            name: "busshiDev",
+            url: `${SITE_URL}/article3`,
           },
-          reviewBody: "Third article #3",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "96",
-          bestRating: "100",
-          ratingCount: "88211",
-        },
+        ],
+        publisher: [
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo3.svg`,
+            },
+          },
+          {
+            "@type": "Organization",
+            name: "busshiDev",
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/images/logo3.svg`,
+            },
+          },
+        ],
       },
     },
   ],

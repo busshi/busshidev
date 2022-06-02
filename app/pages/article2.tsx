@@ -4,7 +4,6 @@ import MetaTwo from "../components/MetaTwo";
 const ArticleTwo: NextPage = () => {
   return (
     <div>
-      <MetaTwo />
       <div>
         <h1>Article 2</h1>
         <img src="/images/logo.svg" />

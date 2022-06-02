@@ -4,7 +4,6 @@ import MetaOne from "../components/MetaOne";
 const ArticleOne: NextPage = () => {
   return (
     <div>
-      <MetaOne />
       <div>
         <h1>Article 1</h1>
         <img src="/images/logo.svg" />
