@@ -106,7 +106,7 @@ export const jsonldCarousel = {
         name: "Article 2",
         "@type": "NewsArticle",
         headline: "Article headline",
-        image: [`${SITE_URL}/images/logo.png`],
+        image: [`${SITE_URL}/images/logo2.png`],
         datePublished: "2022-06-01",
         dateModified: "2022-06-02",
         author: [
@@ -144,7 +144,7 @@ export const jsonldCarousel = {
         "@type": "NewsArticle",
         name: "Article 3",
         headline: "Article headline",
-        image: [`${SITE_URL}/images/logo.png`],
+        image: [`${SITE_URL}/images/logo3.png`],
         datePublished: "2022-06-01",
         dateModified: "2022-06-02",
         author: [
