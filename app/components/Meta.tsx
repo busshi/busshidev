@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { SITE_URL } from "../lib/constants";
+import { jsonldLogo } from "../lib/jsonld";
 
 const Meta = () => {
   return (
@@ -59,18 +60,16 @@ const Meta = () => {
       />
       <link rel="manifest" href="/favicon/manifest.json" />
       <meta name="msapplication-TileColor" content="#ffffff" />
-      <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
+      <meta
+        name="msapplication-TileImage"
+        content="/favicon/ms-icon-144x144.png"
+      />
       <meta name="theme-color" content="#ffffff"></meta>{" "}
       <meta name="description" content={SITE_URL} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: `{
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "url": "${SITE_URL}",
-              "logo": "${SITE_URL}/images/logo.svg"
-          }`,
+          __html: JSON.stringify(jsonldLogo),
         }}
       />
     </Head>

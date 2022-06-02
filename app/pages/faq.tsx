@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
+import Meta from "../components/Meta";
 import MetaFaq from "../components/MetaFaq";
 
 const Faq: NextPage = () => {
   return (
     <div>
+      <Meta />
       <MetaFaq />
       <div>Who am I?</div>
       <div>I am busshidev</div>
