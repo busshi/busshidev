@@ -9,21 +9,21 @@ const ArticleThree: NextPage = () => {
         <h1>Article 1</h1>
         <img src="/images/logo.svg" />
         <p>Created at 2022-06-01</p>
-        <p>Directed, authored by busshiDev</p>
+        <p>Directed, authored by me</p>
         <p>First article #1</p>
       </div>
       <div>
         <h1>Article 2</h1>
-        <img src="/images/logo.svg" />
+        <img src="/images/logo2.svg" />
         <p>Created at 2022-06-02</p>
         <p>Directed, authored by busshiDev</p>
         <p>Second article #2</p>
       </div>
       <div>
         <h1>Article 3</h1>
-        <img src="/images/logo.svg" />
+        <img src="/images/logo3.svg" />
         <p>Created at 2022-05-29</p>
-        <p>Directed, authored by busshiDev</p>
+        <p>Directed, authored by busshi</p>
         <p>Third article #3</p>
       </div>
     </div>

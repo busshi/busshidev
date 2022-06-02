@@ -71,7 +71,7 @@ export const jsonldCarousel = {
         dateCreated: "2022-06-01",
         director: {
           "@type": "Person",
-          name: "busshiDev",
+          name: "me",
         },
         review: {
           "@type": "Review",
@@ -81,7 +81,7 @@ export const jsonldCarousel = {
           },
           author: {
             "@type": "Person",
-            name: "busshiDev",
+            name: "me",
           },
           reviewBody: "First article #1",
         },
@@ -100,7 +100,7 @@ export const jsonldCarousel = {
         "@type": "Movie",
         name: "Article 2",
         url: `${SITE_URL}/article2`,
-        image: `${SITE_URL}/images/logo.svg`,
+        image: `${SITE_URL}/images/logo2.svg`,
         dateCreated: "2022-06-02",
         director: {
           "@type": "Person",
@@ -133,11 +133,11 @@ export const jsonldCarousel = {
         "@type": "Movie",
         name: "Article 3",
         url: `${SITE_URL}/article3`,
-        image: `${SITE_URL}/images/logo.svg`,
+        image: `${SITE_URL}/images/logo3.svg`,
         dateCreated: "2022-05-29",
         director: {
           "@type": "Person",
-          name: "busshiDev",
+          name: "busshi",
         },
         review: {
           "@type": "Review",
@@ -147,7 +147,7 @@ export const jsonldCarousel = {
           },
           author: {
             "@type": "Person",
-            name: "busshiDev",
+            name: "busshi",
           },
           reviewBody: "Third article #3",
         },
