@@ -307,6 +307,20 @@ export const jsonldCarouselOne = {
     "@type": "WebPage",
     "@id": `${SITE_URL}`,
   },
+  review: {
+    "@type": "Review",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+    },
+    reviewBody: "Third article #1",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "96",
+    bestRating: "100",
+    ratingCount: "88211",
+  },
 };
 
 export const jsonldCarouselTwo = {
