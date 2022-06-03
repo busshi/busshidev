@@ -178,6 +178,7 @@ export const jsonldMovieCarousel = {
       item: {
         "@type": "Movie",
         name: "Article 1",
+        title: "Article 1",
         url: `${SITE_URL}/article1`,
         image: `${SITE_URL}/images/logo.png`,
         dateCreated: "2022-06-01",
@@ -211,6 +212,7 @@ export const jsonldMovieCarousel = {
       item: {
         "@type": "Movie",
         name: "Article 2",
+        title: "Article 2",
         url: `${SITE_URL}/article2`,
         image: `${SITE_URL}/images/logo2.png`,
         dateCreated: "2022-06-02",
@@ -244,6 +246,7 @@ export const jsonldMovieCarousel = {
       item: {
         "@type": "Movie",
         name: "Article 3",
+        title: "Article 3",
         url: `${SITE_URL}/article3`,
         image: `${SITE_URL}/images/logo3.png`,
         dateCreated: "2022-05-29",
