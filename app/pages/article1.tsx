@@ -5,6 +5,7 @@ const ArticleOne: NextPage = () => {
   return (
     <div>
       <div>
+        <MetaOne />
         <h1>Article 1</h1>
         <img src="/images/logo.svg" />
         <p>Created at 2022-06-01</p>
