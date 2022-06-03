@@ -64,90 +64,105 @@ export const jsonldCarousel = {
       "@type": "ListItem",
       position: "1",
       item: {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: "Article 1",
+        image: `${SITE_URL}/assets/logo.png`,
+        publisher: {
+          "@type": "Organization",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/images/logo.svg`,
+            width: "1200",
+            height: "630",
+          },
+        },
         url: `${SITE_URL}/article1`,
-        name: "Article 1",
-        "@type": "NewsArticle",
-        headline: "Article headline",
-        image: [`${SITE_URL}/images/logo.png`],
-        datePublished: "2022-06-01",
-        dateModified: "2022-06-01",
-        author: [
-          {
-            "@type": "Person",
-            name: "busshiDev",
-            url: `${SITE_URL}`,
-          },
-        ],
-        publisher: [
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo.svg`,
-            },
-          },
-        ],
+        datePublished: "2020-01-06T00:00:00.000Z",
+        dateCreated: "2020-01-06T00:00:00.000Z",
+        dateModified: "2020-01-06T00:00:00.000Z",
+        description: "Description of article 1",
+        author: {
+          "@type": "Person",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}`,
+        },
       },
     },
     {
       "@type": "ListItem",
       position: "2",
       item: {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: "Article 2",
+        image: `${SITE_URL}/assets/logo2.png`,
+        publisher: {
+          "@type": "Organization",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/images/logo.svg`,
+            width: "1200",
+            height: "630",
+          },
+        },
         url: `${SITE_URL}/article2`,
-        name: "Article 2",
-        "@type": "NewsArticle",
-        headline: "Article headline",
-        image: [`${SITE_URL}/images/logo2.png`],
-        datePublished: "2022-06-01",
-        dateModified: "2022-06-02",
-        author: [
-          {
-            "@type": "Person",
-            name: "busshiDev",
-            url: `${SITE_URL}`,
-          },
-        ],
-        publisher: [
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo.svg`,
-            },
-          },
-        ],
+        datePublished: "2020-01-06T00:00:00.000Z",
+        dateCreated: "2020-01-06T00:00:00.000Z",
+        dateModified: "2020-01-06T00:00:00.000Z",
+        description: "Description of article 2",
+        author: {
+          "@type": "Person",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}`,
+        },
       },
     },
     {
       "@type": "ListItem",
       position: "3",
       item: {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: "Article 3",
+        image: `${SITE_URL}/assets/logo3.png`,
+        publisher: {
+          "@type": "Organization",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/images/logo.svg`,
+            width: "1200",
+            height: "630",
+          },
+        },
         url: `${SITE_URL}/article3`,
-        "@type": "NewsArticle",
-        name: "Article 3",
-        headline: "Article headline",
-        image: [`${SITE_URL}/images/logo3.png`],
-        datePublished: "2022-06-01",
-        dateModified: "2022-06-02",
-        author: [
-          {
-            "@type": "Person",
-            name: "busshiDev",
-            url: `${SITE_URL}`,
-          },
-        ],
-        publisher: [
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo.svg`,
-            },
-          },
-        ],
+        datePublished: "2020-01-06T00:00:00.000Z",
+        dateCreated: "2020-01-06T00:00:00.000Z",
+        dateModified: "2020-01-06T00:00:00.000Z",
+        description: "Description of article 3",
+        author: {
+          "@type": "Person",
+          name: "busshiDev",
+          url: `${SITE_URL}`,
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}`,
+        },
       },
     },
   ],
@@ -169,7 +184,7 @@ export const jsonldCarouselOne = {
       height: "630",
     },
   },
-  url: `${SITE_URL}`,
+  url: `${SITE_URL}/article1`,
   datePublished: "2020-01-06T00:00:00.000Z",
   dateCreated: "2020-01-06T00:00:00.000Z",
   dateModified: "2020-01-06T00:00:00.000Z",
@@ -186,6 +201,70 @@ export const jsonldCarouselOne = {
 };
 
 export const jsonldCarouselTwo = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "Article 2",
+  image: `${SITE_URL}/assets/logo2.png`,
+  publisher: {
+    "@type": "Organization",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/images/logo.svg`,
+      width: "1200",
+      height: "630",
+    },
+  },
+  url: `${SITE_URL}/article2`,
+  datePublished: "2020-01-06T00:00:00.000Z",
+  dateCreated: "2020-01-06T00:00:00.000Z",
+  dateModified: "2020-01-06T00:00:00.000Z",
+  description: "Description of article 2",
+  author: {
+    "@type": "Person",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}`,
+  },
+};
+
+export const jsonldCarouselThree = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "Article 3",
+  image: `${SITE_URL}/assets/logo3.png`,
+  publisher: {
+    "@type": "Organization",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/images/logo.svg`,
+      width: "1200",
+      height: "630",
+    },
+  },
+  url: `${SITE_URL}/article3`,
+  datePublished: "2020-01-06T00:00:00.000Z",
+  dateCreated: "2020-01-06T00:00:00.000Z",
+  dateModified: "2020-01-06T00:00:00.000Z",
+  description: "Description of article 3",
+  author: {
+    "@type": "Person",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}`,
+  },
+};
+
+/*export const jsonldCarouselTwo = {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   headline: "Article headline",
@@ -251,7 +330,7 @@ export const jsonldCarouselThree = {
       },
     },
   ],
-};
+};*/
 /* Website */
 
 /*<script
