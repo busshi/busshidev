@@ -313,7 +313,11 @@ export const jsonldCarouselOne = {
       "@type": "Rating",
       ratingValue: "5",
     },
-    reviewBody: "Third article #1",
+    author: {
+      "@type": "Person",
+      name: "busshiDev",
+    },
+    reviewBody: "Third article #3",
   },
   aggregateRating: {
     "@type": "AggregateRating",
