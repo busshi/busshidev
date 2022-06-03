@@ -75,18 +75,10 @@ export const jsonldCarousel = {
           {
             "@type": "Person",
             name: "busshiDev",
-            url: `${SITE_URL}/article1`,
+            url: `${SITE_URL}`,
           },
         ],
         publisher: [
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo.svg`,
-            },
-          },
           {
             "@type": "Organization",
             name: "busshiDev",
@@ -113,7 +105,7 @@ export const jsonldCarousel = {
           {
             "@type": "Person",
             name: "busshiDev",
-            url: `${SITE_URL}/article2`,
+            url: `${SITE_URL}`,
           },
         ],
         publisher: [
@@ -122,15 +114,7 @@ export const jsonldCarousel = {
             name: "busshiDev",
             logo: {
               "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo2.svg`,
-            },
-          },
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo2.svg`,
+              url: `${SITE_URL}/images/logo.svg`,
             },
           },
         ],
@@ -151,7 +135,7 @@ export const jsonldCarousel = {
           {
             "@type": "Person",
             name: "busshiDev",
-            url: `${SITE_URL}/article3`,
+            url: `${SITE_URL}`,
           },
         ],
         publisher: [
@@ -160,15 +144,7 @@ export const jsonldCarousel = {
             name: "busshiDev",
             logo: {
               "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo3.svg`,
-            },
-          },
-          {
-            "@type": "Organization",
-            name: "busshiDev",
-            logo: {
-              "@type": "ImageObject",
-              url: `${SITE_URL}/images/logo3.svg`,
+              url: `${SITE_URL}/images/logo.svg`,
             },
           },
         ],
@@ -179,36 +155,34 @@ export const jsonldCarousel = {
 
 export const jsonldCarouselOne = {
   "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  headline: "Article headline",
-  image: [`${SITE_URL}/images/logo.svg`],
-  datePublished: "2022-06-01",
-  dateModified: "2022-06-01",
-  author: [
-    {
-      "@type": "Person",
-      name: "busshiDev",
-      url: `${SITE_URL}/article1`,
+  "@type": "BlogPosting",
+  headline: "Article 1",
+  image: `${SITE_URL}/assets/logo.png`,
+  publisher: {
+    "@type": "Organization",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/images/logo.svg`,
+      width: "1200",
+      height: "630",
     },
-  ],
-  publisher: [
-    {
-      "@type": "Organization",
-      name: "busshiDev",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
-      },
-    },
-    {
-      "@type": "Organization",
-      name: "busshiDev",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/images/logo.svg`,
-      },
-    },
-  ],
+  },
+  url: `${SITE_URL}`,
+  datePublished: "2020-01-06T00:00:00.000Z",
+  dateCreated: "2020-01-06T00:00:00.000Z",
+  dateModified: "2020-01-06T00:00:00.000Z",
+  description: "Description of article 1",
+  author: {
+    "@type": "Person",
+    name: "busshiDev",
+    url: `${SITE_URL}`,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}`,
+  },
 };
 
 export const jsonldCarouselTwo = {
