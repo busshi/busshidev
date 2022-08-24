@@ -78,6 +78,8 @@ const Meta = () => {
           __html: JSON.stringify(jsonldFaq),
         }}
       />
+	  <link href="https://bundle.notice.studio/index.css" rel="stylesheet" />
+  <Script defer="defer" charset="UTF-8" src="https://bundle.notice.studio/index.js"/>
     </Head>
   );
 };
