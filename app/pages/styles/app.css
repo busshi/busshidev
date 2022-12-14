@@ -1,12 +1,30 @@
 :root {
-  --NTCVAR-design-start: #030cfa;
-  --NTCVAR-design-stop: #01f1ff;
-  --NTCVAR-develop-start: #520979;
-  --NTCVAR-develop-stop: #ff00f1;
-  --NTCVAR-deploy-start: #ff4d4d;
-  --NTCVAR-deploy-stop: #f9cb28;
-  --NTCVAR-boost-start: #01961c;
-  --NTCVAR-boost-stop: #23ff00;
+  /*
+  *   Main colors
+  */
+  --main-dark-color: #000;
+  --main-light-color: #fff;
+  --secondary-dark-color: #888;
+  --secondary-light-color: #f5f5f5;
+  --footer-light-color: #f5f5f5;
+  --footer-dark-color: #444444;
+
+  /*
+  *   Gradient colors
+  */
+  --gradient-design-start: #030cfa;
+  --gradient-design-stop: #01f1ff;
+  --gradient-develop-start: #520979;
+  --gradient-develop-stop: #ff00f1;
+  --gradient-deploy-start: #ff4d4d;
+  --gradient-deploy-stop: #f9cb28;
+  --gradient-boost-start: #01961c;
+  --gradient-boost-stop: #23ff00;
+
+  /*
+  *   CSS properties
+  */
+  --border-radius: 14px;
 }
 
 body {

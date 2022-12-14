@@ -10,7 +10,7 @@ export const Body: React.FC = () => {
     <Container>
       <Titles />
       <Intro>
-        Have a dream? Want to make it a reality? Let's work together.
+        You have dreams. I have skills. We can build the future together...
       </Intro>
       <GetADemo />
       <Cards />
@@ -32,7 +32,7 @@ const Container = styled.div`
 const Intro = styled.div`
   text-align: center;
   margin: 20px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #888;
 
   line-height: 1.6em;
@@ -41,6 +41,6 @@ const Intro = styled.div`
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
-    margin: 12px;
+    margin: 0;
   }
 `;

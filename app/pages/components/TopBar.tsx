@@ -45,18 +45,18 @@ const Buttons = styled.div`
 const Button = styled.div`
   padding: 8px 16px 8px 16px;
   cursor: pointer;
-  color: grey;
-  transition: color 0.3s ease;
   display: flex;
   align-items: center;
 
+  color: var(--secondary-dark-color);
+  transition: color 0.3s ease;
   :hover {
-    color: black;
+    color: var(--main-dark-color);
   }
 
   @media (prefers-color-scheme: dark) {
     :hover {
-      color: white;
+      color: var(--secondary-light-color);
     }
   }
 `;

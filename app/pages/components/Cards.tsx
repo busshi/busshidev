@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../lib/constants";
-import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const Cards = () => {
   const { highlighted, highlightedColor } = useHighlightedColorState();
@@ -51,7 +50,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Card = styled.div<{ highlightedColor: Color; isShiny?: boolean }>`
+const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   width: 200px;
   height: 200px;
   padding: 24px;
@@ -79,10 +78,11 @@ const Card = styled.div<{ highlightedColor: Color; isShiny?: boolean }>`
     background: ${(props) =>
       props.isShiny
         ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
-        : "#888"};
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        : "var(--secondary-dark-color)"};
+    -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
       linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+      linear-gradient(var(--main-light-color) 0 0);
     mask-composite: exclude;
   }
 `;

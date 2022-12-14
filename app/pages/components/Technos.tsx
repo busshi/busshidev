@@ -1,1 +1,1 @@
-export const Technos = () => <div>Technologies + ratings</div>;
+export const Technos = () => <div>Technologies (slide)</div>;

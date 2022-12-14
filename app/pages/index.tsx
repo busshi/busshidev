@@ -18,15 +18,15 @@ export default function Home() {
 const App = styled.div`
   min-width: 100%;
   min-height: 100vh;
-  color: black;
-  background: white;
+  color: var(--main-dark-color);
+  background: var(--main-light-color);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
   @media (prefers-color-scheme: dark) {
-    color: #888;
-    background: black;
+    color: var(--secondary-dark-color);
+    background: var(--main-dark-color);
 
     img {
       filter: invert(1);

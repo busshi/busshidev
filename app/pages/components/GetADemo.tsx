@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../lib/constants";
-import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
@@ -16,7 +15,7 @@ const Container = styled.div<{ highlightedColor: Color }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 14px;
+  border-radius: var(--border-radius);
   position: relative;
   transition: box-shadow 1s ease;
 
@@ -30,12 +29,13 @@ const Container = styled.div<{ highlightedColor: Color }>`
     z-index: -1;
     inset: 0;
     padding: 1px;
-    border-radius: 14px;
+    border-radius: var(--border-radius);
     background: ${(props) =>
       `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+      linear-gradient(var(--main-light-color) 0 0);
+    mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+      linear-gradient(var(--main-light-color) 0 0);
     mask-composite: exclude;
     transition: background 1s ease;
   }
@@ -43,15 +43,15 @@ const Container = styled.div<{ highlightedColor: Color }>`
   &:hover {
     background: ${(props) =>
       `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
-    color: white;
+    color: var(--main-light-color);
 
     @media (prefers-color-scheme: dark) {
-      color: black;
+      color: var(--main-dark-color);
     }
   }
 
-  color: black;
+  color: var(--main-dark-color);
   @media (prefers-color-scheme: dark) {
-    color: #f5f5f5;
+    color: var(--secondary-light-color);
   }
 `;

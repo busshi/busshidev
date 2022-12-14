@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+/**
+ * Utility hook to get screen dimensions
+ *
+ * @example
+ * const windowSize = useWindowSize()
+ */
+
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: 0,
