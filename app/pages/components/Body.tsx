@@ -26,7 +26,7 @@ const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 70px;
 `;
 
 const Intro = styled.div`

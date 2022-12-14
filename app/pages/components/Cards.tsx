@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ITEMS } from "../lib/constants";
 import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const Cards = () => {
@@ -6,36 +7,16 @@ export const Cards = () => {
 
   return (
     <Container>
-      <Card
-        id="design"
-        isShiny={highlighted === 0 ? true : false}
-        highlightedColor={highlightedColor}
-      >
-        <Icon>Icon</Icon>
-        <div>Design your website / app with your wishes</div>
-      </Card>
-      <Card
-        id="develop"
-        isShiny={highlighted === 1 ? true : false}
-        highlightedColor={highlightedColor}
-      >
-        Develop and code the best product according to your needs
-      </Card>
-      <Card
-        id="deploy"
-        isShiny={highlighted === 2 ? true : false}
-        highlightedColor={highlightedColor}
-      >
-        Deploy instantly on the cloud
-      </Card>
-      <Card
-        id="boost"
-        isShiny={highlighted === 3 ? true : false}
-        highlightedColor={highlightedColor}
-      >
-        Boost your audience
-        <br /> Search Engine Optimization (SEO)
-      </Card>
+      {ITEMS.map(({ title, description, icon }, i) => (
+        <Card
+          id={title.substring(0, title.length - 1).toLowerCase()}
+          isShiny={highlighted === i ? true : false}
+          highlightedColor={highlightedColor}
+        >
+          <Icon>{icon}</Icon>
+          <div>{description}</div>
+        </Card>
+      ))}
     </Container>
   );
 };

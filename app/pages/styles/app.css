@@ -16,10 +16,10 @@
   --gradient-design-stop: #01f1ff;
   --gradient-develop-start: #520979;
   --gradient-develop-stop: #ff00f1;
-  --gradient-deploy-start: #ff4d4d;
-  --gradient-deploy-stop: #f9cb28;
-  --gradient-boost-start: #01961c;
-  --gradient-boost-stop: #23ff00;
+  --gradient-deploy-start: #01961c;
+  --gradient-deploy-stop: #23ff00;
+  --gradient-boost-start: #ff4d4d;
+  --gradient-boost-stop: #f9cb28;
 
   /*
   *   CSS properties

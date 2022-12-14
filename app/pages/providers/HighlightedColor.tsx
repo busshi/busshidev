@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-import { colors } from "../lib/constants";
+import { COLORS } from "../lib/constants";
 
 export interface Color {
   start: string;
@@ -23,14 +23,14 @@ interface Props {
 export const HighlightedColorProvider = ({ children }: Props) => {
   const [highlighted, setHighlighted] = useState(0);
   const [highlightedColor, setHighlightedColor] = useState({
-    start: colors[0].start,
-    stop: colors[0].stop,
+    start: COLORS[0].start,
+    stop: COLORS[0].stop,
   });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setHighlighted((c) => (c + 1 >= 4 ? 0 : c + 1));
-      setHighlightedColor(colors[highlighted + 1 >= 4 ? 0 : highlighted + 1]);
+      setHighlightedColor(COLORS[highlighted + 1 >= 4 ? 0 : highlighted + 1]);
     }, 3000);
     return () => clearInterval(intervalId);
   }, [highlighted]);

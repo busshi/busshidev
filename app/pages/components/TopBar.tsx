@@ -8,7 +8,12 @@ export const TopBar = () => {
 
   return (
     <Container>
-      <Logo src="/logo.svg" width={119} height={100} alt="busshiDev" />
+      <Logo
+        src="/logo.svg"
+        width={isMobile ? 95 : 119}
+        height={isMobile ? 80 : 100}
+        alt="busshiDev"
+      />
       {isMobile ? (
         <></>
       ) : (

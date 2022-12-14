@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { ITEMS } from "../lib/constants";
 import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const Titles = () => {
@@ -8,34 +9,16 @@ export const Titles = () => {
 
   return (
     <Container>
-      <Title
-        isShiny={highlighted === 0 ? true : false}
-        onClick={() => setHighlighted(0)}
-        highlightedColor={highlightedColor}
-      >
-        <Link href="#design">Design.</Link>
-      </Title>
-      <Title
-        isShiny={highlighted === 1 ? true : false}
-        onClick={() => setHighlighted(1)}
-        highlightedColor={highlightedColor}
-      >
-        <Link href="#develop">Develop.</Link>
-      </Title>
-      <Title
-        isShiny={highlighted === 2 ? true : false}
-        onClick={() => setHighlighted(2)}
-        highlightedColor={highlightedColor}
-      >
-        <Link href="#deploy">Deploy.</Link>
-      </Title>
-      <Title
-        isShiny={highlighted === 3 ? true : false}
-        onClick={() => setHighlighted(3)}
-        highlightedColor={highlightedColor}
-      >
-        <Link href="#boost">Boost.</Link>
-      </Title>
+      {ITEMS.map(({ title, link }, i) => (
+        <Title
+          key={title}
+          isShiny={highlighted === i ? true : false}
+          onClick={() => setHighlighted(i)}
+          highlightedColor={highlightedColor}
+        >
+          <Link href={link}>{title}</Link>
+        </Title>
+      ))}
     </Container>
   );
 };
@@ -68,8 +51,14 @@ const Title = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
+  margin-right: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
+
   @media (max-width: 768px) {
     font-size: 60px;
+    margin-right: 0;
   }
 
   @media (prefers-color-scheme: dark) {
