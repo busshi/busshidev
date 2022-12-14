@@ -7,14 +7,16 @@ export const Cards = () => {
 
   return (
     <Container id="#steps">
-      {ITEMS.map(({ title, description, icon }, i) => (
+      {ITEMS.map(({ title, description, icon, component }, i) => (
         <Card
+          key={title}
           id={title.substring(0, title.length - 1).toLowerCase()}
           isShiny={highlighted === i ? true : false}
           highlightedColor={highlightedColor}
         >
           <Icon>{icon}</Icon>
           <div>{description}</div>
+          {component}
         </Card>
       ))}
     </Container>
@@ -25,16 +27,19 @@ const Container = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
-  margin: 12px;
-  margin-top: 300px;
+  gap: 3rem;
+  margin: 0.1rem;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    margin: 1rem;
+  }
 `;
 
 const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
-  width: 200px;
-  height: 200px;
-  padding: 24px;
+  width: 15rem;
+  height: 15rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,10 +47,10 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   position: relative;
   text-align: center;
   z-index: 0;
-  border-radius: 14px;
+  border-radius: var(--border-radius);
   box-shadow: ${(props) =>
     props.isShiny
-      ? `0px 0px 30px 0px ${props.highlightedColor.start}`
+      ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
       : "none"};
   transition: box-shadow 1s ease;
 
@@ -55,7 +60,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
     z-index: -1;
     inset: 0;
     padding: 1px;
-    border-radius: 14px;
+    border-radius: var(--border-radius);
     background: ${(props) =>
       props.isShiny
         ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`

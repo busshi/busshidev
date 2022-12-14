@@ -24,7 +24,8 @@
   /*
   *   CSS properties
   */
-  --border-radius: 14px;
+  --border-radius: 8px;
+  --transition-delay: 0.3s;
 }
 
 body {

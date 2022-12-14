@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
+import { useHandleScroll } from "../hooks/usehandleScroll";
 
 export const TopBar = () => {
   const isMobile = useIsMobile();
 
   return (
     <Container>
-      <Logo
+      <Image
         src="/logo.svg"
         width={isMobile ? 95 : 119}
         height={isMobile ? 80 : 100}
@@ -18,9 +19,11 @@ export const TopBar = () => {
         <></>
       ) : (
         <Buttons>
-          <Link href="#steps">
-            <Button>Solutions</Button>
-          </Link>
+          <Button
+            onClick={() => useHandleScroll(document.getElementById("#steps"))}
+          >
+            Solutions
+          </Button>
           <Link href="https://busshi.fr">
             <Button>About me</Button>
           </Link>
@@ -37,25 +40,22 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
-  margin-bottom: 10px;
 `;
-
-const Logo = styled(Image)``;
 
 const Buttons = styled.div`
   display: flex;
-  gap: 20px;
-  margin: 20px;
+  gap: 1rem;
+  margin-right: 1rem;
 `;
 
 const Button = styled.div`
-  padding: 8px 16px 8px 16px;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
 
   color: var(--secondary-dark-color);
-  transition: color 0.3s ease;
+  transition: color var(--transition-delay) ease;
   :hover {
     color: var(--main-dark-color);
   }

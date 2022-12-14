@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { ITEMS } from "../lib/constants";
+import { COLORS, ITEMS } from "../lib/constants";
 import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const Titles = () => {
-  const { highlighted, setHighlighted, highlightedColor } =
+  const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
 
   return (
@@ -13,7 +13,10 @@ export const Titles = () => {
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
-          onClick={() => setHighlighted(i)}
+          onClick={() => {
+            setHighlighted(i);
+            setHighlightedColor(COLORS[i]);
+          }}
           highlightedColor={highlightedColor}
         >
           <Link href={link}>{title}</Link>

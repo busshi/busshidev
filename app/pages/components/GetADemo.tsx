@@ -9,8 +9,8 @@ export const GetADemo = () => {
 
 const Container = styled.div<{ highlightedColor: Color }>`
   cursor: pointer;
-  width: 200px;
-  height: 50px;
+  width: 15rem;
+  height: 3rem;
   z-index: 0;
   display: flex;
   justify-content: center;

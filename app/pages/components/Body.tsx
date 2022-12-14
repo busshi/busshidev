@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useHandleScroll } from "../hooks/usehandleScroll";
 import { Cards } from "./Cards";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
@@ -14,7 +15,11 @@ export const Body: React.FC = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance>STEP BY STEP GUIDANCE</Guidance>
+        <Guidance
+          onClick={() => useHandleScroll(document.getElementById("#steps"))}
+        >
+          <div>STEP BY STEP GUIDANCE</div>
+        </Guidance>
       </FirstPage>
       <Cards />
       <Testimonials />
@@ -29,38 +34,39 @@ const Container = styled.div`
 
 const FirstPage = styled.div`
   height: 90vh;
-  padding: 0;
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 70px;
-  color: var(--secondary-dark);
+  gap: 4rem;
+  color: var(--secondary-dark-color);
 `;
 
 const Intro = styled.div`
-  margin: 30px;
-  font-size: 1.4rem;
+  margin: 2rem;
+  font-size: 1.5rem;
 
-  line-height: 1.6em;
   font-weight: 300;
   letter-spacing: 0.1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 0;
   }
 `;
 
 const Guidance = styled.div`
-  margin-top: 30px;
-  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 3rem;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   line-height: 1.6em;
   font-weight: 300;
   letter-spacing: 0.1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
     margin: 0;
   }
 `;
