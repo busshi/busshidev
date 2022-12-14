@@ -1,43 +1,45 @@
 import styled from "styled-components";
+import { Color } from "../lib/constants";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
 
-export const Cards = ({ highlighted }: { highlighted: number }) => (
-  <Container>
-    <Card
-      id="design"
-      start="#030cfa"
-      stop="#01f1ff"
-      isShiny={highlighted === 0 ? true : false}
-    >
-      <Icon>Icon</Icon>
-      <div>Design your website / app with your wishes</div>
-    </Card>
-    <Card
-      id="develop"
-      start="#520979"
-      stop="#ff00f1"
-      isShiny={highlighted === 1 ? true : false}
-    >
-      Develop and code the best product according to your needs
-    </Card>
-    <Card
-      id="deploy"
-      start="#ff4d4d"
-      stop="#f9cb28"
-      isShiny={highlighted === 2 ? true : false}
-    >
-      Deploy instantly on the cloud
-    </Card>
-    <Card
-      id="boost"
-      start="#02ff01"
-      stop="#03faf3"
-      isShiny={highlighted === 3 ? true : false}
-    >
-      Boost your audience
-      <br /> Search Engine Optimization (SEO)
-    </Card>
-  </Container>
-);
+export const Cards = () => {
+  const { highlighted, highlightedColor } = useHighlightedColorState();
+
+  return (
+    <Container>
+      <Card
+        id="design"
+        isShiny={highlighted === 0 ? true : false}
+        highlightedColor={highlightedColor}
+      >
+        <Icon>Icon</Icon>
+        <div>Design your website / app with your wishes</div>
+      </Card>
+      <Card
+        id="develop"
+        isShiny={highlighted === 1 ? true : false}
+        highlightedColor={highlightedColor}
+      >
+        Develop and code the best product according to your needs
+      </Card>
+      <Card
+        id="deploy"
+        isShiny={highlighted === 2 ? true : false}
+        highlightedColor={highlightedColor}
+      >
+        Deploy instantly on the cloud
+      </Card>
+      <Card
+        id="boost"
+        isShiny={highlighted === 3 ? true : false}
+        highlightedColor={highlightedColor}
+      >
+        Boost your audience
+        <br /> Search Engine Optimization (SEO)
+      </Card>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   align-items: center;
@@ -45,10 +47,11 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 40px;
   margin: 12px;
+  margin-top: 300px;
   justify-content: center;
 `;
 
-const Card = styled.div<{ start: string; stop: string; isShiny?: boolean }>`
+const Card = styled.div<{ highlightedColor: Color; isShiny?: boolean }>`
   width: 200px;
   height: 200px;
   padding: 24px;
@@ -61,7 +64,10 @@ const Card = styled.div<{ start: string; stop: string; isShiny?: boolean }>`
   z-index: 0;
   border-radius: 14px;
   box-shadow: ${(props) =>
-    props.isShiny ? `0px 0px 30px 0px ${props.start}` : "none"};
+    props.isShiny
+      ? `0px 0px 30px 0px ${props.highlightedColor.start}`
+      : "none"};
+  transition: box-shadow 1s ease;
 
   &:before {
     content: "";
@@ -71,7 +77,9 @@ const Card = styled.div<{ start: string; stop: string; isShiny?: boolean }>`
     padding: 1px;
     border-radius: 14px;
     background: ${(props) =>
-      `linear-gradient(180deg, ${props.start}, ${props.stop})`};
+      props.isShiny
+        ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
+        : "#888"};
     -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

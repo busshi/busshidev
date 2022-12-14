@@ -1,22 +1,27 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useIsMobile } from "../hooks/useIsMobile";
+import Link from "next/link";
 
 export const TopBar = () => {
-  //const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
 
   return (
     <Container>
       <Logo src="/logo.svg" width={119} height={100} alt="busshiDev" />
-      {/* {isMobile ? (
+      {isMobile ? (
         <></>
-      ) : ( */}
-      <Buttons>
-        <Button>SOLUTIONS</Button>
-        <Button>ABOUT ME</Button>
-        <Button>GET A DEMO</Button>
-      </Buttons>
-      {/* )} */}
+      ) : (
+        <Buttons>
+          <Link href="#design">
+            <Button>Solutions</Button>
+          </Link>
+          <Link href="https://busshi.fr">
+            <Button>About me</Button>
+          </Link>
+          <Button>Contact</Button>
+        </Buttons>
+      )}
     </Container>
   );
 };
@@ -42,10 +47,13 @@ const Button = styled.div`
   cursor: pointer;
   color: grey;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
 
   :hover {
     color: black;
   }
+
   @media (prefers-color-scheme: dark) {
     :hover {
       color: white;

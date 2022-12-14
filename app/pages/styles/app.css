@@ -1,4 +1,19 @@
+:root {
+  --NTCVAR-design-start: #030cfa;
+  --NTCVAR-design-stop: #01f1ff;
+  --NTCVAR-develop-start: #520979;
+  --NTCVAR-develop-stop: #ff00f1;
+  --NTCVAR-deploy-start: #ff4d4d;
+  --NTCVAR-deploy-stop: #f9cb28;
+  --NTCVAR-boost-start: #01961c;
+  --NTCVAR-boost-stop: #23ff00;
+}
+
 body {
   margin: 0;
   padding: 0;
+}
+
+* {
+  text-decoration: none;
 }

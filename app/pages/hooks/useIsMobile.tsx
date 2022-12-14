@@ -1,3 +1,6 @@
+import { useWindowSize } from "./useWindowSize";
+
 export const useIsMobile = () => {
-  //  if (typeof window !== "undefined") return window?.innerWidth < 768;
+  const size = useWindowSize();
+  return size.width <= 768;
 };

@@ -16,14 +16,16 @@ export default function Home() {
 }
 
 const App = styled.div`
-  color: black;
-  background: #f5f5f5;
-  font-family: ui-rounded;
   min-width: 100%;
   min-height: 100vh;
+  color: black;
+  background: white;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 
   @media (prefers-color-scheme: dark) {
-    color: #f5f5f5;
+    color: #888;
     background: black;
 
     img {
