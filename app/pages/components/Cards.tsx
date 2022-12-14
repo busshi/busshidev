@@ -6,7 +6,7 @@ export const Cards = () => {
   const { highlighted, highlightedColor } = useHighlightedColorState();
 
   return (
-    <Container>
+    <Container id="#steps">
       {ITEMS.map(({ title, description, icon }, i) => (
         <Card
           id={title.substring(0, title.length - 1).toLowerCase()}

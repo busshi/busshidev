@@ -18,7 +18,7 @@ export const TopBar = () => {
         <></>
       ) : (
         <Buttons>
-          <Link href="#design">
+          <Link href="#steps">
             <Button>Solutions</Button>
           </Link>
           <Link href="https://busshi.fr">
@@ -36,6 +36,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 10vh;
   margin-bottom: 10px;
 `;
 
