@@ -8,7 +8,7 @@ export const TopBar = () => {
   const isMobile = useIsMobile();
 
   return (
-    <Container>
+    <Container id="top">
       <Image
         src="/logo.svg"
         width={isMobile ? 95 : 119}
