@@ -57,9 +57,9 @@ export const Title = styled.div<{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.06rem;
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
 
   @media (max-width: 768px) {
     margin: 0;

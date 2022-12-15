@@ -5,7 +5,7 @@ import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";
 import { Titles } from "./Titles";
 import { useIsMobile } from "../hooks/useIsMobile";
-import { LaptopSolutions } from "./solutions/LaptopSolutions";
+import { Solutions } from "./solutions/Solutions";
 import { MobileSolutions } from "./solutions/MobileSolutions";
 //import { useEffect } from "react";
 
@@ -48,7 +48,7 @@ export const Body: React.FC = () => {
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>
-      {isMobile ? <MobileSolutions /> : <LaptopSolutions />}
+      {isMobile ? <MobileSolutions /> : <Solutions />}
       <Testimonials />
       <Technos />
     </Container>
@@ -72,8 +72,7 @@ const Intro = styled.div`
   margin: 2rem;
   font-size: 1.5rem;
 
-  font-weight: 300;
-  letter-spacing: 0.1rem;
+  font-weight: var(--font-weight);
 
   @media (max-width: 768px) {
     font-size: 1.1rem;

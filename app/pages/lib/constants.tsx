@@ -1,38 +1,49 @@
-import { Boost } from "../components/solutions/Boost";
-import { Deploy } from "../components/solutions/Deploy";
-import { Design } from "../components/solutions/Design";
-import { Develop } from "../components/solutions/Develop";
-
 export const SITE_URL = "https://busshidev.fr";
 
 export const SOLUTIONS = [
   {
     title: "Design.",
     description: "Create the website of your dreams",
+    actions: [
+      "Using online collaborative tools",
+      "Create website maquette",
+      "Personalization",
+    ],
     id: "design",
     icon: "",
-    component: <Design />,
   },
   {
     title: "Develop.",
     description: "Code the product you need",
+    actions: [
+      "Building incredibly blazing fast websites",
+      "Using latest frameworks and tools",
+      "Code well organized and documented easy to maintain",
+    ],
     id: "develop",
     icon: "",
-    component: <Develop />,
   },
   {
     title: "Deploy.",
     description: "Deploy instantly on the cloud",
+    actions: [
+      "Online deployment",
+      "Instant worldwide access",
+      "Continuatious Integration and Development",
+    ],
     id: "deploy",
     icon: "",
-    component: <Deploy />,
   },
   {
     title: "Boost.",
     description: "Increase your audience",
+    actions: [
+      "Search Engine Optimization",
+      "Increase referencement",
+      "Better trafic",
+    ],
     id: "boost",
     icon: "",
-    component: <Boost />,
   },
 ];
 

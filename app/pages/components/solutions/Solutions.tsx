@@ -6,13 +6,13 @@ import {
 } from "../../providers/HighlightedColor";
 import { Content } from "./Content";
 
-export const LaptopSolutions = () => {
+export const Solutions = () => {
   const { highlighted, highlightedColor } = useHighlightedColorState();
 
   return (
     <Container id="solutions">
-      {SOLUTIONS.map(({ title, description, component, id }, index) => (
-        <Solution
+      {SOLUTIONS.map(({ title, description, actions, id }, index) => (
+        <Card
           key={title}
           id={id}
           highlightedColor={highlightedColor}
@@ -22,11 +22,11 @@ export const LaptopSolutions = () => {
             title={title}
             description={description}
             index={index}
-            component={component}
+            actions={actions}
             titleSize="1.5rem"
-            descriptionSize="2rem"
+            descriptionSize="1.5rem"
           />
-        </Solution>
+        </Card>
       ))}
     </Container>
   );
@@ -36,19 +36,20 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
+  align-content: center;
   gap: 5rem;
   padding: 2rem;
+  margin: auto;
+  min-height: 100vh;
 `;
 
-const Solution = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
+const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   width: 35%;
   padding: 0.1rem;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: center;
-  align-items: stretch;
-  align-self: flex-start;
   position: relative;
   text-align: center;
   z-index: 0;

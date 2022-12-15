@@ -3,9 +3,9 @@ import { COLORS, SOLUTIONS } from "../../lib/constants";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => (
-  <MobileContainer id="solutions">
-    {SOLUTIONS.map(({ title, description, component, id }, index) => (
-      <MobileSolution key={title} id={id}>
+  <Container id="solutions">
+    {SOLUTIONS.map(({ title, description, actions, id }, index) => (
+      <Solution key={title} id={id}>
         <Line index={index} />
         <Circle isShiny={true} index={index}>
           {index + 1}
@@ -14,16 +14,16 @@ export const MobileSolutions = () => (
           title={title}
           description={description}
           index={index}
-          component={component}
+          actions={actions}
           titleSize="3rem"
           descriptionSize="3rem"
         />
-      </MobileSolution>
+      </Solution>
     ))}
-  </MobileContainer>
+  </Container>
 );
 
-const MobileContainer = styled.div`
+const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 1rem;
@@ -33,7 +33,7 @@ const MobileContainer = styled.div`
   gap: 3rem;
 `;
 
-const MobileSolution = styled.div`
+const Solution = styled.div`
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
