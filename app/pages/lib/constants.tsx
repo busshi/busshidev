@@ -3,6 +3,8 @@ import { Deploy } from "../components/solutions/Deploy";
 import { Design } from "../components/solutions/Design";
 import { Develop } from "../components/solutions/Develop";
 
+export const SITE_URL = "https://busshidev.fr";
+
 export const SOLUTIONS = [
   {
     title: "Design.",
