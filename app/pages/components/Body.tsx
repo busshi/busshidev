@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
-import { Solutions } from "./Solutions";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";
 import { Titles } from "./Titles";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { LaptopSolutions } from "./solutions/LaptopSolutions";
+import { MobileSolutions } from "./solutions/MobileSolutions";
 //import { useEffect } from "react";
 
 export const Body: React.FC = () => {
@@ -32,6 +34,7 @@ export const Body: React.FC = () => {
   //       useSscrollIntoView("solutions")
   //     );
   // }, []);
+  const isMobile = useIsMobile();
 
   return (
     <Container>
@@ -45,7 +48,7 @@ export const Body: React.FC = () => {
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>
-      <Solutions />
+      {isMobile ? <MobileSolutions /> : <LaptopSolutions />}
       <Testimonials />
       <Technos />
     </Container>

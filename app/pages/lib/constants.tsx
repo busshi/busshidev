@@ -8,14 +8,14 @@ export const SITE_URL = "https://busshidev.fr";
 export const SOLUTIONS = [
   {
     title: "Design.",
-    description: "Create the website you dreamt",
+    description: "Create the website of your dreams",
     id: "design",
     icon: "",
     component: <Design />,
   },
   {
     title: "Develop.",
-    description: "Code the best product you needed",
+    description: "Code the product you need",
     id: "develop",
     icon: "",
     component: <Develop />,
