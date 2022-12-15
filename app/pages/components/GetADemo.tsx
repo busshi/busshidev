@@ -19,7 +19,7 @@ const Button = styled.div<{ highlightedColor: Color }>`
   position: relative;
   transition: box-shadow 1s ease;
 
-  font-weight: 800;
+  font-weight: var(--font-weight);
 
   box-shadow: ${(props) => `0px 0px 30px 0px ${props.highlightedColor.start}`};
 

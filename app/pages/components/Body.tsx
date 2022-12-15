@@ -8,14 +8,29 @@ import { Titles } from "./Titles";
 //import { useEffect } from "react";
 
 export const Body: React.FC = () => {
+  // const isInViewport = (element: HTMLElement) => {
+  //   const rect = element.getBoundingClientRect();
+  //   return (
+  //     rect.top >= 0 &&
+  //     rect.left >= 0 &&
+  //     rect.bottom <=
+  //       (window.innerHeight || document.documentElement.clientHeight) &&
+  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  //   );
+  // }
+
   // useEffect(() => {
-  //   const element = document.getElementById("firstPage");
-  //   if (element && (element.offsetWidth < 0 || element.offsetHeight > 0)) {
-  //     window.addEventListener("scroll", () => useHandleScroll("#solutions"), {
+  //   const element = document.getElementById("intro");
+  //   if (element && isInViewport(element)) {
+  //     console.log(isInViewport(element));
+  //     window.addEventListener("scroll", () => useSscrollIntoView("solutions"), {
   //       passive: true,
   //     });
   //   }
-  //   //    return () => window.removeEventListener("scroll");
+  //   return () =>
+  //     window.removeEventListener("scroll", () =>
+  //       useSscrollIntoView("solutions")
+  //     );
   // }, []);
 
   return (
@@ -42,7 +57,7 @@ const Container = styled.div`
 `;
 
 const FirstPage = styled.div`
-  height: 90vh;
+  min-height: 90vh;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -65,7 +80,7 @@ const Intro = styled.div`
 
 const Guidance = styled.div`
   cursor: pointer;
-  margin-top: 3rem;
+  margin: 3rem;
   font-size: 0.7rem;
   display: flex;
   flex-direction: column;
