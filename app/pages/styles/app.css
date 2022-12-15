@@ -26,6 +26,7 @@
   */
   --border-radius: 8px;
   --transition-delay: 0.3s;
+  --long-transition-delay: 1s;
 }
 
 body {

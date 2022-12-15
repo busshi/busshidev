@@ -4,13 +4,13 @@ import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
 
-  return <Container highlightedColor={highlightedColor}>Get a Demo</Container>;
+  return <Button highlightedColor={highlightedColor}>Get a Demo</Button>;
 };
 
-const Container = styled.div<{ highlightedColor: Color }>`
+const Button = styled.div<{ highlightedColor: Color }>`
   cursor: pointer;
-  width: 15rem;
-  height: 3rem;
+  min-width: 15rem;
+  min-height: 3rem;
   z-index: 0;
   display: flex;
   justify-content: center;

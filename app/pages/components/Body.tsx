@@ -1,12 +1,23 @@
 import styled from "styled-components";
-import { useHandleScroll } from "../hooks/usehandleScroll";
-import { Cards } from "./Cards";
+import { useSscrollIntoView } from "../hooks/useScrollIntoView";
+import { Solutions } from "./Solutions";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";
 import { Titles } from "./Titles";
+//import { useEffect } from "react";
 
 export const Body: React.FC = () => {
+  // useEffect(() => {
+  //   const element = document.getElementById("firstPage");
+  //   if (element && (element.offsetWidth < 0 || element.offsetHeight > 0)) {
+  //     window.addEventListener("scroll", () => useHandleScroll("#solutions"), {
+  //       passive: true,
+  //     });
+  //   }
+  //   //    return () => window.removeEventListener("scroll");
+  // }, []);
+
   return (
     <Container>
       <FirstPage>
@@ -15,13 +26,11 @@ export const Body: React.FC = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance
-          onClick={() => useHandleScroll(document.getElementById("#steps"))}
-        >
+        <Guidance onClick={() => useSscrollIntoView("solutions")}>
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>
-      <Cards />
+      <Solutions />
       <Testimonials />
       <Technos />
     </Container>

@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { ITEMS } from "../lib/constants";
+import { SOLUTIONS } from "../lib/constants";
 import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
-export const Cards = () => {
+export const Solutions = () => {
   const { highlighted, highlightedColor } = useHighlightedColorState();
 
   return (
-    <Container id="#steps">
-      {ITEMS.map(({ title, description, icon, component }, i) => (
+    <Container id="solutions">
+      {SOLUTIONS.map(({ title, description, icon, component }, i) => (
         <Card
           key={title}
           id={title.substring(0, title.length - 1).toLowerCase()}
@@ -52,7 +52,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
     props.isShiny
       ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
       : "none"};
-  transition: box-shadow 1s ease;
+  transition: box-shadow var(--long-transition-delay) ease;
 
   &:before {
     content: "";
@@ -66,7 +66,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
         ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
         : "var(--secondary-dark-color)"};
     -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
-      linear-gradient(#fff 0 0);
+      linear-gradient(var(--main-light-color) 0 0);
     mask: linear-gradient(var(--main-light-color) 0 0) content-box,
       linear-gradient(var(--main-light-color) 0 0);
     mask-composite: exclude;

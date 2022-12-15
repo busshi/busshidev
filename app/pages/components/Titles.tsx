@@ -1,6 +1,6 @@
-import Link from "next/link";
 import styled from "styled-components";
-import { COLORS, ITEMS } from "../lib/constants";
+import { useSscrollIntoView } from "../hooks/useScrollIntoView";
+import { COLORS, SOLUTIONS } from "../lib/constants";
 import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
 
 export const Titles = () => {
@@ -9,17 +9,18 @@ export const Titles = () => {
 
   return (
     <Container>
-      {ITEMS.map(({ title, link }, i) => (
+      {SOLUTIONS.map(({ title, id }, i) => (
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
+            useSscrollIntoView(id);
           }}
           highlightedColor={highlightedColor}
         >
-          <Link href={link}>{title}</Link>
+          {title}
         </Title>
       ))}
     </Container>
