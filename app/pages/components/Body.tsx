@@ -70,6 +70,7 @@ const FirstPage = styled.div`
 
 const Intro = styled.div`
   margin: 2rem;
+  padding: 0 1rem 0 1rem;
   font-size: 1.5rem;
 
   font-weight: var(--font-weight);

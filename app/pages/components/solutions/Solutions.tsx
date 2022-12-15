@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { SOLUTIONS } from "../../lib/constants";
-import {
-  Color,
-  useHighlightedColorState,
-} from "../../providers/HighlightedColor";
+import { COLORS, SOLUTIONS } from "../../lib/constants";
+import { useHighlightedColorState } from "../../providers/HighlightedColor";
+import { Color } from "../../types/interfaces";
 import { Content } from "./Content";
 
 export const Solutions = () => {
@@ -11,18 +9,16 @@ export const Solutions = () => {
 
   return (
     <Container id="solutions">
-      {SOLUTIONS.map(({ title, description, actions, id }, index) => (
+      {SOLUTIONS.map((solution, index) => (
         <Card
-          key={title}
-          id={id}
-          highlightedColor={highlightedColor}
+          key={solution.title}
+          id={solution.id}
+          highlightedColor={COLORS[index]}
           isShiny={index === highlighted ? true : false}
         >
           <Content
-            title={title}
-            description={description}
+            solution={solution}
             index={index}
-            actions={actions}
             titleSize="1.5rem"
             descriptionSize="1.5rem"
           />
@@ -57,7 +53,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   box-shadow: ${(props) =>
     props.isShiny
       ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
-      : `0px 0px 1rem 0px var(--secondary-dark-color)`};
+      : "none"};
 
   transition: box-shadow var(--long-transition-delay) ease;
 
@@ -65,7 +61,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   box-shadow: ${(props) =>
     props.isShiny
       ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
-      : `0px 0px 1rem 0px var(--secondary-light-color)`};
+      : "none"};
     }
   }
 
@@ -74,12 +70,10 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
     position: absolute;
     z-index: -1;
     inset: 0;
-    padding: 0px;
+    padding: 1px;
     border-radius: var(--border-radius);
     background: ${(props) =>
-      props.isShiny
-        ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
-        : "var(--secondary-dark-color)"};
+      `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
     -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
       linear-gradient(var(--main-light-color) 0 0);
     mask: linear-gradient(var(--main-light-color) 0 0) content-box,

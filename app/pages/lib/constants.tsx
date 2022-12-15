@@ -1,3 +1,8 @@
+import { SlRocket } from "react-icons/sl";
+import { SiAdobeindesign } from "react-icons/si";
+import { BsTerminalFill } from "react-icons/bs";
+import { BsGraphUp } from "react-icons/bs";
+
 export const SITE_URL = "https://busshidev.fr";
 
 export const SOLUTIONS = [
@@ -10,7 +15,7 @@ export const SOLUTIONS = [
       "Personalization",
     ],
     id: "design",
-    icon: "",
+    icon: <SiAdobeindesign size="2rem" />,
   },
   {
     title: "Develop.",
@@ -21,7 +26,7 @@ export const SOLUTIONS = [
       "Code well organized and documented easy to maintain",
     ],
     id: "develop",
-    icon: "",
+    icon: <BsTerminalFill size="2rem" />,
   },
   {
     title: "Deploy.",
@@ -32,7 +37,7 @@ export const SOLUTIONS = [
       "Continuatious Integration and Development",
     ],
     id: "deploy",
-    icon: "",
+    icon: <SlRocket size="2rem" />,
   },
   {
     title: "Boost.",
@@ -43,7 +48,7 @@ export const SOLUTIONS = [
       "Better trafic",
     ],
     id: "boost",
-    icon: "",
+    icon: <BsGraphUp size="2rem" />,
   },
 ];
 

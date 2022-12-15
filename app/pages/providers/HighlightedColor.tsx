@@ -1,10 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { COLORS } from "../lib/constants";
-
-export interface Color {
-  start: string;
-  stop: string;
-}
+import { Color } from "../types/interfaces";
 
 interface HighlightedColorContextType {
   highlighted: number;

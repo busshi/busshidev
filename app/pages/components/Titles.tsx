@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import { COLORS, SOLUTIONS } from "../lib/constants";
-import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color } from "../types/interfaces";
 
 export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =

@@ -4,17 +4,15 @@ import { Content } from "./Content";
 
 export const MobileSolutions = () => (
   <Container id="solutions">
-    {SOLUTIONS.map(({ title, description, actions, id }, index) => (
-      <Solution key={title} id={id}>
+    {SOLUTIONS.map((solution, index) => (
+      <Solution key={solution.title} id={solution.id}>
         <Line index={index} />
         <Circle isShiny={true} index={index}>
           {index + 1}
         </Circle>
         <Content
-          title={title}
-          description={description}
+          solution={solution}
           index={index}
-          actions={actions}
           titleSize="3rem"
           descriptionSize="3rem"
         />

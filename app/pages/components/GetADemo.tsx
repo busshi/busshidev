@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Color, useHighlightedColorState } from "../providers/HighlightedColor";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color } from "../types/interfaces";
 
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
