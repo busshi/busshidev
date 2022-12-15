@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
-import { useSscrollIntoView } from "../hooks/useScrollIntoView";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 
 export const TopBar = () => {
   const isMobile = useIsMobile();
@@ -19,7 +19,7 @@ export const TopBar = () => {
         <></>
       ) : (
         <Buttons>
-          <Button onClick={() => useSscrollIntoView("solutions")}>
+          <Button onClick={() => useScrollIntoView("solutions")}>
             Solutions
           </Button>
           <Link href="https://busshi.fr">

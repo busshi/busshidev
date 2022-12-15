@@ -5,7 +5,7 @@
  * useHandleScroll("solutions")
  */
 
-export const useSscrollIntoView = (id: string) => {
+export const useScrollIntoView = (id: string) => {
   const elem = document.getElementById(id);
   elem && elem.scrollIntoView({ behavior: "smooth" });
 };

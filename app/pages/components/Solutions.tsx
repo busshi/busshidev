@@ -1,30 +1,29 @@
 import styled from "styled-components";
 import { COLORS, SOLUTIONS } from "../lib/constants";
-import { useHighlightedColorState } from "../providers/HighlightedColor";
 import { Title } from "./Titles";
 
 export const Solutions = () => {
-  const { highlighted } = useHighlightedColorState();
-
   return (
     <Container id="solutions">
-      {SOLUTIONS.map(({ title, description }, index) => (
-        <Solution key={title}>
+      {SOLUTIONS.map(({ title, description, component, id }, index) => (
+        <Solution key={title} id={id}>
           <Line index={index} />
-          <Circle isShiny={highlighted === index ? true : false} index={index}>
+          <Circle isShiny={true} index={index}>
             {index + 1}
           </Circle>
-          <Box>
+          <TitleBox>
             <Title
               key={title}
               isShiny={true}
               highlightedColor={COLORS[index]}
-              fontSize="4rem"
+              fontSize="3rem"
+              margin="0"
             >
-              {title}
+              {title.substring(0, title.length - 1)}
             </Title>
-            <div>{description}</div>
-          </Box>
+          </TitleBox>
+          <Description>{description}</Description>
+          {component}
         </Solution>
       ))}
     </Container>
@@ -36,13 +35,18 @@ const Container = styled.div`
   gap: 3rem;
   margin: 0.1rem;
   justify-content: center;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.06rem;
 
   @media (max-width: 768px) {
     margin: 1rem;
+    line-height: 1.1;
   }
 `;
 
 const Solution = styled.div`
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,7 +66,7 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--main-dark-color);
+  color: var(--secondary-light-color);
   width: 3rem;
   height: 3rem;
   border-radius: 99999px;
@@ -76,10 +80,25 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
     `linear-gradient(360deg, ${COLORS[props.index].start}, ${
       COLORS[props.index].stop
     })`};
+
+  @media (prefers-color-scheme: dark) {
+      color: var(--main-dark-color);
+    }
+  }
 `;
 
-const Box = styled.div`
-  margin: 0 0 2rem 0;
+const TitleBox = styled.div`
+  margin: 2rem;
+`;
+
+const Description = styled.div`
+  color: var(--main-dark-color);
+  font-size: 3rem;
+
+  @media (prefers-color-scheme: dark) {
+      color: var(--secondary-light-color);
+    }
+  }
 `;
 
 // const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`

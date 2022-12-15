@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useSscrollIntoView } from "../hooks/useScrollIntoView";
+import { useScrollIntoView } from "../hooks/useScrollIntoView";
 import { Solutions } from "./Solutions";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
@@ -41,7 +41,7 @@ export const Body: React.FC = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance onClick={() => useSscrollIntoView("solutions")}>
+        <Guidance onClick={() => useScrollIntoView("solutions")}>
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>

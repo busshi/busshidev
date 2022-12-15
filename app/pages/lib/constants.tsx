@@ -1,27 +1,36 @@
+import { Boost } from "../components/solutions/Boost";
+import { Deploy } from "../components/solutions/Deploy";
+import { Design } from "../components/solutions/Design";
+import { Develop } from "../components/solutions/Develop";
+
 export const SOLUTIONS = [
   {
     title: "Design.",
-    description: "Design your website / app with your wishes",
+    description: "Create the website you dreamt",
     id: "design",
     icon: "",
+    component: <Design />,
   },
   {
     title: "Develop.",
-    description: "Develop and code the best product according to your needs",
+    description: "Code the best product you needed",
     id: "develop",
     icon: "",
+    component: <Develop />,
   },
   {
     title: "Deploy.",
     description: "Deploy instantly on the cloud",
     id: "deploy",
     icon: "",
+    component: <Deploy />,
   },
   {
     title: "Boost.",
-    description: "Boost your audience",
+    description: "Increase your audience",
     id: "boost",
     icon: "",
+    component: <Boost />,
   },
 ];
 
