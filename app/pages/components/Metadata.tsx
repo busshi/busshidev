@@ -1,5 +1,11 @@
 import Head from "next/head";
-import { jsonLdLogo, jsonLdWebsite } from "../lib/jsonLd";
+import { SITE_URL } from "../lib/constants";
+import {
+  jsonLdLogo,
+  jsonLdOrganization,
+  jsonLdOrganizationRating,
+  jsonLdWebsite,
+} from "../lib/jsonLd";
 
 export const Metadata: React.FC = () => (
   <Head>
@@ -12,6 +18,17 @@ export const Metadata: React.FC = () => (
     <meta
       name="keywords"
       content="busshiDev, Freelance, Fullstack developer, Developer, ReactJS, NextJS, NestJS, ExpressJS, SEO, Docker"
+    />
+
+    <meta property="og:image" content="https://busshidev/logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:type" content="image" />
+    <meta property="og:image:width" content="20" />
+    <meta property="og:image:height" content="100" />
+    <meta property="og:url" content="https://busshidev.fr" />
+    <meta
+      property="og:title"
+      content="BusshiDev - Design. Develop. Deploy. Boost"
     />
 
     <link rel="icon" href="/favicon.ico" />
@@ -33,6 +50,22 @@ export const Metadata: React.FC = () => (
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(jsonLdLogo),
+      }}
+    />
+
+    {/* Organization */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLdOrganization),
+      }}
+    />
+
+    {/* Organization Rating */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLdOrganizationRating),
       }}
     />
   </Head>
