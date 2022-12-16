@@ -14,7 +14,7 @@ export const useGetElementWidth = (id: string) => {
     const element = document.getElementById(id);
     const width = element?.offsetWidth;
     if (width) setElementWidth(width);
-  });
+  }, [id]);
 
   return elementWidth;
 };
