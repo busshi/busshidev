@@ -1,10 +1,26 @@
 import styled from "styled-components";
-import { useGetElementWidth } from "../../hooks/useGetElementWidth";
 import { SectionTitle } from "./Testimonials";
 import { TECHNOS } from "../../lib/technos";
+import useIsElementVisible from "../../hooks/useIsElementVisible";
+//import { useEffect } from "react";
+import { useGetElementWidth } from "../../hooks/useGetElementWidth";
 
 export const Technos = () => {
+  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-100);
   const elementWidth = useGetElementWidth("items");
+
+  console.log(isElementVisible);
+
+  // useEffect(() => {
+  //   const items = document.getElementById("items");
+  //   items?.addEventListener("scroll", (e) => {
+  //     console.log(isElementVisible);
+  //   });
+  //   if (isElementVisible) {
+  //     const items = document.getElementById("items");
+  //     //      if (items) items.scrollIntoView(true, {behavior: 'smooth'});
+  //   }
+  // }, [isElementVisible]);
 
   return (
     <Container>
@@ -13,7 +29,7 @@ export const Technos = () => {
       </SectionTitle>
       <SliderWrapper>
         <Slider elementWidth={elementWidth}>
-          <Items id="items">
+          <Items id="items" ref={ref}>
             {TECHNOS.map((techno, i) => (
               <Techno key={i}>{techno}</Techno>
             ))}
@@ -49,6 +65,8 @@ const Slider = styled.div<{ elementWidth: number }>`
 
 const Items = styled.div`
   display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll-x;
   flex-direction: row;
 `;
 
