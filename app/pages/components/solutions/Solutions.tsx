@@ -20,7 +20,7 @@ export const Solutions = () => {
             solution={solution}
             index={index}
             titleSize="1.5rem"
-            descriptionSize="1.5rem"
+            descriptionSize="1.7rem"
           />
         </Card>
       ))}
@@ -49,6 +49,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   position: relative;
   text-align: center;
   z-index: 0;
+  background-color: var(--light-background);
   border-radius: var(--border-radius);
   box-shadow: ${(props) =>
     props.isShiny
@@ -57,7 +58,8 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
 
   transition: box-shadow var(--long-transition-delay) ease;
 
-   @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
+  background-color: var(--dark-background);
   box-shadow: ${(props) =>
     props.isShiny
       ? `0px 0px 3rem 0px ${props.highlightedColor.start}`

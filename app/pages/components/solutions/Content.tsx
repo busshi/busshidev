@@ -55,7 +55,7 @@ export const Content = ({
 const Description = styled.div<{ fontSize: string }>`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
-  letter-spacing: var(--letter-spacing);
+  letter-spacing: 0rem;
 
   color: var(--main-dark-color);
   font-size: ${(props) => props.fontSize};

@@ -92,7 +92,7 @@ const Guidance = styled.div`
   line-height: 1.6em;
   font-weight: 300;
   letter-spacing: 0.1rem;
-
+  color: var(--secondary-dark-color);
   @media (max-width: 768px) {
     margin: 0;
   }
