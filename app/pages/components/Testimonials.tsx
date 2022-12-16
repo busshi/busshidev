@@ -44,10 +44,11 @@ const Container = styled.div`
   }
 `;
 
-export const SectionTitle = styled.div`
+export const SectionTitle = styled.div<{ margin?: string }>`
   display: flex;
   justify-content: center;
-  margin: 2rem 0.5rem 2rem 0.5rem;
+  margin: ${(props) =>
+    props.margin ? props.margin : "2rem 0.5rem 2rem 0.5rem"};
   font-size: 2rem;
   font-weight: var(--font-weight);
   line-height: var(--line-height);
