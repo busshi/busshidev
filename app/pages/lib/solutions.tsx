@@ -1,5 +1,5 @@
 import { SlRocket } from "react-icons/sl";
-import { SiAdobeindesign } from "react-icons/si";
+import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 
@@ -13,7 +13,7 @@ export const SOLUTIONS = [
       "Best UI / UX practices",
     ],
     id: "design",
-    icon: <SiAdobeindesign size="2rem" />,
+    icon: <FiFigma size="2rem" />,
   },
   {
     title: "Develop.",
