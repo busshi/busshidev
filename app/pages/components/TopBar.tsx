@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useIsMobile } from "../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import Link from "next/link";
-import { scrollIntoView } from "../lib/useScrollIntoView";
+import { scrollIntoView } from "../../lib/scrollIntoView";
 
 export const TopBar = () => {
   const isMobile = useIsMobile();
@@ -68,3 +68,5 @@ const Button = styled.div`
     }
   }
 `;
+
+export default TopBar;

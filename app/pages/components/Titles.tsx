@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { scrollIntoView } from "../lib/useScrollIntoView";
-import { COLORS } from "../lib/constants";
-import { SOLUTIONS } from "../lib/solutions";
-import { useHighlightedColorState } from "../providers/HighlightedColor";
-import { Color } from "../types/interfaces";
+import { scrollIntoView } from "../../lib/scrollIntoView";
+import { COLORS } from "../../lib/constants";
+import { SOLUTIONS } from "../../lib/solutions";
+import { useHighlightedColorState } from "../../providers/HighlightedColor";
+import { Color } from "../../types/interfaces";
 
 export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
@@ -11,14 +11,14 @@ export const Titles = () => {
 
   return (
     <Container>
-      {SOLUTIONS.map(({ title, id }, i) => (
+      {SOLUTIONS.map(({ title }, i) => (
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
-scrollIntoView("solutions")
+            scrollIntoView("solutions");
           }}
           highlightedColor={highlightedColor}
         >
@@ -78,3 +78,5 @@ export const Title = styled.div<{
     -webkit-text-fill-color: transparent;
   }
 `;
+
+export default Titles;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { COLORS } from "../../lib/constants";
-import { SOLUTIONS } from "../../lib/solutions";
-import { useHighlightedColorState } from "../../providers/HighlightedColor";
-import { Color } from "../../types/interfaces";
+import { COLORS } from "../../../lib/constants";
+import { SOLUTIONS } from "../../../lib/solutions";
+import { useHighlightedColorState } from "../../../providers/HighlightedColor";
+import { Color } from "../../../types/interfaces";
 import { Content } from "./Content";
 
 export const Solutions = () => {
@@ -84,3 +84,5 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
     mask-composite: exclude;
   }
 `;
+
+export default Solutions;

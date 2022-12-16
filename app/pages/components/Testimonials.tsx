@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
-import { TESTIMONIALS } from "../lib/testimonials";
+import { TESTIMONIALS } from "../../lib/testimonials";
 
 export const Testimonials = () => (
   <Container>
-    <SectionTitle>TRUSTED BY STARTUPERS</SectionTitle>
+    <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
     <TestiBox>
       {TESTIMONIALS.map((testimonial) => (
         <Testimonial key={testimonial.date}>
@@ -106,3 +106,5 @@ const Author = styled.div`
 const Quote = styled.div`
   line-height: 2;
 `;
+
+export default Testimonials;

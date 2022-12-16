@@ -56,3 +56,5 @@ export const useHighlightedColorState = (): HighlightedColorContextType => {
 
   return context;
 };
+
+export default HighlightedColorProvider;

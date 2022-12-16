@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useGetElementWidth } from "../hooks/useGetElementWidth";
+import { useGetElementWidth } from "../../hooks/useGetElementWidth";
 import { SectionTitle } from "./Testimonials";
-import { TECHNOS } from "../lib/technos";
+import { TECHNOS } from "../../lib/technos";
 
 export const Technos = () => {
   const elementWidth = useGetElementWidth("items");
@@ -55,3 +55,5 @@ const Items = styled.div`
 const Techno = styled.div`
   margin: 1rem;
 `;
+
+export default Technos;

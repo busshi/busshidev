@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { SITE_URL } from "../lib/constants";
+import { SITE_URL } from "../../lib/constants";
 import {
   jsonLdLogo,
   jsonLdOrganization,
   jsonLdOrganizationRating,
   jsonLdWebsite,
-} from "../lib/jsonLd";
+} from "../../lib/jsonLd";
 
 export const Metadata: React.FC = () => (
   <Head>
@@ -70,3 +70,5 @@ export const Metadata: React.FC = () => (
     />
   </Head>
 );
+
+export default Metadata;

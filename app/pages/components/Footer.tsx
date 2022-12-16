@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { scrollIntoView } from "../lib/useScrollIntoView";
+import { scrollIntoView } from "../../lib/scrollIntoView";
 
 export const Footer: React.FC = () => {
   return (
@@ -43,3 +43,5 @@ const TextBox = styled.div`
 const ImageBox = styled(Image)`
   cursor: pointer;
 `;
+
+export default Footer;

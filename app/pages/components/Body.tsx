@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { scrollIntoView } from "../lib/useScrollIntoView";
+import { scrollIntoView } from "../../lib/scrollIntoView";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";
 import { Titles } from "./Titles";
-import { useIsMobile } from "../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import { Solutions } from "./solutions/Solutions";
 import { MobileSolutions } from "./solutions/MobileSolutions";
 //import { useEffect } from "react";
@@ -97,3 +97,5 @@ const Guidance = styled.div`
     margin: 0;
   }
 `;
+
+export default Body;

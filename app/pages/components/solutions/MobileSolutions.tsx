@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { COLORS } from "../../lib/constants";
-import { SOLUTIONS } from "../../lib/solutions";
+import { COLORS } from "../../../lib/constants";
+import { SOLUTIONS } from "../../../lib/solutions";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => (
@@ -74,3 +74,5 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
     }
   }
 `;
+
+export default MobileSolutions;
