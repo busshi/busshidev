@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { COLORS } from "../../../lib/constants";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
 import { Color, Solution } from "../../../types/interfaces";
+import { Title } from "../Titles";
 
 export const Content = ({
   index,
@@ -47,41 +48,6 @@ export const Content = ({
     </Fragment>
   );
 };
-const Title = styled.div<{
-  highlightedColor: Color;
-  isShiny: boolean;
-  fontSize?: string;
-  margin?: string;
-}>`
-  cursor: pointer;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "6rem")};
-  margin: ${(props) => (props.margin ? props.margin : "0 1rem 0 0")};
-  background: ${(props) =>
-    props.isShiny
-      ? `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`
-      : "var(--main-dark-color)"};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  line-height: var(--line-height);
-  font-weight: var(--font-weight);
-  letter-spacing: var(--letter-spacing);
-
-  @media (max-width: 768px) {
-    margin: 0;
-    font-size: ${(props) => (props.fontSize ? "2rem" : "4rem")};
-    line-height: 1.1;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background: ${(props) =>
-      props.isShiny
-        ? `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`
-        : "var(--main-light-color)"};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-`;
 
 const Description = styled.div<{ fontSize: string }>`
   line-height: var(--line-height);
