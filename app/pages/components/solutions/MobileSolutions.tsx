@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { COLORS, SOLUTIONS } from "../../lib/constants";
+import { COLORS } from "../../lib/constants";
+import { SOLUTIONS } from "../../lib/solutions";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => (

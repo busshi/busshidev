@@ -27,6 +27,10 @@ const Container = styled.div`
 
   @media (prefers-color-scheme: dark) {
     background: var(--footer-dark-color);
+
+    img {
+      filter: invert(1);
+    }
   }
 `;
 

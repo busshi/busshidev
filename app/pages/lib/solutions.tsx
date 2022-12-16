@@ -3,8 +3,6 @@ import { SiAdobeindesign } from "react-icons/si";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 
-export const SITE_URL = "https://busshidev.fr";
-
 export const SOLUTIONS = [
   {
     title: "Design.",
@@ -49,33 +47,5 @@ export const SOLUTIONS = [
     ],
     id: "boost",
     icon: <BsGraphUp size="2rem" />,
-  },
-];
-
-/**
- * Color constants
- *
- * @example
- * const Button = styled.div`
- *   color: ${COLORS[0].start};
- * `
- */
-
-export const COLORS = [
-  {
-    start: "var(--gradient-design-start)",
-    stop: "var(--gradient-design-stop)",
-  },
-  {
-    start: "var(--gradient-develop-start)",
-    stop: "var(--gradient-develop-stop)",
-  },
-  {
-    start: "var(--gradient-deploy-start)",
-    stop: "var(--gradient-deploy-stop)",
-  },
-  {
-    start: "var(--gradient-boost-start)",
-    stop: "var(--gradient-boost-stop)",
   },
 ];

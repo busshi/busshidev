@@ -27,9 +27,5 @@ const App = styled.div`
   @media (prefers-color-scheme: dark) {
     color: var(--secondary-dark-color);
     background: var(--main-dark-color);
-
-    img {
-      filter: invert(1);
-    }
   }
 `;

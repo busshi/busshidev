@@ -38,6 +38,12 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
+
+  @media (prefers-color-scheme: dark) {
+    img {
+      filter: invert(1);
+    }
+  }
 `;
 
 const Buttons = styled.div`

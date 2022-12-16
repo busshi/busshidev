@@ -3,10 +3,10 @@ import { SectionTitle } from "./Testimonials";
 
 export const Technos = () => (
   <Container>
-    <SectionTitle>LATEST TECHNOLOGIES</SectionTitle>
+    <SectionTitle>FAVORITES EDGE TECHNOLOGIES</SectionTitle>
   </Container>
 );
 
 const Container = styled.div`
-  margin: 10rem;
+  margin: 10rem 2rem 10rem 2rem;
 `;

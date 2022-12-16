@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
-import { COLORS, SOLUTIONS } from "../lib/constants";
+import { COLORS } from "../lib/constants";
+import { SOLUTIONS } from "../lib/solutions";
 import { useHighlightedColorState } from "../providers/HighlightedColor";
 import { Color } from "../types/interfaces";
 

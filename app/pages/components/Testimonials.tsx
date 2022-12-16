@@ -1,54 +1,38 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
+import { TESTIMONIALS } from "../lib/testimonials";
 
 export const Testimonials = () => (
   <Container>
     <SectionTitle>TRUSTED BY STARTUPERS</SectionTitle>
     <TestiBox>
-      <Testimonial>
-        <div>Quentin Chantelot</div>
-        <div>
-          <Link href="https://notice.studio">Notice</Link> Founder & CTO
-          <br />
-          Station F Paris
-        </div>
-        <div>⭐️⭐️⭐️⭐️⭐️</div>
-        <Quote>
-          "Alexandre a été clé pendant sa mission de plusieurs mois chez Notice.
-          Il a su s'intégrer à une stack complexe, communiquer et se rendre
-          utile dès le premier jour. Avec plaisir pour retravailler ensemble dès
-          que possible."
-        </Quote>
-        <div>November, 10 2022</div>
-      </Testimonial>
-      <Testimonial>
-        <div>Quentin Chantelot</div>
-        <div>
-          <Link href="https://notice.studio">Notice</Link> Founder & CTO
-          <br />
-          Station F Paris
-        </div>
-        <div>⭐️⭐️⭐️⭐️⭐️</div>
-        <Quote>
-          "Je recommande à 100% Alex, compréhension de la mission, force de
-          proposition et beaucoup de boulot sur une mission fullstack JS."
-        </Quote>
-        <div>October, 10 2022</div>
-      </Testimonial>
-      <Testimonial>
-        <ImageBox src="/avatars/mc.png" width={50} height={50} alt="mc" />
-        <div>Martial Carriere</div>
-        <div>MCI</div>
-        <div>⭐️⭐️⭐️⭐️⭐️</div>
-        <Quote>
-          "Très bonne expérience, Alexandre à su répondre à mes besoins en
-          matière de sécurité , il a mit en lumière des failles et m'a permis de
-          les sécuriser. Très bon relationnel également, au plaisir de
-          retravailler ensemble."
-        </Quote>
-        <div>March, 21 2022</div>
-      </Testimonial>
+      {TESTIMONIALS.map((testimonial) => (
+        <Testimonial key={testimonial.date}>
+          <Author>
+            <ImageBox
+              src={testimonial.avatar}
+              width={50}
+              height={50}
+              alt={testimonial.author}
+            />
+            {testimonial.author}
+            <br />
+            {testimonial.company}
+          </Author>
+          <div>
+            {testimonial.url && (
+              <Link href={testimonial.url}>{testimonial.company}</Link>
+            )}{" "}
+            {testimonial.job}
+            <br />
+            {testimonial.location && testimonial.location}
+          </div>
+          {testimonial.rating}
+          <Quote>{testimonial.quote} </Quote>
+          <div>{testimonial.date}</div>
+        </Testimonial>
+      ))}
     </TestiBox>
   </Container>
 );
@@ -86,14 +70,13 @@ const TestiBox = styled.div`
 `;
 
 const Testimonial = styled.div`
-  background-color: var(--dark-background);
+  background-color: var(--light-background);
   padding: 2rem;
-  width: 20%;
+  min-width: 25%;
   display: flex;
   flex-direction: column;
   text-align: left;
   gap: 2rem;
-  position: relative;
   border-radius: var(--border-radius);
 
   a {
@@ -103,14 +86,20 @@ const Testimonial = styled.div`
   @media (max-width: 768px) {
     width: auto;
   }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dark-background);
+  }
 `;
 
 const ImageBox = styled(Image)`
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  border: solid 1px var(--secondary-light-color);
   border-radius: 50%;
+`;
+
+const Author = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
 `;
 
 const Quote = styled.div`
