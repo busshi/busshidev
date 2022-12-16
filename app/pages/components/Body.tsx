@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { scrollIntoView } from "../lib/useScrollIntoView";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";
@@ -35,9 +35,6 @@ export const Body: React.FC = () => {
   //     );
   // }, []);
   const isMobile = useIsMobile();
-  const scroll = () => {
-    useScrollIntoView("solutions");
-  };
 
   return (
     <Container>
@@ -47,7 +44,7 @@ export const Body: React.FC = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance onClick={scroll}>
+        <Guidance onClick={() => scrollIntoView("solutions")}>
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>

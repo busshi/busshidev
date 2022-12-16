@@ -1,18 +1,14 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { scrollIntoView } from "../lib/useScrollIntoView";
 
 export const Footer: React.FC = () => {
-  const scroll = () => {
-    useScrollIntoView("solutions");
-  };
-
   return (
     <Container>
       <TextBox>
         Powered by
         <ImageBox
-          onClick={scroll}
+          onClick={() => scrollIntoView("solutions")}
           src="/logo.svg"
           alt="busshiDev"
           width={100}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useScrollIntoView } from "../hooks/useScrollIntoView";
+import { scrollIntoView } from "../lib/useScrollIntoView";
 import { COLORS } from "../lib/constants";
 import { SOLUTIONS } from "../lib/solutions";
 import { useHighlightedColorState } from "../providers/HighlightedColor";
@@ -8,10 +8,6 @@ import { Color } from "../types/interfaces";
 export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
-
-  const scroll = () => {
-    useScrollIntoView("solutions");
-  };
 
   return (
     <Container>
@@ -22,7 +18,7 @@ export const Titles = () => {
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
-            scroll();
+scrollIntoView("solutions")
           }}
           highlightedColor={highlightedColor}
         >
