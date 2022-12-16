@@ -7,6 +7,10 @@ import { useScrollIntoView } from "../hooks/useScrollIntoView";
 export const TopBar = () => {
   const isMobile = useIsMobile();
 
+  const scroll = () => {
+    useScrollIntoView("solutions");
+  };
+
   return (
     <Container id="top">
       <Image
@@ -19,9 +23,7 @@ export const TopBar = () => {
         <></>
       ) : (
         <Buttons>
-          <Button onClick={() => useScrollIntoView("solutions")}>
-            Solutions
-          </Button>
+          <Button onClick={scroll}>Solutions</Button>
           <Link href="https://busshi.fr">
             <Button>About me</Button>
           </Link>

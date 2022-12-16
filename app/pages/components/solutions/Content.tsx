@@ -43,9 +43,7 @@ export const Content = ({
           {solution.icon}
         </Icon>
         {solution.actions.map((item) => (
-          <Fragment>
-            <TextBox key={item}>{item}</TextBox>
-          </Fragment>
+          <TextBox key={item}>{item}</TextBox>
         ))}
       </ActionsBox>
     </Fragment>

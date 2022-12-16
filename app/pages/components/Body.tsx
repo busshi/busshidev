@@ -35,6 +35,9 @@ export const Body: React.FC = () => {
   //     );
   // }, []);
   const isMobile = useIsMobile();
+  const scroll = () => {
+    useScrollIntoView("solutions");
+  };
 
   return (
     <Container>
@@ -44,7 +47,7 @@ export const Body: React.FC = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance onClick={() => useScrollIntoView("solutions")}>
+        <Guidance onClick={scroll}>
           <div>STEP BY STEP GUIDANCE</div>
         </Guidance>
       </FirstPage>

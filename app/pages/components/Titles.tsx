@@ -9,6 +9,10 @@ export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
 
+  const scroll = () => {
+    useScrollIntoView("solutions");
+  };
+
   return (
     <Container>
       {SOLUTIONS.map(({ title, id }, i) => (
@@ -18,7 +22,7 @@ export const Titles = () => {
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
-            useScrollIntoView(id);
+            scroll();
           }}
           highlightedColor={highlightedColor}
         >

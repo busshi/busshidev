@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { useScrollIntoView } from "../hooks/useScrollIntoView";
 
 export const Footer: React.FC = () => {
+  const scroll = () => {
+    useScrollIntoView("solutions");
+  };
+
   return (
     <Container>
       <TextBox>
         Powered by
         <ImageBox
-          onClick={() => useScrollIntoView("top")}
+          onClick={scroll}
           src="/logo.svg"
           alt="busshiDev"
           width={100}
