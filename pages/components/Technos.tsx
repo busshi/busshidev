@@ -5,16 +5,19 @@ import { useGetElementWidth } from "../../hooks/useGetElementWidth";
 import { useEffect, useState } from "react";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const Technos = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-100);
   const elementWidth = useGetElementWidth("items");
   const scrollWidth = useGetScrollWidth("items");
+  const isMobile = useIsMobile();
 
   let i = 0;
   let reverse = false;
   useEffect(() => {
+    if (isMobile) return;
     const items = document.getElementById("items");
     items?.addEventListener("scroll", (e) => {
       if (e) setIsScrolling(true);
@@ -40,6 +43,7 @@ export const Technos = () => {
     }
     if (!isElementVisible) items?.scrollTo(0, 0);
   }, [isElementVisible, isScrolling]);
+
   return (
     <Container>
       <SectionTitle margin="10rem 2rem 5rem 2rem">

@@ -18,7 +18,7 @@ export const Titles = () => {
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
-            scrollIntoView("solutions");
+            scrollIntoView(SOLUTIONS[i].id);
           }}
           highlightedColor={highlightedColor}
         >

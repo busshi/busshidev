@@ -13,7 +13,7 @@ export const SOLUTIONS = [
       "Best UI / UX practices",
     ],
     id: "design",
-    icon: <FiFigma />,
+    icon: <FiFigma size={40} />,
   },
   {
     title: "Develop.",
@@ -24,7 +24,7 @@ export const SOLUTIONS = [
       "Best code practices easy to maintain",
     ],
     id: "develop",
-    icon: <BsTerminalFill />,
+    icon: <BsTerminalFill size={40} />,
   },
   {
     title: "Deploy.",
@@ -35,7 +35,7 @@ export const SOLUTIONS = [
       "Continuous integration and development",
     ],
     id: "deploy",
-    icon: <SlRocket />,
+    icon: <SlRocket size={40} />,
   },
   {
     title: "Boost.",
@@ -46,6 +46,6 @@ export const SOLUTIONS = [
       "Boost your trafic",
     ],
     id: "boost",
-    icon: <BsGraphUp />,
+    icon: <BsGraphUp size={40} />,
   },
 ];

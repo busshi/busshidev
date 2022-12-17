@@ -1,5 +1,5 @@
 :root {
-  /*
+  /**
   *   Main colors
   */
   --main-dark-color: #000;
@@ -11,7 +11,7 @@
   --dark-background: #181717;
   --light-background: #f5f5f5;
 
-  /*
+  /**
   *   Gradient colors
   */
   --gradient-design-start: #030cfa;
@@ -23,7 +23,7 @@
   --gradient-boost-start: #ff4d4d;
   --gradient-boost-stop: #f9cb28;
 
-  /*
+  /**
   *   CSS properties
   */
   --border-radius: 8px;
@@ -33,6 +33,12 @@
   --line-height: 1.2;
   --letter-spacing: -0.06rem;
   --big-letter-spacing: 1rem;
+
+  /** 
+  *   Other
+  */
+  --docker-color: #539be8;
+  --linkedin-color: #2d64bc;
 }
 
 body {

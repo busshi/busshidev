@@ -7,8 +7,6 @@ import { Titles } from "./Titles";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { Solutions } from "./solutions/Solutions";
 import { MobileSolutions } from "./solutions/MobileSolutions";
-import MobileTechnos from "./MobileTechnos";
-//import { useEffect } from "react";
 
 export const Body: React.FC = () => {
   // const isInViewport = (element: HTMLElement) => {
@@ -51,7 +49,7 @@ export const Body: React.FC = () => {
       </FirstPage>
       {isMobile ? <MobileSolutions /> : <Solutions />}
       <Testimonials />
-      {isMobile ? <MobileTechnos /> : <Technos />}
+      <Technos />
     </Container>
   );
 };
