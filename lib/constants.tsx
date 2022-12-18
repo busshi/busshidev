@@ -1,5 +1,6 @@
 import { FaDocker, FaLinkedin, FaNpm } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
+import { HiOutlineMail } from "react-icons/hi";
 
 export const SITE_URL = "https://busshidev.fr";
 
@@ -35,7 +36,7 @@ export const COLORS = [
  * Contacts links constants
  */
 
-export const LINKS = [
+export const CONTACTS = [
   {
     id: "linkedin",
     name: "Linkedin",
@@ -50,6 +51,13 @@ export const LINKS = [
     logo: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
     logoDark: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
   },
+  {
+    id: "email",
+    name: "Email",
+    url: "mailto:busshidev.fr",
+    logo: <HiOutlineMail color="var(--main-dark-color)" size={25} />,
+    logoDark: <HiOutlineMail color="var(--secondary-dark-color)" size={25} />,
+  },
 ];
 
 /**
@@ -61,15 +69,15 @@ export const OPENSOURCES = [
     id: "github",
     name: "Github",
     url: "https://github.com/busshi",
-    logo: <ImGithub color="black" size={25} />,
-    logoDark: <ImGithub color="white" size={25} />,
+    logo: <ImGithub color="var(--main-dark-color)" size={25} />,
+    logoDark: <ImGithub color="var(--main-light-color)" size={25} />,
   },
   {
     id: "npm",
     name: "NPM",
     url: "https://npmjs.com/~busshi",
-    logo: <FaNpm color="black" size={25} />,
-    logoDark: <FaNpm color="white" size={25} />,
+    logo: <FaNpm color="var(--main-dark-color)" size={25} />,
+    logoDark: <FaNpm color="var(--main-light-color)" size={25} />,
   },
   {
     id: "dockerhub",

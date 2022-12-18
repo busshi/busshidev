@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Body } from "./components/Body";
 import { Footer } from "./components/Footer";
+import Metadata from "./components/Metadata";
 import { TopBar } from "./components/TopBar";
 
 export default function Home() {
   return (
     <App>
+      <Metadata />
       <TopBar />
       <Body />
       <Footer />

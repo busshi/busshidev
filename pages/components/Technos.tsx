@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
 import { TECHNOS } from "../../lib/technos";
-import { useGetElementWidth } from "../../hooks/useGetElementWidth";
 import { useEffect, useState } from "react";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
@@ -10,7 +9,6 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 export const Technos = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-100);
-  const elementWidth = useGetElementWidth("items");
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
 
@@ -50,13 +48,11 @@ export const Technos = () => {
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>
       <SliderWrapper>
-        <Slider elementWidth={elementWidth}>
-          <Items id="items" ref={ref}>
-            {TECHNOS.map((techno, i) => (
-              <Techno key={i}>{techno}</Techno>
-            ))}
-          </Items>
-        </Slider>
+        <Items id="items" ref={ref} className="hideScrollBar">
+          {TECHNOS.map((techno, i) => (
+            <Techno key={i}>{techno}</Techno>
+          ))}
+        </Items>
       </SliderWrapper>
     </Container>
   );
@@ -68,27 +64,17 @@ const Container = styled.div`
 
 const SliderWrapper = styled.div`
   overflow: hidden;
-  //   padding: 1.5rem;
-  //   box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
-`;
-
-const Slider = styled.div<{ elementWidth: number }>`
-  //  animation: slide 30s linear infinite alternate;
-
-  @keyframes slide {
-    from {
-      transform: ${(props) => `translateX(${-2 * props.elementWidth}px)`};
-    }
-    to {
-      transform: translateX(100vw);
-    }
-  }
+  padding: 1.5rem;
+  box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
 `;
 
 const Items = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hide;
+
+  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
+  scrollbar-width: none; /* Hide scroll bar Firefox */
 `;
 
 const Techno = styled.div`

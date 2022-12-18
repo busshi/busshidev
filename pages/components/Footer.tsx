@@ -3,94 +3,71 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useIsDarkMode } from "../../hooks/useIsDarkMode";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { LINKS, OPENSOURCES } from "../../lib/constants";
+import { CONTACTS, OPENSOURCES } from "../../lib/constants";
 import { scrollIntoView } from "../../lib/scrollIntoView";
+import { LinkItem } from "../../types/interfaces";
 
-export const Footer: React.FC = () => {
+export const Column = ({
+  span,
+  elements,
+}: {
+  span: string;
+  elements: LinkItem[];
+}) => {
   const isDarkMode = useIsDarkMode();
   const isMobile = useIsMobile();
 
   return (
-    <Container>
-      {isMobile ? (
-        <>
-          <Links>
-            Open source contributions
-            {OPENSOURCES.map((item) => {
-              return (
-                <LinkWrapper key={item.id} href={item.url}>
-                  {item.logo}
-                  <div>{item.name}</div>
-                </LinkWrapper>
-              );
-            })}
-          </Links>
-          <Links>
-            Contacts
-            {LINKS.map((item) => {
-              return (
-                <LinkWrapper key={item.id} href={item.url}>
-                  {isDarkMode ? item.logoDark : item.logo}
-                  <div>{item.name}</div>
-                </LinkWrapper>
-              );
-            })}
-          </Links>
-          <TextBox>
-            Powered by
-            <ImageBox
-              onClick={() => scrollIntoView("solutions")}
-              src="/logo.svg"
-              alt="busshiDev"
-              width={100}
-              height={100}
-            />
-          </TextBox>
-        </>
-      ) : (
-        <>
-          <Links>
-            Contacts
-            {LINKS.map((item) => {
-              return (
-                <LinkWrapper key={item.id} href={item.url}>
-                  {isDarkMode ? item.logoDark : item.logo}
-                  <div>{item.name}</div>
-                </LinkWrapper>
-              );
-            })}
-          </Links>
-          <TextBox>
-            Powered by
-            <ImageBox
-              onClick={() => scrollIntoView("solutions")}
-              src="/logo.svg"
-              alt="busshiDev"
-              width={100}
-              height={100}
-            />
-          </TextBox>
-          <Links>
-            Open source contributions
-            {OPENSOURCES.map((item) => {
-              return (
-                <LinkWrapper key={item.id} href={item.url}>
-                  {item.logo}
-                  <div>{item.name}</div>
-                </LinkWrapper>
-              );
-            })}
-          </Links>
-        </>
-      )}
-    </Container>
+    <Links>
+      <Span>{span}</Span>
+      <LinksBox>
+        {elements.map((item) => {
+          return (
+            <LinkWrapper key={item.id} href={item.url}>
+              {isDarkMode ? item.logoDark : item.logo}
+              {!isMobile && item.name}
+            </LinkWrapper>
+          );
+        })}
+      </LinksBox>
+    </Links>
+  );
+};
+
+const Logo = () => (
+  <TextBox>
+    Powered by
+    <ImageBox
+      onClick={() => scrollIntoView("top")}
+      src="/logo.svg"
+      alt="busshiDev"
+      width={100}
+      height={100}
+    />
+    © 2022
+  </TextBox>
+);
+
+export const Footer: React.FC = () => {
+  const isMobile = useIsMobile();
+  return (
+    <footer>
+      <Container>
+        <Column span="OPEN SOURCE CONTRIBUTIONS" elements={OPENSOURCES} />
+        {isMobile && <Hr />}
+        <Column span="CONTACTS" elements={CONTACTS} />
+      </Container>
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+    </footer>
   );
 };
 
 const Container = styled.div`
   padding: 2rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   background: var(--footer-light-color);
 
@@ -100,17 +77,44 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    padding: 0;
+  }
+`;
+
+const LogoContainer = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--Secondary-light-color);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
 const Links = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    margin: 2rem;
+    margin: 1rem;
+    align-items: center;
+  }
+`;
+
+const Span = styled.span`
+  text-align: center;
+  font-size: 1rem;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--middle-letter-spacing);
+  color: var(--main-dark-color);
+  margin-bottom: 0.5rem;
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--secondary-dark-color);
   }
 `;
 
@@ -119,24 +123,63 @@ const LinkWrapper = styled(Link)`
   flex-direction: row;
   gap: 1rem;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   padding: 0.5rem;
+  color: var(--footer-dark-color);
+
+  transition: color 0.3s ease;
+  :hover {
+    color: var(--main-dark-color);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--secondary-dark-color);
+    :hover {
+      color: var(--main-light-color);
+    }
+  }
+`;
+
+const LinksBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: var(--secondary-dark-color);
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 const TextBox = styled.div`
   display: flex;
   align-items: center;
   color: var(--secondary-dark-color);
-
   @media (prefers-color-scheme: dark) {
     img {
       filter: invert(1);
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ImageBox = styled(Image)`
   cursor: pointer;
+`;
+
+const Hr = styled.hr`
+  width: 15vw;
+  height: 2px;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
 `;
 
 export default Footer;

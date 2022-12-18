@@ -23,7 +23,7 @@ export const Testimonials = () => (
           <div>
             {testimonial.url && (
               <Link href={testimonial.url}>{testimonial.company}</Link>
-            )}{" "}
+            )}
             {testimonial.job}
             <br />
             {testimonial.location && testimonial.location}

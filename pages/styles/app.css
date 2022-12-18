@@ -2,8 +2,8 @@
   /**
   *   Main colors
   */
-  --main-dark-color: #000;
-  --main-light-color: #fff;
+  --main-dark-color: #121212;
+  --main-light-color: #ededed;
   --secondary-dark-color: #888;
   --secondary-light-color: #f5f5f5;
   --footer-light-color: #f5f5f5;
@@ -32,6 +32,7 @@
   --font-weight: 800;
   --line-height: 1.2;
   --letter-spacing: -0.06rem;
+  --middle-letter-spacing: 0.3rem;
   --big-letter-spacing: 1rem;
 
   /** 
@@ -48,4 +49,8 @@ body {
 
 * {
   text-decoration: none;
+}
+
+.hideScrollBar::-webkit-scrollbar {
+  display: none; /* Hide scroll bar for Safari, Chrome, Opera */
 }
