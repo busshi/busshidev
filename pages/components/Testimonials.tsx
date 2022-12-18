@@ -66,7 +66,10 @@ const TestiBox = styled.div`
   gap: 2rem;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    // gap: 0;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: scroll;
   }
 `;
 
@@ -85,7 +88,7 @@ const Testimonial = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: auto;
+    min-width: 80%;
   }
 
   @media (prefers-color-scheme: dark) {

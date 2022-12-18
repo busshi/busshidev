@@ -91,17 +91,19 @@ const ActionsBox = styled.div<{
   gap: 1rem;
 
   @media (max-width: 768px) {
-    background: var(--light-background-card);
     margin: 3rem 0.5rem 2rem 0.5rem;
     padding: 2rem;
     border-radius: var(--border-radius);
+    background: var(--light-background-card);
+
     box-shadow: ${(props) =>
       props.isVisible
         ? `0px 0px 3rem 0px ${COLORS[props.index].start}`
         : "0px 0px 1px var(--secondary-dark-color)"};
+
     transition: box-shadow var(--long-transition-delay) ease;
 
-    @media (prefers-color-schema: dark) {
+    @media (prefers-color-scheme: dark) {
       background: var(--dark-background-card);
     }
   }

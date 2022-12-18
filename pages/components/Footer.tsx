@@ -56,6 +56,7 @@ export const Footer: React.FC = () => {
         <Column span="OPEN SOURCE CONTRIBUTIONS" elements={OPENSOURCES} />
         {isMobile && <Hr />}
         <Column span="CONTACTS" elements={CONTACTS} />
+        {isMobile && <Hr />}
       </Container>
       <Logo />
     </footer>
@@ -84,8 +85,8 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--Secondary-light-color);
-  color: var(--secondary-dark-color);
+  background: var(--secondary-light-color);
+  color: var(--dark-background);
 
   @media (prefers-color-scheme: dark) {
     img {
@@ -100,7 +101,7 @@ const Links = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 768px) {
-    margin: 1rem;
+    margin: 2rem;
     align-items: center;
   }
 `;
@@ -148,7 +149,6 @@ const LinkWrapper = styled(Link)`
 const LinksBox = styled.div`
   display: flex;
   flex-direction: column;
-  color: var(--secondary-dark-color);
 
   @media (max-width: 768px) {
     flex-direction: row;
