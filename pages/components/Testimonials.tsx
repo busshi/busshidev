@@ -3,9 +3,12 @@ import Image from "next/image";
 import styled from "styled-components";
 import { TESTIMONIALS } from "../../lib/testimonials";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const Testimonials = () => {
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
+  const isMobile = useIsMobile();
+
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
@@ -37,15 +40,17 @@ export const Testimonials = () => {
           </Testimonial>
         ))}
       </TestiBox>
-      <Scroller isElementVisible={isElementVisible}>
-        {TESTIMONIALS.map(({ id }) => (
-          <Dot
-            isSelected={isElementVisible}
-            key={id}
-            isElementVisible={isElementVisible}
-          />
-        ))}
-      </Scroller>
+      {isMobile && (
+        <Scroller isElementVisible={isElementVisible}>
+          {TESTIMONIALS.map(({ id }) => (
+            <Dot
+              isSelected={isElementVisible}
+              key={id}
+              isElementVisible={isElementVisible}
+            />
+          ))}
+        </Scroller>
+      )}
     </Container>
   );
 };
