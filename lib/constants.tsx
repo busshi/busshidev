@@ -47,15 +47,8 @@ export const LINKS = [
     id: "malt",
     name: "Malt",
     url: "https://www.malt.fr/profile/alexandredubar",
-    logo: <img src="/icons/malt.png" width={25} height={25} />,
-    logoDark: <img src="/icons/malt.png" width={25} height={25} />,
-  },
-  {
-    id: "github",
-    name: "Github",
-    url: "https://github.com/busshi",
-    logo: <ImGithub color="black" size={25} />,
-    logoDark: <ImGithub color="white" size={25} />,
+    logo: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
+    logoDark: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
   },
 ];
 
@@ -64,6 +57,13 @@ export const LINKS = [
  */
 
 export const OPENSOURCES = [
+  {
+    id: "github",
+    name: "Github",
+    url: "https://github.com/busshi",
+    logo: <ImGithub color="black" size={25} />,
+    logoDark: <ImGithub color="white" size={25} />,
+  },
   {
     id: "npm",
     name: "NPM",
