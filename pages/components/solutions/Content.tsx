@@ -97,7 +97,7 @@ const ActionsBox = styled.div<{
     box-shadow: ${(props) =>
       props.isVisible
         ? `0px 0px 3rem 0px ${COLORS[props.index].start}`
-        : "0px 0px 0px var(--main-dark-color)"};
+        : "0px 0px 1px var(--secondary-dark-color)"};
     transition: box-shadow var(--long-transition-delay) ease;
   }
 `;

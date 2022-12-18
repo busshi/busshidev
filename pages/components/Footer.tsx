@@ -35,7 +35,7 @@ export const Column = ({
 };
 
 const Logo = () => (
-  <TextBox>
+  <LogoContainer>
     Powered by
     <ImageBox
       onClick={() => scrollIntoView("top")}
@@ -45,7 +45,7 @@ const Logo = () => (
       height={100}
     />
     © 2022
-  </TextBox>
+  </LogoContainer>
 );
 
 export const Footer: React.FC = () => {
@@ -57,9 +57,7 @@ export const Footer: React.FC = () => {
         {isMobile && <Hr />}
         <Column span="CONTACTS" elements={CONTACTS} />
       </Container>
-      <LogoContainer>
-        <Logo />
-      </LogoContainer>
+      <Logo />
     </footer>
   );
 };
@@ -84,12 +82,15 @@ const Container = styled.div`
 const LogoContainer = styled.div`
   padding: 1rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   background: var(--Secondary-light-color);
+  color: var(--secondary-dark-color);
 
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media (prefers-color-scheme: dark) {
+    img {
+      filter: invert(1);
+    }
   }
 `;
 
@@ -152,21 +153,6 @@ const LinksBox = styled.div`
   @media (max-width: 768px) {
     flex-direction: row;
     justify-content: center;
-  }
-`;
-
-const TextBox = styled.div`
-  display: flex;
-  align-items: center;
-  color: var(--secondary-dark-color);
-  @media (prefers-color-scheme: dark) {
-    img {
-      filter: invert(1);
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
   }
 `;
 
