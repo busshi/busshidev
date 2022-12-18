@@ -1,5 +1,6 @@
 export const TESTIMONIALS = [
   {
+    id: "first",
     author: "Quentin Chantelot",
     url: "https://notice.studio",
     company: "Notice",
@@ -14,6 +15,7 @@ export const TESTIMONIALS = [
     avatar: "/avatars/qc.webp",
   },
   {
+    id: "second",
     author: "Quentin Chantelot",
     url: "https://notice.studio",
     company: "Notice",
@@ -26,6 +28,7 @@ export const TESTIMONIALS = [
     avatar: "/avatars/qc.webp",
   },
   {
+    id: "third",
     author: "Martial Carriere",
     url: "",
     company: "MCI",

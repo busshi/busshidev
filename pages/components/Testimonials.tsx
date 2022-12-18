@@ -2,40 +2,71 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import { TESTIMONIALS } from "../../lib/testimonials";
+import useIsElementVisible from "../../hooks/useIsElementVisible";
 
-export const Testimonials = () => (
-  <Container>
-    <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
-    <TestiBox>
-      {TESTIMONIALS.map((testimonial) => (
-        <Testimonial key={testimonial.date}>
-          <Author>
-            <ImageBox
-              src={testimonial.avatar}
-              width={50}
-              height={50}
-              alt={testimonial.author}
-            />
-            {testimonial.author}
-            <br />
-            {testimonial.company}
-          </Author>
-          <div>
-            {testimonial.url && (
-              <Link href={testimonial.url}>{testimonial.company}</Link>
-            )}
-            {testimonial.job}
-            <br />
-            {testimonial.location && testimonial.location}
-          </div>
-          {testimonial.rating}
-          <Quote>{testimonial.quote} </Quote>
-          <div>{testimonial.date}</div>
-        </Testimonial>
-      ))}
-    </TestiBox>
-  </Container>
-);
+export const Testimonials = () => {
+  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
+  return (
+    <Container>
+      <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
+      <TestiBox ref={ref}>
+        {TESTIMONIALS.map((testimonial) => (
+          <Testimonial key={testimonial.id}>
+            <Author>
+              <ImageBox
+                src={testimonial.avatar}
+                width={50}
+                height={50}
+                alt={testimonial.author}
+              />
+              {testimonial.author}
+              <br />
+              {testimonial.company}
+            </Author>
+            <div>
+              {testimonial.url && (
+                <Link href={testimonial.url}>{testimonial.company}</Link>
+              )}{" "}
+              {testimonial.job}
+              <br />
+              {testimonial.location && testimonial.location}
+            </div>
+            {testimonial.rating}
+            <Quote>{testimonial.quote} </Quote>
+            <div>{testimonial.date}</div>
+          </Testimonial>
+        ))}
+      </TestiBox>
+      <Scroller isElementVisible={isElementVisible}>
+        {TESTIMONIALS.map(({ id }) => (
+          <Dot
+            isSelected={isElementVisible}
+            key={id}
+            isElementVisible={isElementVisible}
+          />
+        ))}
+      </Scroller>
+    </Container>
+  );
+};
+
+const Scroller = styled.div<{ isElementVisible: boolean }>`
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const Dot = styled.div<{ isSelected: boolean; isElementVisible: boolean }>`
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: 0.2rem;
+  background: ${(props) =>
+    props.isSelected ? "var(--secondary-dark-color)" : ""};
+  border: ${(props) =>
+    props.isElementVisible ? "1px solid var(--secondary-dark-color)" : "none"};
+  border-radius: 99999px;
+  transition: all 0.6s ease;
+`;
 
 const Container = styled.div`
   margin: 5rem;
@@ -85,6 +116,7 @@ const Testimonial = styled.div`
 
   a {
     color: var(--secondary-dark-color);
+    text-decoration: underline;
   }
 
   @media (max-width: 768px) {
