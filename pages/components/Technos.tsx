@@ -8,7 +8,7 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const Technos = () => {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-100);
+  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-10);
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
 
