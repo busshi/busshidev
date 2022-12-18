@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import styled from "styled-components";
+import useIsElementVisible from "../../../hooks/useIsElementVisible";
 import { COLORS } from "../../../lib/constants";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
 import { Color, Solution } from "../../../types/interfaces";
@@ -17,7 +18,9 @@ export const Content = ({
   descriptionSize: string;
 }) => {
   const { highlightedColor } = useHighlightedColorState();
+  const [isVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   if (!solution) return <></>;
+
   return (
     <Fragment>
       <TitleBox>
@@ -33,7 +36,12 @@ export const Content = ({
       <Description fontSize={descriptionSize}>
         {solution.description}
       </Description>
-      <ActionsBox>
+      <ActionsBox
+        index={index}
+        highlightedColor={highlightedColor}
+        isVisible={isVisible}
+        ref={ref}
+      >
         <Icon
           isShiny={true}
           highlightedColor={highlightedColor}
@@ -70,13 +78,28 @@ const TitleBox = styled.div`
   }
 `;
 
-const ActionsBox = styled.div`
+const ActionsBox = styled.div<{
+  index: number;
+  highlightedColor: Color;
+  isVisible: boolean;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 2rem;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    margin: 3rem 0.5rem 2rem 0.5rem;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: ${(props) =>
+      props.isVisible
+        ? `0px 0px 3rem 0px ${COLORS[props.index].start}`
+        : "0px 0px 0px var(--main-dark-color)"};
+    transition: box-shadow var(--long-transition-delay) ease;
+  }
 `;
 
 const Icon = styled.div<{

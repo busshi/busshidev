@@ -14,7 +14,7 @@ import throttle from "lodash.throttle";
 export default function useIsElementVisible<Element extends HTMLElement>(
   offset: number = 0,
   throttleMilliseconds: number = 100
-): [Boolean, RefObject<Element>] {
+): [boolean, RefObject<Element>] {
   const [isVisible, setIsVisible] = useState(false);
   const currentElement = createRef<Element>();
 
