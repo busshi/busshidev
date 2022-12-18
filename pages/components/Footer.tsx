@@ -81,7 +81,6 @@ const Container = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,9 +88,14 @@ const LogoContainer = styled.div`
   color: var(--dark-background);
 
   @media (prefers-color-scheme: dark) {
+    color: var(--secondary-dark-color);
+    background: var(--footer-dark-color);
     img {
       filter: invert(1);
     }
+  }
+  @media (max-width: 768px) {
+    padding: 1rem;
   }
 `;
 
