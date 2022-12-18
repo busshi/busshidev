@@ -66,6 +66,11 @@ const SliderWrapper = styled.div`
   overflow: hidden;
   padding: 1.5rem;
   box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
+
+  @media (max-width: 768px) {
+    paddong: 0;
+    box-shadow: none;
+  }
 `;
 
 const Items = styled.div`
