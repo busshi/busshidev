@@ -12,9 +12,9 @@ export const Technos = () => {
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
 
-  let i = 0;
-  let reverse = false;
   useEffect(() => {
+    let i = 0;
+    let reverse = false;
     if (isMobile) return;
     const items = document.getElementById("items");
     items?.addEventListener("scroll", (e) => {

@@ -1,6 +1,7 @@
 import { FaDocker, FaLinkedin, FaNpm } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
 import { HiOutlineMail } from "react-icons/hi";
+import Image from "next/image";
 
 export const SITE_URL = "https://busshidev.fr";
 
@@ -48,8 +49,8 @@ export const CONTACTS = [
     id: "malt",
     name: "Malt",
     url: "https://www.malt.fr/profile/alexandredubar",
-    logo: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
-    logoDark: <img src="/icons/malt.png" width={25} height={25} alt="malt" />,
+    logo: <Image src="/icons/malt.png" width={25} height={25} alt="malt" />,
+    logoDark: <Image src="/icons/malt.png" width={25} height={25} alt="malt" />,
   },
   {
     id: "email",
