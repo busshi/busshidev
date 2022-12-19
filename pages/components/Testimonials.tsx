@@ -30,7 +30,8 @@ export const Testimonials = () => {
   }, [isTestimonialsVisible, testimonialIdVisible]);
 
   useEffect(() => {
-    if (isTestimonialsVisible) scrollIntoView(items[testimonialIdVisible]);
+    if (isTestimonialsVisible && isMobile)
+      scrollIntoView(items[testimonialIdVisible]);
   }, [testimonialIdVisible]);
 
   return (
@@ -113,6 +114,12 @@ const TestiBox = styled.div`
   gap: 2rem;
 
   @media (max-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
     overflow-x: scroll;
     justify-content: flex-start;
 
@@ -126,6 +133,7 @@ const TestimonialWrapper = styled.div`
   @media (max-width: 1024px) {
     min-height: 65vh;
     min-width: 280px;
+    max-width: 350px;
   }
   @media (max-width: 768px) {
     min-height: 65vh;
