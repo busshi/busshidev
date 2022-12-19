@@ -34,36 +34,38 @@ export const Testimonials = () => {
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
-      <TestiBox ref={ref} id="testi">
+      <TestiBox ref={ref} id="testi" className="hideScrollBar">
         {TESTIMONIALS.map((testimonial) => (
-          <Testimonial key={testimonial.id} id={testimonial.id}>
-            <Author>
-              <ImageBox
-                src={testimonial.avatar}
-                width={50}
-                height={50}
-                alt={testimonial.author}
-              />
-              {testimonial.author}
-              <br />
-              {testimonial.company}
-            </Author>
-            <div>
-              {testimonial.url && (
-                <Link href={testimonial.url}>{testimonial.company}</Link>
-              )}{" "}
-              {testimonial.job}
-              <br />
-              {testimonial.location && testimonial.location}
-            </div>
-            {testimonial.rating}
-            <Quote>{testimonial.quote} </Quote>
-            <div>{testimonial.date}</div>
-          </Testimonial>
+          <TestimonialWrapper key={testimonial.id} id={testimonial.id}>
+            <Testimonial>
+              <Author>
+                <ImageBox
+                  src={testimonial.avatar}
+                  width={50}
+                  height={50}
+                  alt={testimonial.author}
+                />
+                {testimonial.author}
+                <br />
+                {testimonial.company}
+              </Author>
+              <div>
+                {testimonial.url && (
+                  <Link href={testimonial.url}>{testimonial.company}</Link>
+                )}{" "}
+                {testimonial.job}
+                <br />
+                {testimonial.location && testimonial.location}
+              </div>
+              {testimonial.rating}
+              <Quote>{testimonial.quote} </Quote>
+              <div>{testimonial.date}</div>
+            </Testimonial>
+          </TestimonialWrapper>
         ))}
       </TestiBox>
       {isMobile && (
-        <Scroller className="hideScrollBar">
+        <Scroller>
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot
               isSelected={index === testimonialIdVisible}
@@ -80,32 +82,9 @@ export const Testimonials = () => {
   );
 };
 
-const Scroller = styled.div`
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-
-  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
-  scrollbar-width: none; /* Hide scroll bar Firefox */
-`;
-
-const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
-  width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
-  height: 0.7rem;
-  margin: 0.2rem;
-  background: ${(props) =>
-    props.isTestimonialsVisible ? "var(--secondary-dark-color)" : ""};
-  border: ${(props) =>
-    props.isTestimonialsVisible
-      ? "1px solid var(--secondary-dark-color)"
-      : "none"};
-  border-radius: 99999px;
-  transition: all 0.6s ease;
-`;
-
 const Container = styled.div`
   margin: 5rem;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     margin: 5rem 1rem 5rem 1rem;
   }
 `;
@@ -131,18 +110,30 @@ const TestiBox = styled.div`
   justify-content: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
-    // gap: 0;
-    width: 100%;
+  @media (max-width: 1024px) {
     justify-content: flex-start;
     overflow-x: scroll;
+
+    -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
+    scrollbar-width: none; /* Hide scroll bar Firefox */
+  }
+`;
+
+const TestimonialWrapper = styled.div`
+  min-width: 300px;
+  @media (max-width: 1024px) {
+    min-height: 65vh;
+    min-width: 280px;
+  }
+  @media (max-width: 768px) {
+    min-height: 65vh;
+    min-width: 100vw;
   }
 `;
 
 const Testimonial = styled.div`
   background-color: var(--light-background);
   padding: 2rem;
-  min-width: 25%;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -152,10 +143,6 @@ const Testimonial = styled.div`
   a {
     color: var(--secondary-dark-color);
     text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    min-width: 80%;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -175,6 +162,28 @@ const Author = styled.div`
 
 const Quote = styled.div`
   line-height: 2;
+`;
+
+const Scroller = styled.div`
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
+`;
+
+const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
+  width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
+  height: 0.7rem;
+  margin: 0.2rem;
+  background: ${(props) =>
+    props.isTestimonialsVisible ? "var(--secondary-dark-color)" : ""};
+  border: ${(props) =>
+    props.isTestimonialsVisible
+      ? "1px solid var(--secondary-dark-color)"
+      : "none"};
+  border-radius: 99999px;
+  transition: all 0.6s ease;
 `;
 
 export default Testimonials;
