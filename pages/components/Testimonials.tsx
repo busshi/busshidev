@@ -6,26 +6,33 @@ import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
 import { useEffect, useState } from "react";
-import { useInViewPort } from "../../hooks/useHorizontalScroll";
 
 export const Testimonials = () => {
-  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
+  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
   const isMobile = useIsMobile();
   const [testimonialIdVisible, setTestimonialIdVisible] = useState(0);
+  const items = TESTIMONIALS.map((item) => item.id);
 
-  const items = ["first", "second", "third"];
-  const isUninView = useInViewPort(items[0]);
-  const isDeuxinView = useInViewPort(items[1]);
-  const isTroisinView = useInViewPort(items[2]);
-
-  console.log(isUninView, isDeuxinView, isTroisinView);
-  useEffect(() => {}, [testimonialIdVisible]);
+  useEffect(() => {
+    let interval: string | number | NodeJS.Timeout | undefined;
+    if (isTestimonialsVisible) {
+      interval = setInterval(() => {
+        const nextIndex =
+          testimonialIdVisible + 1 >= TESTIMONIALS.length
+            ? 0
+            : testimonialIdVisible + 1;
+        setTestimonialIdVisible(nextIndex);
+        scrollIntoView(items[nextIndex]);
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [isTestimonialsVisible, testimonialIdVisible]);
 
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
       <TestiBox ref={ref} id="testi">
-        {TESTIMONIALS.map((testimonial, index) => (
+        {TESTIMONIALS.map((testimonial) => (
           <Testimonial key={testimonial.id} id={testimonial.id}>
             <Author>
               <ImageBox
@@ -53,7 +60,7 @@ export const Testimonials = () => {
         ))}
       </TestiBox>
       {isMobile && (
-        <Scroller isElementVisible={isElementVisible}>
+        <Scroller className="hideScrollBar">
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot
               isSelected={index === testimonialIdVisible}
@@ -62,7 +69,7 @@ export const Testimonials = () => {
                 setTestimonialIdVisible(index);
                 scrollIntoView(id);
               }}
-              isElementVisible={isElementVisible}
+              isTestimonialsVisible={isTestimonialsVisible}
             />
           ))}
         </Scroller>
@@ -71,20 +78,25 @@ export const Testimonials = () => {
   );
 };
 
-const Scroller = styled.div<{ isElementVisible: boolean }>`
+const Scroller = styled.div`
   margin: 1rem;
   display: flex;
   justify-content: center;
+
+  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
+  scrollbar-width: none; /* Hide scroll bar Firefox */
 `;
 
-const Dot = styled.div<{ isSelected: boolean; isElementVisible: boolean }>`
+const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
   width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
   height: 0.7rem;
   margin: 0.2rem;
   background: ${(props) =>
-    props.isElementVisible ? "var(--secondary-dark-color)" : ""};
+    props.isTestimonialsVisible ? "var(--secondary-dark-color)" : ""};
   border: ${(props) =>
-    props.isElementVisible ? "1px solid var(--secondary-dark-color)" : "none"};
+    props.isTestimonialsVisible
+      ? "1px solid var(--secondary-dark-color)"
+      : "none"};
   border-radius: 99999px;
   transition: all 0.6s ease;
 `;

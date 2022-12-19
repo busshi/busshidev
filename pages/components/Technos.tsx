@@ -68,7 +68,7 @@ const SliderWrapper = styled.div`
   box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
 
   @media (max-width: 768px) {
-    paddong: 0;
+    padding: 0;
     box-shadow: none;
   }
 `;
