@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 /**
  * Utility hook to determine an element width
  *
+ * @param id string - element ID
  * @example
  *   const elementWidth = useGetElementWidth("items");
  */

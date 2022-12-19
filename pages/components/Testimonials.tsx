@@ -4,17 +4,29 @@ import styled from "styled-components";
 import { TESTIMONIALS } from "../../lib/testimonials";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { scrollIntoView } from "../../lib/scroll";
+import { useEffect, useState } from "react";
+import { useInViewPort } from "../../hooks/useHorizontalScroll";
 
 export const Testimonials = () => {
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
   const isMobile = useIsMobile();
+  const [testimonialIdVisible, setTestimonialIdVisible] = useState(0);
+
+  const items = ["first", "second", "third"];
+  const isUninView = useInViewPort(items[0]);
+  const isDeuxinView = useInViewPort(items[1]);
+  const isTroisinView = useInViewPort(items[2]);
+
+  console.log(isUninView, isDeuxinView, isTroisinView);
+  useEffect(() => {}, [testimonialIdVisible]);
 
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
-      <TestiBox ref={ref}>
-        {TESTIMONIALS.map((testimonial) => (
-          <Testimonial key={testimonial.id}>
+      <TestiBox ref={ref} id="testi">
+        {TESTIMONIALS.map((testimonial, index) => (
+          <Testimonial key={testimonial.id} id={testimonial.id}>
             <Author>
               <ImageBox
                 src={testimonial.avatar}
@@ -42,10 +54,14 @@ export const Testimonials = () => {
       </TestiBox>
       {isMobile && (
         <Scroller isElementVisible={isElementVisible}>
-          {TESTIMONIALS.map(({ id }) => (
+          {TESTIMONIALS.map(({ id }, index) => (
             <Dot
-              isSelected={isElementVisible}
+              isSelected={index === testimonialIdVisible}
               key={id}
+              onClick={() => {
+                setTestimonialIdVisible(index);
+                scrollIntoView(id);
+              }}
               isElementVisible={isElementVisible}
             />
           ))}
@@ -62,11 +78,11 @@ const Scroller = styled.div<{ isElementVisible: boolean }>`
 `;
 
 const Dot = styled.div<{ isSelected: boolean; isElementVisible: boolean }>`
-  width: 0.7rem;
+  width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
   height: 0.7rem;
   margin: 0.2rem;
   background: ${(props) =>
-    props.isSelected ? "var(--secondary-dark-color)" : ""};
+    props.isElementVisible ? "var(--secondary-dark-color)" : ""};
   border: ${(props) =>
     props.isElementVisible ? "1px solid var(--secondary-dark-color)" : "none"};
   border-radius: 99999px;

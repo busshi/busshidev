@@ -17,7 +17,6 @@ export default function useIsElementVisible<Element extends HTMLElement>(
 ): [boolean, RefObject<Element>] {
   const [isVisible, setIsVisible] = useState(false);
   const currentElement = createRef<Element>();
-
   const onScroll = throttle(() => {
     if (!currentElement.current) {
       setIsVisible(false);

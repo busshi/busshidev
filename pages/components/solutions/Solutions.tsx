@@ -52,36 +52,31 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   z-index: 0;
   background-color: var(--light-background);
   border-radius: var(--border-radius);
-  box-shadow: ${(props) =>
-    props.isShiny
-      ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
-      : "none"};
 
-  transition: box-shadow var(--long-transition-delay) ease;
-
-  @media (prefers-color-scheme: dark) {
-  background-color: var(--dark-background);
-  box-shadow: ${(props) =>
-    props.isShiny
-      ? `0px 0px 3rem 0px ${props.highlightedColor.start}`
-      : "none"};
+  :hover {
+    box-shadow: ${(props) =>
+      `0px 0px 3rem 0px ${props.highlightedColor.start}`};
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      padding: 1px;
+      border-radius: var(--border-radius);
+      background: ${(props) =>
+        `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
+      -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+        linear-gradient(var(--main-light-color) 0 0);
+      mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+        linear-gradient(var(--main-light-color) 0 0);
+      mask-composite: exclude;
     }
   }
 
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    padding: 1px;
-    border-radius: var(--border-radius);
-    background: ${(props) =>
-      `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
-    -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
-      linear-gradient(var(--main-light-color) 0 0);
-    mask: linear-gradient(var(--main-light-color) 0 0) content-box,
-      linear-gradient(var(--main-light-color) 0 0);
-    mask-composite: exclude;
+  transition: all var(--transition-delay) ease;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dark-background);
   }
 `;
 

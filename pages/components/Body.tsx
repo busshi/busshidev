@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { scrollIntoView } from "../../lib/scrollIntoView";
+import { scrollIntoView } from "../../lib/scroll";
 import { GetADemo } from "./GetADemo";
 import { Technos } from "./Technos";
 import { Testimonials } from "./Testimonials";

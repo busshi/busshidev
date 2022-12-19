@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useIsDarkMode } from "../../hooks/useIsDarkMode";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { CONTACTS, OPENSOURCES } from "../../lib/constants";
-import { scrollIntoView } from "../../lib/scrollIntoView";
+import { scrollIntoView } from "../../lib/scroll";
 import { LinkItem } from "../../types/interfaces";
 
 export const Column = ({

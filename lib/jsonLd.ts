@@ -1,5 +1,10 @@
 import { SITE_URL } from "./constants";
 
+/**
+ * jsonLd Metadata
+ * SEO - google rich snippet for website
+ */
+
 export const jsonLdWebsite = {
   "@context": "http://schema.org",
   "@type": "WebSite",
@@ -16,6 +21,11 @@ export const jsonLdWebsite = {
   ],
 };
 
+/**
+ * jsonLd Metadata
+ * SEO - google rich snippet for logo
+ */
+
 export const jsonLdLogo = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -24,6 +34,11 @@ export const jsonLdLogo = {
   url: `${SITE_URL}`,
   logo: `${SITE_URL}/logo.png`,
 };
+
+/**
+ * jsonLd Metadata
+ * SEO - google rich snippet for organization
+ */
 
 export const jsonLdOrganization = {
   "@context": "http://schema.org",
@@ -40,6 +55,11 @@ export const jsonLdOrganization = {
     "https://busshi.fr",
   ],
 };
+
+/**
+ * jsonLd Metadata
+ * SEO - google rich snippet for organization rating
+ */
 
 export const jsonLdOrganizationRating = {
   "@context": "https://schema.org/",

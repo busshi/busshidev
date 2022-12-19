@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import Link from "next/link";
-import { scrollIntoView } from "../../lib/scrollIntoView";
+import { scrollIntoView } from "../../lib/scroll";
 
 export const TopBar = () => {
   const isMobile = useIsMobile();
