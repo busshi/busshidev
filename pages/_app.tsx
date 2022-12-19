@@ -1,9 +1,20 @@
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Script from "next/script";
+import { ReactElement, ReactNode } from "react";
 import { HighlightedColorProvider } from "../providers/HighlightedColor";
 import "./styles/app.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<T = {}> = NextPage<T> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page);
+
   return (
     <HighlightedColorProvider>
       <Script id="google-tag-manager" strategy="afterInteractive">
@@ -15,13 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
         })(window,document,'script','dataLayer','G-K4ERH99TW7');
       `}
       </Script>
-
       <noscript
         dangerouslySetInnerHTML={{
           __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=G-K4ERH99TW7" height="0" width="0" style="display: none; visibility: hidden;" />`,
         }}
       />
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </HighlightedColorProvider>
   );
 }

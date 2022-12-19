@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import { useHighlightedColorState } from "../../providers/HighlightedColor";
 import { Color } from "../../types/interfaces";
@@ -5,7 +6,11 @@ import { Color } from "../../types/interfaces";
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
 
-  return <Button highlightedColor={highlightedColor}>Get a Demo</Button>;
+  return (
+    <Button highlightedColor={highlightedColor}>
+      <LinkBox href="/contact">Get a Demo</LinkBox>
+    </Button>
+  );
 };
 
 const Button = styled.div<{ highlightedColor: Color }>`
@@ -44,16 +49,22 @@ const Button = styled.div<{ highlightedColor: Color }>`
   &:hover {
     background: ${(props) =>
       `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
+  }
+`;
+
+const LinkBox = styled(Link)`
+  color: var(--main-dark-color);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--secondary-light-color);
+  }
+
+  &:hover {
     color: var(--main-light-color);
 
     @media (prefers-color-scheme: dark) {
       color: var(--main-dark-color);
     }
-  }
-
-  color: var(--main-dark-color);
-  @media (prefers-color-scheme: dark) {
-    color: var(--secondary-light-color);
   }
 `;
 

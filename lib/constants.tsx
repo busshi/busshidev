@@ -55,7 +55,7 @@ export const CONTACTS = [
   {
     id: "email",
     name: "Email",
-    url: "mailto:busshidev.fr",
+    url: "mailto:busshidev@contact.me",
     logo: <HiOutlineMail color="var(--main-dark-color)" size={25} />,
     logoDark: <HiOutlineMail color="var(--secondary-dark-color)" size={25} />,
   },

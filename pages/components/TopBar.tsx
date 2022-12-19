@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../../lib/scroll";
-
 export const TopBar = () => {
   const isMobile = useIsMobile();
 
@@ -23,7 +22,9 @@ export const TopBar = () => {
           <Link href="https://busshi.fr">
             <Button>About me</Button>
           </Link>
-          <Button>Contact</Button>
+          <Link href="/contact">
+            <Button>Contact</Button>
+          </Link>
         </Buttons>
       )}
     </Container>
