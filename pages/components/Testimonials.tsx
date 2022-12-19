@@ -22,11 +22,14 @@ export const Testimonials = () => {
             ? 0
             : testimonialIdVisible + 1;
         setTestimonialIdVisible(nextIndex);
-        scrollIntoView(items[nextIndex]);
       }, 5000);
     }
     return () => clearInterval(interval);
   }, [isTestimonialsVisible, testimonialIdVisible]);
+
+  useEffect(() => {
+    scrollIntoView(items[testimonialIdVisible]);
+  }, [testimonialIdVisible]);
 
   return (
     <Container>
@@ -67,7 +70,6 @@ export const Testimonials = () => {
               key={id}
               onClick={() => {
                 setTestimonialIdVisible(index);
-                scrollIntoView(id);
               }}
               isTestimonialsVisible={isTestimonialsVisible}
             />
