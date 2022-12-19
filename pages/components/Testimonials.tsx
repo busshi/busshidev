@@ -120,6 +120,8 @@ const TestiBox = styled.div`
   }
 
   @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: scroll;
     justify-content: flex-start;
 
