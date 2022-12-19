@@ -29,7 +29,7 @@ export const Testimonials = () => {
 
   useEffect(() => {
     scrollIntoView(items[testimonialIdVisible]);
-  }, [testimonialIdVisible, items]);
+  }, [testimonialIdVisible]);
 
   return (
     <Container>
