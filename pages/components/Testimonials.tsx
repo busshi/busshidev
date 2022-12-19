@@ -7,8 +7,10 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
 import { useEffect, useState } from "react";
 
+const SCROLL_TIMEOUT = 3000;
+
 export const Testimonials = () => {
-  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(400);
+  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   const isMobile = useIsMobile();
   const [testimonialIdVisible, setTestimonialIdVisible] = useState(0);
   const items = TESTIMONIALS.map((item) => item.id);
@@ -22,13 +24,13 @@ export const Testimonials = () => {
             ? 0
             : testimonialIdVisible + 1;
         setTestimonialIdVisible(nextIndex);
-      }, 5000);
+      }, SCROLL_TIMEOUT);
     }
     return () => clearInterval(interval);
   }, [isTestimonialsVisible, testimonialIdVisible]);
 
   useEffect(() => {
-    scrollIntoView(items[testimonialIdVisible]);
+    if (isTestimonialsVisible) scrollIntoView(items[testimonialIdVisible]);
   }, [testimonialIdVisible]);
 
   return (
@@ -111,8 +113,8 @@ const TestiBox = styled.div`
   gap: 2rem;
 
   @media (max-width: 1024px) {
-    justify-content: flex-start;
     overflow-x: scroll;
+    justify-content: flex-start;
 
     -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
     scrollbar-width: none; /* Hide scroll bar Firefox */
@@ -127,7 +129,7 @@ const TestimonialWrapper = styled.div`
   }
   @media (max-width: 768px) {
     min-height: 65vh;
-    min-width: 100vw;
+    min-width: 90vw;
   }
 `;
 

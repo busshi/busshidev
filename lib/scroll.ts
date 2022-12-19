@@ -1,20 +1,26 @@
 /**
  * Utility function to handle smooth scroll
  *
- * @example
- * scrollIntoView("elementId")
+ * @param id - Element ID
+
+* @example
+ * scrollIntoView(elementId)
  */
 
 export const scrollIntoView = (id: string) => {
   const elem = document.getElementById(id);
-  elem && elem.scrollIntoView({ behavior: "smooth", block: "center" });
+  elem && elem.scrollIntoView({ behavior: "smooth", block: "nearest" });
 };
 
 /**
  * Utility function to handle vertical scroll
  *
- * @example
- * scrollTo(solutionId, offset)
+ * @param id - Element ID
+ * @param top - top offset px (optional)
+ * @param left - left offset px (optional)
+
+* @example
+ * scrollTo(elementId, top, left)
  */
 
 export const scrollTo = (id: string, top: number = 0, left: number = 0) => {
