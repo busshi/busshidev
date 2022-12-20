@@ -22,11 +22,11 @@ export const Metadata: React.FC = () => (
     />
 
     <meta name="color-scheme" content="dark light" />
-    <meta property="og:image" content="https://busshidev.fr/logo.png" />
+    <meta property="og:image" content="https://busshidev.fr/banner.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:type" content="image" />
-    <meta property="og:image:width" content="20" />
-    <meta property="og:image:height" content="100" />
+    <meta property="og:image:width" content="2220" />
+    <meta property="og:image:height" content="456" />
     <meta property="og:url" content={SITE_URL} />
     <meta
       property="og:title"
