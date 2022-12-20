@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "./components/GetADemo";
-import mainLayout from "./components/hoc/mainLayout";
+import { mainLayout } from "./components/hoc/mainLayout";
 import MobileSolutions from "./components/solutions/MobileSolutions";
 import Solutions from "./components/solutions/Solutions";
 import Technos from "./components/Technos";

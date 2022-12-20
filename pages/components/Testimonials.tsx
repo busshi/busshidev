@@ -32,7 +32,7 @@ export const Testimonials = () => {
   useEffect(() => {
     if (isTestimonialsVisible && isMobile)
       scrollIntoView(items[testimonialIdVisible]);
-  }, [testimonialIdVisible]);
+  }, [testimonialIdVisible, isMobile, items, isTestimonialsVisible]);
 
   return (
     <Container>

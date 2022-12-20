@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 
-const mainLayout = (page: ReactElement) => (
+export const mainLayout = (page: ReactElement) => (
   <Layout>
     <Metadata />
     <TopBar />
@@ -27,5 +27,3 @@ const Layout = styled.div`
     background: var(--main-dark-color);
   }
 `;
-
-export default mainLayout;

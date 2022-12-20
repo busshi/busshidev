@@ -40,7 +40,7 @@ export const Technos = () => {
       );
     }
     if (!isElementVisible) items?.scrollTo(0, 0);
-  }, [isElementVisible, isScrolling]);
+  }, [isElementVisible, isScrolling, scrollWidth]);
 
   return (
     <Container>
