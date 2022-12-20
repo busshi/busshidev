@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { SITE_URL } from "../../lib/constants";
 import {
+  jsonLdFAQ,
   jsonLdLogo,
   jsonLdOrganization,
   jsonLdOrganizationRating,
@@ -74,6 +75,14 @@ export const Metadata: React.FC = () => (
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(jsonLdOrganizationRating),
+      }}
+    />
+
+    {/* FAQ rich snippet  */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLdFAQ),
       }}
     />
   </Head>

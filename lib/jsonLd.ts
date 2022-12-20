@@ -1,4 +1,4 @@
-import { SITE_URL } from "./constants";
+import { CONTACTS, OPENSOURCES, SITE_URL } from "./constants";
 
 /**
  * jsonLd Metadata
@@ -12,7 +12,7 @@ export const jsonLdWebsite = {
   alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
 
   url: `${SITE_URL}`,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/banner.png`,
   sameAs: [
     "https://www.malt.fr/profile/alexandredubar",
     "https://www.linkedin.com/in/alexandre-dubar/",
@@ -32,7 +32,7 @@ export const jsonLdLogo = {
   name: "busshiDev",
   email: "contact@busshidev.fr",
   url: `${SITE_URL}`,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/banner.png`,
 };
 
 /**
@@ -46,7 +46,7 @@ export const jsonLdOrganization = {
   name: "busshiDev",
   alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
   url: `${SITE_URL}`,
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/banner.png`,
   slogan: "Design. Develop. Deploy. Boost.",
   sameAs: [
     "https://www.malt.fr/profile/alexandredubar",
@@ -73,4 +73,34 @@ export const jsonLdOrganizationRating = {
   bestRating: "5",
   worstRating: "0",
   ratingCount: "4",
+};
+
+/**
+ * jsonLd Metadata
+ * SEO - google rich snippet for FAQ
+ */
+
+export const jsonLdFAQ = () => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Open source contribution",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `<ul><li><a href="${OPENSOURCES[0].url}">${OPENSOURCES[0].name}</li><li><a href="${OPENSOURCES[1].url}">${OPENSOURCES[1].name}</a></li><li><a href="${OPENSOURCES[2].url}">${OPENSOURCES[2].name}</a></li></ul>`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Contacts",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `<ul><li><a href="${CONTACTS[0].url}">${CONTACTS[0].name}</li><li><a href="${CONTACTS[1].url}">${CONTACTS[1].name}</a></li><li><a href="${CONTACTS[2].url}">${CONTACTS[2].name}</a></li></ul>`,
+        },
+      },
+    ],
+  };
 };
