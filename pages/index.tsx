@@ -11,6 +11,31 @@ import Titles from "./components/Titles";
 import { NextPageWithLayout } from "./_app";
 
 const Home: NextPageWithLayout = () => {
+  // const isInViewport = (element: HTMLElement) => {
+  //   const rect = element.getBoundingClientRect();
+  //   return (
+  //     rect.top >= 0 &&
+  //     rect.left >= 0 &&
+  //     rect.bottom <=
+  //       (window.innerHeight || document.documentElement.clientHeight) &&
+  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  //   );
+  // }
+
+  // useEffect(() => {
+  //   const element = document.getElementById("intro");
+  //   if (element && isInViewport(element)) {
+  //     console.log(isInViewport(element));
+  //     window.addEventListener("scroll", () => useSscrollIntoView("solutions"), {
+  //       passive: true,
+  //     });
+  //   }
+  //   return () =>
+  //     window.removeEventListener("scroll", () =>
+  //       useSscrollIntoView("solutions")
+  //     );
+  // }, []);
+
   const isMobile = useIsMobile();
 
   return (
