@@ -3,7 +3,10 @@ import { ImGithub } from "react-icons/im";
 import { HiOutlineMail } from "react-icons/hi";
 import Image from "next/image";
 
-export const SITE_URL = "https://busshidev.fr";
+export const SITE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://busshidev.fr"
+    : "http://localhost:3000";
 
 /**
  * Color constants

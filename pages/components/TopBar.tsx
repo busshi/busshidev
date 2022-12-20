@@ -3,8 +3,13 @@ import Image from "next/image";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../../lib/scroll";
+import { useRouter } from "next/router";
+import { SITE_URL } from "../../lib/constants";
+
 export const TopBar = () => {
   const isMobile = useIsMobile();
+  const router = useRouter();
+  const isHome = router.asPath === "/";
 
   return (
     <Container id="top">
@@ -18,7 +23,15 @@ export const TopBar = () => {
         <></>
       ) : (
         <Buttons>
-          <Button onClick={() => scrollIntoView("solutions")}>Solutions</Button>
+          {isHome ? (
+            <Button onClick={() => scrollIntoView("solutions")}>
+              Solutions
+            </Button>
+          ) : (
+            <Link href={`${SITE_URL}/#solutions`}>
+              <Button>Solutions</Button>
+            </Link>
+          )}
           <Link href="https://busshi.fr">
             <Button>About me</Button>
           </Link>
