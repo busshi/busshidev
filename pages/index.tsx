@@ -1,16 +1,16 @@
+import { NextPage } from "next";
 import styled from "styled-components";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "./components/GetADemo";
-import { mainLayout } from "./components/hoc/mainLayout";
+import Layout from "./components/hoc/Layout";
 import MobileSolutions from "./components/solutions/MobileSolutions";
 import Solutions from "./components/solutions/Solutions";
 import Technos from "./components/Technos";
 import Testimonials from "./components/Testimonials";
 import Titles from "./components/Titles";
-import { NextPageWithLayout } from "./_app";
 
-const Home: NextPageWithLayout = () => {
+const Home: NextPage = () => {
   // const isInViewport = (element: HTMLElement) => {
   //   const rect = element.getBoundingClientRect();
   //   return (
@@ -39,21 +39,23 @@ const Home: NextPageWithLayout = () => {
   const isMobile = useIsMobile();
 
   return (
-    <Container>
-      <FirstPage>
-        <Titles />
-        <Intro>
-          You have dreams. I have skills. We can build the future together...
-        </Intro>
-        <GetADemo />
-        <Guidance onClick={() => scrollIntoView("solutions")}>
-          <div>STEP BY STEP GUIDANCE</div>
-        </Guidance>
-      </FirstPage>
-      {isMobile ? <MobileSolutions /> : <Solutions />}
-      <Testimonials />
-      <Technos />
-    </Container>
+    <Layout>
+      <Container>
+        <FirstPage>
+          <Titles />
+          <Intro>
+            You have dreams. I have skills. We can build the future together...
+          </Intro>
+          <GetADemo />
+          <Guidance onClick={() => scrollIntoView("solutions")}>
+            <div>STEP BY STEP GUIDANCE</div>
+          </Guidance>
+        </FirstPage>
+        {isMobile ? <MobileSolutions /> : <Solutions />}
+        <Testimonials />
+        <Technos />
+      </Container>
+    </Layout>
   );
 };
 
@@ -99,7 +101,5 @@ const Guidance = styled.div`
     margin: 0;
   }
 `;
-
-Home.getLayout = mainLayout;
 
 export default Home;

@@ -1,19 +1,22 @@
-import { ReactElement } from "react";
 import styled from "styled-components";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 
-export const mainLayout = (page: ReactElement) => (
-  <Layout>
+type Props = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: Props) => (
+  <Html>
     <Metadata />
     <TopBar />
-    {page}
+    {children}
     <Footer />
-  </Layout>
+  </Html>
 );
 
-const Layout = styled.div`
+const Html = styled.div`
   min-width: 100%;
   min-height: 100vh;
   color: var(--main-dark-color);
@@ -27,3 +30,5 @@ const Layout = styled.div`
     background: var(--main-dark-color);
   }
 `;
+
+export default Layout;

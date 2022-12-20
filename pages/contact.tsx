@@ -1,15 +1,17 @@
+import { NextPage } from "next";
 import styled from "styled-components";
-import { mainLayout } from "./components/hoc/mainLayout";
-import { NextPageWithLayout } from "./_app";
+import Layout from "./components/hoc/Layout";
 
-const Contact: NextPageWithLayout = () => {
-  return <Page></Page>;
+const Contact: NextPage = () => {
+  return (
+    <Layout>
+      <Page></Page>;
+    </Layout>
+  );
 };
 
 const Page = styled.div`
   min-height: 100vh;
 `;
-
-Contact.getLayout = mainLayout;
 
 export default Contact;
