@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import { SITE_URL } from "../../lib/constants";
 import {
   jsonLdFAQ,

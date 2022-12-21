@@ -34,19 +34,22 @@ export const Column = ({
   );
 };
 
-const Logo = () => (
-  <LogoContainer>
-    Powered by
-    <ImageBox
-      onClick={() => scrollIntoView("top")}
-      src="/logo.svg"
-      alt="busshiDev"
-      width={100}
-      height={100}
-    />
-    © 2022
-  </LogoContainer>
-);
+const Logo = () => {
+  const isMobile = useIsMobile();
+
+  return (
+    <LogoContainer>
+      {isMobile && <span>Powered by</span>}
+      <ImageBox
+        onClick={() => scrollIntoView("top")}
+        src="/logo.svg"
+        alt="busshiDev"
+        width={100}
+        height={100}
+      />
+    </LogoContainer>
+  );
+};
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
@@ -82,6 +85,7 @@ const Container = styled.div`
 
 const LogoContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: var(--secondary-light-color);
@@ -95,7 +99,7 @@ const LogoContainer = styled.div`
     }
   }
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 2rem;
   }
 `;
 
@@ -162,6 +166,7 @@ const LinksBox = styled.div`
 
 const ImageBox = styled(Image)`
   cursor: pointer;
+  border: solid;
 `;
 
 const Hr = styled.hr`
