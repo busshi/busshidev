@@ -41,7 +41,7 @@ export const Technos = () => {
       );
     }
     if (!isElementVisible) items?.scrollTo(0, 0);
-  }, [isElementVisible, isScrolling, scrollWidth]);
+  }, [isElementVisible, isScrolling, scrollWidth, isMobile]);
 
   return (
     <Container id="technos">

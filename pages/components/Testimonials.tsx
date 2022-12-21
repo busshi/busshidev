@@ -5,17 +5,25 @@ import { TESTIMONIALS } from "../../lib/testimonials";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
 
 const SCROLL_TIMEOUT = 8000;
 
 export const Testimonials = () => {
   const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   const isMobile = useIsMobile();
-  const [testimonialIdVisible, setTestimonialIdVisible] = useState(0);
+  const { testimonialIdVisible, setTestimonialIdVisible } =
+    useTestimonialVisibleState();
+
   const items = TESTIMONIALS.map((item) => item.id);
+  // eslint-disable-next-line
+  const refs = TESTIMONIALS.map(() => useRef(null));
+  useIntersectionObserver(refs);
 
   useEffect(() => {
+    if (!isMobile) return;
     let interval: string | number | NodeJS.Timeout | undefined;
     if (isTestimonialsVisible) {
       interval = setInterval(() => {
@@ -27,7 +35,12 @@ export const Testimonials = () => {
       }, SCROLL_TIMEOUT);
     }
     return () => clearInterval(interval);
-  }, [isTestimonialsVisible, testimonialIdVisible]);
+  }, [
+    isTestimonialsVisible,
+    testimonialIdVisible,
+    isMobile,
+    setTestimonialIdVisible,
+  ]);
 
   useEffect(() => {
     if (isTestimonialsVisible && isMobile)
@@ -37,12 +50,12 @@ export const Testimonials = () => {
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
-      <TestiBox id="testi" className="hideScrollBar">
-        {TESTIMONIALS.map((testimonial) => (
+      <TestiBox id="testi" className="hideScrollBar" ref={ref}>
+        {TESTIMONIALS.map((testimonial, index) => (
           <TestimonialWrapper
-            ref={ref}
             key={testimonial.id}
             id={testimonial.id}
+            ref={refs[index]}
           >
             <Testimonial>
               <Author>
@@ -59,7 +72,7 @@ export const Testimonials = () => {
               <div>
                 {testimonial.url && (
                   <Link href={testimonial.url}>{testimonial.company}</Link>
-                )}{" "}
+                )}
                 {testimonial.job}
                 <br />
                 {testimonial.location && testimonial.location}

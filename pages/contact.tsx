@@ -35,16 +35,22 @@ const Contact: NextPage = () => {
 const Page = styled.div`
   min-height: 100vh;
   width: 100vw;
+  margin: 5rem 0 5rem 0;
   display: flex;
   justify-content: center;
 `;
 
 const Calendar = styled.div`
-  width: 420px;
-  height: 900px;
+  width: 620px;
+  height: 920px;
   display: flex;
   flexdirection: column;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 420px;
+    height: 900px;
+  }
 `;
 
 const RedCross = styled.div`
