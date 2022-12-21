@@ -1,27 +1,45 @@
 import { NextPage } from "next";
+import { useState } from "react";
 import styled from "styled-components";
-import Layout from "./components/hoc/Layout";
 
 const Contact: NextPage = () => {
+  const [calendlyVisible, setCalendlyVisible] = useState(false);
+
   return (
-    <Layout>
-      <Page>
-        <Calendar
-          className="calendly-inline-widget"
-          data-url="https://calendly.com/busshidev/30min?hide_gdpr_banner=1"
-        ></Calendar>
-      </Page>
-    </Layout>
+    <Page>
+      {calendlyVisible ? (
+        <div
+          style={{
+            width: "420px",
+            height: "900px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <iframe
+            width="100%"
+            height="100%"
+            title={"Schedule an interview"}
+            src="https://calendly.com/busshidev/30min?hide_gdpr_banner=1&background_color=0"
+          ></iframe>
+        </div>
+      ) : (
+        <div
+          onClick={() => setCalendlyVisible(true)}
+          style={{ width: "1000px", height: "1000px", textAlign: "center" }}
+        >
+          CALENDAR
+        </div>
+      )}
+    </Page>
   );
 };
 
 const Page = styled.div`
   min-height: 100vh;
-`;
-
-const Calendar = styled.div`
-  min-width: 320px;
-  height: 630px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 `;
 
 export default Contact;

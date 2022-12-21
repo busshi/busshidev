@@ -9,7 +9,7 @@ import { SITE_URL } from "../../lib/constants";
 export const TopBar = () => {
   const isMobile = useIsMobile();
   const router = useRouter();
-  const isHome = router.asPath === "/";
+  const isHome = router.asPath !== "/contact";
 
   return (
     <Container id="top">
