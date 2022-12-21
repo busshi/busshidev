@@ -52,6 +52,11 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
+  padding-top: 2rem;
+
+  @media (max-width: 768px) {
+    padding-top: 1rem;
+  }
 
   @media (prefers-color-scheme: dark) {
     img {
@@ -87,10 +92,8 @@ const Button = styled.div`
 
 const LinkBox = styled(Link)`
   cursor: pointer;
-  margin-top: 2rem;
 
   @media (max-width: 768px) {
-    margin: 1rem;
   }
 `;
 
