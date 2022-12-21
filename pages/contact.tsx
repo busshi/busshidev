@@ -6,11 +6,10 @@ const Contact: NextPage = () => {
   return (
     <Layout>
       <Page>
-        <div
+        <Calendar
           className="calendly-inline-widget"
           data-url="https://calendly.com/busshidev/30min?hide_gdpr_banner=1"
-          style={{ minWidth: 320, height: 630 }}
-        ></div>
+        ></Calendar>
       </Page>
     </Layout>
   );
@@ -18,6 +17,11 @@ const Contact: NextPage = () => {
 
 const Page = styled.div`
   min-height: 100vh;
+`;
+
+const Calendar = styled.div`
+  min-width: 320px;
+  height: 630px;
 `;
 
 export default Contact;

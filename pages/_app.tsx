@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       {/* Calendly integration */}
-      <Script src="https://assets.calendly.com/assets/external/widget.js" />;
+      <Script src="https://assets.calendly.com/assets/external/widget.js" />
       <Component {...pageProps} />
     </HighlightedColorProvider>
   );
