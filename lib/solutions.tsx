@@ -17,7 +17,7 @@ export const SOLUTIONS = [
   },
   {
     title: "Develop.",
-    description: "Code the product you need",
+    description: "Ship the product you need",
     actions: [
       "Building incredibly blazing fast websites",
       "Using latest frameworks and tools",

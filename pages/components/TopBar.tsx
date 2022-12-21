@@ -13,12 +13,14 @@ export const TopBar = () => {
 
   return (
     <Container id="top">
-      <Image
-        src="/logo.svg"
-        width={isMobile ? 95 : 119}
-        height={isMobile ? 80 : 100}
-        alt="busshiDev"
-      />
+      <LinkBox href="/">
+        <Image
+          src="/logo.svg"
+          width={isMobile ? 95 : 119}
+          height={isMobile ? 80 : 100}
+          alt="busshiDev"
+        />
+      </LinkBox>
       {isMobile ? (
         <></>
       ) : (
@@ -81,6 +83,10 @@ const Button = styled.div`
       color: var(--secondary-light-color);
     }
   }
+`;
+
+const LinkBox = styled(Link)`
+  cursor: pointer;
 `;
 
 export default TopBar;

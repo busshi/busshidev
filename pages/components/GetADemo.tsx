@@ -53,6 +53,8 @@ const Button = styled.div<{ highlightedColor: Color }>`
 `;
 
 const LinkBox = styled(Link)`
+  width: 100%;
+  height: 100%;
   color: var(--main-dark-color);
 
   @media (prefers-color-scheme: dark) {

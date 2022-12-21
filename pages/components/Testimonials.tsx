@@ -37,8 +37,8 @@ export const Testimonials = () => {
   return (
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
-      <TestiBox ref={ref} id="testi" className="hideScrollBar">
-        {TESTIMONIALS.map((testimonial) => (
+      <TestiBox id="testi" className="hideScrollBar">
+        {TESTIMONIALS.map((testimonial, index) => (
           <TestimonialWrapper key={testimonial.id} id={testimonial.id}>
             <Testimonial>
               <Author>
