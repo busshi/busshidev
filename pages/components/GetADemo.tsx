@@ -55,17 +55,17 @@ const Button = styled.div<{ highlightedColor: Color }>`
 const LinkBox = styled(Link)`
   width: 100%;
   height: 100%;
-  color: var(--main-dark-color);
+  color: black;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--secondary-light-color);
+    color: white;
   }
 
   &:hover {
-    color: var(--main-light-color);
+    color: white;
 
     @media (prefers-color-scheme: dark) {
-      color: var(--main-dark-color);
+      color: black;
     }
   }
 `;

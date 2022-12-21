@@ -1,21 +1,22 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
-import { TECHNOS } from "../../lib/technos";
 import { useEffect, useState } from "react";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
-//import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { getTechnos } from "../../lib/technos";
 
 export const Technos = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-10);
   const scrollWidth = useGetScrollWidth("items");
-  //const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
+  const technos = getTechnos(isMobile ? 30 : 80);
 
   useEffect(() => {
     let i = 0;
     let reverse = false;
-    //    if (isMobile) return;
+    if (isMobile) return;
     const items = document.getElementById("items");
     items?.addEventListener("scroll", (e) => {
       if (e) setIsScrolling(true);
@@ -49,7 +50,7 @@ export const Technos = () => {
       </SectionTitle>
       <SliderWrapper>
         <Items id="items" ref={ref} className="hideScrollBar">
-          {TECHNOS.map((techno, i) => (
+          {technos.map((techno, i) => (
             <Techno key={i}>{techno}</Techno>
           ))}
         </Items>
@@ -76,10 +77,16 @@ const SliderWrapper = styled.div`
 const Items = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
-  overflow-y: hide;
+  overflow-y: hidden;
 
   -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
   scrollbar-width: none; /* Hide scroll bar Firefox */
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const Techno = styled.div`

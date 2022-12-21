@@ -7,7 +7,7 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
 import { useEffect, useState } from "react";
 
-const SCROLL_TIMEOUT = 3000;
+const SCROLL_TIMEOUT = 8000;
 
 export const Testimonials = () => {
   const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
@@ -38,8 +38,12 @@ export const Testimonials = () => {
     <Container>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
       <TestiBox id="testi" className="hideScrollBar">
-        {TESTIMONIALS.map((testimonial, index) => (
-          <TestimonialWrapper key={testimonial.id} id={testimonial.id}>
+        {TESTIMONIALS.map((testimonial) => (
+          <TestimonialWrapper
+            ref={ref}
+            key={testimonial.id}
+            id={testimonial.id}
+          >
             <Testimonial>
               <Author>
                 <ImageBox
