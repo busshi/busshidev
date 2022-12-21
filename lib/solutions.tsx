@@ -9,7 +9,8 @@ export const SOLUTIONS = [
     description: "Create the website of your dreams",
     actions: [
       "Create website mock-up",
-      "Using online collaborative tools",
+      "Responsive Web Design",
+      "Dark mode",
       "Best UI / UX practices",
     ],
     id: "design",
