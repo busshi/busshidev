@@ -18,9 +18,7 @@ export const Testimonials = () => {
     useTestimonialVisibleState();
 
   const items = TESTIMONIALS.map((item) => item.id);
-  // eslint-disable-next-line
-  const refs = TESTIMONIALS.map(() => useRef(null));
-  useIntersectionObserver(refs);
+  const refs = useIntersectionObserver(TESTIMONIALS);
 
   useEffect(() => {
     if (!isMobile) return;

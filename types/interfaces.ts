@@ -18,3 +18,16 @@ export interface LinkItem {
   logo: JSX.Element;
   logoDark: JSX.Element;
 }
+
+export interface Testimonial {
+  id: string;
+  author: string;
+  url: string;
+  company: string;
+  job: string;
+  location: string;
+  rating: string;
+  quote: string;
+  date: string;
+  avatar: string;
+}

@@ -1,11 +1,6 @@
-import {
-  MutableRefObject,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef } from "react";
 import { useTestimonialVisibleState } from "../providers/TestimonialVisible";
+import { Testimonial } from "../types/interfaces";
 
 /**
  * Utility hook to determine which element of an array is in the viewport
@@ -14,8 +9,11 @@ import { useTestimonialVisibleState } from "../providers/TestimonialVisible";
  * useIntersectionObserver()
  */
 
-export const useIntersectionObserver = (refs: MutableRefObject<null>[]) => {
+export const useIntersectionObserver = (items: Testimonial[]) => {
   const { setTestimonialIdVisible } = useTestimonialVisibleState();
+
+  // eslint-disable-next-line
+  const refs = items.map(() => useRef(null));
 
   useEffect(() => {
     let observer: IntersectionObserver;
@@ -34,4 +32,6 @@ export const useIntersectionObserver = (refs: MutableRefObject<null>[]) => {
     });
     return () => observer.disconnect();
   }, [refs]);
+
+  return refs;
 };

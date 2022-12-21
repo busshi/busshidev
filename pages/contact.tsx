@@ -17,7 +17,7 @@ const Contact: NextPage = () => {
             width="100%"
             height="100%"
             title={"Schedule an interview"}
-            src="https://calendly.com/busshidev/30min?hide_gdpr_banner=1&background_color=0"
+            src="https://calendly.com/busshidev/30min?hide_gdpr_banner=1"
           ></iframe>
         </Calendar>
       ) : (
