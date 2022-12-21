@@ -44,7 +44,7 @@ export const Technos = () => {
   }, [isElementVisible, isScrolling, scrollWidth]);
 
   return (
-    <Container>
+    <Container id="technos">
       <SectionTitle margin="10rem 2rem 5rem 2rem">
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>
@@ -65,12 +65,10 @@ const Container = styled.div`
 
 const SliderWrapper = styled.div`
   overflow: hidden;
-  padding: 1.5rem;
   box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
 
   @media (max-width: 768px) {
-    padding: 0;
-    box-shadow: none;
+    // box-shadow: none;
   }
 `;
 

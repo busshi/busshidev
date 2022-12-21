@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 /**
- * Utility hook to check if an element is in viewport
+ * Utility hook to get the scroll width of an element
  *
  * @param id string - element ID
  *
  * @example
- * const scrollWidth = usegetScrollWidth(elementId)
+ * const scrollWidth = useGetScrollWidth(elementId)
  */
 
 export const useGetScrollWidth = (id: string): number => {
@@ -14,7 +14,7 @@ export const useGetScrollWidth = (id: string): number => {
 
   useEffect(() => {
     const element = document.getElementById(id);
-    if (element) setScrollWidth(element.scrollWidth - element.clientWidth);
+    if (element) setScrollWidth(element.scrollWidth);
   }, [id]);
 
   return scrollWidth;

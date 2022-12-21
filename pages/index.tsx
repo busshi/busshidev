@@ -10,31 +10,32 @@ import Technos from "./components/Technos";
 import Testimonials from "./components/Testimonials";
 import Titles from "./components/Titles";
 
-const Home: NextPage = () => {
-  // const isInViewport = (element: HTMLElement) => {
-  //   const rect = element.getBoundingClientRect();
-  //   return (
-  //     rect.top >= 0 &&
-  //     rect.left >= 0 &&
-  //     rect.bottom <=
-  //       (window.innerHeight || document.documentElement.clientHeight) &&
-  //     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  //   );
-  // }
+// const pages = ["top", "solutions", "testi", "technos"];
 
+const Home: NextPage = () => {
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const isScrolling = useIsScrolling();
+  // //r  console.log(currentPage);
+  // // const [isScrolling, setIsScrolling] = useState(false);
+  // const scrollHeight = useGetScrollHeight("__next");
+  // const currentPosition = useGetCurrentPosition("__next");
+  //   const [isElement1Visible, ref1] = useIsElementVisible<HTMLDivElement>(0);
+  //   const [isElement2Visible, ref2] = useIsElementVisible<HTMLDivElement>(0);
+  //   const [isElement3Visible, ref3] = useIsElementVisible<HTMLDivElement>(0);
+
+  // console.log(isScrolling, currentPosition, isElement1Visible,);
   // useEffect(() => {
-  //   const element = document.getElementById("intro");
-  //   if (element && isInViewport(element)) {
-  //     console.log(isInViewport(element));
-  //     window.addEventListener("scroll", () => useSscrollIntoView("solutions"), {
-  //       passive: true,
-  //     });
-  //   }
-  //   return () =>
-  //     window.removeEventListener("scroll", () =>
-  //       useSscrollIntoView("solutions")
-  //     );
-  // }, []);
+  //   const timer = setTimeout(() => {
+  //     if (isScrolling === "up")
+  //       setCurrentPage(!currentPage ? 0 : currentPage - 1);
+  //     if (isScrolling === "down")
+  //       setCurrentPage(
+  //         currentPage === pages.length - 1 ? currentPage : currentPage + 1
+  //       );
+  //   }, 300);
+
+  //   return () => clearTimeout(timer);
+  // }, [isScrolling]);
 
   const isMobile = useIsMobile();
 

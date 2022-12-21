@@ -4,12 +4,15 @@
  * @param id - Element ID
 
 * @example
- * scrollIntoView(elementId)
+ * scrollIntoView(elementId, blockPosition)
  */
 
-export const scrollIntoView = (id: string) => {
+export const scrollIntoView = (
+  id: string,
+  block: ScrollLogicalPosition = "nearest"
+) => {
   const elem = document.getElementById(id);
-  elem && elem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  elem && elem.scrollIntoView({ behavior: "smooth", block });
 };
 
 /**
