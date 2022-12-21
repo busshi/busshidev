@@ -23,7 +23,7 @@ export default function useIsElementVisible<Element extends HTMLElement>(
       return;
     }
     const top = currentElement.current.getBoundingClientRect().top;
-    setIsVisible(top + offset >= 0 && top - offset <= window.innerHeight);
+    setIsVisible(top + offset >= 0 && top - offset <= window.innerWidth);
   }, throttleMilliseconds);
 
   useEffect(() => {
