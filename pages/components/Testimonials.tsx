@@ -21,7 +21,7 @@ export const Testimonials = () => {
   const items = TESTIMONIALS.map((item) => item.id);
 
   useEffect(() => {
-    if (!isMobile && !isTestimonialsVisible) return;
+    if (!isMobile || !isTestimonialsVisible) return;
     const interval = setInterval(() => {
       let nextIndex = reverse
         ? idVisible - 1 === 0
