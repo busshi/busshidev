@@ -14,9 +14,8 @@ export default function useIntersectionObservere<
   const ref = createRef<Element>();
 
   useEffect(() => {
-    let observer: IntersectionObserver;
     const cachedRef = ref.current;
-    observer = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) setIsElementVisible(true);
         else if (!!!e.isIntersecting) setIsElementVisible(false);

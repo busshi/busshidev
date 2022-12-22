@@ -12,35 +12,33 @@ const SCROLL_TIMEOUT = 2000;
 
 export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
-  //  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   const isMobile = useIsMobile();
   const { refs, testimonialIdVisible } = useTestimonialVisibleState();
-  const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
+  const [isTestimonialsVisible, ref] =
+    useIntersectionObserver<HTMLDivElement>();
 
   const items = TESTIMONIALS.map((item) => item.id);
 
   useEffect(() => {
     if (!isMobile) return;
     let interval: NodeJS.Timeout;
-    if (isElementVisible) {
-      interval = setInterval(() => {
-        const nextIndex =
-          idVisible + 1 >= TESTIMONIALS.length ? 0 : idVisible + 1;
-        setIdVisible(nextIndex);
-      }, SCROLL_TIMEOUT);
-    }
+    interval = setInterval(() => {
+      const nextIndex =
+        idVisible + 1 >= TESTIMONIALS.length ? 0 : idVisible + 1;
+      setIdVisible(nextIndex);
+    }, SCROLL_TIMEOUT);
     return () => clearInterval(interval);
-  }, [isElementVisible, idVisible, isMobile]);
+  }, [idVisible, isMobile]);
 
   // auto scroll
   useEffect(() => {
-    if (isElementVisible && isMobile) scrollIntoView(items[idVisible]);
-  }, [idVisible, isMobile, items, isElementVisible]);
+    if (isTestimonialsVisible && isMobile) scrollIntoView(items[idVisible]);
+  }, [idVisible, isMobile, items, isTestimonialsVisible]);
 
   // IntersectionObserver
   useEffect(() => {
-    if (isElementVisible && isMobile) setIdVisible(testimonialIdVisible);
-  }, [testimonialIdVisible, isElementVisible]);
+    if (isTestimonialsVisible && isMobile) setIdVisible(testimonialIdVisible);
+  }, [testimonialIdVisible, isTestimonialsVisible]);
 
   return (
     <Container>
@@ -88,7 +86,7 @@ export const Testimonials = () => {
               onClick={() => {
                 setIdVisible(index);
               }}
-              isTestimonialsVisible={isElementVisible}
+              isTestimonialsVisible={isTestimonialsVisible}
             />
           ))}
         </Scroller>
