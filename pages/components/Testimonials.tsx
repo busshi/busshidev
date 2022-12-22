@@ -22,16 +22,15 @@ export const Testimonials = () => {
 
   useEffect(() => {
     if (!isMobile || !isTestimonialsVisible) return;
+
     const interval = setInterval(() => {
-      let nextIndex = reverse
-        ? idVisible - 1 === 0
-          ? 0
-          : idVisible - 1
-        : idVisible + 1 === items.length
-        ? items.length - 2
-        : idVisible + 1;
+      let nextIndex = reverse ? idVisible - 1 : idVisible + 1;
+      if (nextIndex < 0) nextIndex = 0;
+      else if (nextIndex === items.length) nextIndex = items.length - 1;
+
       if (reverse && !nextIndex) setReverse(false);
-      else if (!reverse && idVisible + 1 === items.length) setReverse(true);
+      else if (!reverse && nextIndex === items.length - 1) setReverse(true);
+
       setIdVisible(nextIndex);
     }, SCROLL_TIMEOUT);
     return () => clearInterval(interval);
