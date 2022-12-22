@@ -23,6 +23,8 @@ export const Content = ({
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>();
 
+  if (!solution) return null;
+
   return (
     <div ref={containerRef} style={{ opacity: intersectionRatio }}>
       <TitleBox>

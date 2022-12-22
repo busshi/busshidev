@@ -37,7 +37,7 @@ export const Testimonials = () => {
       setIdVisible(nextIndex);
     }, SCROLL_TIMEOUT);
     return () => clearInterval(interval);
-  }, [idVisible, isMobile, isTestimonialsVisible]);
+  }, [idVisible, isMobile, isTestimonialsVisible, items.length, reverse]);
 
   // auto scroll
   useEffect(() => {
@@ -47,7 +47,7 @@ export const Testimonials = () => {
   // IntersectionObserver
   useEffect(() => {
     if (isTestimonialsVisible && isMobile) setIdVisible(testimonialIdVisible);
-  }, [testimonialIdVisible, isTestimonialsVisible]);
+  }, [testimonialIdVisible, isTestimonialsVisible, isMobile]);
 
   return (
     <Container ref={containerRef} style={{ opacity: intersectionRatio }}>
