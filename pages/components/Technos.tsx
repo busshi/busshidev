@@ -77,9 +77,6 @@ const Items = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
 
-  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
-  scrollbar-width: none; /* Hide scroll bar Firefox */
-
   @media (max-width: 768px) {
     display: flex;
     flex-wrap: wrap;

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
-const SCROLL_TIMEOUT = 2000;
+const SCROLL_TIMEOUT = 6000;
 
 export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
@@ -16,19 +16,26 @@ export const Testimonials = () => {
   const { refs, testimonialIdVisible } = useTestimonialVisibleState();
   const [isTestimonialsVisible, ref] =
     useIntersectionObserver<HTMLDivElement>();
+  const [reverse, setReverse] = useState(false);
 
   const items = TESTIMONIALS.map((item) => item.id);
 
   useEffect(() => {
-    if (!isMobile) return;
-    let interval: NodeJS.Timeout;
-    interval = setInterval(() => {
-      const nextIndex =
-        idVisible + 1 >= TESTIMONIALS.length ? 0 : idVisible + 1;
+    if (!isMobile && !isTestimonialsVisible) return;
+    const interval = setInterval(() => {
+      let nextIndex = reverse
+        ? idVisible - 1 === 0
+          ? 0
+          : idVisible - 1
+        : idVisible + 1 === items.length
+        ? items.length - 2
+        : idVisible + 1;
+      if (reverse && !nextIndex) setReverse(false);
+      else if (!reverse && idVisible + 1 === items.length) setReverse(true);
       setIdVisible(nextIndex);
     }, SCROLL_TIMEOUT);
     return () => clearInterval(interval);
-  }, [idVisible, isMobile]);
+  }, [idVisible, isMobile, isTestimonialsVisible]);
 
   // auto scroll
   useEffect(() => {
@@ -134,19 +141,18 @@ const TestiBox = styled.div`
     flex-wrap: nowrap;
     overflow-x: scroll;
     justify-content: flex-start;
-
-    -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
-    scrollbar-width: none; /* Hide scroll bar Firefox */
   }
 `;
 
 const TestimonialWrapper = styled.div`
   min-width: 300px;
+
   @media (max-width: 1024px) {
     min-height: 65vh;
     min-width: 280px;
     max-width: 350px;
   }
+
   @media (max-width: 768px) {
     min-height: 65vh;
     min-width: 90vw;
@@ -190,11 +196,11 @@ const Scroller = styled.div`
   margin: 1rem;
   display: flex;
   justify-content: center;
-
   overflow: hidden;
 `;
 
 const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
+  cursor: pointer;
   width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
   height: 0.7rem;
   margin: 0.2rem;

@@ -40,7 +40,7 @@ export const TestimonialVisibleProvider = ({ children }: Props) => {
           if (e.intersectionRatio > 0.7) setTestimonialIdVisible(i);
         },
         {
-          threshold: [0.75],
+          threshold: [0.7],
           rootMargin: "0px",
         }
       );
