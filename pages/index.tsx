@@ -1,8 +1,6 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-//import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useIsMobile } from "../hooks/useIsMobile";
-//import { buildThresholdList } from "../lib/observerIntersection";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "./components/GetADemo";
 import MobileSolutions from "./components/solutions/MobileSolutions";
@@ -11,27 +9,8 @@ import Technos from "./components/Technos";
 import Testimonials from "./components/Testimonials";
 import Titles from "./components/Titles";
 
-//const pages = ["top", "firstPage", "solutions", "testi", "technos"];
-
-//const pages = ["firstPage", "solutions", "testi"];
-
 const Home: NextPage = () => {
   const isMobile = useIsMobile();
-  // console.log(buildThresholdList());
-  // const [firstPageVisible, ref] = useIntersectionObserver<HTMLDivElement>(
-  //    buildThresholdList()
-  //);
-  // const [solutionsVisible, refSolutions] =
-  //   useIntersectionObserver<HTMLDivElement>(0.6);
-  // const [testiVisible, refTesti] = useIntersectionObserver<HTMLDivElement>(0.6);
-
-  // const [elementsVisibles, refs] = useIntersectionsObserver(pages, 0.6);
-  // console.log(elementsVisibles, refs);
-  // useEffect(() => {
-  //   if (firstPageVisible) scrollIntoView("top");
-  //   if (solutionsVisible) scrollIntoView("solutions");
-  //   if (testiVisible) scrollIntoView("testi");
-  // }, [firstPageVisible, solutionsVisible, testiVisible]);
 
   return (
     <Container>
