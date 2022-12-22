@@ -1,6 +1,14 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, {
+  ReactNode,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { TESTIMONIALS } from "../lib/testimonials";
 
 interface TestimonialVisibleContextType {
+  refs: any;
   testimonialIdVisible: number;
   setTestimonialIdVisible: (value: number) => void;
 }
@@ -14,11 +22,32 @@ interface Props {
 
 export const TestimonialVisibleProvider = ({ children }: Props) => {
   const [testimonialIdVisible, setTestimonialIdVisible] = useState(0);
+  // eslint-disable-next-line
+  const refs = TESTIMONIALS.map(() => useRef(null));
 
   const value = {
+    refs,
     testimonialIdVisible,
     setTestimonialIdVisible,
   };
+
+  useEffect(() => {
+    let observer: IntersectionObserver;
+    refs.map((ref, i) => {
+      const cachedRef = ref.current;
+      observer = new IntersectionObserver(
+        ([e]) => {
+          if (e.intersectionRatio > 0.7) setTestimonialIdVisible(i);
+        },
+        {
+          threshold: [0.75],
+          rootMargin: "0px",
+        }
+      );
+      cachedRef && observer.observe(cachedRef);
+    });
+    return () => observer.disconnect();
+  }, [refs]);
 
   return (
     <TestimonialVisibleContext.Provider value={value}>

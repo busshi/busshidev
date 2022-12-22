@@ -5,45 +5,42 @@ import { TESTIMONIALS } from "../../lib/testimonials";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
-import { useEffect, useRef } from "react";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
+import { useEffect, useState } from "react";
 import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
 
-const SCROLL_TIMEOUT = 8000;
+const SCROLL_TIMEOUT = 2000;
 
 export const Testimonials = () => {
+  const [idVisible, setIdVisible] = useState(0);
   const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   const isMobile = useIsMobile();
-  const { testimonialIdVisible, setTestimonialIdVisible } =
+  const { refs, testimonialIdVisible, setTestimonialIdVisible } =
     useTestimonialVisibleState();
 
   const items = TESTIMONIALS.map((item) => item.id);
-  const refs = useIntersectionObserver(TESTIMONIALS);
 
   useEffect(() => {
     if (!isMobile) return;
-    let interval: string | number | NodeJS.Timeout | undefined;
+    let interval: NodeJS.Timeout;
     if (isTestimonialsVisible) {
       interval = setInterval(() => {
         const nextIndex =
-          testimonialIdVisible + 1 >= TESTIMONIALS.length
-            ? 0
-            : testimonialIdVisible + 1;
-        setTestimonialIdVisible(nextIndex);
+          idVisible + 1 >= TESTIMONIALS.length ? 0 : idVisible + 1;
+        setIdVisible(nextIndex);
       }, SCROLL_TIMEOUT);
     }
     return () => clearInterval(interval);
-  }, [
-    isTestimonialsVisible,
-    testimonialIdVisible,
-    isMobile,
-    setTestimonialIdVisible,
-  ]);
+  }, [isTestimonialsVisible, idVisible, isMobile]);
 
+  // auto scroll
   useEffect(() => {
-    if (isTestimonialsVisible && isMobile)
-      scrollIntoView(items[testimonialIdVisible]);
-  }, [testimonialIdVisible, isMobile, items, isTestimonialsVisible]);
+    if (isTestimonialsVisible && isMobile) scrollIntoView(items[idVisible]);
+  }, [idVisible, isMobile, items, isTestimonialsVisible]);
+
+  // IntersectionObserver
+  useEffect(() => {
+    if (isTestimonialsVisible && isMobile) setIdVisible(testimonialIdVisible);
+  }, [testimonialIdVisible, isTestimonialsVisible]);
 
   return (
     <Container>
@@ -70,7 +67,7 @@ export const Testimonials = () => {
               <div>
                 {testimonial.url && (
                   <Link href={testimonial.url}>{testimonial.company}</Link>
-                )}
+                )}{" "}
                 {testimonial.job}
                 <br />
                 {testimonial.location && testimonial.location}
