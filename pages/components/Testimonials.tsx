@@ -2,27 +2,27 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import { TESTIMONIALS } from "../../lib/testimonials";
-import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { scrollIntoView } from "../../lib/scroll";
 import { useEffect, useState } from "react";
 import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 const SCROLL_TIMEOUT = 2000;
 
 export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
-  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
+  //  const [isTestimonialsVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
   const isMobile = useIsMobile();
-  const { refs, testimonialIdVisible, setTestimonialIdVisible } =
-    useTestimonialVisibleState();
+  const { refs, testimonialIdVisible } = useTestimonialVisibleState();
+  const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
 
   const items = TESTIMONIALS.map((item) => item.id);
 
   useEffect(() => {
     if (!isMobile) return;
     let interval: NodeJS.Timeout;
-    if (isTestimonialsVisible) {
+    if (isElementVisible) {
       interval = setInterval(() => {
         const nextIndex =
           idVisible + 1 >= TESTIMONIALS.length ? 0 : idVisible + 1;
@@ -30,17 +30,17 @@ export const Testimonials = () => {
       }, SCROLL_TIMEOUT);
     }
     return () => clearInterval(interval);
-  }, [isTestimonialsVisible, idVisible, isMobile]);
+  }, [isElementVisible, idVisible, isMobile]);
 
   // auto scroll
   useEffect(() => {
-    if (isTestimonialsVisible && isMobile) scrollIntoView(items[idVisible]);
-  }, [idVisible, isMobile, items, isTestimonialsVisible]);
+    if (isElementVisible && isMobile) scrollIntoView(items[idVisible]);
+  }, [idVisible, isMobile, items, isElementVisible]);
 
   // IntersectionObserver
   useEffect(() => {
-    if (isTestimonialsVisible && isMobile) setIdVisible(testimonialIdVisible);
-  }, [testimonialIdVisible, isTestimonialsVisible]);
+    if (isElementVisible && isMobile) setIdVisible(testimonialIdVisible);
+  }, [testimonialIdVisible, isElementVisible]);
 
   return (
     <Container>
@@ -83,12 +83,12 @@ export const Testimonials = () => {
         <Scroller>
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot
-              isSelected={index === testimonialIdVisible}
+              isSelected={index === idVisible}
               key={id}
               onClick={() => {
-                setTestimonialIdVisible(index);
+                setIdVisible(index);
               }}
-              isTestimonialsVisible={isTestimonialsVisible}
+              isTestimonialsVisible={isElementVisible}
             />
           ))}
         </Scroller>

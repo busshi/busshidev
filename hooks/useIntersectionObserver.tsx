@@ -1,37 +1,34 @@
-import { useEffect, useRef } from "react";
-import { useTestimonialVisibleState } from "../providers/TestimonialVisible";
-import { Testimonial } from "../types/interfaces";
+import { createRef, RefObject, useEffect, useState } from "react";
 
 /**
- * Utility hook to determine which element of an array is in the viewport
+ * Utility hook to if an element is in the viewport
  *
  * @example
- * useIntersectionObserver()
+ * const isVisible = useIntersectionObserver<HTMLDivElement>()
  */
 
-export const useIntersectionObserver = (items: Testimonial[]) => {
-  const { setTestimonialIdVisible } = useTestimonialVisibleState();
-
-  // eslint-disable-next-line
-  const refs = items.map(() => useRef(null));
+export default function useIntersectionObservere<
+  Element extends HTMLElement
+>(): [boolean, RefObject<Element>] {
+  const [isElementVisible, setIsElementVisible] = useState(false);
+  const ref = createRef<Element>();
 
   useEffect(() => {
     let observer: IntersectionObserver;
-    refs.map((ref, i) => {
-      const cachedRef = ref.current;
-      observer = new IntersectionObserver(
-        ([e]) => {
-          if (e.intersectionRatio > 0.7) setTestimonialIdVisible(i);
-        },
-        {
-          threshold: [0.75],
-          rootMargin: "0px",
-        }
-      );
-      cachedRef && observer.observe(cachedRef);
-    });
+    const cachedRef = ref.current;
+    observer = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setIsElementVisible(true);
+        else if (!!!e.isIntersecting) setIsElementVisible(false);
+      },
+      {
+        threshold: [1],
+        rootMargin: "0px",
+      }
+    );
+    cachedRef && observer.observe(cachedRef);
     return () => observer.disconnect();
-  }, [refs]);
+  }, [ref]);
 
-  return refs;
-};
+  return [isElementVisible, ref];
+}
