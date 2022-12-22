@@ -7,6 +7,7 @@ import { scrollIntoView } from "../../lib/scroll";
 import { useEffect, useState } from "react";
 import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 
 const SCROLL_TIMEOUT = 6000;
 
@@ -17,6 +18,8 @@ export const Testimonials = () => {
   const [isTestimonialsVisible, ref] =
     useIntersectionObserver<HTMLDivElement>();
   const [reverse, setReverse] = useState(false);
+  const [intersectionRatio, containerRef] =
+    useIntersectionRatio<HTMLDivElement>();
 
   const items = TESTIMONIALS.map((item) => item.id);
 
@@ -47,7 +50,7 @@ export const Testimonials = () => {
   }, [testimonialIdVisible, isTestimonialsVisible]);
 
   return (
-    <Container>
+    <Container ref={containerRef} style={{ opacity: intersectionRatio }}>
       <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
       <TestiBox id="testi" className="hideScrollBar" ref={ref}>
         {TESTIMONIALS.map((testimonial, index) => (
@@ -90,7 +93,7 @@ export const Testimonials = () => {
               isSelected={index === idVisible}
               key={id}
               onClick={() => {
-                setIdVisible(index);
+                //                setIdVisible(index);
               }}
               isTestimonialsVisible={isTestimonialsVisible}
             />
@@ -199,7 +202,7 @@ const Scroller = styled.div`
 `;
 
 const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
-  cursor: pointer;
+  // cursor: pointer;
   width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
   height: 0.7rem;
   margin: 0.2rem;

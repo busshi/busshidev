@@ -5,6 +5,8 @@ import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { getTechnos } from "../../lib/technos";
+import useIntersectionRatio from "../../hooks/useIntersectionRatio";
+import { buildThresholdList } from "../../lib/observerIntersection";
 
 export const Technos = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -12,6 +14,8 @@ export const Technos = () => {
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
   const technos = getTechnos(isMobile ? 30 : 80);
+  const [intersectionRatio, containerRef] =
+    useIntersectionRatio<HTMLDivElement>("0px", buildThresholdList(50));
 
   useEffect(() => {
     let i = 0;
@@ -44,11 +48,11 @@ export const Technos = () => {
   }, [isElementVisible, isScrolling, scrollWidth, isMobile]);
 
   return (
-    <Container id="technos">
+    <Container id="technos" style={{ opacity: intersectionRatio }}>
       <SectionTitle margin="10rem 2rem 5rem 2rem">
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>
-      <SliderWrapper>
+      <SliderWrapper ref={containerRef} opacity={intersectionRatio}>
         <Items id="items" ref={ref} className="hideScrollBar">
           {technos.map((techno, i) => (
             <Techno key={i}>{techno}</Techno>
@@ -63,9 +67,11 @@ const Container = styled.div`
   margin-bottom: 10rem;
 `;
 
-const SliderWrapper = styled.div`
+const SliderWrapper = styled.div<{ opacity: number }>`
   overflow: hidden;
-  box-shadow: -10px 0px 10px rgba(255, 255, 255, 0.8);
+  box-shadow: ${(props) =>
+    `-10px 0px 10px rgba(255, 255, 255, ${props.opacity})`};
+  opacity: ${(props) => props.opacity};
 
   @media (max-width: 768px) {
     // box-shadow: none;

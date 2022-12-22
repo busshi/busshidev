@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
 import { COLORS } from "../../../lib/constants";
 import { SOLUTIONS } from "../../../lib/solutions";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
@@ -7,9 +8,11 @@ import { Content } from "./Content";
 
 export const Solutions = () => {
   const { highlighted } = useHighlightedColorState();
+  const [intersectionRatio, ref] =
+    useIntersectionRatio<HTMLDivElement>("200px");
 
   return (
-    <Container id="solutions">
+    <Container ref={ref} id="solutions" style={{ opacity: intersectionRatio }}>
       {SOLUTIONS.map((solution, index) => (
         <Card
           key={solution.title}

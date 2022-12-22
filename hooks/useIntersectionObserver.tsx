@@ -3,7 +3,7 @@ import { createRef, RefObject, useEffect, useState } from "react";
 /**
  * Utility hook to if an element is in the viewport
  *
- * @param {number[]} threshold - Breaking points list array
+ * @param {number | number[]} threshold - Breaking points list array
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/thresholds
  * 
  * @param {string} rootMargin - Margin element like CSS "2px 1px 2px 1px"
@@ -13,8 +13,8 @@ import { createRef, RefObject, useEffect, useState } from "react";
  * const isVisible = useIntersectionObserver<HTMLDivElement>()
  */
 
-export default function useIntersectionObservere<Element extends HTMLElement>(
-  threshold: number[] = [1],
+export default function useIntersectionObserver<Element extends HTMLElement>(
+  threshold: number | number[] = 1,
   rootMargin: string = "0px"
 ): [boolean, RefObject<Element>] {
   const [isElementVisible, setIsElementVisible] = useState(false);

@@ -3,24 +3,26 @@ import { COLORS } from "../../../lib/constants";
 import { SOLUTIONS } from "../../../lib/solutions";
 import { Content } from "./Content";
 
-export const MobileSolutions = () => (
-  <Container id="solutions">
-    {SOLUTIONS.map((solution, index) => (
-      <Solution key={solution.title} id={solution.id}>
-        <Line index={index} />
-        <Circle isShiny={true} index={index}>
-          {index + 1}
-        </Circle>
-        <Content
-          solution={solution}
-          index={index}
-          titleSize="3rem"
-          descriptionSize="3rem"
-        />
-      </Solution>
-    ))}
-  </Container>
-);
+export const MobileSolutions = () => {
+  return (
+    <Container id="solutions">
+      {SOLUTIONS.map((solution, index) => (
+        <Solution key={solution.title} id={solution.id}>
+          <Line index={index} />
+          <Circle isShiny={true} index={index}>
+            {index + 1}
+          </Circle>
+          <Content
+            solution={solution}
+            index={index}
+            titleSize="3rem"
+            descriptionSize="3rem"
+          />
+        </Solution>
+      ))}
+    </Container>
+  );
+};
 
 const Container = styled.div`
   align-items: center;

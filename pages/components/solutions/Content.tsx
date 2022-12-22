@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import styled from "styled-components";
+import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
 import useIsElementVisible from "../../../hooks/useIsElementVisible";
 import { COLORS } from "../../../lib/constants";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
@@ -19,10 +20,11 @@ export const Content = ({
 }) => {
   const { highlightedColor } = useHighlightedColorState();
   const [isVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
-  if (!solution) return <></>;
+  const [intersectionRatio, containerRef] =
+    useIntersectionRatio<HTMLDivElement>();
 
   return (
-    <Fragment>
+    <div ref={containerRef} style={{ opacity: intersectionRatio }}>
       <TitleBox>
         <Title
           isShiny={true}
@@ -30,7 +32,7 @@ export const Content = ({
           fontSize={titleSize}
           margin="0"
         >
-          {solution!.title.substring(0, solution!.title.length - 1)}
+          {solution.title.substring(0, solution.title.length - 1)}
         </Title>
       </TitleBox>
       <Description fontSize={descriptionSize}>
@@ -53,7 +55,7 @@ export const Content = ({
           <TextBox key={item}>{item}</TextBox>
         ))}
       </ActionsBox>
-    </Fragment>
+    </div>
   );
 };
 
