@@ -8,7 +8,6 @@ import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 export const Technos = () => {
-  //  const [isScrolling, setIsScrolling] = useState(false);
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
@@ -21,11 +20,7 @@ export const Technos = () => {
     let reverse = false;
     if (isMobile) return;
     const items = document.getElementById("items");
-    // items?.addEventListener("scroll", (e) => {
-    //     if (e) setIsScrolling(true);
-    //});
     if (isElementVisible) {
-      // && !isScrolling) {
       setTimeout(
         () =>
           setInterval(() => {
