@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
  */
 
 export const useIsScrolling = () => {
-  const [scroll, setScroll] = useState("none");
+  const [isScrolling, setIsScrolling] = useState("none");
 
   let oldValue = 0;
   let newValue = 0;
@@ -16,9 +16,9 @@ export const useIsScrolling = () => {
   const onScroll = () => {
     newValue = window.pageYOffset;
     if (oldValue < newValue) {
-      setScroll("down");
+      setIsScrolling("down");
     } else if (oldValue > newValue) {
-      setScroll("up");
+      setIsScrolling("up");
     }
     oldValue = newValue;
   };
@@ -28,5 +28,5 @@ export const useIsScrolling = () => {
     return () => window.removeEventListener("scroll", onScroll);
   });
 
-  return scroll;
+  return isScrolling;
 };

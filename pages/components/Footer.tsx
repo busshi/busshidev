@@ -39,7 +39,7 @@ const Logo = () => {
 
   return (
     <LogoContainer>
-      {isMobile && <span>Powered by</span>}
+      {/* {isMobile && <span>Powered by</span>} */}
       <ImageBox
         onClick={() => scrollIntoView("top")}
         src="/logo.png"
@@ -167,7 +167,7 @@ const LinksBox = styled.div`
 const ImageBox = styled(Image)`
   cursor: pointer;
   border: solid;
-  margin: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const Hr = styled.hr`
