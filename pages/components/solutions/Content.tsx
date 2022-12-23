@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { slideIntoView } from "../../../lib/slideIntoView";
+import { useSlideIntoView } from "../../../hooks/useSlideIntoView";
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
 import { COLORS } from "../../../lib/constants";
@@ -22,7 +22,8 @@ export const Content = ({
   const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [intersectionRatio, refContainer] =
     useIntersectionRatio<HTMLDivElement>();
-  slideIntoView();
+
+  useSlideIntoView();
 
   if (!solution) return null;
 

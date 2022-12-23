@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { buildThresholdList } from "./observerIntersection";
+import { buildThresholdList } from "../lib/observerIntersection";
 
 /**
  * Utility function to animate element visibility
@@ -12,7 +12,7 @@ import { buildThresholdList } from "./observerIntersection";
  * slideIntoView(".slineIntoView", "data-view")
  */
 
-export const slideIntoView = (
+export const useSlideIntoView = (
   elementClassName: string = ".slideIntoView",
   attribute: string = "data-view"
 ) => {
