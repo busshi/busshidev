@@ -30,6 +30,7 @@
   */
   --border-radius: 8px;
   --transition-delay: 0.3s;
+  --middle-transition-delay: 0.5s;
   --long-transition-delay: 1s;
   --font-weight: 800;
   --line-height: 1.2;

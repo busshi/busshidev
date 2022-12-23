@@ -28,6 +28,7 @@ export const Menu = ({
           position: "absolute",
           top: "2rem",
           cursor: "pointer",
+          color: "var(--secondary-dark-color)",
         }}
         size={40}
         onClick={() => setMenuOpened(false)}
@@ -74,7 +75,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  animation: ${makeDark} var(--transition-delay) linear;
+  animation: ${makeDark} var(--middle-transition-delay) linear;
   width: 100vw;
   height: 100vh;
   position: absolute;

@@ -47,7 +47,6 @@ const Container = styled.div`
   color: var(--secondary-dark-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
 `;
 
 const Title = styled.div`
@@ -60,7 +59,6 @@ const Title = styled.div`
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    // margin: 0 1rem 3rem 1rem;
   }
 `;
 
@@ -68,13 +66,7 @@ const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
-  margin: 3rem;
-
-  @media (max-width: 768px) {
-    gap: 0.5rem;
-    margin: 0rem;
-  }
+  margin: 3rem 0 3rem 0;
 `;
 
 const Item = styled.div`
