@@ -52,7 +52,3 @@ body {
 * {
   text-decoration: none;
 }
-
-.hideScrollBar::-webkit-scrollbar {
-  display: none; /* Hide scroll bar for Safari, Chrome, Opera */
-}

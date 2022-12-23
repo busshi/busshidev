@@ -14,10 +14,10 @@ export const TopBar = () => {
   return (
     <Container id="top">
       <LinkBox href="/">
-        <Image
-          src="/logo.svg"
-          width={isMobile ? 95 : 119}
-          height={isMobile ? 80 : 100}
+        <ImageBox
+          src="/logo.png"
+          width={isMobile ? 50 : 80}
+          height={isMobile ? 50 : 80}
           alt="busshiDev"
         />
       </LinkBox>
@@ -51,8 +51,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 10vh;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 
   @media (max-width: 768px) {
     padding-top: 1rem;
@@ -65,6 +64,14 @@ const Container = styled.div`
   }
 `;
 
+const LinkBox = styled(Link)`
+  cursor: pointer;
+`;
+
+const ImageBox = styled(Image)`
+  margin: 1rem;
+`;
+
 const Buttons = styled.div`
   display: flex;
   gap: 1rem;
@@ -72,7 +79,7 @@ const Buttons = styled.div`
 `;
 
 const Button = styled.div`
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0 1rem 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -88,10 +95,6 @@ const Button = styled.div`
       color: var(--secondary-light-color);
     }
   }
-`;
-
-const LinkBox = styled(Link)`
-  cursor: pointer;
 `;
 
 export default TopBar;

@@ -42,10 +42,10 @@ const Logo = () => {
       {isMobile && <span>Powered by</span>}
       <ImageBox
         onClick={() => scrollIntoView("top")}
-        src="/logo.svg"
+        src="/logo.png"
         alt="busshiDev"
-        width={100}
-        height={100}
+        width={80}
+        height={80}
       />
     </LogoContainer>
   );
@@ -167,6 +167,7 @@ const LinksBox = styled.div`
 const ImageBox = styled(Image)`
   cursor: pointer;
   border: solid;
+  margin: 1rem;
 `;
 
 const Hr = styled.hr`
