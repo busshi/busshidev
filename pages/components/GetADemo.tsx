@@ -7,16 +7,15 @@ export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
 
   return (
-    <Button highlightedColor={highlightedColor}>
-      <LinkBox href="/contact">Get a Demo</LinkBox>
-    </Button>
+    <LinkBox href="/contact">
+      <Button highlightedColor={highlightedColor}>Get a Demo</Button>
+    </LinkBox>
   );
 };
 
 const Button = styled.div<{ highlightedColor: Color }>`
-  cursor: pointer;
-  min-width: 15rem;
-  min-height: 3rem;
+  width: 15rem;
+  height: 3rem;
   z-index: 0;
   display: flex;
   justify-content: center;
@@ -53,8 +52,7 @@ const Button = styled.div<{ highlightedColor: Color }>`
 `;
 
 const LinkBox = styled(Link)`
-  width: 100%;
-  height: 100%;
+  cursor: pointer;
   color: black;
 
   @media (prefers-color-scheme: dark) {
