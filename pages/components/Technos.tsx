@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
 import { useIsMobile } from "../../hooks/useIsMobile";
@@ -9,7 +9,7 @@ import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { buildThresholdList } from "../../lib/observerIntersection";
 
 export const Technos = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
+  //  const [isScrolling, setIsScrolling] = useState(false);
   const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-10);
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
@@ -22,10 +22,11 @@ export const Technos = () => {
     let reverse = false;
     if (isMobile) return;
     const items = document.getElementById("items");
-    items?.addEventListener("scroll", (e) => {
-      if (e) setIsScrolling(true);
-    });
-    if (isElementVisible && !isScrolling) {
+    // items?.addEventListener("scroll", (e) => {
+    //     if (e) setIsScrolling(true);
+    //});
+    if (isElementVisible) {
+      // && !isScrolling) {
       setTimeout(
         () =>
           setInterval(() => {
@@ -44,8 +45,8 @@ export const Technos = () => {
         600
       );
     }
-    if (!isElementVisible) items?.scrollTo(0, 0);
-  }, [isElementVisible, isScrolling, scrollWidth, isMobile]);
+    () => items?.scrollTo(0, 0);
+  }, [isElementVisible, scrollWidth, isMobile]);
 
   return (
     <Container id="technos" style={{ opacity: intersectionRatio }}>
@@ -82,6 +83,9 @@ const Items = styled.div`
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
+
+  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
+  scrollbar-width: none; /* Hide scroll bar Firefox */
 
   @media (max-width: 768px) {
     display: flex;

@@ -27,7 +27,7 @@ export default function useIntersectionRatio<Element extends HTMLElement>(
       ([entry]) => {
         // increase ration to say 80% is 100% for a better visibility
         const ratio = (entry.intersectionRatio * 100) / 80;
-        setIntersectionRatio(entry.intersectionRatio);
+        setIntersectionRatio(ratio);
       },
       {
         threshold: threshold || buildThresholdList(),

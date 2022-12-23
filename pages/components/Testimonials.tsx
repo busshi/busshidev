@@ -132,6 +132,9 @@ const TestiBox = styled.div`
   justify-content: center;
   gap: 2rem;
 
+  -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
+  scrollbar-width: none; /* Hide scroll bar Firefox */
+
   @media (max-width: 1024px) {
     display: flex;
     flex-wrap: wrap;
