@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import styled from "styled-components";
 import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
 import useIsElementVisible from "../../../hooks/useIsElementVisible";

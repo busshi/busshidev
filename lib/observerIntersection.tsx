@@ -7,7 +7,7 @@
  * const array = getThreshold(10)
  */
 
-export const buildThresholdList = (numSteps: number = 20) => {
+export const buildThresholdList = (numSteps: number = 100) => {
   let thresholds = [];
 
   for (let i = 1.0; i <= numSteps; i++) {

@@ -25,6 +25,8 @@ export default function useIntersectionRatio<Element extends HTMLElement>(
     const cachedRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // increase ration to say 80% is 100% for a better visibility
+        const ratio = (entry.intersectionRatio * 100) / 80;
         setIntersectionRatio(entry.intersectionRatio);
       },
       {
