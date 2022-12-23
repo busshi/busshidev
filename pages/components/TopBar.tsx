@@ -92,9 +92,6 @@ const Button = styled.div`
 
 const LinkBox = styled(Link)`
   cursor: pointer;
-
-  @media (max-width: 768px) {
-  }
 `;
 
 export default TopBar;

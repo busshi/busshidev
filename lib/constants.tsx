@@ -8,6 +8,8 @@ export const SITE_URL =
     ? "https://busshidev.fr"
     : "http://localhost:3000";
 
+export const EMAIL = "busshidev@icloud.com";
+
 /**
  * Color constants
  *
@@ -58,7 +60,7 @@ export const CONTACTS = [
   {
     id: "email",
     name: "Email",
-    url: "mailto:busshidev@contact.me",
+    url: `mailto:${EMAIL}`,
     logo: <HiOutlineMail color="var(--main-dark-color)" size={25} />,
     logoDark: <HiOutlineMail color="var(--secondary-dark-color)" size={25} />,
   },

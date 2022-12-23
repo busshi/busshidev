@@ -2,9 +2,10 @@ import { NextPage } from "next";
 import { useState } from "react";
 import styled from "styled-components";
 import { RxCrossCircled } from "react-icons/rx";
+import { Contacts } from "./components/Contacts";
 
 const Contact: NextPage = () => {
-  const [calendlyVisible, setCalendlyVisible] = useState(true);
+  const [calendlyVisible, setCalendlyVisible] = useState(false);
 
   return (
     <Page>
@@ -21,12 +22,7 @@ const Contact: NextPage = () => {
           ></iframe>
         </Calendar>
       ) : (
-        <div
-          onClick={() => setCalendlyVisible(true)}
-          style={{ width: "1000px", height: "1000px", textAlign: "center" }}
-        >
-          CALENDAR
-        </div>
+        <Contacts setCalendlyVisible={setCalendlyVisible} />
       )}
     </Page>
   );
@@ -35,7 +31,7 @@ const Contact: NextPage = () => {
 const Page = styled.div`
   min-height: 100vh;
   width: 100vw;
-  margin: 5rem 0 5rem 0;
+  margin: 1rem 0 5rem 0;
   display: flex;
   justify-content: center;
 `;
