@@ -16,16 +16,16 @@ export const useSlideIntoView = (
   elementClassName: string = ".slideIntoView",
   attribute: string = "data-view"
 ) => {
-  const config = {
-    // Add root here so rootBounds in entry object is not null
-    root: document,
-    // Margin to when element should take action
-    rootMargin: "-50px 0px",
-    // Callback will be fired 30 times during intersection
-    threshold: buildThresholdList(30),
-  };
-
   useEffect(() => {
+    const config = {
+      // Add root here so rootBounds in entry object is not null
+      root: document,
+      // Margin to when element should take action
+      rootMargin: "-50px 0px",
+      // Callback will be fired 30 times during intersection
+      threshold: buildThresholdList(30),
+    };
+
     let observer = new IntersectionObserver(function (entries, observer) {
       entries.forEach((entry) => {
         const element = entry.target;
