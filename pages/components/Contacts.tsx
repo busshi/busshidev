@@ -47,11 +47,7 @@ const Container = styled.div`
   color: var(--secondary-dark-color);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 const Title = styled.div`
@@ -64,7 +60,7 @@ const Title = styled.div`
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin: 0 1rem 3rem 1rem;
+    // margin: 0 1rem 3rem 1rem;
   }
 `;
 
