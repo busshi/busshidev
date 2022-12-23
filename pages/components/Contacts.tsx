@@ -14,7 +14,7 @@ export const Contacts = ({
     <Container>
       <Title>3 WAYS TO REACH ME OUT</Title>
       <ItemsWrapper>
-        <Item onClick={() => alert("coming soon...")}>
+        <Item onClick={() => alert("comming soon...")}>
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
@@ -23,10 +23,10 @@ export const Contacts = ({
           <Text>Book a meeting</Text>
         </Item>
         <Item>
-          <HiOutlineMail size={80} />
-          <Text>
-            <Link href={`mailto:${EMAIL}`}>Send an email</Link>
-          </Text>
+          <Link href={`mailto:${EMAIL}`}>
+            <HiOutlineMail size={80} />
+            <Text>Send an email</Text>
+          </Link>
         </Item>
       </ItemsWrapper>
     </Container>
@@ -80,17 +80,17 @@ const Item = styled.div`
 
   @media (max-width: 768px) {
     width: 90%;
-    height: 7rem;
+    min-height: 6rem;
+  }
+
+  a {
+    color: var(--secondary-dark-color);
   }
 `;
 
 const Text = styled.div`
   margin-top: 2rem;
   font-size: 2rem;
-
-  a {
-    color: var(--secondary-dark-color);
-  }
 
   @media (max-width: 768px) {
     font-size: 1.3rem;
