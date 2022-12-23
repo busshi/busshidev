@@ -12,35 +12,27 @@ export const Contacts = ({
 }: {
   setCalendlyVisible: (value: boolean) => void;
 }) => {
-  const [intersectionRatio, ref] =
-    useIntersectionRatio<HTMLDivElement>("-50px");
-  const [intersectionRatio2, ref2] =
-    useIntersectionRatio<HTMLDivElement>("-50px");
-  const [intersectionRatio3, ref3] =
-    useIntersectionRatio<HTMLDivElement>("-50px");
+  //   const [intersectionRatio, ref] =
+  //     useIntersectionRatio<HTMLDivElement>("-50px");
+  //   const [intersectionRatio2, ref2] =
+  //     useIntersectionRatio<HTMLDivElement>("-50px");
+  //   const [intersectionRatio3, ref3] =
+  //     useIntersectionRatio<HTMLDivElement>("-50px");
   const isMobile = useIsMobile();
 
   return (
     <Container>
       <Title>3 WAYS TO REACH ME OUT</Title>
       <ItemsWrapper>
-        <Item
-          ref={ref}
-          style={{ opacity: intersectionRatio }}
-          onClick={() => alert("comming soon...")}
-        >
+        <Item onClick={() => alert("comming soon...")}>
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
-        <Item
-          ref={ref2}
-          style={{ opacity: intersectionRatio2 }}
-          onClick={() => setCalendlyVisible(true)}
-        >
+        <Item onClick={() => setCalendlyVisible(true)}>
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>
-        <Item ref={ref3} style={{ opacity: intersectionRatio3 }}>
+        <Item>
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={isMobile ? 24 : 80} />
             <Text>Send an email</Text>

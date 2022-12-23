@@ -73,10 +73,6 @@ const SliderWrapper = styled.div<{ opacity: number }>`
   box-shadow: ${(props) =>
     `-10px 0px 10px rgba(255, 255, 255, ${props.opacity})`};
   opacity: ${(props) => props.opacity};
-
-  @media (max-width: 768px) {
-    // box-shadow: none;
-  }
 `;
 
 const Items = styled.div`
