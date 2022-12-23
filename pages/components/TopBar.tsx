@@ -4,9 +4,12 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
-import { SITE_URL } from "../../lib/constants";
+import { AiOutlineMenu } from "react-icons/ai";
+import { useState } from "react";
+import { Menu } from "./Menu";
 
 export const TopBar = () => {
+  const [menuOpened, setMenuOpened] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
@@ -21,19 +24,20 @@ export const TopBar = () => {
           alt="busshiDev"
         />
       </LinkBox>
+      {menuOpened && <Menu setMenuOpened={setMenuOpened} isHome={isHome} />}
       {isMobile ? (
-        <></>
+        <MenuIcon onClick={() => setMenuOpened(true)}>
+          <AiOutlineMenu size={24} />
+        </MenuIcon>
       ) : (
         <Buttons>
-          {isHome ? (
-            <Button onClick={() => scrollIntoView("solutions")}>
-              Solutions
-            </Button>
-          ) : (
-            <Link href={`${SITE_URL}/#solutions`}>
-              <Button>Solutions</Button>
-            </Link>
-          )}
+          <Button
+            onClick={() =>
+              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
+            }
+          >
+            Solutions
+          </Button>
           <Link href="https://busshi.fr">
             <Button>About me</Button>
           </Link>
@@ -70,6 +74,11 @@ const LinkBox = styled(Link)`
 
 const ImageBox = styled(Image)`
   margin: 1rem;
+`;
+
+const MenuIcon = styled.div`
+  cursor: pointer;
+  margin: 0 1rem 0 0;
 `;
 
 const Buttons = styled.div`

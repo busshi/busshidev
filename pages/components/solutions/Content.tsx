@@ -81,12 +81,12 @@ const Container = styled.div`
 
     &.slideIntoView[data-view="outview-top"] {
       opacity: 0;
-      transform: translateY(-300px);
+      transform: translateY(-200px);
     }
 
     &.slideIntoView[data-view="outview-bottom"] {
       opacity: 0;
-      transform: translateY(300px);
+      transform: translateY(200px);
     }
   }
 `;
