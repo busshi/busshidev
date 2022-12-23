@@ -29,9 +29,9 @@ const Contact: NextPage = () => {
 };
 
 const Page = styled.div`
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100vw;
-  margin: 1rem 0 5rem 0;
+  margin: 1rem 0 1rem 0;
   display: flex;
   justify-content: center;
 `;
