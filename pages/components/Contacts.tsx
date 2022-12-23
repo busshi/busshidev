@@ -4,25 +4,41 @@ import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import { EMAIL } from "../../lib/constants";
+import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 
 export const Contacts = ({
   setCalendlyVisible,
 }: {
   setCalendlyVisible: (value: boolean) => void;
 }) => {
+  const [intersectionRatio, ref] =
+    useIntersectionRatio<HTMLDivElement>("-50px");
+  const [intersectionRatio2, ref2] =
+    useIntersectionRatio<HTMLDivElement>("-50px");
+  const [intersectionRatio3, ref3] =
+    useIntersectionRatio<HTMLDivElement>("-50px");
+
   return (
     <Container>
       <Title>3 WAYS TO REACH ME OUT</Title>
       <ItemsWrapper>
-        <Item onClick={() => alert("comming soon...")}>
+        <Item
+          ref={ref}
+          style={{ opacity: intersectionRatio }}
+          onClick={() => alert("comming soon...")}
+        >
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
-        <Item onClick={() => setCalendlyVisible(true)}>
+        <Item
+          ref={ref2}
+          style={{ opacity: intersectionRatio2 }}
+          onClick={() => setCalendlyVisible(true)}
+        >
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>
-        <Item>
+        <Item ref={ref3} style={{ opacity: intersectionRatio3 }}>
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={80} />
             <Text>Send an email</Text>
