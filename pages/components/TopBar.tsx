@@ -51,11 +51,11 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-top: 1.5rem;
+  // padding-top: 1.5rem;
 
-  @media (max-width: 768px) {
-    padding-top: 1rem;
-  }
+  // @media (max-width: 768px) {
+  //   padding-top: 1rem;
+  // }
 
   @media (prefers-color-scheme: dark) {
     img {
