@@ -18,7 +18,7 @@ export const Menu = ({
 
   useEffect(() => {
     isScrolling === "down" && setMenuOpened(false);
-  }, [isScrolling]);
+  }, [isScrolling, setMenuOpened]);
 
   return (
     <Container>
@@ -105,3 +105,5 @@ const MenuItem = styled.div`
     opacity: 0.7;
   }
 `;
+
+export default Menu;
