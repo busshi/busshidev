@@ -47,8 +47,8 @@ const Line = styled.div<{ index: number }>`
   height: 5rem;
   width: 1px;
   background: ${(props) =>
-    `linear-gradient(360deg, ${COLORS[props.index].stop}, ${
-      COLORS[props.index].start
+    `linear-gradient(180deg, black, ${COLORS[props.index].start}, ${
+      COLORS[props.index].stop
     })`};
 `;
 

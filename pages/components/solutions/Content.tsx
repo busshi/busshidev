@@ -135,7 +135,7 @@ const ActionsBox = styled.div<{
         ? `0px 0px 3rem 0px ${COLORS[props.index].start}`
         : "0px 0px 1px var(--secondary-dark-color)"};
 
-    transition: box-shadow var(--long-transition-delay) ease;
+    transition: box-shadow var(--middle-transition-delay) ease;
 
     @media (prefers-color-scheme: dark) {
       background: var(--dark-background-card);

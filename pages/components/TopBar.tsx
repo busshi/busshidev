@@ -6,66 +6,63 @@ import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { Menu } from "./Menu";
-import { useListenForOutsideClicks } from "../../hooks/useListrenForOutsideClick";
+import Menu from "./Menu";
+import { RxCross2 } from "react-icons/rx";
 
 export const TopBar = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLDivElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-    null
-  );
+  // const [referenceElement, setReferenceElement] =
+  //   useState<HTMLDivElement | null>(null);
+  // // const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+  //   null
+  // );
 
-  useListenForOutsideClicks([popperElement, referenceElement], () => {
-    setMenuOpened(false);
-  });
+  // useListenForOutsideClicks([popperElement, referenceElement], () => {
+  //   setMenuOpened(false);
+  // });
 
   return (
-    <Container id="top">
-      <LinkBox href="/">
-        <ImageBox
-          src="/logo.svg"
-          width={isMobile ? 50 : 80}
-          height={isMobile ? 50 : 80}
-          alt="busshiDev"
-        />
-      </LinkBox>
-      {isMobile ? (
-        menuOpened ? (
-          <div ref={setPopperElement}>
-            <Menu
-              setMenuOpened={setMenuOpened}
-              isHome={isHome}
-              setReferenceElement={setReferenceElement}
-            />
-          </div>
-        ) : (
-          <MenuIcon onClick={() => setMenuOpened(true)}>
-            <AiOutlineMenu size={24} />
+    <div>
+      <Container id="top">
+        <LinkBox href="/">
+          <ImageBox
+            src="/logo.svg"
+            width={isMobile ? 50 : 80}
+            height={isMobile ? 50 : 80}
+            alt="busshiDev"
+          />
+        </LinkBox>
+        {isMobile ? (
+          <MenuIcon onClick={() => setMenuOpened(menuOpened ? false : true)}>
+            {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
           </MenuIcon>
-        )
-      ) : (
-        <Buttons>
-          <Button
-            onClick={() =>
-              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
-            }
-          >
-            Solutions
-          </Button>
-          <Link href="https://busshi.fr">
-            <Button>About me</Button>
-          </Link>
-          <Link href="/contact">
-            <Button>Contact</Button>
-          </Link>
-        </Buttons>
+        ) : (
+          <Buttons>
+            <Button
+              onClick={() =>
+                isHome
+                  ? scrollIntoView("solutions")
+                  : router.push("/#solutions")
+              }
+            >
+              Solutions
+            </Button>
+            <Link href="https://busshi.fr">
+              <Button>About me</Button>
+            </Link>
+            <Link href="/contact">
+              <Button>Contact</Button>
+            </Link>
+          </Buttons>
+        )}
+      </Container>
+      {menuOpened && (
+        <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
       )}
-    </Container>
+    </div>
   );
 };
 
