@@ -10,7 +10,7 @@ import { createRef, RefObject, useEffect, useState } from "react";
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/rootMargin
 
  * @example
- * const isVisible = useIntersectionObserver<HTMLDivElement>()
+ * const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>()
  */
 
 export default function useIntersectionObserver<Element extends HTMLElement>(

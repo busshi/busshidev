@@ -4,7 +4,7 @@ import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import { EMAIL } from "../../lib/constants";
-import useIntersectionRatio from "../../hooks/useIntersectionRatio";
+//import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const Contacts = ({

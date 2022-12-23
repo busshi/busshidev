@@ -92,9 +92,6 @@ export const Testimonials = () => {
             <Dot
               isSelected={index === idVisible}
               key={id}
-              onClick={() => {
-                //                setIdVisible(index);
-              }}
               isTestimonialsVisible={isTestimonialsVisible}
             />
           ))}

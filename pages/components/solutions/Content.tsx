@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { slideIntoView } from "../../../lib/slideIntoView";
+import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
-import useIsElementVisible from "../../../hooks/useIsElementVisible";
 import { COLORS } from "../../../lib/constants";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
 import { Color, Solution } from "../../../types/interfaces";
@@ -18,14 +19,19 @@ export const Content = ({
   descriptionSize: string;
 }) => {
   const { highlightedColor } = useHighlightedColorState();
-  const [isVisible, ref] = useIsElementVisible<HTMLDivElement>(0);
-  const [intersectionRatio, containerRef] =
+  const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>();
+  const [intersectionRatio, refContainer] =
     useIntersectionRatio<HTMLDivElement>();
+  slideIntoView();
 
   if (!solution) return null;
 
   return (
-    <div ref={containerRef} style={{ opacity: intersectionRatio }}>
+    <Container
+      className="slideIntoView"
+      ref={refContainer}
+      style={{ opacity: intersectionRatio }}
+    >
       <TitleBox>
         <Title
           isShiny={true}
@@ -56,9 +62,33 @@ export const Content = ({
           <TextBox key={item}>{item}</TextBox>
         ))}
       </ActionsBox>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  @media (max-width: 768px) {
+    &.slideIntoView {
+      transition: all 0.3s ease;
+    }
+
+    &.slideIntoView[data-view="inview-top"],
+    &.slideIntoView[data-view="inview-bottom"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &.slideIntoView[data-view="outview-top"] {
+      opacity: 0;
+      transform: translateY(-300px);
+    }
+
+    &.slideIntoView[data-view="outview-bottom"] {
+      opacity: 0;
+      transform: translateY(300px);
+    }
+  }
+`;
 
 const Description = styled.div<{ fontSize: string }>`
   line-height: var(--line-height);

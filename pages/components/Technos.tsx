@@ -1,21 +1,20 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
 import { useEffect } from "react";
-import useIsElementVisible from "../../hooks/useIsElementVisible";
 import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { getTechnos } from "../../lib/technos";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
-import { buildThresholdList } from "../../lib/observerIntersection";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 export const Technos = () => {
   //  const [isScrolling, setIsScrolling] = useState(false);
-  const [isElementVisible, ref] = useIsElementVisible<HTMLDivElement>(-10);
+  const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const scrollWidth = useGetScrollWidth("items");
   const isMobile = useIsMobile();
   const technos = getTechnos(isMobile ? 30 : 80);
   const [intersectionRatio, containerRef] =
-    useIntersectionRatio<HTMLDivElement>("0px", buildThresholdList(50));
+    useIntersectionRatio<HTMLDivElement>();
 
   useEffect(() => {
     let i = 0;
