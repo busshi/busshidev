@@ -18,7 +18,7 @@ export const TopBar = () => {
     <Container id="top">
       <LinkBox href="/">
         <ImageBox
-          src="/logo.png"
+          src="/logo.svg"
           width={isMobile ? 50 : 80}
           height={isMobile ? 50 : 80}
           alt="busshiDev"

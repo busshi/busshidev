@@ -42,7 +42,7 @@ const Logo = () => {
       {/* {isMobile && <span>Powered by</span>} */}
       <ImageBox
         onClick={() => scrollIntoView("top")}
-        src="/logo.png"
+        src="/logo.svg"
         alt="busshiDev"
         width={80}
         height={80}
