@@ -7,12 +7,22 @@ import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import { Menu } from "./Menu";
+import { useListenForOutsideClicks } from "../../hooks/useListrenForOutsideClick";
 
 export const TopBar = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLDivElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
+
+  useListenForOutsideClicks([popperElement, referenceElement], () => {
+    setMenuOpened(false);
+  });
 
   return (
     <Container id="top">
@@ -24,11 +34,20 @@ export const TopBar = () => {
           alt="busshiDev"
         />
       </LinkBox>
-      {menuOpened && <Menu setMenuOpened={setMenuOpened} isHome={isHome} />}
       {isMobile ? (
-        <MenuIcon onClick={() => setMenuOpened(true)}>
-          <AiOutlineMenu size={24} />
-        </MenuIcon>
+        menuOpened ? (
+          <div ref={setPopperElement}>
+            <Menu
+              setMenuOpened={setMenuOpened}
+              isHome={isHome}
+              setReferenceElement={setReferenceElement}
+            />
+          </div>
+        ) : (
+          <MenuIcon onClick={() => setMenuOpened(true)}>
+            <AiOutlineMenu size={24} />
+          </MenuIcon>
+        )
       ) : (
         <Buttons>
           <Button
@@ -54,7 +73,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-right: 1rem;
+  // width: 100%;
   // padding-top: 1.5rem;
 
   // @media (max-width: 768px) {
