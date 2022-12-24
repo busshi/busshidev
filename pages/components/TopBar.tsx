@@ -8,6 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Dispatch, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
+import { BLOG_URL } from "../../lib/constants";
 
 export const TopBar = ({
   menuOpened,
@@ -46,7 +47,7 @@ export const TopBar = ({
             >
               Solutions
             </Button>
-            <Link href="https://busshi.fr">
+            <Link href={BLOG_URL}>
               <Button>About me</Button>
             </Link>
             <Link href="/contact">

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { COLORS } from "../../../lib/constants";
-import { SOLUTIONS } from "../../../lib/solutions";
+import { buildSolutions } from "../../../lib/solutions";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => {
+  const solutions = buildSolutions(40, "var(--middle-font-color)");
+
   return (
     <Container id="solutions">
-      {SOLUTIONS.map((solution, index) => (
+      {solutions.map((solution, index) => (
         <Solution key={solution.title} id={solution.id}>
           <Line index={index} />
           <Circle isShiny={true} index={index}>

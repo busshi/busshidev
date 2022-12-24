@@ -1,15 +1,10 @@
 import styled, { keyframes } from "styled-components";
-import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { FiFigma } from "react-icons/fi";
-import { BsGraphUp, BsTerminalFill } from "react-icons/bs";
-import { SlRocket } from "react-icons/sl";
-import { TfiHeadphoneAlt } from "react-icons/tfi";
-import { SiGooglemeet } from "react-icons/si";
-import { HiOutlineMail } from "react-icons/hi";
-import { COLORS } from "../../lib/constants";
+import { BLOG_URL, COLORS } from "../../lib/constants";
+import { buildSolutions } from "../../lib/solutions";
+import { CONTACT_MENU } from "../../lib/menu";
 
 export const Menu = ({
   setMenuOpened,
@@ -20,6 +15,9 @@ export const Menu = ({
   const isHome = router.asPath !== "/contact";
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
+
+  // Build solutions array with icon size of 20px
+  const solutions = buildSolutions(16);
 
   return (
     <Container>
@@ -38,59 +36,24 @@ export const Menu = ({
         </Item>
         {solutionsOpened && (
           <SubMenuItems onClick={() => setContactOpened(false)}>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) {
-                  scrollIntoView("design");
-                } else router.push("/#design");
-              }}
-              hoverColor={COLORS[0].start}
-            >
-              <FiFigma />
-              Design
-            </SubMenuItem>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) {
-                  scrollIntoView("develop");
-                } else router.push("/#develop");
-              }}
-              hoverColor={COLORS[1].start}
-            >
-              <BsTerminalFill />
-              Develop
-            </SubMenuItem>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) {
-                  scrollIntoView("deploy");
-                } else router.push("/#deploy");
-              }}
-              hoverColor={COLORS[2].start}
-            >
-              <SlRocket />
-              Deploy
-            </SubMenuItem>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) {
-                  scrollIntoView("boost");
-                } else router.push("/#boost");
-              }}
-              hoverColor={COLORS[3].start}
-            >
-              <BsGraphUp />
-              Boost
-            </SubMenuItem>
+            {solutions.map(({ id, title, icon }, index) => (
+              <SubMenuItem
+                key={id}
+                onClick={() => {
+                  router.push(`/#${id}`);
+                  setMenuOpened(false);
+                }}
+                hoverColor={COLORS[index].start}
+              >
+                {icon}
+                {title.substring(0, title.length - 1)}
+              </SubMenuItem>
+            ))}
           </SubMenuItems>
         )}
       </MenuItem>
 
-      <MenuItem id="menuAbout" onClick={() => router.push("https://busshi.fr")}>
+      <MenuItem id="menuAbout" onClick={() => router.push(BLOG_URL)}>
         <Item>About me</Item>
       </MenuItem>
 
@@ -109,33 +72,17 @@ export const Menu = ({
         </Item>
         {contactOpened && (
           <SubMenuItems onClick={() => setSolutionsOpened(false)}>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) router.push("/contact");
-              }}
-            >
-              <TfiHeadphoneAlt />
-              Chat with me
-            </SubMenuItem>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) router.push("/contact");
-              }}
-            >
-              <SiGooglemeet />
-              Book a meeting
-            </SubMenuItem>
-            <SubMenuItem
-              onClick={() => {
-                setMenuOpened(false);
-                if (isHome) router.push("/contact");
-              }}
-            >
-              <HiOutlineMail />
-              Send an email
-            </SubMenuItem>
+            {CONTACT_MENU.map(({ id, text, icon }) => (
+              <SubMenuItem
+                key={id}
+                onClick={() => {
+                  isHome && router.push("/contact");
+                  setMenuOpened(false);
+                }}
+              >
+                {icon} {text}
+              </SubMenuItem>
+            ))}
           </SubMenuItems>
         )}
       </MenuItem>

@@ -15,12 +15,11 @@ const Layout = ({ children }: Props) => {
     <Html>
       <Metadata />
       <TopBar menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
-      {!menuOpened && (
-        <>
-          {children}
-          <Footer />
-        </>
-      )}
+
+      <Wrapper menuOpened={menuOpened}>
+        {children}
+        <Footer />
+      </Wrapper>
     </Html>
   );
 };
@@ -38,6 +37,10 @@ const Html = styled.div`
     color: var(--main-dark-font-color);
     background: var(--main-dark-color);
   }
+`;
+
+const Wrapper = styled.div<{ menuOpened: boolean }>`
+  display: ${(props) => (props.menuOpened ? "none" : "block")};
 `;
 
 export default Layout;

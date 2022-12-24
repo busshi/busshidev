@@ -8,6 +8,8 @@ export const SITE_URL =
     ? "https://busshidev.fr"
     : "http://localhost:3000";
 
+export const BLOG_URL = "https://busshi.fr";
+
 export const EMAIL = "busshidev@icloud.com";
 
 /**

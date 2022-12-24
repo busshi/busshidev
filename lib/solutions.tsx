@@ -3,7 +3,7 @@ import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 
-export const SOLUTIONS = [
+export const buildSolutions = (size: number, color?: string) => [
   {
     title: "Design.",
     description: "Create the website of your dreams",
@@ -14,7 +14,7 @@ export const SOLUTIONS = [
       "Best UI / UX practices",
     ],
     id: "design",
-    icon: <FiFigma size={40} color="var(--middle-font-color)" />,
+    icon: <FiFigma size={size} color={color} />,
   },
   {
     title: "Develop.",
@@ -25,7 +25,7 @@ export const SOLUTIONS = [
       "Best code practices easy to maintain",
     ],
     id: "develop",
-    icon: <BsTerminalFill size={40} color="var(--middle-font-color)" />,
+    icon: <BsTerminalFill size={size} color={color} />,
   },
   {
     title: "Deploy.",
@@ -36,7 +36,7 @@ export const SOLUTIONS = [
       "Continuous integration and development",
     ],
     id: "deploy",
-    icon: <SlRocket size={40} color="var(--middle-font-color)" />,
+    icon: <SlRocket size={size} color={color} />,
   },
   {
     title: "Boost.",
@@ -47,6 +47,6 @@ export const SOLUTIONS = [
       "Boost your trafic",
     ],
     id: "boost",
-    icon: <BsGraphUp size={40} color="var(--middle-font-color)" />,
+    icon: <BsGraphUp size={size} color={color} />,
   },
 ];

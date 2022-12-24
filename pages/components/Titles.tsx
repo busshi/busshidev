@@ -1,24 +1,25 @@
 import styled from "styled-components";
 import { scrollIntoView } from "../../lib/scroll";
 import { COLORS } from "../../lib/constants";
-import { SOLUTIONS } from "../../lib/solutions";
 import { useHighlightedColorState } from "../../providers/HighlightedColor";
 import { Color } from "../../types/interfaces";
+import { buildSolutions } from "../../lib/solutions";
 
 export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
+  const solutions = buildSolutions(40);
 
   return (
     <Container>
-      {SOLUTIONS.map(({ title }, i) => (
+      {solutions.map(({ title }, i) => (
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
-            scrollIntoView(SOLUTIONS[i].id);
+            scrollIntoView(solutions[i].id);
           }}
           highlightedColor={highlightedColor}
         >
