@@ -37,11 +37,7 @@ export const TopBar = () => {
         </LinkBox>
         {isMobile ? (
           <MenuIcon onClick={() => setMenuOpened(menuOpened ? false : true)}>
-            {menuOpened ? (
-              <RxCross2 size={24} color="var(--middle-font-color)" />
-            ) : (
-              <AiOutlineMenu size={24} color="var(--middle-font-color)" />
-            )}
+            {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
           </MenuIcon>
         ) : (
           <Buttons>
