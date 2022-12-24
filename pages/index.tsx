@@ -20,9 +20,9 @@ const Home: NextPage = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Guidance onClick={() => scrollIntoView("solutions")}>
-          <div>STEP BY STEP GUIDANCE</div>
-        </Guidance>
+        <Implementation onClick={() => scrollIntoView("solutions")}>
+          <div>STEP-BY-STEP IMPLEMENTATION</div>
+        </Implementation>
       </FirstPage>
       {isMobile ? <MobileSolutions /> : <Solutions />}
       <Testimonials />
@@ -57,20 +57,25 @@ const Intro = styled.div`
   }
 `;
 
-const Guidance = styled.div`
+const Implementation = styled.div`
   cursor: pointer;
-  margin: 3rem;
   font-size: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   line-height: 1.6em;
   font-weight: 300;
   letter-spacing: 0.1rem;
-  color: var(--secondary-dark-color);
+  margin: 3rem;
+
   @media (max-width: 768px) {
     margin: 0;
+  }
+
+  color: var(--main-dark-color);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--main-light-color);
   }
 `;
 

@@ -52,13 +52,13 @@ export const Content = ({
         isVisible={isVisible}
         ref={ref}
       >
-        <Icon
+        {/* <Icon
           isShiny={true}
           highlightedColor={highlightedColor}
           color={COLORS[index].stop}
-        >
-          {solution.icon}
-        </Icon>
+        > */}
+        {solution.icon}
+        {/* </Icon> */}
         {solution.actions.map((item) => (
           <TextBox key={item}>{item}</TextBox>
         ))}
@@ -178,12 +178,16 @@ const Icon = styled.div<{
 `;
 
 const TextBox = styled.div`
-  color: var(--secondary-dark-color);
+  color: var(--main-dark-color);
   font-weight: 300;
   letter-spacing: 0.1rem;
 
   @media (max-width: 768px) {
     margin: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--main-light-color);
   }
 `;
 

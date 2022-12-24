@@ -47,9 +47,17 @@ const Line = styled.div<{ index: number }>`
   height: 5rem;
   width: 1px;
   background: ${(props) =>
-    `linear-gradient(180deg, black, ${COLORS[props.index].start}, ${
-      COLORS[props.index].stop
-    })`};
+    `linear-gradient(180deg, var(--main-light-color), ${
+      COLORS[props.index].start
+    }, ${COLORS[props.index].stop})`};
+
+    @media (prefers-color-scheme: dark) {
+  background: ${(props) =>
+    `linear-gradient(180deg, var(--main-dark-color), ${
+      COLORS[props.index].start
+    }, ${COLORS[props.index].stop})`};
+    }
+  }
 `;
 
 const Circle = styled.div<{ isShiny: boolean; index: number }>`

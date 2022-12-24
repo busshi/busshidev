@@ -3,7 +3,7 @@
   *   Main colors
   */
   --main-dark-color: #121212;
-  --main-light-color: #ededed;
+  --main-light-color: #f1f1f1;
   --secondary-dark-color: #888;
   --secondary-light-color: #f5f5f5;
   --footer-light-color: #f5f5f5;
@@ -11,7 +11,7 @@
   --dark-background: #181717;
   --light-background: #f5f5f5;
   --dark-background-card: #1e1e1e;
-  --light-background-card: #efefef;
+  --light-background-card: #f9f9f9f9;
 
   /**
   *   Gradient colors
