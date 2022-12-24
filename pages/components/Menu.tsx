@@ -3,7 +3,7 @@ import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
 import { useIsScrolling } from "../../hooks/useIsScrolling";
 import { useEffect, useState } from "react";
-import { IoIosArrowDropdown } from "react-icons/io";
+import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { FiFigma } from "react-icons/fi";
 import { BsGraphUp, BsTerminalFill } from "react-icons/bs";
 import { SlRocket } from "react-icons/sl";
@@ -39,7 +39,7 @@ export const Menu = ({
         <Item>
           <div onClick={() => setContactOpened(false)}>Solutions</div>
           <div>
-            <IoIosArrowDropdown />
+            {solutionsOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
           </div>
         </Item>
         {solutionsOpened && (
@@ -110,7 +110,7 @@ export const Menu = ({
         <Item>
           <div onClick={() => setSolutionsOpened(false)}>Contact</div>
           <div>
-            <IoIosArrowDropdown />
+            {contactOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
           </div>
         </Item>
         {contactOpened && (
