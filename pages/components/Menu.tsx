@@ -1,8 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
-import { useIsScrolling } from "../../hooks/useIsScrolling";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { FiFigma } from "react-icons/fi";
 import { BsGraphUp, BsTerminalFill } from "react-icons/bs";
@@ -19,13 +18,8 @@ export const Menu = ({
 }) => {
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
-  const isScrolling = useIsScrolling();
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
-
-  useEffect(() => {
-    isScrolling === "down" && setMenuOpened(false);
-  }, [isScrolling, setMenuOpened]);
 
   return (
     <Container>
@@ -46,7 +40,7 @@ export const Menu = ({
           <SubMenuItems onClick={() => setContactOpened(false)}>
             <SubMenuItem
               onClick={() => {
-                setMenuOpened(true);
+                setMenuOpened(false);
                 if (isHome) {
                   scrollIntoView("design");
                 } else router.push("/#design");
@@ -58,7 +52,7 @@ export const Menu = ({
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
-                setMenuOpened(true);
+                setMenuOpened(false);
                 if (isHome) {
                   scrollIntoView("develop");
                 } else router.push("/#develop");
@@ -70,7 +64,7 @@ export const Menu = ({
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
-                setMenuOpened(true);
+                setMenuOpened(false);
                 if (isHome) {
                   scrollIntoView("deploy");
                 } else router.push("/#deploy");
@@ -82,7 +76,7 @@ export const Menu = ({
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
-                setMenuOpened(true);
+                setMenuOpened(false);
                 if (isHome) {
                   scrollIntoView("boost");
                 } else router.push("/#boost");

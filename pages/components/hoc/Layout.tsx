@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
@@ -7,14 +8,22 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: Props) => (
-  <Html>
-    <Metadata />
-    <TopBar />
-    {children}
-    <Footer />
-  </Html>
-);
+const Layout = ({ children }: Props) => {
+  const [menuOpened, setMenuOpened] = useState(false);
+
+  return (
+    <Html>
+      <Metadata />
+      <TopBar menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
+      {!menuOpened && (
+        <>
+          {children}
+          <Footer />
+        </>
+      )}
+    </Html>
+  );
+};
 
 const Html = styled.div`
   min-width: 100%;
