@@ -158,6 +158,7 @@ const SubMenuItem = styled.div<{ hoverColor?: string }>`
   font-size: 0.9rem;
   transition: opacity var(--transition-delay) ease;
   gap: 1rem;
+  margin: 0.6rem;
   transition: color 0.5s ease;
 
   :hover {
