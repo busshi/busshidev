@@ -168,9 +168,12 @@ const Container = styled.div`
   animation: ${animate} 0.3s ease;
   width: 100vw;
   height: 88vh;
+
+  color: var(--secondary-light-font-color);
   background-color: var(--main-light-color);
 
   @media (prefers-color-scheme: dark) {
+    color: var(--middle-font-color);
     background-color: var(--main-dark-color);
   }
 `;
