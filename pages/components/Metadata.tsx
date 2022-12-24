@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Script from "next/script";
-import { SITE_URL } from "../../lib/constants";
+import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "../../lib/constants";
 import {
   jsonLdFAQ,
   jsonLdLogo,
@@ -17,14 +16,14 @@ export const Metadata: React.FC = () => (
       name="description"
       content="BusshiDev - Design. Develop. Deploy. Boost"
     />
-    <meta name="author" content="busshiDev" />
+    <meta name="author" content="BusshiDev" />
     <meta
       name="keywords"
       content="busshiDev, Freelance, Fullstack developer, Developer, ReactJS, NextJS, NestJS, ExpressJS, SEO, Docker"
     />
 
     <meta name="color-scheme" content="dark light" />
-    <meta property="og:image" content="https://busshidev.fr/banner.png" />
+    <meta property="og:image" content={`${SITE_URL}/banner.png`} />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:type" content="image" />
     <meta property="og:image:width" content="2220" />
@@ -36,10 +35,7 @@ export const Metadata: React.FC = () => (
     />
 
     {/* Google search console verification code */}
-    <meta
-      name="google-site-verification"
-      content="9zfrcdtOL120_Di_ZUTyg-Tce-YNx4ZA5PYx9yK4aJo"
-    />
+    <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

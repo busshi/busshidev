@@ -15,7 +15,6 @@ const Layout = ({ children }: Props) => {
     <Html>
       <Metadata />
       <TopBar menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
-
       <Wrapper menuOpened={menuOpened}>
         {children}
         <Footer />

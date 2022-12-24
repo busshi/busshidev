@@ -1,4 +1,4 @@
-import { CONTACTS, OPENSOURCES, SITE_URL } from "./constants";
+import { BLOG_URL, CONTACTS, EMAIL, OPENSOURCES, SITE_URL } from "./constants";
 
 /**
  * jsonLd Metadata
@@ -8,7 +8,7 @@ import { CONTACTS, OPENSOURCES, SITE_URL } from "./constants";
 export const jsonLdWebsite = {
   "@context": "http://schema.org",
   "@type": "WebSite",
-  name: "busshiDev",
+  name: "BusshiDev",
   alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
 
   url: `${SITE_URL}`,
@@ -17,7 +17,7 @@ export const jsonLdWebsite = {
     "https://www.malt.fr/profile/alexandredubar",
     "https://www.linkedin.com/in/alexandre-dubar/",
     "https://github.com/busshi",
-    "https://busshi.fr",
+    `${BLOG_URL}`,
   ],
 };
 
@@ -29,8 +29,8 @@ export const jsonLdWebsite = {
 export const jsonLdLogo = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "busshiDev",
-  email: "contact@busshidev.fr",
+  name: "BusshiDev",
+  email: `${EMAIL}`,
   url: `${SITE_URL}`,
   logo: `${SITE_URL}/banner.png`,
 };
@@ -43,7 +43,7 @@ export const jsonLdLogo = {
 export const jsonLdOrganization = {
   "@context": "http://schema.org",
   "@type": "Organization",
-  name: "busshiDev",
+  name: "BusshiDev",
   alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
   url: `${SITE_URL}`,
   logo: `${SITE_URL}/banner.png`,
@@ -52,7 +52,7 @@ export const jsonLdOrganization = {
     "https://www.malt.fr/profile/alexandredubar",
     "https://www.linkedin.com/in/alexandre-dubar/",
     "https://github.com/busshi",
-    "https://busshi.fr",
+    `${BLOG_URL}`,
   ],
 };
 
@@ -66,7 +66,7 @@ export const jsonLdOrganizationRating = {
   "@type": "EmployerAggregateRating",
   itemReviewed: {
     "@type": "Organization",
-    name: "busshiDev",
+    name: "BusshiDev",
     sameAs: `${SITE_URL}`,
   },
   ratingValue: "5",
