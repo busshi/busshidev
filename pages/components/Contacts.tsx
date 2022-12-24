@@ -6,11 +6,12 @@ import Link from "next/link";
 import { EMAIL } from "../../lib/constants";
 //import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { useChatVisibleState } from "../../providers/ChatVisible";
 
 export const Contacts = ({
-  setCalendlyVisible,
+  setIsCalendlyVisible,
 }: {
-  setCalendlyVisible: (value: boolean) => void;
+  setIsCalendlyVisible: (value: boolean) => void;
 }) => {
   //   const [intersectionRatio, ref] =
   //     useIntersectionRatio<HTMLDivElement>("-50px");
@@ -19,16 +20,18 @@ export const Contacts = ({
   //   const [intersectionRatio3, ref3] =
   //     useIntersectionRatio<HTMLDivElement>("-50px");
   const isMobile = useIsMobile();
+  const { setIsChatVisible } =
+    useChatVisibleState();
 
   return (
     <Container>
       <Title>3 WAYS TO REACH ME OUT</Title>
       <ItemsWrapper>
-        <Item onClick={() => alert("comming soon...")}>
+        <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
-        <Item onClick={() => setCalendlyVisible(true)}>
+        <Item onClick={() => setIsCalendlyVisible(true)}>
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>

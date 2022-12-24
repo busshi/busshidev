@@ -1,5 +1,8 @@
+import Script from "next/script";
 import { useState } from "react";
 import styled from "styled-components";
+import { CRIPS_WEBSITE_ID } from "../../../lib/constants";
+import { useChatVisibleState } from "../../../providers/ChatVisible";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
@@ -9,16 +12,37 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => {
-  const [menuOpened, setMenuOpened] = useState(false);
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const { isChatVisible } = useChatVisibleState();
 
   return (
     <Html>
       <Metadata />
-      <TopBar menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
-      <Wrapper menuOpened={menuOpened}>
+      <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
+      <Wrapper menuOpened={isMenuOpened}>
         {children}
         <Footer />
       </Wrapper>
+
+      {/* Crisp.chat integration */}
+      {isChatVisible && (
+        <Script
+          id="crisp-widget"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+      window.$crisp=[];
+      window.CRISP_WEBSITE_ID=\`${CRIPS_WEBSITE_ID}\`;
+      (function(){
+        const d = document;
+        const s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();`,
+          }}
+        />
+      )}
     </Html>
   );
 };

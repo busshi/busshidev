@@ -5,15 +5,15 @@ import { RxCrossCircled } from "react-icons/rx";
 import { Contacts } from "./components/Contacts";
 
 const Contact: NextPage = () => {
-  const [calendlyVisible, setCalendlyVisible] = useState(false);
+  const [isCalendlyVisible, setIsCalendlyVisible] = useState(false);
 
   return (
     <Page>
-      {calendlyVisible ? (
+      {isCalendlyVisible ? (
         <Calendar>
-          <RedCross onClick={() => setCalendlyVisible(false)}>
+          <Cross onClick={() => setIsCalendlyVisible(false)}>
             <RxCrossCircled size={26} />
-          </RedCross>
+          </Cross>
           <iframe
             width="100%"
             height="100%"
@@ -22,7 +22,7 @@ const Contact: NextPage = () => {
           ></iframe>
         </Calendar>
       ) : (
-        <Contacts setCalendlyVisible={setCalendlyVisible} />
+        <Contacts setIsCalendlyVisible={setIsCalendlyVisible} />
       )}
     </Page>
   );
@@ -49,7 +49,7 @@ const Calendar = styled.div`
   }
 `;
 
-const RedCross = styled.div`
+const Cross = styled.div`
   position: absolute;
   top: 12px;
   left: 12px;

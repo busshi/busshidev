@@ -71,7 +71,11 @@ export const Menu = ({
           </div>
         </Item>
         {contactOpened && (
-          <SubMenuItems onClick={() => setSolutionsOpened(false)}>
+          <SubMenuItems
+            onClick={() => {
+              setSolutionsOpened(false);
+            }}
+          >
             {CONTACT_MENU.map(({ id, text, icon }) => (
               <SubMenuItem
                 key={id}
