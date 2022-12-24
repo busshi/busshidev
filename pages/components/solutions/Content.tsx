@@ -95,14 +95,7 @@ const Description = styled.div<{ fontSize: string }>`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: 0rem;
-
-  color: var(--main-dark-color);
   font-size: ${(props) => props.fontSize};
-
-  @media (prefers-color-scheme: dark) {
-      color: var(--secondary-light-color);
-    }
-  }
 `;
 
 const TitleBox = styled.div`
@@ -133,7 +126,7 @@ const ActionsBox = styled.div<{
     box-shadow: ${(props) =>
       props.isVisible
         ? `0px 0px 3rem 0px ${COLORS[props.index].start}`
-        : "0px 0px 1px var(--secondary-dark-color)"};
+        : "0px 0px 1px var(--middle-font-color)"};
 
     transition: box-shadow var(--middle-transition-delay) ease;
 
@@ -143,42 +136,41 @@ const ActionsBox = styled.div<{
   }
 `;
 
-const Icon = styled.div<{
-  isShiny: boolean;
-  highlightedColor: Color;
-  color: string;
-}>`
-  background-color: ${(props) =>
-    props.isShiny
-      ? `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`
-      : "var(--main-dark-color)"};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+// const Icon = styled.div<{
+//   isShiny: boolean;
+//   highlightedColor: Color;
+//   color: string;
+// }>`
+//   background-color: ${(props) =>
+//     props.isShiny
+//       ? `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`
+//       : "var(--main-dark-color)"};
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
 
-  position: relative;
-  z-index: 0;
+//   position: relative;
+//   z-index: 0;
 
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    padding: 0px;
-    border-radius: var(--border-radius);
-    background: ${(props) =>
-      props.isShiny
-        ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
-        : "var(--secondary-dark-color)"};
-    -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
-      linear-gradient(var(--main-light-color) 0 0);
-    mask: linear-gradient(var(--main-light-color) 0 0) content-box,
-      linear-gradient(var(--main-light-color) 0 0);
-    mask-composite: exclude;
-  }
-`;
+//   &:before {
+//     content: "";
+//     position: absolute;
+//     z-index: -1;
+//     inset: 0;
+//     padding: 0px;
+//     border-radius: var(--border-radius);
+//     background: ${(props) =>
+//       props.isShiny
+//         ? `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`
+//         : "var(--middle-font-color)"};
+//     -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+//       linear-gradient(var(--main-light-color) 0 0);
+//     mask: linear-gradient(var(--main-light-color) 0 0) content-box,
+//       linear-gradient(var(--main-light-color) 0 0);
+//     mask-composite: exclude;
+//   }
+// `;
 
 const TextBox = styled.div`
-  color: var(--main-dark-color);
   font-weight: 300;
   letter-spacing: 0.1rem;
 
@@ -186,8 +178,9 @@ const TextBox = styled.div`
     margin: 0;
   }
 
+  color: var(--secondary-light-font-color);
   @media (prefers-color-scheme: dark) {
-    color: var(--main-light-color);
+    color: var(--secondary-dark-font-color);
   }
 `;
 

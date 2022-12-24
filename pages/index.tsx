@@ -41,14 +41,12 @@ const FirstPage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  color: var(--secondary-dark-color);
 `;
 
 const Intro = styled.div`
   margin: 2rem;
   padding: 0 1rem 0 1rem;
   font-size: 1.5rem;
-
   font-weight: var(--font-weight);
 
   @media (max-width: 768px) {
@@ -70,12 +68,6 @@ const Implementation = styled.div`
 
   @media (max-width: 768px) {
     margin: 0;
-  }
-
-  color: var(--main-dark-color);
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--main-light-color);
   }
 `;
 

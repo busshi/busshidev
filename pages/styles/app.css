@@ -4,10 +4,13 @@
   */
   --main-dark-color: #121212;
   --main-light-color: #f1f1f1;
-  --secondary-dark-color: #888;
-  --secondary-light-color: #f5f5f5;
-  --footer-light-color: #f5f5f5;
-  --footer-dark-color: #181717;
+  --main-dark-font-color: #e7e7e7;
+  --main-light-font-color: #1b1b1b;
+  --middle-font-color: #888;
+  --secondary-dark-font-color: #c3c3c3;
+  --secondary-light-font-color: #444444;
+  --footer-light-background: #f5f5f5;
+  --footer-dark-background: #181717;
   --dark-background: #181717;
   --light-background: #f5f5f5;
   --dark-background-card: #1e1e1e;

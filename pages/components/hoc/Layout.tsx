@@ -19,14 +19,14 @@ const Layout = ({ children }: Props) => (
 const Html = styled.div`
   min-width: 100%;
   min-height: 100vh;
-  color: var(--main-dark-color);
+  color: var(--main-light-font-color);
   background: var(--main-light-color);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--secondary-dark-color);
+    color: var(--main-dark-font-color);
     background: var(--main-dark-color);
   }
 `;

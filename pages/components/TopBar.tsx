@@ -38,9 +38,9 @@ export const TopBar = () => {
         {isMobile ? (
           <MenuIcon onClick={() => setMenuOpened(menuOpened ? false : true)}>
             {menuOpened ? (
-              <RxCross2 size={24} color="var(--secondary-dark-color)" />
+              <RxCross2 size={24} color="var(--middle-font-color)" />
             ) : (
-              <AiOutlineMenu size={24} color="var(--secondary-dark-color)" />
+              <AiOutlineMenu size={24} color="var(--middle-font-color)" />
             )}
           </MenuIcon>
         ) : (
@@ -111,16 +111,16 @@ const Button = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: var(--middle-font-color);
 
-  color: var(--secondary-dark-color);
   transition: color var(--transition-delay) ease;
   :hover {
-    color: var(--main-dark-color);
+    color: var(--main-light-font-color);
   }
 
   @media (prefers-color-scheme: dark) {
     :hover {
-      color: var(--secondary-light-color);
+      color: var(--main-dark-font-color);
     }
   }
 `;

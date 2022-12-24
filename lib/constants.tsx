@@ -61,8 +61,8 @@ export const CONTACTS = [
     id: "email",
     name: "Email",
     url: `mailto:${EMAIL}`,
-    logo: <HiOutlineMail color="var(--main-dark-color)" size={25} />,
-    logoDark: <HiOutlineMail color="var(--secondary-dark-color)" size={25} />,
+    logo: <HiOutlineMail color="var(--main-dark-font-color)" size={25} />,
+    logoDark: <HiOutlineMail color="var(--middle-font-color)" size={25} />,
   },
 ];
 

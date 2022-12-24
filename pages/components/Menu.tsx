@@ -169,11 +169,9 @@ const Container = styled.div`
   width: 100vw;
   height: 88vh;
   background-color: var(--main-light-color);
-  color: var(--secondary-dark-color);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--main-dark-color);
-    color: var(--secondary-dark-color);
   }
 `;
 

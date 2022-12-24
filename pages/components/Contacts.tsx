@@ -44,7 +44,7 @@ export const Contacts = ({
 };
 
 const Container = styled.div`
-  color: var(--secondary-dark-color);
+  color: var(--middle-font-color);
   display: flex;
   flex-direction: column;
 `;
@@ -91,7 +91,7 @@ const Item = styled.div`
   }
 
   a {
-    color: var(--secondary-dark-color);
+    color: var(--middle-font-color);
   }
 `;
 

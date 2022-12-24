@@ -34,22 +34,17 @@ export const Column = ({
   );
 };
 
-const Logo = () => {
-  const isMobile = useIsMobile();
-
-  return (
-    <LogoContainer>
-      {/* {isMobile && <span>Powered by</span>} */}
-      <ImageBox
-        onClick={() => scrollIntoView("top")}
-        src="/logo.svg"
-        alt="busshiDev"
-        width={80}
-        height={80}
-      />
-    </LogoContainer>
-  );
-};
+const Logo = () => (
+  <LogoContainer>
+    <ImageBox
+      onClick={() => scrollIntoView("top")}
+      src="/logo.svg"
+      alt="busshiDev"
+      width={80}
+      height={80}
+    />
+  </LogoContainer>
+);
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
@@ -71,10 +66,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: var(--footer-light-color);
+  background: var(--footer-light-background);
 
   @media (prefers-color-scheme: dark) {
-    background: var(--footer-dark-color);
+    background: var(--footer-dark-background);
   }
 
   @media (max-width: 768px) {
@@ -88,12 +83,10 @@ const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--secondary-light-color);
-  color: var(--dark-background);
+  background: var(--footer-light-background);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--secondary-dark-color);
-    background: var(--footer-dark-color);
+    background: var(--footer-dark-background);
     img {
       filter: invert(1);
     }
@@ -120,12 +113,8 @@ const Span = styled.span`
   font-weight: var(--font-weight);
   line-height: var(--line-height);
   letter-spacing: var(--middle-letter-spacing);
-  color: var(--main-dark-color);
+  color: var(--middle-font-color);
   margin-bottom: 0.5rem;
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--secondary-dark-color);
-  }
 `;
 
 const LinkWrapper = styled(Link)`
@@ -135,11 +124,11 @@ const LinkWrapper = styled(Link)`
   align-items: center;
   font-size: 0.8rem;
   padding: 0.5rem;
-  color: var(--footer-dark-color);
+  color: var(--middle-font-color);
 
   transition: color 0.3s ease;
   :hover {
-    color: var(--main-dark-color);
+    color: var(--main-light-font-color);
   }
 
   @media (max-width: 768px) {
@@ -147,9 +136,8 @@ const LinkWrapper = styled(Link)`
   }
 
   @media (prefers-color-scheme: dark) {
-    color: var(--secondary-dark-color);
     :hover {
-      color: var(--main-light-color);
+      color: var(--main-dark-font-color);
     }
   }
 `;

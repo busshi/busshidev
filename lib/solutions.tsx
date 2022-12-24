@@ -14,7 +14,7 @@ export const SOLUTIONS = [
       "Best UI / UX practices",
     ],
     id: "design",
-    icon: <FiFigma size={40} color="var(--secondary-dark-color)" />,
+    icon: <FiFigma size={40} color="var(--middle-font-color)" />,
   },
   {
     title: "Develop.",
@@ -25,7 +25,7 @@ export const SOLUTIONS = [
       "Best code practices easy to maintain",
     ],
     id: "develop",
-    icon: <BsTerminalFill size={40} color="var(--secondary-dark-color)" />,
+    icon: <BsTerminalFill size={40} color="var(--middle-font-color)" />,
   },
   {
     title: "Deploy.",
@@ -36,7 +36,7 @@ export const SOLUTIONS = [
       "Continuous integration and development",
     ],
     id: "deploy",
-    icon: <SlRocket size={40} color="var(--secondary-dark-color)" />,
+    icon: <SlRocket size={40} color="var(--middle-font-color)" />,
   },
   {
     title: "Boost.",
@@ -47,6 +47,6 @@ export const SOLUTIONS = [
       "Boost your trafic",
     ],
     id: "boost",
-    icon: <BsGraphUp size={40} color="var(--secondary-dark-color)" />,
+    icon: <BsGraphUp size={40} color="var(--middle-font-color)" />,
   },
 ];

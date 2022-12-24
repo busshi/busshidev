@@ -64,7 +64,7 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary-light-color);
+  color: var(--main-light-font-color);
   width: 3rem;
   height: 3rem;
   border-radius: 99999px;
@@ -80,7 +80,7 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
     })`};
 
   @media (prefers-color-scheme: dark) {
-      color: var(--main-dark-color);
+      color: var(--main-dark-font-color);
     }
   }
 `;

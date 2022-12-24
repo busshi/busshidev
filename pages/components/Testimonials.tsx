@@ -118,6 +118,8 @@ export const SectionTitle = styled.div<{ margin?: string }>`
   line-height: var(--line-height);
   letter-spacing: var(--big-letter-spacing);
 
+  color: var(--middle-font-color);
+
   @media (max-width: 768px) {
     font-size: 1rem;
   }
@@ -175,7 +177,7 @@ const Testimonial = styled.div`
   border-radius: var(--border-radius);
 
   a {
-    color: var(--secondary-dark-color);
+    color: var(--middle-font-color);
     text-decoration: underline;
   }
 
@@ -211,10 +213,10 @@ const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
   height: 0.7rem;
   margin: 0.2rem;
   background: ${(props) =>
-    props.isTestimonialsVisible ? "var(--secondary-dark-color)" : ""};
+    props.isTestimonialsVisible ? "var(--middle-font-color)" : ""};
   border: ${(props) =>
     props.isTestimonialsVisible
-      ? "1px solid var(--secondary-dark-color)"
+      ? "1px solid var(--middle-font-color)"
       : "none"};
   border-radius: 99999px;
   transition: all 0.6s ease;
