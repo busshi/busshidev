@@ -1,12 +1,8 @@
 import styled, { keyframes } from "styled-components";
-// import { IoMdContact } from "react-icons/io";
 import { scrollIntoView } from "../../lib/scroll";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useIsScrolling } from "../../hooks/useIsScrolling";
 import { useEffect, useState } from "react";
-// import { TbGridDots } from "react-icons/tb";
-// import { SiGooglemeet } from "react-icons/si";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { FiFigma } from "react-icons/fi";
 import { BsGraphUp, BsTerminalFill } from "react-icons/bs";
@@ -14,6 +10,8 @@ import { SlRocket } from "react-icons/sl";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
+import { COLORS } from "../../lib/constants";
+import { useIsDarkMode } from "../../hooks/useIsDarkMode";
 
 export const Menu = ({
   menuOpened,
@@ -27,6 +25,7 @@ export const Menu = ({
   const isScrolling = useIsScrolling();
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
+  const isDarkMode = useIsDarkMode();
 
   useEffect(() => {
     isScrolling === "down" && setMenuOpened(false);
@@ -35,12 +34,10 @@ export const Menu = ({
   return (
     <Container>
       <MenuItem
+        id="menuSolutions"
         onClick={() => {
           setSolutionsOpened(solutionsOpened ? false : true);
           contactOpened && setContactOpened(false);
-          // if (isHome) {
-          //   scrollIntoView("solutions");
-          // } else router.push("/#solutions");
         }}
       >
         <Item>
@@ -58,11 +55,10 @@ export const Menu = ({
                   scrollIntoView("design");
                 } else router.push("/#design");
               }}
+              hoverColor={COLORS[0].start}
             >
-              <div>
-                <FiFigma />
-              </div>
-              <div>Design</div>
+              <FiFigma />
+              Design
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
@@ -71,11 +67,10 @@ export const Menu = ({
                   scrollIntoView("develop");
                 } else router.push("/#develop");
               }}
+              hoverColor={COLORS[1].start}
             >
-              <div>
-                <BsTerminalFill />
-              </div>
-              <div>Develop</div>
+              <BsTerminalFill />
+              Develop
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
@@ -84,11 +79,10 @@ export const Menu = ({
                   scrollIntoView("deploy");
                 } else router.push("/#deploy");
               }}
+              hoverColor={COLORS[2].start}
             >
-              <div>
-                <SlRocket />
-              </div>
-              <div>Deploy</div>
+              <SlRocket />
+              Deploy
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
@@ -97,25 +91,26 @@ export const Menu = ({
                   scrollIntoView("boost");
                 } else router.push("/#boost");
               }}
+              hoverColor={COLORS[3].start}
             >
-              <div>
-                <BsGraphUp />
-              </div>
-              <div>Boost</div>
+              <BsGraphUp />
+              Boost
             </SubMenuItem>
           </SubMenuItems>
         )}
       </MenuItem>
+
+      <MenuItem id="menuAbout" onClick={() => router.push("https://busshi.fr")}>
+        <Item>About me</Item>
+      </MenuItem>
+
       <MenuItem
+        id="menuContact"
         onClick={() => {
           setContactOpened(contactOpened ? false : true);
           solutionsOpened && setSolutionsOpened(false);
-          // if (isHome) {
-          //   router.push("/contact");
-          // }
         }}
       >
-        {/* <SiGooglemeet /> */}
         <Item>
           <div onClick={() => setSolutionsOpened(false)}>Contact</div>
           <div>
@@ -129,52 +124,49 @@ export const Menu = ({
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
+              hoverColor={
+                isDarkMode
+                  ? "var(--main-light-color)"
+                  : "var(--main-dark-color)"
+              }
             >
-              <div>
-                <TfiHeadphoneAlt />
-              </div>
-              <div>Chat with me</div>
+              <TfiHeadphoneAlt />
+              Chat with me
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
+              hoverColor={
+                isDarkMode
+                  ? "var(--main-light-color)"
+                  : "var(--main-dark-color)"
+              }
             >
-              <div>
-                <SiGooglemeet />
-              </div>
-              <div>Book a meeting</div>
+              <SiGooglemeet />
+              Book a meeting
             </SubMenuItem>
             <SubMenuItem
               onClick={() => {
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
+              hoverColor={
+                isDarkMode
+                  ? "var(--main-light-color)"
+                  : "var(--main-dark-color)"
+              }
             >
-              <div>
-                <HiOutlineMail />
-              </div>
-              <div>Send an email</div>
+              <HiOutlineMail />
+              Send an email
             </SubMenuItem>
           </SubMenuItems>
         )}
       </MenuItem>
-      <MenuItem onClick={() => router.push("https://busshi.fr")}>
-        {/* <IoMdContact /> */}
-        <Item>About me</Item>
-      </MenuItem>
     </Container>
   );
 };
-
-const Item = styled.div`
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  align-items: center;
-`;
 
 const animate = keyframes`
   from {
@@ -196,27 +188,37 @@ const Container = styled.div`
   width: 100vw;
   height: 88vh;
   background-color: var(--main-light-color);
+  color: var(--secondary-dark-color);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--main-dark-color);
+    color: var(--secondary-dark-color);
   }
 `;
 
 const MenuItem = styled.div`
   font-size: 1rem;
-  // font-weight: var(--font-weight);
   line-height: 1.5;
-  // letter-spacing: 0rem;
-  color: var(--secondary-dark-color);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid;
   width: 100vw;
+`;
 
-  a {
-    color: var(--secondary-dark-color);
+const Item = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  :hover {
+    color: var(--main-dark-color);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--main-light-color);
+    }
   }
 `;
 
@@ -225,15 +227,18 @@ const SubMenuItems = styled.div`
   width: 80vw;
 `;
 
-const SubMenuItem = styled.div`
+const SubMenuItem = styled.div<{ hoverColor: string }>`
   display: flex;
   align-items: center;
-  // justify-content: flex-start;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: opacity var(--transition-delay) ease;
   gap: 1rem;
   :hover {
-    opacity: 0.7;
+    color: ${(props) => props.hoverColor};
+
+    // @media (prefers-color-scheme: dark) {
+    //   color: var(--main-light-color);
+    // }
   }
 `;
 
