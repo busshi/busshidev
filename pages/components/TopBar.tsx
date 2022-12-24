@@ -63,9 +63,7 @@ export const TopBar = () => {
           </Buttons>
         )}
       </Container>
-      {menuOpened && (
-        <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
-      )}
+      {menuOpened && <Menu setMenuOpened={setMenuOpened} />}
     </div>
   );
 };

@@ -11,13 +11,10 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import { COLORS } from "../../lib/constants";
-import { useIsDarkMode } from "../../hooks/useIsDarkMode";
 
 export const Menu = ({
-  menuOpened,
   setMenuOpened,
 }: {
-  menuOpened: boolean;
   setMenuOpened: (value: boolean) => void;
 }) => {
   const router = useRouter();
@@ -25,7 +22,6 @@ export const Menu = ({
   const isScrolling = useIsScrolling();
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
-  const isDarkMode = useIsDarkMode();
 
   useEffect(() => {
     isScrolling === "down" && setMenuOpened(false);
@@ -124,11 +120,6 @@ export const Menu = ({
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
-              hoverColor={
-                isDarkMode
-                  ? "var(--main-light-color)"
-                  : "var(--main-dark-color)"
-              }
             >
               <TfiHeadphoneAlt />
               Chat with me
@@ -138,11 +129,6 @@ export const Menu = ({
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
-              hoverColor={
-                isDarkMode
-                  ? "var(--main-light-color)"
-                  : "var(--main-dark-color)"
-              }
             >
               <SiGooglemeet />
               Book a meeting
@@ -152,11 +138,6 @@ export const Menu = ({
                 setMenuOpened(false);
                 if (isHome) router.push("/contact");
               }}
-              hoverColor={
-                isDarkMode
-                  ? "var(--main-light-color)"
-                  : "var(--main-dark-color)"
-              }
             >
               <HiOutlineMail />
               Send an email
@@ -213,6 +194,8 @@ const Item = styled.div`
   justify-content: space-between;
   height: 50px;
   align-items: center;
+  transition: all 0.5s ease;
+
   :hover {
     color: var(--main-dark-color);
 
@@ -227,18 +210,22 @@ const SubMenuItems = styled.div`
   width: 80vw;
 `;
 
-const SubMenuItem = styled.div<{ hoverColor: string }>`
+const SubMenuItem = styled.div<{ hoverColor?: string }>`
   display: flex;
   align-items: center;
   font-size: 0.9rem;
   transition: opacity var(--transition-delay) ease;
   gap: 1rem;
-  :hover {
-    color: ${(props) => props.hoverColor};
+  transition: color 0.5s ease;
 
-    // @media (prefers-color-scheme: dark) {
-    //   color: var(--main-light-color);
-    // }
+  :hover {
+    color: ${(props) =>
+      props.hoverColor ? props.hoverColor : "var(--main-dark-color)"};
+
+    @media (prefers-color-scheme: dark) {
+      color: ${(props) =>
+        props.hoverColor ? props.hoverColor : "var(--main-light-color)"};
+    }
   }
 `;
 
