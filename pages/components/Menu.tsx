@@ -7,6 +7,13 @@ import { useIsScrolling } from "../../hooks/useIsScrolling";
 import { useEffect, useState } from "react";
 // import { TbGridDots } from "react-icons/tb";
 // import { SiGooglemeet } from "react-icons/si";
+import { IoIosArrowDropdown } from "react-icons/io";
+import { FiFigma } from "react-icons/fi";
+import { BsGraphUp, BsTerminalFill } from "react-icons/bs";
+import { SlRocket } from "react-icons/sl";
+import { TfiHeadphoneAlt } from "react-icons/tfi";
+import { SiGooglemeet } from "react-icons/si";
+import { HiOutlineMail } from "react-icons/hi";
 
 export const Menu = ({
   menuOpened,
@@ -18,7 +25,7 @@ export const Menu = ({
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
   const isScrolling = useIsScrolling();
-  const [solutionsOpened, setSolutionsOpened] = useState(false);
+  const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
 
   useEffect(() => {
@@ -26,123 +33,150 @@ export const Menu = ({
   }, [isScrolling, setMenuOpened]);
 
   return (
-    <div>
-      <Hr />
-      <Container>
-        <MenuItem
-          onClick={() => {
-            setSolutionsOpened(true);
-            // if (isHome) {
-            //   scrollIntoView("solutions");
-            // } else router.push("/#solutions");
-          }}
-        >
-          {/* <TbGridDots /> */}
+    <Container>
+      <MenuItem
+        onClick={() => {
+          setSolutionsOpened(solutionsOpened ? false : true);
+          contactOpened && setContactOpened(false);
+          // if (isHome) {
+          //   scrollIntoView("solutions");
+          // } else router.push("/#solutions");
+        }}
+      >
+        <Item>
           <div onClick={() => setContactOpened(false)}>Solutions</div>
-          {solutionsOpened && (
-            <SubMenuItems onClick={() => setContactOpened(false)}>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(true);
-                  if (isHome) {
-                    scrollIntoView("design");
-                  } else router.push("/#design");
-                }}
-              >
-                Design
-              </SubMenuItem>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(true);
-                  if (isHome) {
-                    scrollIntoView("develop");
-                  } else router.push("/#develop");
-                }}
-              >
-                Develop
-              </SubMenuItem>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(true);
-                  if (isHome) {
-                    scrollIntoView("deploy");
-                  } else router.push("/#deploy");
-                }}
-              >
-                Deploy
-              </SubMenuItem>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(true);
-                  if (isHome) {
-                    scrollIntoView("boost");
-                  } else router.push("/#boost");
-                }}
-              >
-                Boost
-              </SubMenuItem>
-            </SubMenuItems>
-          )}
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            setContactOpened(true);
-            // if (isHome) {
-            //   router.push("/contact");
-            // }
-          }}
-        >
-          {/* <SiGooglemeet /> */}
+          <div>
+            <IoIosArrowDropdown />
+          </div>
+        </Item>
+        {solutionsOpened && (
+          <SubMenuItems onClick={() => setContactOpened(false)}>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(true);
+                if (isHome) {
+                  scrollIntoView("design");
+                } else router.push("/#design");
+              }}
+            >
+              <div>
+                <FiFigma />
+              </div>
+              <div>Design</div>
+            </SubMenuItem>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(true);
+                if (isHome) {
+                  scrollIntoView("develop");
+                } else router.push("/#develop");
+              }}
+            >
+              <div>
+                <BsTerminalFill />
+              </div>
+              <div>Develop</div>
+            </SubMenuItem>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(true);
+                if (isHome) {
+                  scrollIntoView("deploy");
+                } else router.push("/#deploy");
+              }}
+            >
+              <div>
+                <SlRocket />
+              </div>
+              <div>Deploy</div>
+            </SubMenuItem>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(true);
+                if (isHome) {
+                  scrollIntoView("boost");
+                } else router.push("/#boost");
+              }}
+            >
+              <div>
+                <BsGraphUp />
+              </div>
+              <div>Boost</div>
+            </SubMenuItem>
+          </SubMenuItems>
+        )}
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          setContactOpened(contactOpened ? false : true);
+          solutionsOpened && setSolutionsOpened(false);
+          // if (isHome) {
+          //   router.push("/contact");
+          // }
+        }}
+      >
+        {/* <SiGooglemeet /> */}
+        <Item>
           <div onClick={() => setSolutionsOpened(false)}>Contact</div>
-          {contactOpened && (
-            <SubMenuItems onClick={() => setSolutionsOpened(false)}>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(false);
-                  if (isHome) router.push("/contact");
-                }}
-              >
-                Chat with me
-              </SubMenuItem>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(false);
-                  if (isHome) router.push("/contact");
-                }}
-              >
-                Book a meeting
-              </SubMenuItem>
-              <SubMenuItem
-                onClick={() => {
-                  setMenuOpened(false);
-                  if (isHome) router.push("/contact");
-                }}
-              >
-                Send an email
-              </SubMenuItem>
-            </SubMenuItems>
-          )}
-        </MenuItem>
-        <Link href="https://busshi.fr">
-          <MenuItem>
-            {/* <IoMdContact /> */}
-            About me
-          </MenuItem>
-        </Link>
-      </Container>
-    </div>
+          <div>
+            <IoIosArrowDropdown />
+          </div>
+        </Item>
+        {contactOpened && (
+          <SubMenuItems onClick={() => setSolutionsOpened(false)}>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(false);
+                if (isHome) router.push("/contact");
+              }}
+            >
+              <div>
+                <TfiHeadphoneAlt />
+              </div>
+              <div>Chat with me</div>
+            </SubMenuItem>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(false);
+                if (isHome) router.push("/contact");
+              }}
+            >
+              <div>
+                <SiGooglemeet />
+              </div>
+              <div>Book a meeting</div>
+            </SubMenuItem>
+            <SubMenuItem
+              onClick={() => {
+                setMenuOpened(false);
+                if (isHome) router.push("/contact");
+              }}
+            >
+              <div>
+                <HiOutlineMail />
+              </div>
+              <div>Send an email</div>
+            </SubMenuItem>
+          </SubMenuItems>
+        )}
+      </MenuItem>
+      <MenuItem onClick={() => router.push("https://busshi.fr")}>
+        {/* <IoMdContact /> */}
+        <Item>About me</Item>
+      </MenuItem>
+    </Container>
   );
 };
 
-const Hr = styled.hr`
-  width: 100vw;
-  height: 2px;
-  border-width: 0;
-  color: gray;
-  background-color: gray;
+const Item = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
 `;
 
-const makeDark = keyframes`
+const animate = keyframes`
   from {
     opacity: 0%;
     transform: translate3d(0, 100%, 0);
@@ -155,19 +189,12 @@ const makeDark = keyframes`
 
 const Container = styled.div`
   display: flex;
-  // border: solid;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1rem;
-  animation: ${makeDark} 0.3s ease;
+  animation: ${animate} 0.3s ease;
   width: 100vw;
   height: 88vh;
-  margin: 2rem;
-  // position: absolute;
-  // top: 0;
-  // right: 0;
-  // z-index: 2;
   background-color: var(--main-light-color);
 
   @media (prefers-color-scheme: dark) {
@@ -176,31 +203,35 @@ const Container = styled.div`
 `;
 
 const MenuItem = styled.div`
-  font-size: 1.5rem;
+  font-size: 1rem;
   // font-weight: var(--font-weight);
-  line-height: var(--line-height);
-  letter-spacing: var(--middle-letter-spacing);
+  line-height: 1.5;
+  // letter-spacing: 0rem;
   color: var(--secondary-dark-color);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid;
-
-  :last-child {
-    border-bottom: none;
-  }
+  width: 100vw;
 
   a {
     color: var(--secondary-dark-color);
   }
 `;
 
-const SubMenuItems = styled.div``;
+const SubMenuItems = styled.div`
+  margin-bottom: 1rem;
+  width: 80vw;
+`;
 
 const SubMenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  // justify-content: flex-start;
   font-size: 1rem;
   transition: opacity var(--transition-delay) ease;
+  gap: 1rem;
   :hover {
     opacity: 0.7;
   }
