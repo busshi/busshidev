@@ -3,7 +3,7 @@ import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 
-export const buildSolutions = (size: number, color?: string) => [
+export const buildSolutionsMenu = (size: number, color?: string) => [
   {
     title: "Design.",
     description: "Create the website of your dreams",

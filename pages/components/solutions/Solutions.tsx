@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
 import { COLORS } from "../../../lib/constants";
-import { buildSolutions } from "../../../lib/solutions";
+import { buildSolutionsMenu } from "../../../lib/solutions";
 import { useHighlightedColorState } from "../../../providers/HighlightedColor";
 import { Color } from "../../../types/interfaces";
 import { Content } from "./Content";
@@ -10,7 +10,7 @@ export const Solutions = () => {
   const { highlighted } = useHighlightedColorState();
   const [intersectionRatio, ref] =
     useIntersectionRatio<HTMLDivElement>("200px");
-  const solutions = buildSolutions(40, "var(--middle-font-color)");
+  const solutions = buildSolutionsMenu(40, "var(--middle-font-color)");
 
   return (
     <Container ref={ref} id="solutions" style={{ opacity: intersectionRatio }}>

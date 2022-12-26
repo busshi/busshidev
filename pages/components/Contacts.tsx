@@ -20,8 +20,7 @@ export const Contacts = ({
   //   const [intersectionRatio3, ref3] =
   //     useIntersectionRatio<HTMLDivElement>("-50px");
   const isMobile = useIsMobile();
-  const { setIsChatVisible } =
-    useChatVisibleState();
+  const { setIsChatVisible } = useChatVisibleState();
 
   return (
     <Container>
@@ -96,6 +95,18 @@ const Item = styled.div`
   a {
     color: var(--middle-font-color);
   }
+
+  background-color: var(--light-background);
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dark-background);
+  }
+
+  :hover {
+    border: solid transparent;
+    box-shadow: 0px 0px 3rem 0px black;
+  }
+
+  transition: all var(--transition-delay) ease;
 `;
 
 const Text = styled.div`

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { COLORS } from "../../../lib/constants";
-import { buildSolutions } from "../../../lib/solutions";
+import { buildSolutionsMenu } from "../../../lib/solutions";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => {
-  const solutions = buildSolutions(40, "var(--middle-font-color)");
+  const solutions = buildSolutionsMenu(40, "var(--middle-font-color)");
 
   return (
     <Container id="solutions">

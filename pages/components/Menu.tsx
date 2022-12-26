@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { BLOG_URL, COLORS } from "../../lib/constants";
-import { buildSolutions } from "../../lib/solutions";
-import { CONTACT_MENU } from "../../lib/menu";
+import { buildSolutionsMenu } from "../../lib/solutions";
+import { buildContactsMenu } from "../../lib/menu";
 
 export const Menu = ({
   setMenuOpened,
@@ -12,12 +12,12 @@ export const Menu = ({
   setMenuOpened: (value: boolean) => void;
 }) => {
   const router = useRouter();
-  const isHome = router.asPath !== "/contact";
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
 
   // Build solutions array with icon size of 20px
-  const solutions = buildSolutions(16);
+  const solutions = buildSolutionsMenu(16);
+  const contacts = buildContactsMenu(setMenuOpened);
 
   return (
     <Container>
@@ -76,14 +76,8 @@ export const Menu = ({
               setSolutionsOpened(false);
             }}
           >
-            {CONTACT_MENU.map(({ id, text, icon }) => (
-              <SubMenuItem
-                key={id}
-                onClick={() => {
-                  isHome && router.push("/contact");
-                  setMenuOpened(false);
-                }}
-              >
+            {contacts.map(({ id, text, icon, onClick }) => (
+              <SubMenuItem key={id} onClick={onClick}>
                 {icon} {text}
               </SubMenuItem>
             ))}
