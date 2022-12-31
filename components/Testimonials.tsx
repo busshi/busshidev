@@ -10,6 +10,7 @@ import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 
 const SCROLL_TIMEOUT = 6000;
+const DOT_WIDTH = 44;
 
 export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
@@ -20,6 +21,7 @@ export const Testimonials = () => {
   const [reverse, setReverse] = useState(false);
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>();
+  //const [width, setWidth] = useState(5);
 
   const items = TESTIMONIALS.map((item) => item.id);
 
@@ -35,20 +37,38 @@ export const Testimonials = () => {
       else if (!reverse && nextIndex === items.length - 1) setReverse(true);
 
       setIdVisible(nextIndex);
+      //  setWidth(5);
     }, SCROLL_TIMEOUT);
     return () => clearInterval(interval);
   }, [idVisible, isMobile, isTestimonialsVisible, items.length, reverse]);
 
   // auto scroll
   useEffect(() => {
-    if (isTestimonialsVisible && isMobile) scrollIntoView(items[idVisible]);
+    if (isTestimonialsVisible && isMobile) {
+      scrollIntoView(items[idVisible]);
+    }
   }, [idVisible, isMobile, items, isTestimonialsVisible]);
 
   // IntersectionObserver
   useEffect(() => {
-    if (isTestimonialsVisible && isMobile) setIdVisible(testimonialIdVisible);
+    if (isTestimonialsVisible && isMobile) {
+      setIdVisible(testimonialIdVisible);
+    }
   }, [testimonialIdVisible, isTestimonialsVisible, isMobile]);
 
+  // Sliding Dot
+  // useEffect(() => {
+  //   let inter: string | number | NodeJS.Timer | undefined;
+  //   if (isTestimonialsVisible && isMobile) {
+  //     inter = setInterval(
+  //       () => setWidth(width + 1),
+  //       SCROLL_TIMEOUT / DOT_WIDTH
+  //     );
+  //   }
+  //   return () => {
+  //     inter && clearInterval(inter);
+  //   };
+  // }, [width]);
   return (
     <Container ref={containerRef} style={{ opacity: intersectionRatio }}>
       <SectionTitle id="testiTitle">TRUSTED BY STARTUPS</SectionTitle>
@@ -90,10 +110,17 @@ export const Testimonials = () => {
         <Scroller>
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot
-              isSelected={index === idVisible}
               key={id}
+              isSelected={index === idVisible}
               isTestimonialsVisible={isTestimonialsVisible}
-            />
+            >
+              {/* {index === idVisible && (
+                <SlidingBar
+                  isTestimonialsVisible={isTestimonialsVisible}
+                  style={{ width: `${width}px` }}
+                />
+              )} */}
+            </Dot>
           ))}
         </Scroller>
       )}
@@ -207,9 +234,11 @@ const Scroller = styled.div`
   overflow: hidden;
 `;
 
-const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
-  // cursor: pointer;
-  width: ${(props) => (props.isSelected ? "2rem" : "0.7rem")};
+const Dot = styled.div<{
+  isSelected: boolean;
+  isTestimonialsVisible: boolean;
+}>`
+  width: ${(props) => (props.isSelected ? `${DOT_WIDTH}px` : "0.7rem")};
   height: 0.7rem;
   margin: 0.2rem;
   background: ${(props) =>
@@ -220,9 +249,18 @@ const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
       : "none"};
   border-radius: 99999px;
   transition: all 0.6s ease;
+`;
 
-  :before {
-    background: red;
+const SlidingBar = styled.div<{ isTestimonialsVisible: boolean }>`
+  background: ${(props) =>
+    props.isTestimonialsVisible ? "var(--main-light-color)" : ""};
+  height: 0.7rem;
+  border-radius: 99999px;
+  // transition: all 0.1s ease;
+
+  @media (prefers-color-scheme: dark) {
+    background: ${(props) =>
+      props.isTestimonialsVisible ? "var(--main-light-color)" : ""};
   }
 `;
 

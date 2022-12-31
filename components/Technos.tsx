@@ -18,13 +18,13 @@ export const Technos = () => {
   useEffect(() => {
     let i = 0;
     let reverse = false;
-    if (isMobile) return;
+    // if (isMobile) return;
     const items = document.getElementById("items");
+    console.log(items);
     if (isElementVisible) {
       setTimeout(
         () =>
           setInterval(() => {
-            const items = document.getElementById("items");
             if (items) {
               if (i === scrollWidth + 70) reverse = true;
               else if (!i) reverse = false;
@@ -81,11 +81,11 @@ const Items = styled.div`
   -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
   scrollbar-width: none; /* Hide scroll bar Firefox */
 
-  @media (max-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  // @media (max-width: 768px) {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: center;
+  // }
 `;
 
 const Techno = styled.div`

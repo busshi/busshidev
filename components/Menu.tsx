@@ -64,7 +64,7 @@ export const Menu = ({
           setMenuOpened(false);
         }}
       >
-        <Item>Testimonials</Item>
+        <Item>Wall of love</Item>
       </MenuItem>
 
       <MenuItem
