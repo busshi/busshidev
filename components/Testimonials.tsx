@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
-import { TESTIMONIALS } from "../../lib/testimonials";
-import { useIsMobile } from "../../hooks/useIsMobile";
-import { scrollIntoView } from "../../lib/scroll";
+import { TESTIMONIALS } from "../lib/testimonials";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { scrollIntoView } from "../lib/scroll";
 import { useEffect, useState } from "react";
-import { useTestimonialVisibleState } from "../../providers/TestimonialVisible";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import useIntersectionRatio from "../../hooks/useIntersectionRatio";
+import { useTestimonialVisibleState } from "../providers/TestimonialVisible";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import useIntersectionRatio from "../hooks/useIntersectionRatio";
 
 const SCROLL_TIMEOUT = 6000;
 

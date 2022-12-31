@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "../../lib/constants";
+import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "../lib/constants";
 import {
   jsonLdFAQ,
   jsonLdLogo,
   jsonLdOrganization,
   jsonLdOrganizationRating,
   jsonLdWebsite,
-} from "../../lib/jsonLd";
+} from "../lib/jsonLd";
 
 export const Metadata: React.FC = () => (
   <Head>

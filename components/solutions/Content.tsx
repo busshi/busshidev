@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { useSlideIntoView } from "../../../hooks/useSlideIntoView";
-import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
-import useIntersectionRatio from "../../../hooks/useIntersectionRatio";
-import { COLORS } from "../../../lib/constants";
-import { useHighlightedColorState } from "../../../providers/HighlightedColor";
-import { Color, Solution } from "../../../types/interfaces";
+import { useSlideIntoView } from "../../hooks/useSlideIntoView";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionRatio from "../../hooks/useIntersectionRatio";
+import { COLORS } from "../../lib/constants";
+import { useHighlightedColorState } from "../../providers/HighlightedColor";
+import { Color, Solution } from "../../types/interfaces";
 import { Title } from "../Titles";
 
 export const Content = ({

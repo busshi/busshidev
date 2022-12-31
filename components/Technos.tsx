@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
 import { useEffect } from "react";
-import { useGetScrollWidth } from "../../hooks/useGetScrollWidth";
-import { useIsMobile } from "../../hooks/useIsMobile";
-import { getTechnos } from "../../lib/technos";
-import useIntersectionRatio from "../../hooks/useIntersectionRatio";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { useGetScrollWidth } from "../hooks/useGetScrollWidth";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { getTechnos } from "../lib/technos";
+import useIntersectionRatio from "../hooks/useIntersectionRatio";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 export const Technos = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();

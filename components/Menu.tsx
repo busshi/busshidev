@@ -2,9 +2,9 @@ import styled, { keyframes } from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { BLOG_URL, COLORS } from "../../lib/constants";
-import { buildSolutionsMenu } from "../../lib/solutions";
-import { buildContactsMenu } from "../../lib/menu";
+import { BLOG_URL, COLORS } from "../lib/constants";
+import { buildSolutionsMenu } from "../lib/solutions";
+import { buildContactsMenu } from "../lib/menu";
 
 export const Menu = ({
   setMenuOpened,
@@ -65,7 +65,7 @@ export const Menu = ({
         }}
       >
         <Item>
-          <div onClick={() => setSolutionsOpened(false)}>Contact</div>
+          <div onClick={() => setSolutionsOpened(false)}>Reach me out</div>
           <div>
             {contactOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
           </div>
@@ -78,7 +78,7 @@ export const Menu = ({
           >
             {contacts.map(({ id, text, icon, onClick }) => (
               <SubMenuItem key={id} onClick={onClick}>
-                {icon} {text}
+                {icon} {id !== "email" && text}
               </SubMenuItem>
             ))}
           </SubMenuItems>

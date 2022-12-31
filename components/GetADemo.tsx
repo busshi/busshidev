@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useHighlightedColorState } from "../../providers/HighlightedColor";
-import { Color } from "../../types/interfaces";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color } from "../types/interfaces";
 
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();

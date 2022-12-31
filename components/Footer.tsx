@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { useIsDarkMode } from "../../hooks/useIsDarkMode";
-import { useIsMobile } from "../../hooks/useIsMobile";
-import { CONTACTS, OPENSOURCES } from "../../lib/constants";
-import { scrollIntoView } from "../../lib/scroll";
-import { LinkItem } from "../../types/interfaces";
+import { useIsDarkMode } from "../hooks/useIsDarkMode";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { CONTACTS, OPENSOURCES } from "../lib/constants";
+import { scrollIntoView } from "../lib/scroll";
+import { LinkItem } from "../types/interfaces";
 
 export const Column = ({
   span,

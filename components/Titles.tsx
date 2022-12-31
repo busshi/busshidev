@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { scrollIntoView } from "../../lib/scroll";
-import { COLORS } from "../../lib/constants";
-import { useHighlightedColorState } from "../../providers/HighlightedColor";
-import { Color } from "../../types/interfaces";
-import { buildSolutionsMenu } from "../../lib/solutions";
+import { scrollIntoView } from "../lib/scroll";
+import { COLORS } from "../lib/constants";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color } from "../types/interfaces";
+import { buildSolutionsMenu } from "../lib/solutions";
 
 export const Titles = () => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =

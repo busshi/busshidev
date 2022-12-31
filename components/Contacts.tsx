@@ -3,28 +3,21 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
-import { EMAIL } from "../../lib/constants";
-//import useIntersectionRatio from "../../hooks/useIntersectionRatio";
-import { useIsMobile } from "../../hooks/useIsMobile";
-import { useChatVisibleState } from "../../providers/ChatVisible";
+import { EMAIL } from "../lib/constants";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { useChatVisibleState } from "../providers/ChatVisible";
 
 export const Contacts = ({
   setIsCalendlyVisible,
 }: {
   setIsCalendlyVisible: (value: boolean) => void;
 }) => {
-  //   const [intersectionRatio, ref] =
-  //     useIntersectionRatio<HTMLDivElement>("-50px");
-  //   const [intersectionRatio2, ref2] =
-  //     useIntersectionRatio<HTMLDivElement>("-50px");
-  //   const [intersectionRatio3, ref3] =
-  //     useIntersectionRatio<HTMLDivElement>("-50px");
   const isMobile = useIsMobile();
   const { setIsChatVisible } = useChatVisibleState();
 
   return (
     <Container>
-      <Title>3 WAYS TO REACH ME OUT</Title>
+      <Title>CONNECT FROM EVERYWHERE</Title>
       <ItemsWrapper>
         <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
@@ -54,7 +47,7 @@ const Container = styled.div`
 const Title = styled.div`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
-  letter-spacing: var(--letter-spacing);
+  letter-spacing: 0.5rem;
   font-size: 5rem;
   margin: 0 1rem 0 1rem;
   text-align: center;
@@ -71,7 +64,7 @@ const ItemsWrapper = styled.div`
   margin: 3rem 0 3rem 0;
 `;
 
-const Item = styled.div`
+export const Item = styled.div`
   cursor: pointer;
   margin: 2rem;
   padding: 2rem;
@@ -83,7 +76,7 @@ const Item = styled.div`
   justify-content: center;
 
   text-align: center;
-  border: solid;
+  border: 1px solid;
   border-radius: var(--border-radius);
 
   @media (max-width: 768px) {
@@ -102,8 +95,8 @@ const Item = styled.div`
   }
 
   :hover {
-    border: solid transparent;
-    box-shadow: 0px 0px 3rem 0px black;
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 3rem 0px var(--dark-background);
   }
 
   transition: all var(--transition-delay) ease;

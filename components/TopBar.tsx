@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useIsMobile } from "../../hooks/useIsMobile";
+import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
-import { scrollIntoView } from "../../lib/scroll";
+import { scrollIntoView } from "../lib/scroll";
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Dispatch, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
-import { BLOG_URL } from "../../lib/constants";
+import { BLOG_URL } from "../lib/constants";
 
 export const TopBar = ({
   menuOpened,
