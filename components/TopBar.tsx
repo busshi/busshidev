@@ -50,6 +50,15 @@ export const TopBar = ({
             <Link href={BLOG_URL}>
               <Button>About me</Button>
             </Link>
+            <Button
+              onClick={() =>
+                isHome
+                  ? scrollIntoView("testi", "center")
+                  : router.push("/#testi")
+              }
+            >
+              Testimonials
+            </Button>
             <Link href="/contact">
               <Button>Contact</Button>
             </Link>

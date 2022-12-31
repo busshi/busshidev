@@ -58,6 +58,16 @@ export const Menu = ({
       </MenuItem>
 
       <MenuItem
+        id="menuTesti"
+        onClick={() => {
+          router.push("/#testiTitle");
+          setMenuOpened(false);
+        }}
+      >
+        <Item>Testimonials</Item>
+      </MenuItem>
+
+      <MenuItem
         id="menuContact"
         onClick={() => {
           setContactOpened(contactOpened ? false : true);

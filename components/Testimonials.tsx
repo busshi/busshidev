@@ -51,7 +51,7 @@ export const Testimonials = () => {
 
   return (
     <Container ref={containerRef} style={{ opacity: intersectionRatio }}>
-      <SectionTitle>TRUSTED BY STARTUPS</SectionTitle>
+      <SectionTitle id="testiTitle">TRUSTED BY STARTUPS</SectionTitle>
       <TestiBox id="testi" className="hideScrollBar" ref={ref}>
         {TESTIMONIALS.map((testimonial, index) => (
           <TestimonialWrapper
@@ -220,6 +220,10 @@ const Dot = styled.div<{ isSelected: boolean; isTestimonialsVisible: boolean }>`
       : "none"};
   border-radius: 99999px;
   transition: all 0.6s ease;
+
+  :before {
+    background: red;
+  }
 `;
 
 export default Testimonials;

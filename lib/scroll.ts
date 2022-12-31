@@ -2,8 +2,9 @@
  * Utility function to handle smooth scroll
  *
  * @param id - Element ID
-
-* @example
+ * @param block - Scroll position (center, end, start, nearest)
+ *
+ * @example
  * scrollIntoView(elementId, blockPosition)
  */
 
