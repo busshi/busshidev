@@ -8,7 +8,7 @@ import { useCalendlyVisibleState } from "../providers/CalendlyVisible";
 import { useChatVisibleState } from "../providers/ChatVisible";
 import { EMAIL } from "./constants";
 
-export const buildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
+export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
   const { setIsChatVisible } = useChatVisibleState();

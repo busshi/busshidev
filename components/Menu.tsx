@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { BLOG_URL, COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
-import { buildContactsMenu } from "../lib/menu";
+import { BuildContactsMenu } from "../lib/menu";
 
 export const Menu = ({
   setMenuOpened,
@@ -17,7 +17,7 @@ export const Menu = ({
 
   // Build solutions array with icon size of 20px
   const solutions = buildSolutionsMenu(16);
-  const contacts = buildContactsMenu(setMenuOpened);
+  const contacts = BuildContactsMenu(setMenuOpened);
 
   return (
     <Container>
