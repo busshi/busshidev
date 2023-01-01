@@ -6,6 +6,7 @@ import Link from "next/link";
 import { EMAIL } from "../lib/constants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible";
+import Globe from "./Globe";
 
 export const Contacts = ({
   setIsCalendlyVisible,
@@ -18,6 +19,9 @@ export const Contacts = ({
   return (
     <Container>
       <Title>CONNECT FROM EVERYWHERE</Title>
+      <GlobeWrapper>
+        <Globe />
+      </GlobeWrapper>
       <ItemsWrapper>
         <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
@@ -42,6 +46,17 @@ const Container = styled.div`
   color: var(--middle-font-color);
   display: flex;
   flex-direction: column;
+  position: relative;
+`;
+
+const GlobeWrapper = styled.div`
+  z-index: 0;
+  position: absolute;
+  top: 15%;
+
+  @media (max-width: 768px) {
+    top: 0;
+  }
 `;
 
 const Title = styled.div`
@@ -61,7 +76,12 @@ const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 3rem 0 3rem 0;
+  margin: 10rem 0 10rem 0;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    margin: 5rem 0 5rem 0;
+  }
 `;
 
 export const Item = styled.div`
