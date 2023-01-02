@@ -1,22 +1,25 @@
-var canvas, scene, renderer, data;
+let canvas, scene, renderer, data;
 
 // Cache DOM selectors
-var container = document.getElementsByClassName("js-globe")[0];
+const container = document.getElementsByClassName("js-globe")[0];
 
-// Object for country HTML elements and variables
-var elements = {};
+// Object for country HTML elements and letiables
+let elements = {};
 
 // Three group objects
-var groups = {
+let groups = {
   main: null, // A group containing everything
   globe: null, // A group containing the globe sphere (and globe dots)
   globeDots: null, // A group containing the globe dots
-  lines: null, // A group containing the lines between each country
-  lineDots: null, // A group containing the line dots
 };
 
+// Check for dark mode
+const isDarkMode =
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
 // Map properties for creation and rendering
-var props = {
+let props = {
   mapSize: {
     // Size of the map from the intial source image (on which the dots are positioned on)
     width: 2048 / 2,
@@ -27,19 +30,16 @@ var props = {
   startingCountry: "paris", // The key of the country to rotate the camera to during the introduction animation (and which country to start the cycle at)
   colours: {
     // Cache the colours
-    globeDots: "rgb(255, 255, 255)", // No need to use the Three constructor as this value is used for the HTML canvas drawing 'fillStyle' property
-    lines: new THREE.Color("#18FFFF"),
-    lineDots: new THREE.Color("#18FFFF"),
+    globeDots: isDarkMode ? "rgb(255, 255, 255)" : "rgb(0,0,0)", // No need to use the Three constructor as this value is used for the HTML canvas drawing 'fillStyle' property
   },
   alphas: {
     // Transparent values of materials
     globe: 0.7,
-    lines: 0.5,
   },
 };
 
 // Angles used for animating the camera
-var camera = {
+let camera = {
   object: null, // Three object of the camera
   controls: null, // Three object of the orbital controls
   angles: {
@@ -56,37 +56,20 @@ var camera = {
 };
 
 // Booleans and values for animations
-var animations = {
-  finishedIntro: true, // Boolean of when the intro animations have finished
+let animations = {
   dots: {
     current: 0, // Animation frames of the globe dots introduction animation
-    total: 170, // Total frames (duration) of the globe dots introduction animation,
     points: [], // Array to clone the globe dots coordinates to
-  },
-  globe: {
-    current: 0, // Animation frames of the globe introduction animation
-    total: 80, // Total frames (duration) of the globe introduction animation,
-  },
-  countries: {
-    active: false, // Boolean if the country elements have been added and made active
-    animating: false, // Boolean if the countries are currently being animated
-    current: 0, // Animation frames of country elements introduction animation
-    total: 120, // Total frames (duration) of the country elements introduction animation
-    selected: null, // Three group object of the currently selected country
-    index: null, // Index of the country in the data array
-    timeout: null, // Timeout object for cycling to the next country
-    initialDuration: 5000, // Initial timeout duration before starting the country cycle
-    duration: 2000, // Timeout duration between cycling to the next country
   },
 };
 
 // Boolean to enable or disable rendering when window is in or out of focus
-var isHidden = false;
+let isHidden = false;
 
 /* SETUP */
 
 function getData() {
-  var request = new XMLHttpRequest();
+  const request = new XMLHttpRequest();
   request.open(
     "GET",
     "https://s3-us-west-2.amazonaws.com/s.cdpn.io/617753/globe-points.json",
@@ -157,7 +140,7 @@ function setupScene() {
   render();
   animate();
 
-  var canvasResizeBehaviour = function () {
+  const canvasResizeBehaviour = function () {
     container.width = window.innerWidth;
     container.height = window.innerHeight;
     container.style.width = window.innerWidth + "px";
@@ -171,6 +154,11 @@ function setupScene() {
   window.addEventListener("resize", canvasResizeBehaviour);
   window.addEventListener("orientationchange", function () {
     setTimeout(canvasResizeBehaviour, 0);
+  });
+  window.addEventListener("change", () => {
+    isDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
   canvasResizeBehaviour();
 }
@@ -225,9 +213,9 @@ if ("hidden" in document) {
 }
 
 function onFocusChange(event) {
-  var visible = "visible";
-  var hidden = "hidden";
-  var eventMap = {
+  const visible = "visible";
+  const hidden = "hidden";
+  const eventMap = {
     focus: visible,
     focusin: visible,
     pageshow: visible,
@@ -254,14 +242,6 @@ function animate() {
     introAnimate();
   }
 
-  if (animations.finishedIntro === true) {
-    animateDots();
-  }
-
-  // if (animations.countries.animating === true) {
-  //   animateCountryCycle();
-  // }
-
   camera.controls.setAzimuthalAngle(Math.cos(Date.now() * 0.0000005) * -360);
   camera.controls.setPolarAngle(1);
 
@@ -273,21 +253,26 @@ function animate() {
 /* GLOBE */
 
 function addGlobe() {
-  var textureLoader = new THREE.TextureLoader();
+  const textureLoader = new THREE.TextureLoader();
   textureLoader.setCrossOrigin(true);
 
-  var radius = props.globeRadius - props.globeRadius * 0.02;
-  var segments = 64;
-  var rings = 64;
+  const radius = props.globeRadius - props.globeRadius * 0.02;
+  const segments = 64;
+  const rings = 64;
 
   // Make gradient
-  var canvasSize = 128;
-  var textureCanvas = document.createElement("canvas");
+  const canvasSize = 128;
+  const textureCanvas = document.createElement("canvas");
   textureCanvas.width = canvasSize;
   textureCanvas.height = canvasSize;
-  var canvasContext = textureCanvas.getContext("2d");
+  const canvasContext = textureCanvas.getContext("2d");
   canvasContext.rect(0, 0, canvasSize, canvasSize);
-  var canvasGradient = canvasContext.createLinearGradient(0, 0, 0, canvasSize);
+  const canvasGradient = canvasContext.createLinearGradient(
+    0,
+    0,
+    0,
+    canvasSize
+  );
   canvasGradient.addColorStop(1, "rgba(0,0,0,0.02)");
   canvasGradient.addColorStop(1, "rgba(0,0,0,0.02)");
   canvasGradient.addColorStop(1, "rgba(0,0,0,0.02)");
@@ -295,11 +280,11 @@ function addGlobe() {
   canvasContext.fill();
 
   // Make texture
-  var texture = new THREE.Texture(textureCanvas);
+  const texture = new THREE.Texture(textureCanvas);
   texture.needsUpdate = true;
 
-  var geometry = new THREE.SphereGeometry(radius, segments, rings);
-  var material = new THREE.MeshBasicMaterial({
+  const geometry = new THREE.SphereGeometry(radius, segments, rings);
+  const material = new THREE.MeshBasicMaterial({
     map: texture,
     transparent: true,
     opacity: 0,
@@ -316,46 +301,46 @@ function addGlobe() {
 }
 
 function addGlobeDots() {
-  var geometry = new THREE.Geometry();
+  const geometry = new THREE.Geometry();
 
   // Make circle
-  var canvasSize = 16;
-  var halfSize = canvasSize / 2;
-  var textureCanvas = document.createElement("canvas");
+  const canvasSize = 16;
+  const halfSize = canvasSize / 2;
+  const textureCanvas = document.createElement("canvas");
   textureCanvas.width = canvasSize;
   textureCanvas.height = canvasSize;
-  var canvasContext = textureCanvas.getContext("2d");
+  const canvasContext = textureCanvas.getContext("2d");
   canvasContext.beginPath();
   canvasContext.arc(halfSize, halfSize, halfSize, 0, 2 * Math.PI);
   canvasContext.fillStyle = props.colours.globeDots;
   canvasContext.fill();
 
   // Make texture
-  var texture = new THREE.Texture(textureCanvas);
+  const texture = new THREE.Texture(textureCanvas);
   texture.needsUpdate = true;
 
-  var material = new THREE.PointsMaterial({
+  const material = new THREE.PointsMaterial({
     map: texture,
     size: props.globeRadius / 200,
   });
 
-  var addDot = function (targetX, targetY) {
+  const addDot = function (targetX, targetY) {
     // Add a point with zero coordinates
-    var point = new THREE.Vector3(0, 0, 0);
+    const point = new THREE.Vector3(0, 0, 0);
     geometry.vertices.push(point);
 
     // Add the coordinates to a new array for the intro animation
-    var result = returnSphericalCoordinates(targetX, targetY);
+    const result = returnSphericalCoordinates(targetX, targetY);
     animations.dots.points.push(
       new THREE.Vector3(result.x, result.y, result.z)
     );
   };
 
-  for (var i = 0; i < data.points.length; i++) {
+  for (let i = 0; i < data.points.length; i++) {
     addDot(data.points[i].x, data.points[i].y);
   }
 
-  for (var country in data.countries) {
+  for (const country in data.countries) {
     addDot(data.countries[country].x, data.countries[country].y);
   }
 
@@ -364,302 +349,22 @@ function addGlobeDots() {
   groups.globe.add(groups.globeDots);
 }
 
-/* COUNTRY LINES AND DOTS */
-
-function addLineDots() {
-  /*
-    This function will create a number of dots (props.dotsAmount) which will then later be
-    animated along the lines. The dots are set to not be visible as they are later
-    assigned a position after the introduction animation.
-  */
-
-  var radius = props.globeRadius / 120;
-  var segments = 32;
-  var rings = 32;
-
-  var geometry = new THREE.SphereGeometry(radius, segments, rings);
-  var material = new THREE.MeshBasicMaterial({
-    color: props.colours.lineDots,
-  });
-
-  // Returns a sphere geometry positioned at coordinates
-  var returnLineDot = function () {
-    var sphere = new THREE.Mesh(geometry, material);
-    return sphere;
-  };
-
-  for (var i = 0; i < props.dotsAmount; i++) {
-    // Get the country path geometry vertices and create the dot at the first vertex
-    var targetDot = returnLineDot();
-    targetDot.visible = false;
-
-    // Add custom variables for custom path coordinates and index
-    targetDot._pathIndex = null;
-    targetDot._path = null;
-
-    // Add the dot to the dots group
-    groups.lineDots.add(targetDot);
-  }
-}
-
-function assignDotsToRandomLine(target) {
-  // Get a random line from the current country
-  var randomLine =
-    Math.random() * (animations.countries.selected.children.length - 1);
-  randomLine = animations.countries.selected.children[randomLine.toFixed(0)];
-
-  // Assign the random country path to the dot and set the index at 0
-  target._path = randomLine._path;
-}
-
-function reassignDotsToNewLines() {
-  for (var i = 0; i < groups.lineDots.children.length; i++) {
-    var target = groups.lineDots.children[i];
-    if (target._path !== null && target._pathIndex !== null) {
-      assignDotsToRandomLine(target);
-    }
-  }
-}
-
-function animateDots() {
-  // Loop through the dots children group
-  for (var i = 0; i < groups.lineDots.children.length; i++) {
-    var dot = groups.lineDots.children[i];
-
-    if (dot._path === null) {
-      // Create a random seed as a pseudo-delay
-      var seed = Math.random();
-
-      if (seed > 0.99) {
-        assignDotsToRandomLine(dot);
-        dot._pathIndex = 0;
-      }
-    } else if (dot._path !== null && dot._pathIndex < dot._path.length - 1) {
-      // Show the dot
-      if (dot.visible === false) {
-        dot.visible = true;
-      }
-
-      // Move the dot along the path vertice coordinates
-      dot.position.x = dot._path[dot._pathIndex].x;
-      dot.position.y = dot._path[dot._pathIndex].y;
-      dot.position.z = dot._path[dot._pathIndex].z;
-
-      // Advance the path index by 1
-      dot._pathIndex++;
-    } else {
-      // Hide the dot
-      dot.visible = false;
-
-      // Remove the path assingment
-      dot._path = null;
-    }
-  }
-}
-
-/* ELEMENTS */
-
-var list;
-
-function positionElements() {
-  var widthHalf = canvas.clientWidth / 2;
-  var heightHalf = canvas.clientHeight / 2;
-
-  // Loop through the elements array and reposition the elements
-  for (var key in elements) {
-    var targetElement = elements[key];
-
-    var position = getProjectedPosition(
-      widthHalf,
-      heightHalf,
-      targetElement.position
-    );
-
-    // Construct the X and Y position strings
-    var positionX = position.x + "px";
-    var positionY = position.y + "px";
-
-    // Construct the 3D translate string
-    var elementStyle = targetElement.element.style;
-    elementStyle.webkitTransform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)";
-    elementStyle.WebkitTransform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)"; // Just Safari things (capitalised property name prefix)...
-    elementStyle.mozTransform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)";
-    elementStyle.msTransform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)";
-    elementStyle.oTransform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)";
-    elementStyle.transform =
-      "translate3D(" + positionX + ", " + positionY + ", 0)";
-  }
-}
-
-/* INTRO ANIMATIONS */
-
-// Easing reference: https://gist.github.com/gre/1650294
-
-var easeInOutCubic = function (t) {
-  return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-};
-
-var easeOutCubic = function (t) {
-  return --t * t * t + 1;
-};
-
-var easeInOutQuad = function (t) {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-};
-
 function introAnimate() {
-  if (animations.dots.current <= animations.dots.total) {
-    var points = groups.globeDots.geometry.vertices;
-    var totalLength = points.length;
+  const points = groups.globeDots.geometry.vertices;
+  const totalLength = points.length;
 
-    for (var i = 0; i < totalLength; i++) {
-      // Get ease value
-      // var dotProgress = easeInOutCubic(
-      //   animations.dots.current / animations.dots.total
-      // );
-
-      // Add delay based on loop iteration
-      // dotProgress = dotProgress + dotProgress * (i / totalLength);
-
-      // if (dotProgress > 1) {
-      //   dotProgress = 1;
-      // }
-
-      // Move the point
-      points[i].x = animations.dots.points[i].x * 1;
-      points[i].y = animations.dots.points[i].y * 1;
-      points[i].z = animations.dots.points[i].z * 1;
-
-      // // Animate the camera at the same rate as the first dot
-      // if (i === 0) {
-      //   var azimuthalDifference =
-      //     (camera.angles.current.azimuthal - camera.angles.target.azimuthal) *
-      //     dotProgress;
-      //   azimuthalDifference =
-      //     camera.angles.current.azimuthal - azimuthalDifference;
-      //   camera.controls.setAzimuthalAngle(azimuthalDifference);
-
-      //   var polarDifference =
-      //     (camera.angles.current.polar - camera.angles.target.polar) *
-      //     dotProgress;
-      //   polarDifference = camera.angles.current.polar - polarDifference;
-      //   //camera.controls.setPolarAngle(polarDifference);
-      //      }
-    }
-
-    animations.dots.current++;
-
-    // Update verticies
-    groups.globeDots.geometry.verticesNeedUpdate = true;
-
-    document.querySelector(".svg-wrapper").classList.add("active");
+  for (let i = 0; i < totalLength; i++) {
+    // Move the point
+    points[i].x = animations.dots.points[i].x * 1;
+    points[i].y = animations.dots.points[i].y * 1;
+    points[i].z = animations.dots.points[i].z * 1;
   }
 
-  if (
-    animations.dots.current >= animations.dots.total * 0.65 &&
-    animations.globe.current <= animations.globe.total
-  ) {
-    var globeProgress = easeOutCubic(
-      animations.globe.current / animations.globe.total
-    );
-    globe.material.opacity = props.alphas.globe * globeProgress;
+  animations.dots.current++;
 
-    animations.globe.current++;
-  }
-
-  if (
-    animations.countries.active === true &&
-    animations.finishedIntro === false
-  ) {
-    animations.finishedIntro = true;
-    // Start country cycle
-    animations.countries.timeout = setTimeout(
-      showNextCountry,
-      animations.countries.initialDuration
-    );
-    addLineDots();
-  }
+  // Update verticies
+  groups.globeDots.geometry.verticesNeedUpdate = true;
 }
-
-/* COUNTRY CYCLE */
-
-// function changeCountry(key, init) {
-//   if (animations.countries.selected !== undefined) {
-//     animations.countries.selected.visible = false;
-//   }
-
-//   for (var name in elements) {
-//     if (name === key) {
-//       elements[name].element.classList.add("active");
-//     } else {
-//       elements[name].element.classList.remove("active");
-//     }
-//   }
-
-//   // Show the select country lines
-//   animations.countries.selected = groups.lines.getObjectByName(key);
-//   animations.countries.selected.visible = true;
-
-//   if (init !== true) {
-//     camera.angles.current.azimuthal = camera.controls.getAzimuthalAngle();
-//     camera.angles.current.polar = camera.controls.getPolarAngle();
-
-//     var targetAngles = returnCameraAngles(
-//       data.countries[key].x,
-//       data.countries[key].y
-//     );
-//     camera.angles.target.azimuthal = targetAngles.azimuthal;
-//     camera.angles.target.polar = targetAngles.polar;
-
-//     animations.countries.animating = true;
-//     reassignDotsToNewLines();
-//   }
-// }
-
-// function animateCountryCycle() {
-//   if (animations.countries.current <= animations.countries.total) {
-//     var progress = easeInOutQuad(
-//       animations.countries.current / animations.countries.total
-//     );
-
-//     var azimuthalDifference =
-//       (camera.angles.current.azimuthal - camera.angles.target.azimuthal) *
-//       progress;
-//     azimuthalDifference = camera.angles.current.azimuthal - azimuthalDifference;
-//     camera.controls.setAzimuthalAngle(azimuthalDifference);
-
-//     var polarDifference =
-//       (camera.angles.current.polar - camera.angles.target.polar) * progress;
-//     polarDifference = camera.angles.current.polar - polarDifference;
-//     //camera.controls.setPolarAngle(polarDifference);
-
-//     animations.countries.current++;
-//   } else {
-//     animations.countries.animating = false;
-//     animations.countries.current = 0;
-
-//     animations.countries.timeout = setTimeout(
-//       showNextCountry,
-//       animations.countries.duration
-//     );
-//   }
-// }
-
-// function showNextCountry() {
-//   animations.countries.index++;
-
-//   if (animations.countries.index >= Object.keys(data.countries).length) {
-//     animations.countries.index = 0;
-//   }
-
-//   var key = Object.keys(data.countries)[animations.countries.index];
-//   changeCountry(key, false);
-// }
 
 /* COORDINATE CALCULATIONS */
 
@@ -670,10 +375,10 @@ function returnSphericalCoordinates(latitude, longitude) {
   longitude = ((longitude - props.mapSize.height) / props.mapSize.height) * -90;
 
   // Calculate the projected starting point
-  var radius = Math.cos((longitude / 180) * Math.PI) * props.globeRadius;
-  var targetX = Math.cos((latitude / 180) * Math.PI) * radius;
-  var targetY = Math.sin((longitude / 180) * Math.PI) * props.globeRadius;
-  var targetZ = Math.sin((latitude / 180) * Math.PI) * radius;
+  const radius = Math.cos((longitude / 180) * Math.PI) * props.globeRadius;
+  const targetX = Math.cos((latitude / 180) * Math.PI) * radius;
+  const targetY = Math.sin((longitude / 180) * Math.PI) * props.globeRadius;
+  const targetZ = Math.sin((latitude / 180) * Math.PI) * radius;
 
   return {
     x: targetX,
@@ -685,33 +390,33 @@ function returnSphericalCoordinates(latitude, longitude) {
 // Reference: https://codepen.io/ya7gisa0/pen/pisrm?editors=0010
 function returnCurveCoordinates(latitudeA, longitudeA, latitudeB, longitudeB) {
   // Calculate the starting point
-  var start = returnSphericalCoordinates(latitudeA, longitudeA);
+  const start = returnSphericalCoordinates(latitudeA, longitudeA);
 
   // Calculate the end point
-  var end = returnSphericalCoordinates(latitudeB, longitudeB);
+  const end = returnSphericalCoordinates(latitudeB, longitudeB);
 
   // Calculate the mid-point
-  var midPointX = (start.x + end.x) / 2;
-  var midPointY = (start.y + end.y) / 2;
-  var midPointZ = (start.z + end.z) / 2;
+  const midPointX = (start.x + end.x) / 2;
+  const midPointY = (start.y + end.y) / 2;
+  const midPointZ = (start.z + end.z) / 2;
 
   // Calculate the distance between the two coordinates
-  var distance = Math.pow(end.x - start.x, 2);
+  const distance = Math.pow(end.x - start.x, 2);
   distance += Math.pow(end.y - start.y, 2);
   distance += Math.pow(end.z - start.z, 2);
   distance = Math.sqrt(distance);
 
   // Calculate the multiplication value
-  var multipleVal = Math.pow(midPointX, 2);
+  const multipleVal = Math.pow(midPointX, 2);
   multipleVal += Math.pow(midPointY, 2);
   multipleVal += Math.pow(midPointZ, 2);
   multipleVal = Math.pow(distance, 2) / multipleVal;
   multipleVal = multipleVal * 0.7;
 
   // Apply the vector length to get new mid-points
-  var midX = midPointX + multipleVal * midPointX;
-  var midY = midPointY + multipleVal * midPointY;
-  var midZ = midPointZ + multipleVal * midPointZ;
+  const midX = midPointX + multipleVal * midPointX;
+  const midY = midPointY + multipleVal * midPointY;
+  const midZ = midPointZ + multipleVal * midPointZ;
 
   // Return set of coordinates
   return {
@@ -736,7 +441,7 @@ function returnCurveCoordinates(latitudeA, longitudeA, latitudeB, longitudeB) {
 // Returns an object of 2D coordinates for projected 3D position
 function getProjectedPosition(width, height, position) {
   position = position.clone();
-  var projected = position.project(camera.object);
+  const projected = position.project(camera.object);
 
   return {
     x: projected.x * width + width,
@@ -746,12 +451,12 @@ function getProjectedPosition(width, height, position) {
 
 // Returns an object of the azimuthal and polar angles of a given map latitude and longitude
 function returnCameraAngles(latitude, longitude) {
-  var targetAzimuthalAngle =
+  const targetAzimuthalAngle =
     ((latitude - props.mapSize.width) / props.mapSize.width) * Math.PI;
   targetAzimuthalAngle = targetAzimuthalAngle + Math.PI / 2;
   targetAzimuthalAngle = targetAzimuthalAngle + 0.1; // Add a small offset
 
-  var targetPolarAngle = (longitude / (props.mapSize.height * 2)) * Math.PI;
+  const targetPolarAngle = (longitude / (props.mapSize.height * 2)) * Math.PI;
 
   return {
     azimuthal: targetAzimuthalAngle,

@@ -7,6 +7,8 @@ import { EMAIL } from "../lib/constants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible";
 import Globe from "./Globe";
+import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { Color } from "../types/interfaces";
 
 export const Contacts = ({
   setIsCalendlyVisible,
@@ -15,13 +17,12 @@ export const Contacts = ({
 }) => {
   const isMobile = useIsMobile();
   const { setIsChatVisible } = useChatVisibleState();
+  const { highlightedColor } = useHighlightedColorState();
 
   return (
     <Container>
-      <Title>CONNECT FROM EVERYWHERE</Title>
-      <GlobeWrapper>
-        <Globe />
-      </GlobeWrapper>
+      <Title highlightedColor={highlightedColor}>CONNECT FROM EVERYWHERE</Title>
+      <Globe />
       <ItemsWrapper>
         <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
@@ -47,19 +48,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-`;
 
-const GlobeWrapper = styled.div`
-  z-index: 0;
-  position: absolute;
-  top: 15%;
-
+  margin-bottom: 50rem;
   @media (max-width: 768px) {
-    top: 0;
+    margin-bottom: 10rem;
   }
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ highlightedColor: Color }>`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: 0.5rem;
@@ -70,13 +66,22 @@ const Title = styled.div`
   @media (max-width: 768px) {
     font-size: 2rem;
   }
+
+  text-shadow: none;
+  transition: none;
+
+  @media (prefers-color-scheme: dark) {
+    // text-shadow: ${(props) =>
+      `0px 0px 30px ${props.highlightedColor.start}`};
+    // transition: text-shadow 1s ease;
+  }
 `;
 
 const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10rem 0 10rem 0;
+  margin: 15rem 0 0rem 0;
   z-index: 1;
 
   @media (max-width: 768px) {
