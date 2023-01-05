@@ -6,6 +6,7 @@ import { COLORS } from "../../lib/constants";
 import { useHighlightedColorState } from "../../providers/HighlightedColor";
 import { Color, Solution } from "../../types/interfaces";
 import { Title } from "../Titles";
+import { useDarkModeState } from "../../providers/DarkMode";
 
 export const Content = ({
   index,
@@ -22,9 +23,10 @@ export const Content = ({
   const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [intersectionRatio, refContainer] =
     useIntersectionRatio<HTMLDivElement>();
+  const { isDarkMode, setIsDarkMode } = useDarkModeState();
 
   useSlideIntoView();
-
+  console.log(isDarkMode);
   if (!solution) return null;
 
   return (
@@ -60,12 +62,25 @@ export const Content = ({
         {solution.icon}
         {/* </Icon> */}
         {solution.actions.map((item) => (
-          <TextBox key={item}>{item}</TextBox>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <TextBox key={item}>{item}</TextBox>
+            {item === "Dark mode" && (
+              <div>
+                <Button
+                  type="radio"
+                  onClick={() => setIsDarkMode(isDarkMode ? false : true)}
+                  checked={isDarkMode}
+                />
+              </div>
+            )}
+          </div>
         ))}
       </ActionsBox>
     </Container>
   );
 };
+
+const Button = styled.input``;
 
 const Container = styled.div`
   @media (max-width: 768px) {
