@@ -21,13 +21,12 @@ export const Testimonials = () => {
   const [reverse, setReverse] = useState(false);
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>();
-  //const [width, setWidth] = useState(5);
+  // const [width, setWidth] = useState(5);
 
   const items = TESTIMONIALS.map((item) => item.id);
 
   useEffect(() => {
     if (!isMobile || !isTestimonialsVisible) return;
-
     const interval = setInterval(() => {
       let nextIndex = reverse ? idVisible - 1 : idVisible + 1;
       if (nextIndex < 0) nextIndex = 0;
@@ -39,7 +38,9 @@ export const Testimonials = () => {
       setIdVisible(nextIndex);
       //  setWidth(5);
     }, SCROLL_TIMEOUT);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [idVisible, isMobile, isTestimonialsVisible, items.length, reverse]);
 
   // auto scroll

@@ -8,7 +8,7 @@ export const Calendly = () => {
   return (
     <Calendar>
       <Cross onClick={() => setIsCalendlyVisible(false)}>
-        <RxCrossCircled size={26} />
+        <RxCrossCircled size={26} color={"var(--middle-font-color)"} />
       </Cross>
       <iframe
         width="100%"

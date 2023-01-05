@@ -1,38 +1,46 @@
-import Script from "next/script";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useRef } from "react";
+import world from "../lib/world.json";
+import { useIsDarkMode } from "../hooks/useIsDarkMode";
 
-const Globe = () => {
+let Globe = () => null;
+if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
+// const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+
+const SpinningGlobe = () => {
+  const isDarkMode = useIsDarkMode();
+  const ref = useRef();
+
   return (
-    <Container className="js-globe" id="globe">
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js" />
-      <Script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/617753/ThreeOrbitControls.js" />
-      <Script src="https://rawgit.com/spite/THREE.MeshLine/master/src/THREE.MeshLine.js" />
-      <Script src="./scripts/globe.js" />
-
-      <div className="svg-wrapper"></div>
-
-      <ul className="globe-list"></ul>
-
-      <canvas className="globe-canvas js-canvas"></canvas>
+    <Container>
+      <Globe
+        //@ts-ignore
+        showGlobe={false}
+        backgroundColor={isDarkMode ? "#121212" : "#f1f1f1"}
+        ref={ref}
+        hexPolygonsData={world}
+        hexPolygonMargin={0.7}
+        onGlobeReady={() => {
+          //@ts-ignore
+          if (ref.current) ref.current.controls().autoRotate = true;
+        }}
+        showAtmosphere={true}
+        atmosphereColor={isDarkMode ? "#3a228a" : "#444444"}
+        atmosphereAltitude={0.25}
+        // arcsData={travel}
+        // arcDashLength={0.9}
+        // arcDashGap={4}
+        // arcDashAnimateTime={3000}
+        // arcsTransitionDuration={1000}
+        // arcStroke={"stroke"}
+        // arcCircularResolution={64}
+      />
     </Container>
   );
 };
 
 const Container = styled.div`
-  z-index: 0;
-  top: 50%;
-
-  @media (max-width: 768px) {
-    top: 0;
-  }
-
-  transform: scale(1.8);
   position: absolute;
-
-  @media (max-width: 768px) {
-    transform: scale(1);
-  }
 `;
 
-export default Globe;
+export default SpinningGlobe;

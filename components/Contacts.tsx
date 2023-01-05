@@ -6,9 +6,10 @@ import Link from "next/link";
 import { EMAIL } from "../lib/constants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible";
-import Globe from "./Globe";
 import { useHighlightedColorState } from "../providers/HighlightedColor";
 import { Color } from "../types/interfaces";
+import dynamic from "next/dynamic";
+const SpinningGlobe = dynamic(() => import("./Globe"), { ssr: false });
 
 export const Contacts = ({
   setIsCalendlyVisible,
@@ -22,7 +23,7 @@ export const Contacts = ({
   return (
     <Container>
       <Title highlightedColor={highlightedColor}>CONNECT FROM EVERYWHERE</Title>
-      <Globe />
+      <SpinningGlobe />
       <ItemsWrapper>
         <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
@@ -34,7 +35,7 @@ export const Contacts = ({
         </Item>
         <Item>
           <Link href={`mailto:${EMAIL}`}>
-            <HiOutlineMail size={isMobile ? 24 : 80} />
+            <HiOutlineMail size={isMobile ? 24 : 40} />
             <Text>Send an email</Text>
           </Link>
         </Item>
@@ -49,9 +50,9 @@ const Container = styled.div`
   flex-direction: column;
   position: relative;
 
-  margin-bottom: 50rem;
+  margin-bottom: 5rem;
   @media (max-width: 768px) {
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
   }
 `;
 
@@ -60,9 +61,9 @@ const Title = styled.div<{ highlightedColor: Color }>`
   font-weight: var(--font-weight);
   letter-spacing: 0.5rem;
   font-size: 5rem;
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem 1rem 1rem;
   text-align: center;
-
+  z-index: 2;
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -81,8 +82,7 @@ const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 15rem 0 0rem 0;
-  z-index: 1;
+  margin: 5rem 0 20rem 0;
 
   @media (max-width: 768px) {
     margin: 5rem 0 5rem 0;
@@ -93,12 +93,13 @@ export const Item = styled.div`
   cursor: pointer;
   margin: 2rem;
   padding: 2rem;
-  width: 12rem;
-  height: 12rem;
+  width: 8rem;
+  height: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 
   text-align: center;
   border: 1px solid;
@@ -129,7 +130,7 @@ export const Item = styled.div`
 
 const Text = styled.div`
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 
   @media (max-width: 768px) {
     margin-top: 0.5rem;
