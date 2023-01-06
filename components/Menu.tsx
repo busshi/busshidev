@@ -5,6 +5,7 @@ import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { BLOG_URL, COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
 import { BuildContactsMenu } from "../lib/menu";
+import { useThemeState } from "../providers/Theme.provider";
 
 export const Menu = ({
   setMenuOpened,
@@ -14,13 +15,15 @@ export const Menu = ({
   const router = useRouter();
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
-
+  const { isDarkMode, theme } = useThemeState();
   // Build solutions array with icon size of 20px
   const solutions = buildSolutionsMenu(16);
   const contacts = BuildContactsMenu(setMenuOpened);
 
   return (
-    <Container>
+    <Container
+      style={{ color: theme.secondaryFontColor, background: theme.mainColor }}
+    >
       <MenuItem
         id="menuSolutions"
         onClick={() => {
@@ -28,7 +31,7 @@ export const Menu = ({
           contactOpened && setContactOpened(false);
         }}
       >
-        <Item>
+        <Item isDarkMode={isDarkMode}>
           <div onClick={() => setContactOpened(false)}>Solutions</div>
           <div>
             {solutionsOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
@@ -44,6 +47,7 @@ export const Menu = ({
                   setMenuOpened(false);
                 }}
                 hoverColor={COLORS[index].start}
+                isDarkMode={isDarkMode}
               >
                 {icon}
                 {title.substring(0, title.length - 1)}
@@ -54,7 +58,7 @@ export const Menu = ({
       </MenuItem>
 
       <MenuItem id="menuAbout" onClick={() => router.push(BLOG_URL)}>
-        <Item>About me</Item>
+        <Item isDarkMode={isDarkMode}>About me</Item>
       </MenuItem>
 
       <MenuItem
@@ -64,7 +68,7 @@ export const Menu = ({
           setMenuOpened(false);
         }}
       >
-        <Item>Wall of love</Item>
+        <Item isDarkMode={isDarkMode}>Wall of love</Item>
       </MenuItem>
 
       <MenuItem
@@ -74,7 +78,7 @@ export const Menu = ({
           solutionsOpened && setSolutionsOpened(false);
         }}
       >
-        <Item>
+        <Item isDarkMode={isDarkMode}>
           <div onClick={() => setSolutionsOpened(false)}>Reach me out</div>
           <div>
             {contactOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
@@ -87,7 +91,7 @@ export const Menu = ({
             }}
           >
             {contacts.map(({ id, text, icon, onClick }) => (
-              <SubMenuItem key={id} onClick={onClick}>
+              <SubMenuItem key={id} onClick={onClick} isDarkMode={isDarkMode}>
                 {icon} {id !== "email" && text}
               </SubMenuItem>
             ))}
@@ -118,13 +122,13 @@ const Container = styled.div`
   width: 100vw;
   height: 88vh;
 
-  color: var(--secondary-light-font-color);
-  background-color: var(--main-light-color);
+  // color: var(--secondary-light-font-color);
+  // background-color: var(--main-light-color);
 
-  @media (prefers-color-scheme: dark) {
-    color: var(--middle-font-color);
-    background-color: var(--main-dark-color);
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   color: var(--middle-font-color);
+  //   background-color: var(--main-dark-color);
+  // }
 `;
 
 const MenuItem = styled.div`
@@ -138,7 +142,7 @@ const MenuItem = styled.div`
   width: 100vw;
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ isDarkMode: boolean }>`
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -147,11 +151,8 @@ const Item = styled.div`
   transition: all 0.5s ease;
 
   :hover {
-    color: var(--main-dark-color);
-
-    @media (prefers-color-scheme: dark) {
-      color: var(--main-light-color);
-    }
+    color: ${(props) =>
+      props.isDarkMode ? "var(--main-light-color)" : "var(--main-dark-color)"};
   }
 `;
 
@@ -160,7 +161,7 @@ const SubMenuItems = styled.div`
   width: 80vw;
 `;
 
-const SubMenuItem = styled.div<{ hoverColor?: string }>`
+const SubMenuItem = styled.div<{ isDarkMode: boolean; hoverColor?: string }>`
   display: flex;
   align-items: center;
   font-size: 0.9rem;
@@ -171,12 +172,11 @@ const SubMenuItem = styled.div<{ hoverColor?: string }>`
 
   :hover {
     color: ${(props) =>
-      props.hoverColor ? props.hoverColor : "var(--main-dark-color)"};
-
-    @media (prefers-color-scheme: dark) {
-      color: ${(props) =>
-        props.hoverColor ? props.hoverColor : "var(--main-light-color)"};
-    }
+      props.hoverColor
+        ? props.hoverColor
+        : props.isDarkMode
+        ? "var(--main-light-color)"
+        : "var(--main-dark-color)"};
   }
 `;
 

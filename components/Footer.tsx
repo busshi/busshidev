@@ -5,6 +5,7 @@ import { useIsDarkMode } from "../hooks/useIsDarkMode";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { CONTACTS, OPENSOURCES } from "../lib/constants";
 import { scrollIntoView } from "../lib/scroll";
+import { useThemeState } from "../providers/Theme.provider";
 import { LinkItem } from "../types/interfaces";
 
 export const Column = ({
@@ -16,14 +17,19 @@ export const Column = ({
 }) => {
   const isDarkMode = useIsDarkMode();
   const isMobile = useIsMobile();
+  const { theme } = useThemeState();
 
   return (
     <Links>
-      <Span>{span}</Span>
+      <Span style={{ color: theme.middleFontColor }}>{span}</Span>
       <LinksBox>
         {elements.map((item) => {
           return (
-            <LinkWrapper key={item.id} href={item.url}>
+            <LinkWrapper
+              key={item.id}
+              href={item.url}
+              style={{ color: theme.middleFontColor }}
+            >
               {isDarkMode ? item.logoDark : item.logo}
               {!isMobile && item.name}
             </LinkWrapper>
@@ -34,23 +40,28 @@ export const Column = ({
   );
 };
 
-const Logo = () => (
-  <LogoContainer>
-    <ImageBox
-      onClick={() => scrollIntoView("top")}
-      src="/logo.svg"
-      alt="busshiDev"
-      width={80}
-      height={80}
-    />
-  </LogoContainer>
-);
+const Logo = () => {
+  const { theme } = useThemeState();
+  return (
+    <LogoContainer style={{ background: theme.footerBackground }}>
+      <ImageBox
+        onClick={() => scrollIntoView("top")}
+        src="/logo.svg"
+        alt="busshiDev"
+        width={80}
+        height={80}
+      />
+    </LogoContainer>
+  );
+};
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
+  const { theme } = useThemeState();
+
   return (
     <footer>
-      <Container>
+      <Container style={{ background: theme.footerBackground }}>
         <Column span="OPEN SOURCE CONTRIBUTIONS" elements={OPENSOURCES} />
         {isMobile && <Hr />}
         <Column span="CONTACTS" elements={CONTACTS} />
@@ -66,11 +77,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: var(--footer-light-background);
+  //  background: var(--footer-light-background);
 
-  @media (prefers-color-scheme: dark) {
-    background: var(--footer-dark-background);
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background: var(--footer-dark-background);
+  // }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -83,10 +94,10 @@ const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--footer-light-background);
+  // background: var(--footer-light-background);
 
   @media (prefers-color-scheme: dark) {
-    background: var(--footer-dark-background);
+    // background: var(--footer-dark-background);
     img {
       filter: invert(1);
     }
@@ -113,7 +124,7 @@ const Span = styled.span`
   font-weight: var(--font-weight);
   line-height: var(--line-height);
   letter-spacing: var(--middle-letter-spacing);
-  color: var(--middle-font-color);
+  // color: var(--middle-font-color);
   margin-bottom: 0.5rem;
 `;
 
@@ -124,7 +135,7 @@ const LinkWrapper = styled(Link)`
   align-items: center;
   font-size: 0.8rem;
   padding: 0.5rem;
-  color: var(--middle-font-color);
+  // color: var(--middle-font-color);
 
   transition: color 0.3s ease;
   :hover {

@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import { RxCrossCircled } from "react-icons/rx";
 import { Contacts } from "../components/Contacts";
-import { useCalendlyVisibleState } from "../providers/CalendlyVisible";
+import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
 
 const Contact: NextPage = () => {
   const { isCalendlyVisible, setIsCalendlyVisible } = useCalendlyVisibleState();

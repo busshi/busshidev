@@ -5,10 +5,11 @@ import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import { EMAIL } from "../lib/constants";
 import { useIsMobile } from "../hooks/useIsMobile";
-import { useChatVisibleState } from "../providers/ChatVisible";
-import { useHighlightedColorState } from "../providers/HighlightedColor";
+import { useChatVisibleState } from "../providers/ChatVisible.provider";
+import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
 import { Color } from "../types/interfaces";
 import dynamic from "next/dynamic";
+import { useThemeState } from "../providers/Theme.provider";
 const SpinningGlobe = dynamic(() => import("./Globe"), { ssr: false });
 
 export const Contacts = ({
@@ -19,21 +20,28 @@ export const Contacts = ({
   const isMobile = useIsMobile();
   const { setIsChatVisible } = useChatVisibleState();
   const { highlightedColor } = useHighlightedColorState();
+  const { theme } = useThemeState();
 
   return (
-    <Container>
+    <Container style={{ color: theme.middleFontColor }}>
       <Title highlightedColor={highlightedColor}>CONNECT FROM EVERYWHERE</Title>
       <SpinningGlobe />
       <ItemsWrapper>
-        <Item onClick={() => setIsChatVisible(true)}>
+        <Item
+          onClick={() => setIsChatVisible(true)}
+          style={{ backgroundColor: theme.background }}
+        >
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
-        <Item onClick={() => setIsCalendlyVisible(true)}>
+        <Item
+          onClick={() => setIsCalendlyVisible(true)}
+          style={{ backgroundColor: theme.background }}
+        >
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>
-        <Item>
+        <Item style={{ backgroundColor: theme.background }}>
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={isMobile ? 24 : 40} />
             <Text>Send an email</Text>
@@ -45,7 +53,7 @@ export const Contacts = ({
 };
 
 const Container = styled.div`
-  color: var(--middle-font-color);
+  // color: var(--middle-font-color);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -115,17 +123,17 @@ export const Item = styled.div`
     color: var(--middle-font-color);
   }
 
-  background-color: var(--light-background);
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--dark-background);
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: var(--dark-background);
+  // }
 
   :hover {
     border: 1px solid transparent;
     box-shadow: 0px 0px 3rem 0px var(--dark-background);
   }
 
-  transition: all var(--transition-delay) ease;
+  transition: box-shadow var(--transition-delay) ease;
+  transition: background-color var(--long-transition-delay) ease;
 `;
 
 const Text = styled.div`

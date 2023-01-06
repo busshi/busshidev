@@ -2,7 +2,7 @@ import styled from "styled-components";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { COLORS } from "../../lib/constants";
 import { buildSolutionsMenu } from "../../lib/solutions";
-import { useHighlightedColorState } from "../../providers/HighlightedColor";
+import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
 import { Color } from "../../types/interfaces";
 import { Content } from "./Content";
 

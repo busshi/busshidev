@@ -2,7 +2,8 @@ import Script from "next/script";
 import { useState } from "react";
 import styled from "styled-components";
 import { CRIPS_WEBSITE_ID } from "../../lib/constants";
-import { useChatVisibleState } from "../../providers/ChatVisible";
+import { useChatVisibleState } from "../../providers/ChatVisible.provider";
+import { useThemeState } from "../../providers/Theme.provider";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
@@ -14,9 +15,10 @@ type Props = {
 const Layout = ({ children }: Props) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const { isChatVisible } = useChatVisibleState();
+  const { theme } = useThemeState();
 
   return (
-    <Html>
+    <Html style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
       <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
       <Wrapper menuOpened={isMenuOpened}>
@@ -50,16 +52,17 @@ const Layout = ({ children }: Props) => {
 const Html = styled.div`
   min-width: 100%;
   min-height: 100vh;
-  color: var(--main-light-font-color);
-  background: var(--main-light-color);
+  // color: var(--main-light-font-color);
+  // background: var(--main-light-color);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-  @media (prefers-color-scheme: dark) {
-    color: var(--main-dark-font-color);
-    background: var(--main-dark-color);
-  }
+  transition: color, background var(--long-transition-delay) ease;
+  // @media (prefers-color-scheme: dark) {
+  // color: var(--main-dark-font-color);
+  // background: var(--main-dark-color);
+  // }
 `;
 
 const Wrapper = styled.div<{ menuOpened: boolean }>`

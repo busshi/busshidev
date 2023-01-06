@@ -11,10 +11,10 @@
   --secondary-light-font-color: #444444;
   --footer-light-background: #f5f5f5;
   --footer-dark-background: #181717;
-  --dark-background: #181717;
-  --light-background: #f5f5f5;
-  --dark-background-card: #1e1e1e;
-  --light-background-card: #f9f9f9f9;
+  --dark-background: #f5f5f5;
+  --light-background: #181717;
+  --card-dark-background: #f9f9f9f9;
+  --card-light-background: #1e1e1e;
 
   /**
   *   Gradient colors

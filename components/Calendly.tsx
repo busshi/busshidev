@@ -1,6 +1,6 @@
 import { RxCrossCircled } from "react-icons/rx";
 import styled from "styled-components";
-import { useCalendlyVisibleState } from "../providers/CalendlyVisible";
+import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
 
 export const Calendly = () => {
   const { setIsCalendlyVisible } = useCalendlyVisibleState();

@@ -3,10 +3,10 @@ import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { COLORS } from "../../lib/constants";
-import { useHighlightedColorState } from "../../providers/HighlightedColor";
+import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
 import { Color, Solution } from "../../types/interfaces";
 import { Title } from "../Titles";
-import { useDarkModeState } from "../../providers/DarkMode";
+import { useThemeState } from "../../providers/Theme.provider";
 
 export const Content = ({
   index,
@@ -23,10 +23,10 @@ export const Content = ({
   const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [intersectionRatio, refContainer] =
     useIntersectionRatio<HTMLDivElement>();
-  const { isDarkMode, setIsDarkMode } = useDarkModeState();
+  const { isDarkMode, setIsDarkMode, theme } = useThemeState();
 
   useSlideIntoView();
-  console.log(isDarkMode);
+
   if (!solution) return null;
 
   return (
@@ -41,6 +41,7 @@ export const Content = ({
           highlightedColor={COLORS[index]}
           fontSize={titleSize}
           margin="0"
+          mainColor={theme.mainColor}
         >
           {solution.title.substring(0, solution.title.length - 1)}
         </Title>
@@ -53,6 +54,7 @@ export const Content = ({
         highlightedColor={highlightedColor}
         isVisible={isVisible}
         ref={ref}
+        style={{ background: theme.cardBackground }}
       >
         {/* <Icon
           isShiny={true}
@@ -62,13 +64,19 @@ export const Content = ({
         {solution.icon}
         {/* </Icon> */}
         {solution.actions.map((item) => (
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <TextBox key={item}>{item}</TextBox>
+          <div
+            key={item}
+            style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+          >
+            <TextBox style={{ color: theme.secondaryFontColor }}>
+              {item}
+            </TextBox>
             {item === "Dark mode" && (
               <div>
                 <Button
                   type="radio"
-                  onClick={() => setIsDarkMode(isDarkMode ? false : true)}
+                  onClick={() => setIsDarkMode(!isDarkMode)}
+                  onChange={() => console.log("change", isDarkMode)}
                   checked={isDarkMode}
                 />
               </div>
@@ -136,7 +144,7 @@ const ActionsBox = styled.div<{
     margin: 3rem 0.5rem 2rem 0.5rem;
     padding: 2rem;
     border-radius: var(--border-radius);
-    background: var(--light-background-card);
+    // background: var(--light-background-card);
 
     box-shadow: ${(props) =>
       props.isVisible
@@ -145,9 +153,9 @@ const ActionsBox = styled.div<{
 
     transition: box-shadow var(--middle-transition-delay) ease;
 
-    @media (prefers-color-scheme: dark) {
-      background: var(--dark-background-card);
-    }
+    // @media (prefers-color-scheme: dark) {
+    // background: var(--dark-background-card);
+    // }
   }
 `;
 
@@ -193,10 +201,10 @@ const TextBox = styled.div`
     margin: 0;
   }
 
-  color: var(--secondary-light-font-color);
-  @media (prefers-color-scheme: dark) {
-    color: var(--secondary-dark-font-color);
-  }
+  // color: var(--secondary-light-font-color);
+  // @media (prefers-color-scheme: dark) {
+  //   color: var(--secondary-dark-font-color);
+  // }
 `;
 
 export default Content;

@@ -1,13 +1,13 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { GTAG } from "../lib/constants";
-import CalendlyVisibleProvider from "../providers/CalendlyVisible";
-import { ChatVisibleProvider } from "../providers/ChatVisible";
-import { HighlightedColorProvider } from "../providers/HighlightedColor";
-import TestimonialVisibleProvider from "../providers/TestimonialVisible";
+import CalendlyVisibleProvider from "../providers/CalendlyVisible.provider";
+import { ChatVisibleProvider } from "../providers/ChatVisible.provider";
+import { HighlightedColorProvider } from "../providers/HighlightedColor.provider";
+import TestimonialVisibleProvider from "../providers/TestimonialVisible.provider";
 import Layout from "../components/hoc/Layout";
 import "./styles/app.css";
-import DarkModeProvider from "../providers/DarkMode";
+import DarkModeProvider from "../providers/Theme.provider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

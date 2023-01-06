@@ -4,8 +4,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import { SiGooglemeet } from "react-icons/si";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import styled from "styled-components";
-import { useCalendlyVisibleState } from "../providers/CalendlyVisible";
-import { useChatVisibleState } from "../providers/ChatVisible";
+import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
+import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import { EMAIL } from "./constants";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
