@@ -24,7 +24,11 @@ export const TopBar = ({
   const { theme, isDarkMode } = useThemeState();
   return (
     <div>
-      <Container id="top" isDark={isDarkMode}>
+      <Container
+        id="top"
+        isDark={isDarkMode}
+        style={{ color: theme.mainColorInverted }}
+      >
         <LinkBox href="/">
           <ImageBox
             src="/logo.svg"
