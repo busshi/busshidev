@@ -6,6 +6,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 import { getTechnos } from "../lib/technos";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { useThemeState } from "../providers/Theme.provider";
 
 export const Technos = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
@@ -14,7 +15,7 @@ export const Technos = () => {
   const technos = getTechnos(isMobile ? 30 : 80);
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>();
-
+  const { theme } = useThemeState();
   useEffect(() => {
     let i = 0;
     let reverse = false;
@@ -40,7 +41,10 @@ export const Technos = () => {
   }, [isElementVisible, scrollWidth, isMobile]);
 
   return (
-    <Container id="technos" style={{ opacity: intersectionRatio }}>
+    <Container
+      id="technos"
+      style={{ opacity: intersectionRatio, color: theme.middleFontColor }}
+    >
       <SectionTitle margin="10rem 2rem 5rem 2rem">
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>

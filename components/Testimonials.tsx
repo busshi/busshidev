@@ -117,7 +117,9 @@ export const Testimonials = () => {
               key={id}
               isSelected={index === idVisible}
               style={{
-                background: isTestimonialsVisible ? theme.middleFontColor : "",
+                background: isTestimonialsVisible
+                  ? theme.middleFontColor
+                  : "none",
                 border: isTestimonialsVisible
                   ? `1px solid ${theme.middleFontColor}`
                   : "none",

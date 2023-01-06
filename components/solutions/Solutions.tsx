@@ -3,6 +3,7 @@ import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { COLORS } from "../../lib/constants";
 import { buildSolutionsMenu } from "../../lib/solutions";
 import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
+import { useThemeState } from "../../providers/Theme.provider";
 import { Color } from "../../types/interfaces";
 import { Content } from "./Content";
 
@@ -11,6 +12,7 @@ export const Solutions = () => {
   const [intersectionRatio, ref] =
     useIntersectionRatio<HTMLDivElement>("200px");
   const solutions = buildSolutionsMenu(40, "var(--middle-font-color)");
+  const { theme } = useThemeState();
 
   return (
     <Container ref={ref} id="solutions" style={{ opacity: intersectionRatio }}>
@@ -20,6 +22,7 @@ export const Solutions = () => {
           id={solution.id}
           highlightedColor={COLORS[index]}
           isShiny={index === highlighted ? true : false}
+          style={{ backgroundColor: theme.backgroundColor }}
         >
           <Content
             solution={solution}
@@ -54,7 +57,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   position: relative;
   text-align: center;
   z-index: 0;
-  background-color: var(--light-background);
+  //  background-color: var(--light-background);
   border-radius: var(--border-radius);
 
   :hover {
@@ -79,9 +82,9 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
 
   transition: all var(--transition-delay) ease;
 
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--dark-background);
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   background-color: var(--dark-background);
+  // }
 `;
 
 export default Solutions;

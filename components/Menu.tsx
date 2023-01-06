@@ -22,7 +22,7 @@ export const Menu = ({
 
   return (
     <Container
-      style={{ color: theme.secondaryFontColor, background: theme.mainColor }}
+      style={{ color: theme.middleFontColor, background: theme.mainColor }}
     >
       <MenuItem
         id="menuSolutions"

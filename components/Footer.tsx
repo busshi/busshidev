@@ -41,9 +41,15 @@ export const Column = ({
 };
 
 const Logo = () => {
-  const { theme } = useThemeState();
+  const { theme, isDarkMode } = useThemeState();
   return (
-    <LogoContainer style={{ background: theme.footerBackground }}>
+    <LogoContainer
+      style={{
+        background: theme.footerBackground,
+        color: theme.mainColor,
+      }}
+      isDark={isDarkMode}
+    >
       <ImageBox
         onClick={() => scrollIntoView("top")}
         src="/logo.svg"
@@ -61,7 +67,11 @@ export const Footer: React.FC = () => {
 
   return (
     <footer>
-      <Container style={{ background: theme.footerBackground }}>
+      <Container
+        style={{
+          background: theme.footerBackground,
+        }}
+      >
         <Column span="OPEN SOURCE CONTRIBUTIONS" elements={OPENSOURCES} />
         {isMobile && <Hr />}
         <Column span="CONTACTS" elements={CONTACTS} />
@@ -89,19 +99,17 @@ const Container = styled.div`
   }
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.div<{ isDark: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   // background: var(--footer-light-background);
 
-  @media (prefers-color-scheme: dark) {
-    // background: var(--footer-dark-background);
-    img {
-      filter: invert(1);
-    }
+  img {
+    filter: invert(${(props) => (props.isDark ? 0 : 1)});
   }
+
   @media (max-width: 768px) {
     padding: 2rem;
   }

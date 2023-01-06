@@ -17,7 +17,7 @@ export const Titles = () => {
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
-          mainColor={theme.mainColor}
+          mainColor={theme.mainColorInverted}
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);

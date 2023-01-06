@@ -46,7 +46,10 @@ export const Content = ({
           {solution.title.substring(0, solution.title.length - 1)}
         </Title>
       </TitleBox>
-      <Description fontSize={descriptionSize}>
+      <Description
+        fontSize={descriptionSize}
+        style={{ color: theme.fontColor }}
+      >
         {solution.description}
       </Description>
       <ActionsBox
@@ -77,7 +80,7 @@ export const Content = ({
                   type="radio"
                   onClick={() => setIsDarkMode(!isDarkMode)}
                   onChange={() => console.log("change", isDarkMode)}
-                  checked={isDarkMode}
+                  checked={!isDarkMode}
                 />
               </div>
             )}

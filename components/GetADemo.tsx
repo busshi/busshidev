@@ -1,14 +1,20 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
+import { useThemeState } from "../providers/Theme.provider";
 import { Color } from "../types/interfaces";
 
 export const GetADemo = () => {
   const { highlightedColor } = useHighlightedColorState();
-
+  const { theme } = useThemeState();
   return (
     <LinkBox href="/contact">
-      <Button highlightedColor={highlightedColor}>Get a Demo</Button>
+      <Button
+        highlightedColor={highlightedColor}
+        style={{ color: theme.mainColorInverted }}
+      >
+        Get a Demo
+      </Button>
     </LinkBox>
   );
 };

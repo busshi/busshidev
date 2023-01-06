@@ -3,6 +3,7 @@ import { useIsDarkMode } from "../hooks/useIsDarkMode";
 
 interface Theme {
   mainColor: string;
+  mainColorInverted: string;
   fontColor: string;
   secondaryFontColor: string;
   middleFontColor: string;
@@ -22,7 +23,8 @@ const ThemeContext = React.createContext<ThemeContextType | null>(null);
 
 const colors = {
   dark: {
-    mainColor: "var(--main-light-color)",
+    mainColor: "var(--main-dark-color)",
+    mainColorInverted: "var(--main-light-color)",
     fontColor: "var(--main-dark-font-color)",
     secondaryFontColor: "var(--secondary-dark-font-color)",
     middleFontColor: "var(--middle-font-color)",
@@ -32,7 +34,8 @@ const colors = {
     footerBackground: "var(--footer-dark-background)",
   },
   light: {
-    mainColor: "var(--main-dark-color)",
+    mainColor: "var(--main-light-color)",
+    mainColorInverted: "var(--main-dark-color)",
     fontColor: "var(--main-light-font-color)",
     secondaryFontColor: "var(--secondary-light-font-color)",
     middleFontColor: "var(--middle-font-color)",
@@ -62,6 +65,10 @@ export const ThemeProvider = ({ children }: Props) => {
   useEffect(() => {
     setTheme(isDarkMode ? colors.dark : colors.light);
   }, [isDarkMode]);
+
+  useEffect(() => {
+    setIsDarkMode(!isDark);
+  }, [isDark]);
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -8,10 +8,11 @@ import Solutions from "../components/solutions/Solutions";
 import Technos from "../components/Technos";
 import Testimonials from "../components/Testimonials";
 import Titles from "../components/Titles";
+import { useThemeState } from "../providers/Theme.provider";
 
 const Home: NextPage = () => {
   const isMobile = useIsMobile();
-
+  const { theme } = useThemeState();
   return (
     <Container>
       <FirstPage>
@@ -20,8 +21,11 @@ const Home: NextPage = () => {
           You have dreams. I have skills. We can build the future together...
         </Intro>
         <GetADemo />
-        <Implementation onClick={() => scrollIntoView("solutions")}>
-          <div>STEP-BY-STEP IMPLEMENTATION</div>
+        <Implementation
+          style={{ color: theme.fontColor }}
+          onClick={() => scrollIntoView("solutions")}
+        >
+          STEP-BY-STEP IMPLEMENTATION
         </Implementation>
       </FirstPage>
       {isMobile ? <MobileSolutions /> : <Solutions />}

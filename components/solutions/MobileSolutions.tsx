@@ -1,17 +1,22 @@
 import styled from "styled-components";
 import { COLORS } from "../../lib/constants";
 import { buildSolutionsMenu } from "../../lib/solutions";
+import { useThemeState } from "../../providers/Theme.provider";
 import { Content } from "./Content";
 
 export const MobileSolutions = () => {
   const solutions = buildSolutionsMenu(40, "var(--middle-font-color)");
-
+  const { theme } = useThemeState();
   return (
     <Container id="solutions">
       {solutions.map((solution, index) => (
         <Solution key={solution.title} id={solution.id}>
-          <Line index={index} />
-          <Circle isShiny={true} index={index}>
+          <Line index={index} backgroundColor={theme.mainColor} />
+          <Circle
+            isShiny={true}
+            index={index}
+            style={{ color: theme.fontColor }}
+          >
             {index + 1}
           </Circle>
           <Content
@@ -45,28 +50,20 @@ const Solution = styled.div`
   min-height: 100vh;
 `;
 
-const Line = styled.div<{ index: number }>`
+const Line = styled.div<{ index: number; backgroundColor: string }>`
   height: 5rem;
   width: 1px;
   background: ${(props) =>
-    `linear-gradient(180deg, var(--main-light-color), ${
+    `linear-gradient(180deg, ${props.backgroundColor}, ${
       COLORS[props.index].start
     }, ${COLORS[props.index].stop})`};
-
-    @media (prefers-color-scheme: dark) {
-  background: ${(props) =>
-    `linear-gradient(180deg, var(--main-dark-color), ${
-      COLORS[props.index].start
-    }, ${COLORS[props.index].stop})`};
-    }
-  }
 `;
 
 const Circle = styled.div<{ isShiny: boolean; index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--main-light-font-color);
+  // color: var(--main-light-font-color);
   width: 3rem;
   height: 3rem;
   border-radius: 99999px;
@@ -81,10 +78,10 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
       COLORS[props.index].stop
     })`};
 
-  @media (prefers-color-scheme: dark) {
-      color: var(--main-dark-font-color);
-    }
-  }
+  // @media (prefers-color-scheme: dark) {
+  //     color: var(--main-dark-font-color);
+  //   }
+  // }
 `;
 
 export default MobileSolutions;

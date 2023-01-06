@@ -24,7 +24,7 @@ export const TopBar = ({
   const { theme, isDarkMode } = useThemeState();
   return (
     <div>
-      <Container id="top">
+      <Container id="top" isDark={isDarkMode}>
         <LinkBox href="/">
           <ImageBox
             src="/logo.svg"
@@ -34,7 +34,10 @@ export const TopBar = ({
           />
         </LinkBox>
         {isMobile ? (
-          <MenuIcon onClick={() => setMenuOpened(menuOpened ? false : true)}>
+          <MenuIcon
+            style={{ color: theme.mainColorInverted }}
+            onClick={() => setMenuOpened(menuOpened ? false : true)}
+          >
             {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
           </MenuIcon>
         ) : (
@@ -85,7 +88,7 @@ export const TopBar = ({
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isDark: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,11 +99,8 @@ const Container = styled.div`
   // @media (max-width: 768px) {
   //   padding-top: 1rem;
   // }
-
-  @media (prefers-color-scheme: dark) {
-    img {
-      filter: invert(1);
-    }
+  img {
+    filter: invert(${(props) => (props.isDark ? 0 : 1)});
   }
 `;
 
