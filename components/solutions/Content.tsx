@@ -79,14 +79,20 @@ export const Content = ({
               {item}
             </TextBox>
             {item === "Dark mode" && (
-              <div>
-                <Button
-                  type="radio"
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  onChange={() => console.log("change", isDarkMode)}
-                  checked={!isDarkMode}
+              <Button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                style={{
+                  background: theme.mainColor,
+                  border: `1px solid ${theme.mainColorInverted}`,
+                }}
+              >
+                <Circle
+                  style={{
+                    background: theme.mainColorInverted,
+                    border: `1px solid ${theme.mainColor}`,
+                  }}
                 />
-              </div>
+              </Button>
             )}
           </div>
         ))}
@@ -95,7 +101,21 @@ export const Content = ({
   );
 };
 
-const Button = styled.input``;
+const Circle = styled.div`
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 99999px;
+`;
+
+const Button = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 99999px;
+`;
 
 const Container = styled.div`
   transition: color, background var(--theme-transition-delay) ease;
