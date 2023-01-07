@@ -7,6 +7,7 @@ import { useHighlightedColorState } from "../../providers/HighlightedColor.provi
 import { Color, Solution } from "../../types/interfaces";
 import { Title } from "../Titles";
 import { useThemeState } from "../../providers/Theme.provider";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const Content = ({
   index,
@@ -24,6 +25,7 @@ export const Content = ({
   const [intersectionRatio, refContainer] =
     useIntersectionRatio<HTMLDivElement>();
   const { isDarkMode, setIsDarkMode, theme } = useThemeState();
+  const isMobile = useIsMobile();
 
   useSlideIntoView();
 
@@ -57,7 +59,9 @@ export const Content = ({
         highlightedColor={highlightedColor}
         isVisible={isVisible}
         ref={ref}
-        style={{ background: theme.cardBackground }}
+        style={{
+          background: isMobile ? theme.cardBackground : theme.backgroundColor,
+        }}
       >
         {/* <Icon
           isShiny={true}
@@ -94,9 +98,11 @@ export const Content = ({
 const Button = styled.input``;
 
 const Container = styled.div`
+  transition: color, background var(--theme-transition-delay) ease;
+
   @media (max-width: 768px) {
     &.slideIntoView {
-      transition: all 0.3s ease;
+      transition: all var(--transition-delay) ease;
     }
 
     &.slideIntoView[data-view="inview-top"],
@@ -147,7 +153,6 @@ const ActionsBox = styled.div<{
     margin: 3rem 0.5rem 2rem 0.5rem;
     padding: 2rem;
     border-radius: var(--border-radius);
-    // background: var(--light-background-card);
 
     box-shadow: ${(props) =>
       props.isVisible
@@ -155,10 +160,6 @@ const ActionsBox = styled.div<{
         : "0px 0px 1px var(--middle-font-color)"};
 
     transition: box-shadow var(--middle-transition-delay) ease;
-
-    // @media (prefers-color-scheme: dark) {
-    // background: var(--dark-background-card);
-    // }
   }
 `;
 
@@ -203,11 +204,6 @@ const TextBox = styled.div`
   @media (max-width: 768px) {
     margin: 0;
   }
-
-  // color: var(--secondary-light-font-color);
-  // @media (prefers-color-scheme: dark) {
-  //   color: var(--secondary-dark-font-color);
-  // }
 `;
 
 export default Content;

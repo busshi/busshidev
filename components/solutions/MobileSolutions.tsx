@@ -63,7 +63,6 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  // color: var(--main-light-font-color);
   width: 3rem;
   height: 3rem;
   border-radius: 99999px;
@@ -77,11 +76,6 @@ const Circle = styled.div<{ isShiny: boolean; index: number }>`
     `linear-gradient(360deg, ${COLORS[props.index].start}, ${
       COLORS[props.index].stop
     })`};
-
-  // @media (prefers-color-scheme: dark) {
-  //     color: var(--main-dark-font-color);
-  //   }
-  // }
 `;
 
 export default MobileSolutions;

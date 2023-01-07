@@ -5,11 +5,30 @@ import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
 import { BLOG_URL } from "../lib/constants";
 import { useThemeState } from "../providers/Theme.provider";
+
+const Button = ({
+  children,
+  onClick,
+}: {
+  children: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+}) => {
+  const { theme } = useThemeState();
+  return (
+    <ButtonWrapper
+      color={theme.middleFontColor}
+      hoverColor={theme.mainColorInverted}
+      onClick={onClick}
+    >
+      {children}
+    </ButtonWrapper>
+  );
+};
 
 export const TopBar = ({
   menuOpened,
@@ -22,12 +41,13 @@ export const TopBar = ({
   const router = useRouter();
   const isHome = router.asPath !== "/contact";
   const { theme, isDarkMode } = useThemeState();
+
   return (
     <div>
       <Container
         id="top"
-        isDark={isDarkMode}
         style={{ color: theme.mainColorInverted }}
+        isDarkMode={isDarkMode}
       >
         <LinkBox href="/">
           <ImageBox
@@ -52,18 +72,11 @@ export const TopBar = ({
                   ? scrollIntoView("solutions")
                   : router.push("/#solutions")
               }
-              style={{ color: theme.middleFontColor }}
-              hoverColor={theme.fontColor}
             >
               Solutions
             </Button>
             <Link href={BLOG_URL}>
-              <Button
-                style={{ color: theme.middleFontColor }}
-                hoverColor={theme.fontColor}
-              >
-                About me
-              </Button>
+              <Button>About me</Button>
             </Link>
             <Button
               onClick={() =>
@@ -71,18 +84,11 @@ export const TopBar = ({
                   ? scrollIntoView("testi", "center")
                   : router.push("/#testi")
               }
-              style={{ color: theme.middleFontColor }}
-              hoverColor={theme.fontColor}
             >
               Testimonials
             </Button>
             <Link href="/contact">
-              <Button
-                style={{ color: theme.middleFontColor }}
-                hoverColor={theme.fontColor}
-              >
-                Contact
-              </Button>
+              <Button>Contact</Button>
             </Link>
           </Buttons>
         )}
@@ -92,19 +98,13 @@ export const TopBar = ({
   );
 };
 
-const Container = styled.div<{ isDark: boolean }>`
+const Container = styled.div<{ isDarkMode: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
-  // width: 100%;
-  // padding-top: 1.5rem;
-
-  // @media (max-width: 768px) {
-  //   padding-top: 1rem;
-  // }
   img {
-    filter: invert(${(props) => (props.isDark ? 0 : 1)});
+    filter: invert(${(props) => (props.isDarkMode ? 0 : 1)});
   }
 `;
 
@@ -127,23 +127,18 @@ const Buttons = styled.div`
   margin-right: 1rem;
 `;
 
-const Button = styled.div<{ hoverColor: string }>`
+const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
   padding: 0 1rem 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  // color: var(--middle-font-color);
 
   transition: color var(--transition-delay) ease;
-  :hover {
-    color: var(--main-light-font-color);
-  }
+  color: ${(props) => props.color};
 
-  // @media (prefers-color-scheme: dark) {
-  //   :hover {
-  //     color: var(--main-dark-font-color);
-  //   }
-  // }
+  :hover {
+    color: ${(props) => props.hoverColor};
+  }
 `;
 
 export default TopBar;

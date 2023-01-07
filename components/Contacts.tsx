@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
@@ -6,11 +6,32 @@ import Link from "next/link";
 import { EMAIL } from "../lib/constants";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
-import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
-import { Color } from "../types/interfaces";
 import dynamic from "next/dynamic";
 import { useThemeState } from "../providers/Theme.provider";
+import { ReactNode } from "react";
 const SpinningGlobe = dynamic(() => import("./Globe"), { ssr: false });
+
+// const Item = ({
+//   children,
+//   onClick,
+// }: {
+//   children: ReactNode;
+//   onClick?: React.MouseEventHandler<HTMLElement>;
+// }) => {
+//   const { theme, isDarkMode } = useThemeState();
+
+//   return (
+//     <ItemWrapper
+//       style={{ backgroundColor: theme.background }}
+//       hoverColor={
+//         isDarkMode ? "var(--light-background)" : "var(--dark-background"
+//       }
+//       onClick={onClick}
+//     >
+//       {children}
+//     </ItemWrapper>
+//   );
+// };
 
 export const Contacts = ({
   setIsCalendlyVisible,
@@ -19,29 +40,33 @@ export const Contacts = ({
 }) => {
   const isMobile = useIsMobile();
   const { setIsChatVisible } = useChatVisibleState();
-  const { highlightedColor } = useHighlightedColorState();
   const { theme } = useThemeState();
 
   return (
     <Container style={{ color: theme.middleFontColor }}>
-      <Title highlightedColor={highlightedColor}>CONNECT FROM EVERYWHERE</Title>
+      <Title>CONNECT FROM EVERYWHERE</Title>
       <SpinningGlobe />
       <ItemsWrapper>
         <Item
-          onClick={() => setIsChatVisible(true)}
           style={{ backgroundColor: theme.background }}
+          hoverColor={theme.mainColorInverted}
+          onClick={() => setIsChatVisible(true)}
         >
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
         <Item
-          onClick={() => setIsCalendlyVisible(true)}
           style={{ backgroundColor: theme.background }}
+          hoverColor={theme.mainColorInverted}
+          onClick={() => setIsCalendlyVisible(true)}
         >
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>
-        <Item style={{ backgroundColor: theme.background }}>
+        <Item
+          style={{ backgroundColor: theme.background }}
+          hoverColor={theme.mainColorInverted}
+        >
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={isMobile ? 24 : 40} />
             <Text>Send an email</Text>
@@ -53,7 +78,6 @@ export const Contacts = ({
 };
 
 const Container = styled.div`
-  // color: var(--middle-font-color);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -64,25 +88,17 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.div<{ highlightedColor: Color }>`
+const Title = styled.div`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: 0.5rem;
-  font-size: 5rem;
   margin: 0 1rem 1rem 1rem;
   text-align: center;
   z-index: 2;
+
+  font-size: 5rem;
   @media (max-width: 768px) {
     font-size: 2rem;
-  }
-
-  text-shadow: none;
-  transition: none;
-
-  @media (prefers-color-scheme: dark) {
-    // text-shadow: ${(props) =>
-      `0px 0px 30px ${props.highlightedColor.start}`};
-    // transition: text-shadow 1s ease;
   }
 `;
 
@@ -97,7 +113,7 @@ const ItemsWrapper = styled.div`
   }
 `;
 
-export const Item = styled.div`
+export const Item = styled.div<{ hoverColor: string }>`
   cursor: pointer;
   margin: 2rem;
   padding: 2rem;
@@ -123,13 +139,9 @@ export const Item = styled.div`
     color: var(--middle-font-color);
   }
 
-  // @media (prefers-color-scheme: dark) {
-  //   background-color: var(--dark-background);
-  // }
-
   :hover {
     border: 1px solid transparent;
-    box-shadow: 0px 0px 3rem 0px var(--dark-background);
+    box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
   }
 
   transition: box-shadow var(--transition-delay) ease;

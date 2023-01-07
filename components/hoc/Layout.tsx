@@ -15,10 +15,13 @@ type Props = {
 const Layout = ({ children }: Props) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const { isChatVisible } = useChatVisibleState();
-  const { theme } = useThemeState();
+  const { theme, isDarkMode } = useThemeState();
 
   return (
-    <Html style={{ color: theme.fontColor, background: theme.background }}>
+    <Html
+      isDarkMode={isDarkMode}
+      style={{ color: theme.fontColor, background: theme.background }}
+    >
       <Metadata />
       <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
       <Wrapper menuOpened={isMenuOpened}>
@@ -49,20 +52,15 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-const Html = styled.div`
+const Html = styled.div<{ isDarkMode: boolean }>`
   min-width: 100%;
   min-height: 100vh;
-  // color: var(--main-light-font-color);
-  // background: var(--main-light-color);
+
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-  transition: color, background var(--long-transition-delay) ease;
-  // @media (prefers-color-scheme: dark) {
-  // color: var(--main-dark-font-color);
-  // background: var(--main-dark-color);
-  // }
+  transition: color, background var(--theme-transition-delay) ease;
 `;
 
 const Wrapper = styled.div<{ menuOpened: boolean }>`

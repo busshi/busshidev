@@ -57,7 +57,6 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
   position: relative;
   text-align: center;
   z-index: 0;
-  //  background-color: var(--light-background);
   border-radius: var(--border-radius);
 
   :hover {
@@ -80,11 +79,7 @@ const Card = styled.div<{ highlightedColor: Color; isShiny: boolean }>`
     }
   }
 
-  transition: all var(--transition-delay) ease;
-
-  // @media (prefers-color-scheme: dark) {
-  //   background-color: var(--dark-background);
-  // }
+  transition: box-shadow var(--transition-delay) ease-in-out;
 `;
 
 export default Solutions;

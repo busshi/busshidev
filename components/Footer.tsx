@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { useIsDarkMode } from "../hooks/useIsDarkMode";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { CONTACTS, OPENSOURCES } from "../lib/constants";
 import { scrollIntoView } from "../lib/scroll";
@@ -15,9 +14,8 @@ export const Column = ({
   span: string;
   elements: LinkItem[];
 }) => {
-  const isDarkMode = useIsDarkMode();
   const isMobile = useIsMobile();
-  const { theme } = useThemeState();
+  const { theme, isDarkMode } = useThemeState();
 
   return (
     <Links>
@@ -30,7 +28,7 @@ export const Column = ({
               href={item.url}
               style={{ color: theme.middleFontColor }}
             >
-              {isDarkMode ? item.logoDark : item.logo}
+              {!isDarkMode ? item.logoDark : item.logo}
               {!isMobile && item.name}
             </LinkWrapper>
           );
@@ -48,7 +46,7 @@ const Logo = () => {
         background: theme.footerBackground,
         color: theme.mainColor,
       }}
-      isDark={isDarkMode}
+      isDarkMode={isDarkMode}
     >
       <ImageBox
         onClick={() => scrollIntoView("top")}
@@ -87,11 +85,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  //  background: var(--footer-light-background);
-
-  // @media (prefers-color-scheme: dark) {
-  //   background: var(--footer-dark-background);
-  // }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -99,19 +92,18 @@ const Container = styled.div`
   }
 `;
 
-const LogoContainer = styled.div<{ isDark: boolean }>`
+const LogoContainer = styled.div<{ isDarkMode: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background: var(--footer-light-background);
-
-  img {
-    filter: invert(${(props) => (props.isDark ? 0 : 1)});
-  }
 
   @media (max-width: 768px) {
     padding: 2rem;
+  }
+
+  img {
+    filter: invert(${(props) => (props.isDarkMode ? 0 : 1)});
   }
 `;
 
@@ -132,7 +124,6 @@ const Span = styled.span`
   font-weight: var(--font-weight);
   line-height: var(--line-height);
   letter-spacing: var(--middle-letter-spacing);
-  // color: var(--middle-font-color);
   margin-bottom: 0.5rem;
 `;
 
@@ -143,7 +134,6 @@ const LinkWrapper = styled(Link)`
   align-items: center;
   font-size: 0.8rem;
   padding: 0.5rem;
-  // color: var(--middle-font-color);
 
   transition: color 0.3s ease;
   :hover {
