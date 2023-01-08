@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useGetElementHeight } from "../hooks/useGetElementheight";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import { useIsMobile } from "../hooks/useIsMobile";
-import { useIsUserInactive } from "../hooks/useIsUserInactive";
 import { useSlideIntoView } from "../hooks/useSlideIntoView";
 import { COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
@@ -13,8 +12,7 @@ import { Title } from "./Titles";
 
 const DarkModeSwitcher = () => {
   const { isDarkMode, setIsDarkMode, theme } = useThemeState();
-  const iddle = useIsUserInactive();
-  console.log(iddle);
+
   return (
     <Button
       onClick={() => setIsDarkMode(isDarkMode ? false : true)}
