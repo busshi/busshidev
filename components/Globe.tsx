@@ -20,7 +20,7 @@ const SpinningGlobe = () => {
         showGlobe={false}
         width={size.width}
         height={size.height}
-        backgroundColor={!isDarkMode ? "#121212" : "#f1f1f1"}
+        backgroundColor={isDarkMode ? "#121212" : "#f1f1f1"}
         ref={ref}
         hexPolygonsData={world}
         hexPolygonMargin={0.7}

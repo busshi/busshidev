@@ -23,7 +23,7 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
     setHeight(
       isMobile ? ratio * (productHeight - 80) : ratio * (productHeight - 50)
     );
-  }, [ratio, isMobile]);
+  }, [ratio, isMobile, productHeight]);
 
   return (
     <Product ref={borderRef} id={`product${index}`}>
