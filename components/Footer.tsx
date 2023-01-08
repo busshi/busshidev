@@ -103,7 +103,7 @@ const LogoContainer = styled.div<{ isDarkMode: boolean }>`
   }
 
   img {
-    filter: invert(${(props) => (props.isDarkMode ? 0 : 1)});
+    filter: invert(${(props) => (props.isDarkMode ? 1 : 0)});
   }
 `;
 

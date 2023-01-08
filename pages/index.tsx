@@ -1,17 +1,18 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import { useIsMobile } from "../hooks/useIsMobile";
+// import { useIsMobile } from "../hooks/useIsMobile";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "../components/GetADemo";
-import MobileSolutions from "../components/solutions/MobileSolutions";
-import Solutions from "../components/solutions/Solutions";
+// import MobileSolutions from "../components/solutions/MobileSolutions";
+// import Solutions from "../components/solutions/Solutions";
 import Technos from "../components/Technos";
 import Testimonials from "../components/Testimonials";
 import Titles from "../components/Titles";
 import { useThemeState } from "../providers/Theme.provider";
+import { Products } from "../components/Products";
 
 const Home: NextPage = () => {
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
   const { theme } = useThemeState();
   return (
     <Container>
@@ -28,7 +29,8 @@ const Home: NextPage = () => {
           STEP-BY-STEP IMPLEMENTATION
         </Implementation>
       </FirstPage>
-      {isMobile ? <MobileSolutions /> : <Solutions />}
+      {/* {isMobile ? <MobileSolutions /> : <Solutions />} */}
+      <Products />
       <Testimonials />
       <Technos />
     </Container>

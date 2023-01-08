@@ -104,7 +104,7 @@ const Container = styled.div<{ isDarkMode: boolean }>`
   align-items: center;
   margin-right: 1rem;
   img {
-    filter: invert(${(props) => (props.isDarkMode ? 0 : 1)});
+    filter: invert(${(props) => (props.isDarkMode ? 1 : 0)});
   }
 `;
 

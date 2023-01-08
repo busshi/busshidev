@@ -53,7 +53,7 @@ interface Props {
 export const ThemeProvider = ({ children }: Props) => {
   const isDark = useIsDarkMode();
   const [theme, setTheme] = useState(colors.dark);
-  const [isDarkMode, setIsDarkMode] = useState(isDark);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const value = {
     theme,
@@ -63,13 +63,14 @@ export const ThemeProvider = ({ children }: Props) => {
   };
 
   useEffect(() => {
+    setIsDarkMode(isDark);
+  }, [isDark]);
+
+  useEffect(() => {
     setTheme(isDarkMode ? colors.dark : colors.light);
   }, [isDarkMode]);
 
-  useEffect(() => {
-    setIsDarkMode(!isDark);
-  }, [isDark]);
-
+  //  console.log(`isdark ${isDark} isDarkMode ${isDarkMode}`);
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );

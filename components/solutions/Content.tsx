@@ -23,7 +23,7 @@ export const Content = ({
   const { highlightedColor } = useHighlightedColorState();
   const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [intersectionRatio, refContainer] =
-    useIntersectionRatio<HTMLDivElement>();
+    useIntersectionRatio<HTMLDivElement>(1.2);
   const { isDarkMode, setIsDarkMode, theme } = useThemeState();
   const isMobile = useIsMobile();
 
@@ -80,7 +80,7 @@ export const Content = ({
             </TextBox>
             {item === "Dark mode" && (
               <Button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+                onClick={() => setIsDarkMode(isDarkMode ? false : true)}
                 style={{
                   background: theme.mainColor,
                   border: `1px solid ${theme.mainColorInverted}`,

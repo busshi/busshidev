@@ -21,7 +21,7 @@ export const Testimonials = () => {
     useIntersectionObserver<HTMLDivElement>();
   const [reverse, setReverse] = useState(false);
   const [intersectionRatio, containerRef] =
-    useIntersectionRatio<HTMLDivElement>();
+    useIntersectionRatio<HTMLDivElement>(1.2);
   // const [width, setWidth] = useState(5);
   const { theme } = useThemeState();
   const items = TESTIMONIALS.map((item) => item.id);

@@ -12,16 +12,16 @@ import { buildThresholdList } from "../lib/observerIntersection";
  * slideIntoView(".slineIntoView", "data-view")
  */
 
-export const useSlideIntoView = (
-  elementClassName: string = ".slideIntoView",
-  attribute: string = "data-view"
-) => {
+export const useSlideIntoView = (rootMargin: string = "-50px 0px") => {
+  const elementClassName = ".slideIntoView";
+  const attribute = "data-view";
+
   useEffect(() => {
     const config = {
       // Add root here so rootBounds in entry object is not null
       root: document,
       // Margin to when element should take action
-      rootMargin: "-50px 0px",
+      rootMargin,
       // Callback will be fired 30 times during intersection
       threshold: buildThresholdList(30),
     };
@@ -50,7 +50,7 @@ export const useSlideIntoView = (
         } else if (topBound < rootTop && bottomBound > rootTop) {
           className = "inview-top";
         }
-        element.setAttribute(attribute, className);
+        className && element.setAttribute(attribute, className);
       });
       () => observer.disconnect();
     }, config);

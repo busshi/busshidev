@@ -9,8 +9,10 @@ import { Content } from "./Content";
 
 export const Solutions = () => {
   const { highlighted } = useHighlightedColorState();
-  const [intersectionRatio, ref] =
-    useIntersectionRatio<HTMLDivElement>("200px");
+  const [intersectionRatio, ref] = useIntersectionRatio<HTMLDivElement>(
+    1.2,
+    "200px"
+  );
   const solutions = buildSolutionsMenu(40, "var(--middle-font-color)");
   const { theme } = useThemeState();
 

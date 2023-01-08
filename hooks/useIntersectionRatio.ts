@@ -7,6 +7,8 @@ import { buildThresholdList } from "../lib/observerIntersection";
  * @param {string} rootMargin - Margin element like CSS "2px 1px 2px 1px"
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/rootMargin
  *
+ * @param {number} ratio - Ratio to adapt visibility (increase before element fully in viewport)
+ *
  * @param {number | number[]} threshold - Breaking points list array
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/thresholds
  *
@@ -15,6 +17,7 @@ import { buildThresholdList } from "../lib/observerIntersection";
  */
 
 export default function useIntersectionRatio<Element extends HTMLElement>(
+  ratio: number = 1,
   rootMargin: string = "0px",
   threshold?: number | number[]
 ): [number, RefObject<Element>] {
@@ -25,9 +28,8 @@ export default function useIntersectionRatio<Element extends HTMLElement>(
     const cachedRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // increase ration to say 80% is 100% for a better visibility
-        const ratio = (entry.intersectionRatio * 100) / 80;
-        setIntersectionRatio(ratio);
+        // increase / decrease ratio to adjust visibility
+        setIntersectionRatio(entry.intersectionRatio * ratio);
       },
       {
         threshold: threshold || buildThresholdList(),

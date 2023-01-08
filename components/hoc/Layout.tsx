@@ -15,13 +15,10 @@ type Props = {
 const Layout = ({ children }: Props) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const { isChatVisible } = useChatVisibleState();
-  const { theme, isDarkMode } = useThemeState();
+  const { theme } = useThemeState();
 
   return (
-    <Html
-      isDarkMode={isDarkMode}
-      style={{ color: theme.fontColor, background: theme.background }}
-    >
+    <Html style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
       <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
       <Wrapper menuOpened={isMenuOpened}>
@@ -52,7 +49,7 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-const Html = styled.div<{ isDarkMode: boolean }>`
+const Html = styled.div`
   min-width: 100%;
   min-height: 100vh;
 
