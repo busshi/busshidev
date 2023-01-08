@@ -6,7 +6,6 @@ import { useThemeState } from "../providers/Theme.provider";
 
 let Globe = () => null;
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
-// const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 const SpinningGlobe = () => {
   const { isDarkMode } = useThemeState();

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGetElementHeight } from "../hooks/useGetElementheight";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
-import { useIsMobile } from "../hooks/useIsMobile";
 import { useSlideIntoView } from "../hooks/useSlideIntoView";
 import { COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
@@ -15,15 +14,12 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
   const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(1);
   const [height, setHeight] = useState(0);
   const productHeight = useGetElementHeight(`product${index}`);
-  const isMobile = useIsMobile();
 
-  useSlideIntoView("200px");
+  useSlideIntoView();
 
   useEffect(() => {
-    setHeight(
-      isMobile ? ratio * (productHeight - 80) : ratio * (productHeight - 50)
-    );
-  }, [ratio, isMobile, productHeight]);
+    setHeight(ratio * productHeight);
+  }, [ratio, productHeight]);
 
   return (
     <Product ref={borderRef} id={`product${index}`}>
