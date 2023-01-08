@@ -70,7 +70,6 @@ export const ThemeProvider = ({ children }: Props) => {
     setTheme(isDarkMode ? colors.dark : colors.light);
   }, [isDarkMode]);
 
-  //  console.log(`isdark ${isDark} isDarkMode ${isDarkMode}`);
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );

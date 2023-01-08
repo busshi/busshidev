@@ -13,8 +13,19 @@ export const useGetElementHeight = (id: string) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    const element = document.getElementById(id);
-    if (element) setHeight(element.offsetHeight);
+    // Handler to call on window resize
+    const handleResize = () => {
+      const element = document.getElementById(id);
+      if (element) setHeight(element.offsetHeight);
+    };
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
   }, [id]);
 
   return height;

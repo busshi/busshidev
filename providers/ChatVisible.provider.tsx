@@ -1,4 +1,5 @@
-import React, { ReactNode, useContext, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
+import { useIsUserInactive } from "../hooks/useIsUserInactive";
 
 interface ChatVisibleContextType {
   isChatVisible: boolean;
@@ -15,6 +16,11 @@ interface Props {
 
 export const ChatVisibleProvider = ({ children }: Props) => {
   const [isChatVisible, setIsChatVisible] = useState(false);
+  const userInactive = useIsUserInactive();
+
+  useEffect(() => {
+    userInactive && setIsChatVisible(true);
+  }, [userInactive]);
 
   const value = {
     isChatVisible,

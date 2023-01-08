@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGetElementHeight } from "../hooks/useGetElementheight";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { useIsUserInactive } from "../hooks/useIsUserInactive";
 import { useSlideIntoView } from "../hooks/useSlideIntoView";
 import { COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
@@ -9,16 +11,39 @@ import { useThemeState } from "../providers/Theme.provider";
 import { Color, Solution } from "../types/interfaces";
 import { Title } from "./Titles";
 
-const Item = ({ solution, index }: { solution: Solution; index: number }) => {
+const DarkModeSwitcher = () => {
   const { isDarkMode, setIsDarkMode, theme } = useThemeState();
+  const iddle = useIsUserInactive();
+  console.log(iddle);
+  return (
+    <Button
+      onClick={() => setIsDarkMode(isDarkMode ? false : true)}
+      style={{
+        background: theme.mainColor,
+        border: `1px solid ${theme.mainColorInverted}`,
+      }}
+    >
+      <CircleDark
+        style={{
+          background: theme.mainColorInverted,
+          border: `1px solid ${theme.mainColor}`,
+        }}
+      />
+    </Button>
+  );
+};
+
+const Item = ({ solution, index }: { solution: Solution; index: number }) => {
   const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(1);
   const [height, setHeight] = useState(0);
   const productHeight = useGetElementHeight(`product${index}`);
+  const { theme } = useThemeState();
+  const isMobile = useIsMobile();
 
-  useSlideIntoView();
+  useSlideIntoView("200px");
 
   useEffect(() => {
-    setHeight(ratio * productHeight);
+    setHeight(isMobile ? ratio * (productHeight - 80) : ratio * productHeight);
   }, [ratio, productHeight]);
 
   return (
@@ -28,10 +53,10 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
         highlightedColor={COLORS[index]}
         gradientColor={theme.mainColor}
       />
-      <Circle index={index} style={{ color: theme.fontColor }}>
-        {index + 1}
-      </Circle>
       <Wrapper className="slideIntoView">
+        <Circle index={index} style={{ color: theme.fontColor }}>
+          {index + 1}
+        </Circle>
         <TitleBox>
           <Title
             isShiny={true}
@@ -43,7 +68,7 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
             {solution.title.substring(0, solution.title.length - 1)}
           </Title>
         </TitleBox>
-        <Description fontSize="1.7rem" style={{ color: theme.fontColor }}>
+        <Description style={{ color: theme.fontColor }}>
           {solution.description}
         </Description>
         <ActionsBox>
@@ -53,25 +78,13 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
               <TextBox style={{ color: theme.secondaryFontColor }}>
                 {item}
               </TextBox>
-              {item === "Dark mode" && (
-                <Button
-                  onClick={() => setIsDarkMode(isDarkMode ? false : true)}
-                  style={{
-                    background: theme.mainColor,
-                    border: `1px solid ${theme.mainColorInverted}`,
-                  }}
-                >
-                  <CircleDark
-                    style={{
-                      background: theme.mainColorInverted,
-                      border: `1px solid ${theme.mainColor}`,
-                    }}
-                  />
-                </Button>
-              )}
+              {item === "Dark mode" && <DarkModeSwitcher />}
             </div>
           ))}
         </ActionsBox>
+      </Wrapper>
+      <Wrapper className="slideIntoView">
+        <Example style={{ background: theme.cardBackground }}>Example</Example>
       </Wrapper>
     </Product>
   );
@@ -88,10 +101,26 @@ export const Products = () => {
   );
 };
 
+const Example = styled.div`
+  height: 100%;
+  width: 100%;
+  border-radius: var(--border-radius);
+`;
+
 const Product = styled.div`
   position: relative;
   margin: 2rem;
   padding: 2rem 0 2rem 0;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -120,20 +149,19 @@ const Border = styled.div<{
   highlightedColor: Color;
   gradientColor: string;
 }>`
-  width: 10px;
   position: absolute;
-  border-left: 5px solid;
+  border-left: 3px solid;
   border-image: ${(props) =>
-    `linear-gradient(to bottom, ${props.gradientColor}, ${props.highlightedColor.start}) 1 100%`};
+    `linear-gradient(to bottom, ${props.gradientColor}, ${props.highlightedColor.start}, ${props.highlightedColor.stop}, ${props.highlightedColor.start}, ${props.gradientColor}) 1 100%`};
 `;
 
-const Description = styled.div<{ fontSize: string }>`
+const Description = styled.div`
   text-align: left;
   display: flex;
   justify-content: flex-start;
   line-height: var(--line-height);
   font-weight: var(--font-weight);
-  font-size: ${(props) => props.fontSize};
+  font-size: 2.5rem;
 
   margin: 3rem;
   @media (max-width: 768px) {
