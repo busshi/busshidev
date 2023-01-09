@@ -57,7 +57,6 @@ export const Testimonials = () => {
       setIdVisible(testimonialIdVisible);
     }
   }, [testimonialIdVisible, isTestimonialsVisible, isMobile]);
-  console.log(idVisible, testimonialIdVisible, intersectionRatio);
 
   // Sliding Dot
   // useEffect(() => {
