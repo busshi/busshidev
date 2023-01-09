@@ -21,6 +21,7 @@ export const Metadata: React.FC = () => (
       name="keywords"
       content="busshiDev, Freelance, Fullstack developer, Developer, ReactJS, NextJS, NestJS, ExpressJS, SEO, Docker"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta name="color-scheme" content="dark light" />
     <meta property="og:image" content={`${SITE_URL}/banner.png`} />

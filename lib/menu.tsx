@@ -6,6 +6,7 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import styled from "styled-components";
 import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
+import { useThemeState } from "../providers/Theme.provider";
 import { EMAIL } from "./constants";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
@@ -13,6 +14,7 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
   const isHome = router.asPath !== "/contact";
   const { setIsChatVisible } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
+  const { theme } = useThemeState();
 
   return [
     {
@@ -41,7 +43,7 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       icon: (
         <Item href={`mailto:${EMAIL}`}>
           <HiOutlineMail size={16} color="var(--middle-font-color)" />
-          <Text>Send an email</Text>
+          <Text hoverColor={theme.mainColorInverted}>Send an email</Text>
         </Item>
       ),
       onClick: () => {
@@ -57,9 +59,10 @@ const Item = styled(Link)`
   gap: 1rem;
 `;
 
-const Text = styled.div`
-  color: var(--secondary-light-font-color);
-  @media (prefers-color-scheme: dark) {
-    color: var(--middle-font-color);
+const Text = styled.div<{ hoverColor: string }>`
+  color: var(--middle-font-color);
+
+  :hover {
+    color: ${(props) => props.hoverColor};
   }
 `;

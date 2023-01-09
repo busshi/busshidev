@@ -12,16 +12,6 @@ import { Color, Solution } from "../types/interfaces";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import { Title } from "./Titles";
 
-const ExampleSolution = ({
-  height,
-  children,
-}: {
-  height: number;
-  children: ReactNode;
-}) => {
-  return { children };
-};
-
 const Item = ({
   solution,
   index,
@@ -35,7 +25,7 @@ const Item = ({
 }) => {
   const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(
     1,
-    "0",
+    "0px",
     buildThresholdList(100)
   );
   const [height, setHeight] = useState(0);
@@ -46,7 +36,7 @@ const Item = ({
   useSlideIntoView();
 
   useEffect(() => {
-    setHeight(isMobile ? ratio * (productHeight - 80) : ratio * productHeight);
+    setHeight(isMobile ? ratio * (productHeight - 200) : ratio * productHeight);
   }, [ratio, productHeight, isMobile]);
 
   return (

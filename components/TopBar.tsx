@@ -88,7 +88,7 @@ export const TopBar = ({
               Testimonials
             </Button>
             <Link href="/contact">
-              <Button>Contact</Button>
+              <Button>Get a demo</Button>
             </Link>
           </Buttons>
         )}
