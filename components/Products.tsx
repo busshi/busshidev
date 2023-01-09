@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGetElementDimensions } from "../hooks/useGetElementDimensions";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";

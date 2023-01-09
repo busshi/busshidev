@@ -4,7 +4,6 @@ import { COLORS } from "../lib/constants";
 import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
 import { Color } from "../types/interfaces";
 import { buildSolutionsMenu } from "../lib/solutions";
-//import { useThemeState } from "../providers/Theme.provider";
 
 export const Titles = ({
   fontColor,
@@ -16,7 +15,6 @@ export const Titles = ({
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
   const solutions = buildSolutionsMenu(40);
-  //  const { theme } = useThemeState();
 
   return (
     <Container>
@@ -32,10 +30,6 @@ export const Titles = ({
           highlightedColor={highlightedColor}
           fontColor={fontColor}
           style={{ ...style }}
-          //          fontSize={fontSize}
-          // mobileFontSize={mobileFontSize}
-          //        margin={margin}
-          //      fontColor={fontColor}
         >
           {title}
         </Title>
