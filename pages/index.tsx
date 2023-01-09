@@ -2,20 +2,13 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "../components/GetADemo";
-// import Technos from "../components/Technos";
-// import Testimonials from "../components/Testimonials";
+import Testimonials from "../components/Testimonials";
 import Titles from "../components/Titles";
 import { useThemeState } from "../providers/Theme.provider";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { Products } from "../components/Products";
 import dynamic from "next/dynamic";
-// const Products = dynamic(() => import("../components/Products"), {
-//   loading: () => <></>,
-// });
-// const GetADemo = dynamic(() => import("../components/GetADemo"));
 const Technos = dynamic(() => import("../components/Technos"));
-// const Titles = dynamic(() => import("../components/Titles"));
-const Testimonials = dynamic(() => import("../components/Testimonials"));
 
 export const FirstPage = ({
   fontColor,

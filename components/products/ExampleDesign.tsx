@@ -11,9 +11,6 @@ import { FirstPage } from "../../pages";
 import Products from "../Products";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { SITE_URL } from "../../lib/constants";
-//import dynamic from "next/dynamic";
-//import Testimonials from "../Testimonials
-//const Products = dynamic(() => import("../Products"));
 
 const AUTO_SWITCH_DELAY = 3000;
 

@@ -55,7 +55,7 @@ const ExampleDeploy = () => {
           backgroundColor={isDarkMode ? "#121212" : "#f1f1f1"}
           ref={ref}
           arcsData={travel}
-          arcColor={() => "var(--gradient-boost-start)"}
+          arcColor={() => "#ff4d4d"}
           arcDashLength={0.5}
           arcDashGap={4}
           arcDashAnimateTime={4000}

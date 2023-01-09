@@ -7,9 +7,7 @@ import { HighlightedColorProvider } from "../providers/HighlightedColor.provider
 import TestimonialVisibleProvider from "../providers/TestimonialVisible.provider";
 import "./styles/app.css";
 import DarkModeProvider from "../providers/Theme.provider";
-//import dynamic from "next/dynamic";
 import Layout from "../components/hoc/Layout";
-//const Layout = dynamic(() => import("../components/hoc/Layout"));
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

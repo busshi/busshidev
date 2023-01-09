@@ -13,11 +13,7 @@ import { useThemeState } from "../providers/Theme.provider";
 const SCROLL_TIMEOUT = 6000;
 const DOT_WIDTH = 44;
 
-export const Testimonials = (
-//   replicated,
-// }: {
-//   replicated: boolean;
-) => {
+export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
   const isMobile = useIsMobile();
   const { refs, testimonialIdVisible } = useTestimonialVisibleState();
@@ -25,7 +21,7 @@ export const Testimonials = (
     useIntersectionObserver<HTMLDivElement>();
   const [reverse, setReverse] = useState(false);
   const [intersectionRatio, containerRef] =
-    useIntersectionRatio<HTMLDivElement>(1.2);
+    useIntersectionRatio<HTMLDivElement>(1.25);
   // const [width, setWidth] = useState(5);
   const { theme } = useThemeState();
   const items = TESTIMONIALS.map((item) => item.id);
@@ -61,6 +57,7 @@ export const Testimonials = (
       setIdVisible(testimonialIdVisible);
     }
   }, [testimonialIdVisible, isTestimonialsVisible, isMobile]);
+  console.log(idVisible, testimonialIdVisible, intersectionRatio);
 
   // Sliding Dot
   // useEffect(() => {
@@ -76,15 +73,14 @@ export const Testimonials = (
   //   };
   // }, [width]);
   return (
-    <Container ref={containerRef} style={{ opacity: intersectionRatio }}>
+    <Container
+      ref={containerRef}
+      style={{ opacity: intersectionRatio < 1 ? intersectionRatio : 1 }}
+    >
       <SectionTitle id="testiTitle" style={{ color: theme.middleFontColor }}>
         TRUSTED BY STARTUPS
       </SectionTitle>
-      <TestiBox
-        id="testi"
-        className="hideScrollBar"
-        ref={ref}
-      >
+      <TestiBox id="testi" className="hideScrollBar" ref={ref}>
         {TESTIMONIALS.map((testimonial, index) => (
           <TestimonialWrapper
             key={testimonial.id}
@@ -118,7 +114,7 @@ export const Testimonials = (
           </TestimonialWrapper>
         ))}
       </TestiBox>
-      {(isMobile) && (
+      {isMobile && (
         <Scroller>
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot

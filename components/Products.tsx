@@ -50,7 +50,7 @@ const Item = ({
         highlightedColor={COLORS[index]}
         gradientColor={gradientColor}
       />
-      <Wrapper className="slideIntoView" isMobile={isMobile}>
+      <Wrapper className="slideIntoViewww" isMobile={isMobile}>
         <Circle
           index={index}
           style={{
