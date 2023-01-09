@@ -68,7 +68,7 @@ export const Menu = ({
           setMenuOpened(false);
         }}
       >
-        <Item isDarkMode={isDarkMode}>Wall of love</Item>
+        <Item isDarkMode={isDarkMode}>Testimonials</Item>
       </MenuItem>
 
       <MenuItem
@@ -79,7 +79,7 @@ export const Menu = ({
         }}
       >
         <Item isDarkMode={isDarkMode}>
-          <div onClick={() => setSolutionsOpened(false)}>Reach me out</div>
+          <div onClick={() => setSolutionsOpened(false)}>Get a demo</div>
           <div>
             {contactOpened ? <IoIosArrowDropup /> : <IoIosArrowDropdown />}
           </div>
