@@ -16,7 +16,6 @@ const IconBox = styled.div`
   padding: 1rem;
   display: flex;
   gap: 0.3rem;
-  position: absolute;
 `;
 
 const Icon = styled.div<{ color: string }>`

@@ -204,7 +204,7 @@ const Bar = styled.div`
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   transition: all var(--theme-transition-delay) ease;
 `;
 
@@ -239,16 +239,11 @@ const AdressBar = styled.div`
 `;
 
 const BrowserIcons = styled.div`
-  position: absolute;
-  right: 3rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-
-  @media (max-width: 768px) {
-    right: 1.5rem;
-  }
 `;
 
 export default ExampleDesign;
