@@ -3,7 +3,6 @@ import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useThemeState } from "../../providers/Theme.provider";
 import SystemIcons from "../SystemIcons";
-import { Container } from "./ExampleDesign";
 
 const ExampleDevelop = () => {
   const { theme } = useThemeState();
@@ -36,6 +35,38 @@ const ExampleDevelop = () => {
     </Container>
   );
 };
+
+const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
+  height: ${(props) => (props.isMobile ? "400px" : "100%")};
+  width: 100%;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: ${(props) => (props.isGlobe ? "flex-end" : "flex-start")};
+
+  &.slideIntoView {
+    transition: all var(--transition-delay) ease;
+    // transition: opacity var(--transition-delay) ease;
+  }
+
+  &.slideIntoView[data-view="inview-top"],
+  &.slideIntoView[data-view="inview-bottom"] {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  &.slideIntoView[data-view="outview-top"] {
+    transform: ${(props) =>
+      props.isMobile ? "translateY(-300px)" : "translateY(-400px)"};
+    opacity: 0;
+  }
+
+  &.slideIntoView[data-view="outview-bottom"] {
+    transform: ${(props) =>
+      props.isMobile ? "translateY(300px)" : "translateY(400px)"};
+    opacity: 0;
+  }
+`;
 
 const TerminalWrapper = styled.div<{
   dimensions: { width: number; height: number };

@@ -10,6 +10,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { FirstPage } from "../../pages";
 import Products from "../Products";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { SITE_URL } from "../../lib/constants";
 //import Testimonials from "../Testimonials";
 
 const AUTO_SWITCH_DELAY = 3000;
@@ -98,7 +99,7 @@ const ExampleDesign = () => {
             }}
           >
             <SystemIcons />
-            <AdressBar>https://busshidev.fr</AdressBar>
+            <AdressBar>{SITE_URL}</AdressBar>
             <BrowserIcons>
               <MdIosShare />
               <AiOutlinePlus />
@@ -158,13 +159,13 @@ const ExampleDesign = () => {
   );
 };
 
-export const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
-  height: ${(props) => (props.isGlobe ? "100%" : "50%")};
+const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
+  height: ${(props) => (props.isMobile ? "400px" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: ${(props) => (props.isGlobe ? "flex-end" : "flex-start")};
 
   &.slideIntoView {
     transition: all var(--transition-delay) ease;
