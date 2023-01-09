@@ -33,6 +33,7 @@
   */
   --border-radius: 8px;
   --theme-transition-delay: 0.3s;
+  --short-transition-delay: 0.2s;
   --transition-delay: 0.3s;
   --middle-transition-delay: 0.5s;
   --long-transition-delay: 1s;

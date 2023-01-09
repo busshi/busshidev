@@ -46,7 +46,6 @@ const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
 
   &.slideIntoView {
     transition: all var(--transition-delay) ease;
-    // transition: opacity var(--transition-delay) ease;
   }
 
   &.slideIntoView[data-view="inview-top"],
