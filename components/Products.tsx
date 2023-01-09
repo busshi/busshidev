@@ -96,7 +96,7 @@ const Item = ({
           ))}
         </ActionsBox>
       </Wrapper>
-      {/* {solution.example} */}
+      {solution.example}
     </Product>
   );
 };
@@ -144,7 +144,7 @@ const Product = styled.div<{ replicated: boolean }>`
 
 const Wrapper = styled.div<{ isMobile: boolean }>`
   &.slideIntoView {
-    transition: all var(--short-transition-delay) ease;
+    transition: all var(--transition-delay) ease;
   }
 
   &.slideIntoView[data-view="inview-top"],
@@ -155,13 +155,13 @@ const Wrapper = styled.div<{ isMobile: boolean }>`
 
   &.slideIntoView[data-view="outview-top"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(-100px)" : "translateY(-100px)"};
+      props.isMobile ? "translateY(-300px)" : "translateY(-300px)"};
     opacity: 0;
   }
 
   &.slideIntoView[data-view="outview-bottom"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(100px)" : "translateY(100px)"};
+      props.isMobile ? "translateY(300px)" : "translateY(300px)"};
     opacity: 0;
   }
 `;
