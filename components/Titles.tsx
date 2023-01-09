@@ -1,29 +1,41 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { scrollIntoView } from "../lib/scroll";
 import { COLORS } from "../lib/constants";
 import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
 import { Color } from "../types/interfaces";
 import { buildSolutionsMenu } from "../lib/solutions";
-import { useThemeState } from "../providers/Theme.provider";
+//import { useThemeState } from "../providers/Theme.provider";
 
-export const Titles = () => {
+export const Titles = ({
+  fontColor,
+  style,
+}: {
+  fontColor: string;
+  style: CSSProperties;
+}) => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
   const solutions = buildSolutionsMenu(40);
-  const { theme } = useThemeState();
+  //  const { theme } = useThemeState();
+
   return (
     <Container>
       {solutions.map(({ title }, i) => (
         <Title
           key={title}
           isShiny={highlighted === i ? true : false}
-          mainColor={theme.mainColorInverted}
           onClick={() => {
             setHighlighted(i);
             setHighlightedColor(COLORS[i]);
             scrollIntoView(solutions[i].id);
           }}
           highlightedColor={highlightedColor}
+          fontColor={fontColor}
+          style={{ ...style }}
+          //          fontSize={fontSize}
+          // mobileFontSize={mobileFontSize}
+          //        margin={margin}
+          //      fontColor={fontColor}
         >
           {title}
         </Title>
@@ -49,17 +61,13 @@ const Container = styled.div`
 export const Title = styled.div<{
   highlightedColor: Color;
   isShiny: boolean;
-  mainColor: string;
-  fontSize?: string;
-  margin?: string;
+  fontColor: string;
 }>`
   cursor: pointer;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "6rem")};
-  margin: ${(props) => (props.margin ? props.margin : "0 1rem 0 0")};
   background: ${(props) =>
     props.isShiny
       ? `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`
-      : props.mainColor};
+      : props.fontColor};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -68,8 +76,6 @@ export const Title = styled.div<{
   letter-spacing: var(--letter-spacing);
 
   @media (max-width: 768px) {
-    margin: 0;
-    font-size: ${(props) => (props.fontSize ? "2rem" : "4rem")};
     line-height: 1.1;
   }
 `;

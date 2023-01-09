@@ -4,6 +4,7 @@ export interface Solution {
   description: string;
   actions: string[];
   icon: JSX.Element;
+  example: JSX.Element;
 }
 
 export interface Color {

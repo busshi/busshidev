@@ -2,6 +2,10 @@ import { SlRocket } from "react-icons/sl";
 import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
+import ExampleDesign from "../components/products/ExampleDesign";
+import ExampleDeploy from "../components/products/ExampleDeploy";
+import ExampleBoost from "../components/products/ExampleBoost";
+import ExampleDevelop from "../components/products/ExampleDevelop";
 
 export const buildSolutionsMenu = (size: number, color?: string) => [
   {
@@ -15,6 +19,7 @@ export const buildSolutionsMenu = (size: number, color?: string) => [
     ],
     id: "design",
     icon: <FiFigma size={size} color={color} />,
+    example: <ExampleDesign />,
   },
   {
     title: "Develop.",
@@ -27,6 +32,7 @@ export const buildSolutionsMenu = (size: number, color?: string) => [
     ],
     id: "develop",
     icon: <BsTerminalFill size={size} color={color} />,
+    example: <ExampleDevelop />,
   },
   {
     title: "Deploy.",
@@ -38,6 +44,7 @@ export const buildSolutionsMenu = (size: number, color?: string) => [
     ],
     id: "deploy",
     icon: <SlRocket size={size} color={color} />,
+    example: <ExampleDeploy />,
   },
   {
     title: "Boost.",
@@ -46,9 +53,10 @@ export const buildSolutionsMenu = (size: number, color?: string) => [
       "Search Engine Optimization",
       "Optimize referencement",
       "Boost your trafic",
-      "Convert up to 60% more",
+      "Convert more users",
     ],
     id: "boost",
     icon: <BsGraphUp size={size} color={color} />,
+    example: <ExampleBoost />,
   },
 ];

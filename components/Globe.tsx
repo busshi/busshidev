@@ -25,7 +25,7 @@ const SpinningGlobe = () => {
         hexPolygonMargin={0.7}
         //        hexPolygonColor={() => (!isDarkMode ? "#FFF" : "#3a228a")}
         onGlobeReady={() => {
-          try {
+          if (ref.current) {
             //@ts-ignore
             ref.current.controls().autoRotate = true;
             //@ts-ignore
@@ -36,7 +36,7 @@ const SpinningGlobe = () => {
             ref.current.controls().minPolarAngle = Math.PI / 3.5;
             //@ts-ignore
             ref.current.controls().maxPolarAngle = Math.PI - Math.PI / 3;
-          } catch {}
+          }
         }}
         showAtmosphere={true}
         atmosphereColor={!isDarkMode ? "#3a228a" : "#000000"}

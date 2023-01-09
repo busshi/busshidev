@@ -1,18 +1,13 @@
 import Link from "next/link";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
-import { useThemeState } from "../providers/Theme.provider";
 import { Color } from "../types/interfaces";
 
-export const GetADemo = () => {
+export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { highlightedColor } = useHighlightedColorState();
-  const { theme } = useThemeState();
   return (
     <LinkBox href="/contact">
-      <Button
-        highlightedColor={highlightedColor}
-        style={{ color: theme.mainColorInverted }}
-      >
+      <Button highlightedColor={highlightedColor} style={{ ...style }}>
         Get a Demo
       </Button>
     </LinkBox>
@@ -59,11 +54,11 @@ const Button = styled.div<{ highlightedColor: Color }>`
 
 const LinkBox = styled(Link)`
   cursor: pointer;
-  color: black;
+  //color: black;
 
-  @media (prefers-color-scheme: dark) {
-    color: white;
-  }
+  //  @media (prefers-color-scheme: dark) {
+  //  color: white;
+  //}
 
   &:hover {
     color: white;

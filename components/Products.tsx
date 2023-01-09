@@ -1,79 +1,104 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import styled from "styled-components";
-import { useGetElementHeight } from "../hooks/useGetElementheight";
+import { useGetElementDimensions } from "../hooks/useGetElementDimensions";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { useSlideIntoView } from "../hooks/useSlideIntoView";
 import { COLORS } from "../lib/constants";
+import { buildThresholdList } from "../lib/observerIntersection";
 import { buildSolutionsMenu } from "../lib/solutions";
 import { useThemeState } from "../providers/Theme.provider";
 import { Color, Solution } from "../types/interfaces";
+import DarkModeSwitcher from "./DarkModeSwitcher";
 import { Title } from "./Titles";
 
-const DarkModeSwitcher = () => {
-  const { isDarkMode, setIsDarkMode, theme } = useThemeState();
-
-  return (
-    <Button
-      onClick={() => setIsDarkMode(isDarkMode ? false : true)}
-      style={{
-        background: theme.mainColor,
-        border: `1px solid ${theme.mainColorInverted}`,
-      }}
-    >
-      <CircleDark
-        style={{
-          background: theme.mainColorInverted,
-          border: `1px solid ${theme.mainColor}`,
-        }}
-      />
-    </Button>
-  );
+const ExampleSolution = ({
+  height,
+  children,
+}: {
+  height: number;
+  children: ReactNode;
+}) => {
+  return { children };
 };
 
-const Item = ({ solution, index }: { solution: Solution; index: number }) => {
-  const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(1);
+const Item = ({
+  solution,
+  index,
+  replicated,
+  gradientColor,
+}: {
+  solution: Solution;
+  index: number;
+  replicated: boolean;
+  gradientColor: string;
+}) => {
+  const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(
+    1,
+    "0",
+    buildThresholdList(100)
+  );
   const [height, setHeight] = useState(0);
-  const productHeight = useGetElementHeight(`product${index}`);
+  const productHeight = useGetElementDimensions(solution.id).height;
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
 
-  useSlideIntoView("200px");
+  useSlideIntoView();
 
   useEffect(() => {
     setHeight(isMobile ? ratio * (productHeight - 80) : ratio * productHeight);
-  }, [ratio, productHeight]);
+  }, [ratio, productHeight, isMobile]);
 
   return (
-    <Product ref={borderRef} id={`product${index}`}>
+    <Product
+      ref={borderRef}
+      id={replicated ? "" : solution.id}
+      replicated={replicated}
+    >
       <Border
         style={{ height: `${height}px` }}
         highlightedColor={COLORS[index]}
-        gradientColor={theme.mainColor}
+        gradientColor={gradientColor}
       />
-      <Wrapper className="slideIntoView">
-        <Circle index={index} style={{ color: theme.fontColor }}>
+      <Wrapper className="slideIntoView" isMobile={isMobile}>
+        <Circle
+          index={index}
+          style={{
+            color: theme.fontColor,
+            width: replicated ? "2rem" : "3rem",
+            height: replicated ? "2rem" : "3rem",
+          }}
+        >
           {index + 1}
         </Circle>
         <TitleBox>
           <Title
             isShiny={true}
             highlightedColor={COLORS[index]}
-            fontSize="1.5rem"
-            margin="0"
-            mainColor={theme.mainColor}
+            style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
+            fontColor={theme.fontColor}
           >
             {solution.title.substring(0, solution.title.length - 1)}
           </Title>
         </TitleBox>
-        <Description style={{ color: theme.fontColor }}>
+        <Description
+          style={{
+            color: theme.fontColor,
+            fontSize: replicated ? "1.5rem" : "2.5rem",
+          }}
+        >
           {solution.description}
         </Description>
         <ActionsBox>
           {solution.icon}
           {solution.actions.map((item) => (
             <div key={item} style={{ display: "flex", gap: "1rem" }}>
-              <TextBox style={{ color: theme.secondaryFontColor }}>
+              <TextBox
+                style={{
+                  fontSize: replicated ? "0.8rem" : "1rem",
+                  color: theme.secondaryFontColor,
+                }}
+              >
                 {item}
               </TextBox>
               {item === "Dark mode" && <DarkModeSwitcher />}
@@ -81,38 +106,44 @@ const Item = ({ solution, index }: { solution: Solution; index: number }) => {
           ))}
         </ActionsBox>
       </Wrapper>
-      <Wrapper className="slideIntoView">
-        <Example style={{ background: theme.cardBackground }}>Example</Example>
-      </Wrapper>
+      {!replicated && solution.example}
     </Product>
   );
 };
-export const Products = () => {
-  const solutions = buildSolutionsMenu(40);
+export const Products = ({
+  replicated,
+  gradientColor,
+}: {
+  replicated: boolean;
+  gradientColor: string;
+}) => {
+  const solutions = buildSolutionsMenu(replicated ? 20 : 40);
 
   return (
     <div id="solutions">
       {solutions.map((solution, index) => (
-        <Item solution={solution} index={index} key={solution.title} />
+        <Item
+          replicated={replicated}
+          solution={solution}
+          index={index}
+          key={solution.title}
+          gradientColor={gradientColor}
+        />
       ))}
     </div>
   );
 };
 
-const Example = styled.div`
-  height: 100%;
-  width: 100%;
-  border-radius: var(--border-radius);
-`;
-
-const Product = styled.div`
+const Product = styled.div<{ replicated: boolean }>`
   position: relative;
+  // margin: 0 2rem 0 2rem;
   margin: 2rem;
   padding: 2rem 0 2rem 0;
 
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: ${(props) =>
+    `repeat(${props.replicated ? 1 : 2}, minmax(0, 1fr)`});
   grid-gap: 2rem;
 
   @media (max-width: 768px) {
@@ -121,25 +152,28 @@ const Product = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isMobile: boolean }>`
   &.slideIntoView {
     transition: all var(--transition-delay) ease;
+    // transition: opacity var(--transition-delay) ease;
   }
 
   &.slideIntoView[data-view="inview-top"],
   &.slideIntoView[data-view="inview-bottom"] {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 
   &.slideIntoView[data-view="outview-top"] {
+    transform: ${(props) =>
+      props.isMobile ? "translateY(-300px)" : "translateY(-300px)"};
     opacity: 0;
-    transform: translateY(-600px);
   }
 
   &.slideIntoView[data-view="outview-bottom"] {
+    transform: ${(props) =>
+      props.isMobile ? "translateY(300px)" : "translateY(300px)"};
     opacity: 0;
-    transform: translateY(600px);
   }
 `;
 
@@ -159,7 +193,7 @@ const Description = styled.div`
   justify-content: flex-start;
   line-height: var(--line-height);
   font-weight: var(--font-weight);
-  font-size: 2.5rem;
+  // font-size: 2.5rem;
 
   margin: 3rem;
   @media (max-width: 768px) {
@@ -177,22 +211,6 @@ const TitleBox = styled.div`
   }
 `;
 
-const CircleDark = styled.div`
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 99999px;
-`;
-
-const Button = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 99999px;
-`;
-
 const ActionsBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -200,7 +218,6 @@ const ActionsBox = styled.div`
   align-items: flex-start;
   margin-left: 3rem;
   gap: 1rem;
-
   @media (max-width: 768px) {
     margin: 2rem;
   }
@@ -217,8 +234,8 @@ const Circle = styled.div<{ index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  // width: 3rem;
+  // height: 3rem;
   border-radius: 99999px;
   position: relative;
   text-align: center;

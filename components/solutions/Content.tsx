@@ -41,9 +41,8 @@ export const Content = ({
         <Title
           isShiny={true}
           highlightedColor={COLORS[index]}
-          fontSize={titleSize}
-          margin="0"
-          mainColor={theme.mainColor}
+          // fontSize={titleSize}
+          fontColor={theme.fontColor}
         >
           {solution.title.substring(0, solution.title.length - 1)}
         </Title>

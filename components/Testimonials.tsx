@@ -13,7 +13,11 @@ import { useThemeState } from "../providers/Theme.provider";
 const SCROLL_TIMEOUT = 6000;
 const DOT_WIDTH = 44;
 
-export const Testimonials = () => {
+export const Testimonials = (
+//   replicated,
+// }: {
+//   replicated: boolean;
+) => {
   const [idVisible, setIdVisible] = useState(0);
   const isMobile = useIsMobile();
   const { refs, testimonialIdVisible } = useTestimonialVisibleState();
@@ -76,7 +80,11 @@ export const Testimonials = () => {
       <SectionTitle id="testiTitle" style={{ color: theme.middleFontColor }}>
         TRUSTED BY STARTUPS
       </SectionTitle>
-      <TestiBox id="testi" className="hideScrollBar" ref={ref}>
+      <TestiBox
+        id="testi"
+        className="hideScrollBar"
+        ref={ref}
+      >
         {TESTIMONIALS.map((testimonial, index) => (
           <TestimonialWrapper
             key={testimonial.id}
@@ -110,7 +118,7 @@ export const Testimonials = () => {
           </TestimonialWrapper>
         ))}
       </TestiBox>
-      {isMobile && (
+      {(isMobile) && (
         <Scroller>
           {TESTIMONIALS.map(({ id }, index) => (
             <Dot
@@ -215,10 +223,6 @@ const Testimonial = styled.div`
     color: var(--middle-font-color);
     text-decoration: underline;
   }
-
-  // @media (prefers-color-scheme: dark) {
-  //   background-color: var(--dark-background);
-  // }
 `;
 
 const ImageBox = styled(Image)`

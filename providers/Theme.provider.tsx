@@ -17,6 +17,8 @@ interface ThemeContextType {
   setTheme: (value: any) => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
+  count: number;
+  setCount: (value: number) => void;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
@@ -51,20 +53,23 @@ interface Props {
 }
 
 export const ThemeProvider = ({ children }: Props) => {
-  const isDark = useIsDarkMode();
+  //const isDark = useIsDarkMode();
   const [theme, setTheme] = useState(colors.dark);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [count, setCount] = useState(0);
 
   const value = {
     theme,
     setTheme,
     isDarkMode,
     setIsDarkMode,
+    count,
+    setCount,
   };
 
-  useEffect(() => {
-    setIsDarkMode(isDark);
-  }, [isDark]);
+  // useEffect(() => {
+  //   setIsDarkMode(isDark);
+  // }, [isDark]);
 
   useEffect(() => {
     setTheme(isDarkMode ? colors.dark : colors.light);

@@ -1,4 +1,4 @@
-import styled, { CSSProperties } from "styled-components";
+import styled from "styled-components";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
@@ -8,7 +8,6 @@ import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import dynamic from "next/dynamic";
 import { useThemeState } from "../providers/Theme.provider";
-import { ReactNode } from "react";
 const SpinningGlobe = dynamic(() => import("./Globe"), { ssr: false });
 
 // const Item = ({
