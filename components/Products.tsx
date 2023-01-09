@@ -23,7 +23,7 @@ const Item = ({
   replicated: boolean;
   gradientColor: string;
 }) => {
-  const [ratio, borderRef] = useIntersectionRatio<HTMLDivElement>(
+  const [ratio, ref] = useIntersectionRatio<HTMLDivElement>(
     1,
     "0px",
     buildThresholdList(100)
@@ -41,7 +41,7 @@ const Item = ({
 
   return (
     <Product
-      ref={borderRef}
+      ref={ref}
       id={replicated ? "" : solution.id}
       replicated={replicated}
     >
@@ -96,7 +96,7 @@ const Item = ({
           ))}
         </ActionsBox>
       </Wrapper>
-      {!replicated && solution.example}
+      {/* {solution.example} */}
     </Product>
   );
 };

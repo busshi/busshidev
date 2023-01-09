@@ -15,7 +15,7 @@ let Globe = () => null;
 if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 
 const FAST_ROTATE_SPEED = 5;
-const SLOW_ROTATE_SPEED = 1;
+const SLOW_ROTATE_SPEED = 2;
 
 const ExampleDeploy = () => {
   const [ratio, globeRef] = useIntersectionRatio<HTMLDivElement>(1);
