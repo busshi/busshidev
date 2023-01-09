@@ -1,10 +1,10 @@
-import styled from "styled-components";
+//import styled from "styled-components";
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { useThemeState } from "../../providers/Theme.provider";
 import NoSsr from "../NoSsr";
 import world from "../../lib/world.json";
-import travel from "../../lib/travel.json";
+import travel from "../../lib/globeArcs.json";
 import { useEffect, useRef } from "react";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 //import { Container } from "./ExampleDesign";
