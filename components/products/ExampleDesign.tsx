@@ -88,7 +88,6 @@ const ExampleDesign = () => {
       ref={ref}
       id="example-design"
       className="slideIntoView"
-      isGlobe={false}
     >
       <MockupWrapper dimensions={dimensions}>
         <Mockup>
@@ -137,12 +136,10 @@ const ExampleDesign = () => {
               }}
               fontColor={colors.screen.color}
             />
-            {!isMobile && (
-              <Products
-                replicated={true}
-                gradientColor={colors.screen.background}
-              />
-            )}
+            <Products
+              replicated={true}
+              gradientColor={colors.screen.background}
+            />
             {/* <Testimonials
               replicated={true}
               style={{
@@ -159,13 +156,13 @@ const ExampleDesign = () => {
   );
 };
 
-const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
+const Container = styled.div<{ isMobile: boolean }>`
   height: ${(props) => (props.isMobile ? "400px" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
-  align-items: ${(props) => (props.isGlobe ? "flex-end" : "flex-start")};
+  align-items: flex-start;
 
   &.slideIntoView {
     transition: all var(--transition-delay) ease;
@@ -215,7 +212,7 @@ const Bar = styled.div`
 const Screen = styled.div<{ isMobile: boolean }>`
   border: 1px solid var(--middle-font-color);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  height: ${(props) => (props.isMobile ? "auto" : "90%")};
+  height: ${(props) => (props.isMobile ? "330px" : "90%")};
   display: flex;
   flex-direction: column;
   align-items: center;
