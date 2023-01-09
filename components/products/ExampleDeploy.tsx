@@ -87,12 +87,12 @@ const ExampleDeploy = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  height: 100%;
+  height: 400px;
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
-  align-items: "flex-end";
+  align-items: center;
 
   &.slideIntoView {
     transition: all var(--transition-delay) ease;
