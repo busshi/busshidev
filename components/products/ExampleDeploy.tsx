@@ -42,7 +42,6 @@ const ExampleDeploy = () => {
       id="sample"
       className="slideIntoView"
       style={{
-        //     background: isMobile ? theme.background : theme.cardBackground,
         color: theme.middleFontColor,
       }}
       ref={globeRef}
