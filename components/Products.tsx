@@ -155,13 +155,13 @@ const Wrapper = styled.div<{ isMobile: boolean }>`
 
   &.slideIntoView[data-view="outview-top"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(-300px)" : "translateY(-300px)"};
+      props.isMobile ? "translateY(-100px)" : "translateY(-100px)"};
     opacity: 0;
   }
 
   &.slideIntoView[data-view="outview-bottom"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(300px)" : "translateY(300px)"};
+      props.isMobile ? "translateY(100px)" : "translateY(100px)"};
     opacity: 0;
   }
 `;
