@@ -12,7 +12,7 @@ const ExampleDevelop = () => {
     <Container
       isMobile={isMobile}
       id="example-develop"
-      className="slideIntoViewww"
+      className="slideIntoView"
     >
       {/* <TerminalWrapper dimensions={dimensions}>
         <Terminal>

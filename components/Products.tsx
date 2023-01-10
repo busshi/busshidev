@@ -144,8 +144,7 @@ const Product = styled.div<{ replicated: boolean }>`
 
 const Wrapper = styled.div<{ isMobile: boolean }>`
   &.slideIntoView {
-    transition: all var(--long-transition-delay)
-      cubic-bezier(0.06, 0.79, 0.19, 0.95);
+    transition: var(--slide-transition);
   }
 
   &.slideIntoView[data-view="inview-top"],

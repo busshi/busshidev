@@ -32,6 +32,7 @@
   *   CSS properties
   */
   --border-radius: 8px;
+  --slide-transition: all 0.6s cubic-bezier(0.06, 0.79, 0.19, 0.95);
   --theme-transition-delay: 0.3s;
   --transition-delay: 0.3s;
   --middle-transition-delay: 0.5s;

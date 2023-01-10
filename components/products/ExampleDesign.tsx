@@ -168,24 +168,25 @@ const Container = styled.div<{ isMobile: boolean }>`
   align-items: flex-start;
 
   &.slideIntoView {
-    transition: all var(--transition-delay) ease;
+    transition: var(--slide-transition);
   }
 
   &.slideIntoView[data-view="inview-top"],
   &.slideIntoView[data-view="inview-bottom"] {
     transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
 
   &.slideIntoView[data-view="outview-top"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(-300px)" : "translateY(-400px)"};
+      props.isMobile ? "translateY(-300px)" : "translateX(50px)"};
     opacity: 0;
   }
 
   &.slideIntoView[data-view="outview-bottom"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(300px)" : "translateY(400px)"};
+      props.isMobile ? "translateY(300px)" : "translateX(50px)"};
     opacity: 0;
   }
 `;
