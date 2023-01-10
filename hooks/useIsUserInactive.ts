@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 
 export const useIsUserInactive = (delay: number = 10) => {
   const [isUserInactive, setIsUserInactive] = useState<boolean>(false);
-  let skip = false;
 
   useEffect(() => {
     const timeoutInSeconds = delay * 1000;
@@ -19,9 +18,6 @@ export const useIsUserInactive = (delay: number = 10) => {
 
     const resetTimer = () => {
       setIsUserInactive(false);
-      if (skip) return;
-
-      skip = true;
       timeout && clearTimeout(timeout);
       timeout = setTimeout(() => setIsUserInactive(true), timeoutInSeconds);
     };
