@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 
 /**
- * Utility hook to determine if dark mode is on
+ * Utility hook to determine if user is inactive after a delay
  *
  * @example
- * const isUserInactive = useIsUserInactive()
+ * const isUserInactive = useIsUserInactive(delayInSeconds)
+ *
+ * @param {number} delay - Delay inactivity (default: 10 seconds)
  */
 
-export const useIsUserInactive = () => {
+export const useIsUserInactive = (delay = 10) => {
   const [isUserInactive, setIsUserInactive] = useState<boolean>(false);
+  let skip = false;
 
   useEffect(() => {
-    const timeoutInSeconds = 10 * 1000;
+    const timeoutInSeconds = delay * 1000;
     let timeout: NodeJS.Timeout;
 
     const resetTimer = () => {
       setIsUserInactive(false);
+      if (skip) return;
+
+      skip = true;
       timeout && clearTimeout(timeout);
       timeout = setTimeout(() => setIsUserInactive(true), timeoutInSeconds);
     };
