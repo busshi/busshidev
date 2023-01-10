@@ -50,7 +50,7 @@ const Item = ({
         highlightedColor={COLORS[index]}
         gradientColor={gradientColor}
       />
-      <Wrapper className="slideIntoViewww" isMobile={isMobile}>
+      <Wrapper className="slideIntoView" isMobile={isMobile}>
         <Circle
           index={index}
           style={{
@@ -144,24 +144,19 @@ const Product = styled.div<{ replicated: boolean }>`
 
 const Wrapper = styled.div<{ isMobile: boolean }>`
   &.slideIntoView {
-    transition: all var(--transition-delay) ease;
+    transition: all var(--long-transition-delay)
+      cubic-bezier(0.06, 0.79, 0.19, 0.95);
   }
 
   &.slideIntoView[data-view="inview-top"],
   &.slideIntoView[data-view="inview-bottom"] {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
   }
 
-  &.slideIntoView[data-view="outview-top"] {
-    transform: ${(props) =>
-      props.isMobile ? "translateY(-300px)" : "translateY(-300px)"};
-    opacity: 0;
-  }
-
+  &.slideIntoView[data-view="outview-top"],
   &.slideIntoView[data-view="outview-bottom"] {
-    transform: ${(props) =>
-      props.isMobile ? "translateY(300px)" : "translateY(300px)"};
+    transform: translateX(-50px);
     opacity: 0;
   }
 `;
