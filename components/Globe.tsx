@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import { useRef } from "react";
-import world from "../lib/world.json";
-import { useWindowSize } from "../hooks/useWindowSize";
-import { useThemeState } from "../providers/Theme.provider";
+// import { useRef } from "react";
+//import world from "../lib/world.json";
+// import { useWindowSize } from "../hooks/useWindowSize";
+// import { useThemeState } from "../providers/Theme.provider";
 
-let Globe = () => null;
-if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
+// let Globe = () => null;
+// if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 
 const SpinningGlobe = () => {
-  const { isDarkMode } = useThemeState();
-  const ref = useRef();
-  const size = useWindowSize();
+  // const { isDarkMode } = useThemeState();
+  // const ref = useRef();
+  // const size = useWindowSize();
 
   return (
     <Container>
-      <Globe
+      {/* <Globe
         //@ts-ignore
         showGlobe={false}
         width={size.width}
@@ -48,7 +48,7 @@ const SpinningGlobe = () => {
         // arcsTransitionDuration={1000}
         // arcStroke={"stroke"}
         // arcCircularResolution={64}
-      />
+      /> */}
     </Container>
   );
 };

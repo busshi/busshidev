@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 /**
  * Utility hook to if an element is in the viewport
@@ -40,22 +40,6 @@ export default function useIntersectionsObserver<Element extends HTMLElement>(
     });
     return () => observer.disconnect();
   }, [refs]);
-
-  // useEffect(() => {
-  //   const cachedRef = ref.current;
-  //   const observer = new IntersectionObserver(
-  //     ([e]) => {
-  //       if (e.isIntersecting) setIsElementVisible(true);
-  //       else if (!!!e.isIntersecting) setIsElementVisible(false);
-  //     },
-  //     {
-  //       threshold,
-  //       rootMargin,
-  //     }
-  //   );
-  //   cachedRef && observer.observe(cachedRef);
-  //   return () => observer.disconnect();
-  // }, [ref]);
 
   return [isElementVisible, refs];
 }

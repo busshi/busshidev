@@ -9,8 +9,8 @@ import { useEffect, useRef } from "react";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 import { useIsMobile } from "../../hooks/useIsMobile";
 
-let Globe = () => null;
-if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
+// let Globe = () => null;
+// if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 
 const FAST_ROTATE_SPEED = 5;
 const SLOW_ROTATE_SPEED = 2;
