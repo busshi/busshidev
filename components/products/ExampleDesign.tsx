@@ -86,7 +86,7 @@ const ExampleDesign = () => {
       isMobile={isMobile}
       ref={ref}
       id="example-design"
-      className="slideIntoView"
+      className="slideIntoViewww"
     >
       <MockupWrapper dimensions={dimensions}>
         <Mockup>

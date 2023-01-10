@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
+// import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { useThemeState } from "../../providers/Theme.provider";
-import SystemIcons from "../SystemIcons";
+// import { useThemeState } from "../../providers/Theme.provider";
+// import SystemIcons from "../SystemIcons";
 
 const ExampleDevelop = () => {
-  const { theme } = useThemeState();
-  const dimensions = useGetElementDimensions("example-develop");
+  //  const { theme } = useThemeState();
+  //const dimensions = useGetElementDimensions("example-develop");
   const isMobile = useIsMobile();
   return (
     <Container
       isMobile={isMobile}
       id="example-develop"
-      className="slideIntoView"
+      className="slideIntoViewww"
     >
       {/* <TerminalWrapper dimensions={dimensions}>
         <Terminal>
@@ -37,7 +37,7 @@ const ExampleDevelop = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
-  height: ${(props) => (props.isMobile ? "400px" : "100%")};
+  //height: ${(props) => (props.isMobile ? "400px" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;

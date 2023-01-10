@@ -40,7 +40,7 @@ const ExampleDeploy = () => {
     <Container
       isMobile={isMobile}
       id="sample"
-      className="slideIntoView"
+      className="slideIntoViewww"
       style={{
         color: theme.middleFontColor,
       }}

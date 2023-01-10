@@ -7,7 +7,7 @@ const ExampleBoost = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  height: ${(props) => (props.isMobile ? "400px" : "100%")};
+  // height: ${(props) => (props.isMobile ? "400px" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
