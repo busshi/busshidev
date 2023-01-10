@@ -1,15 +1,15 @@
-import dynamic from "next/dynamic";
 import Script from "next/script";
 import { useState } from "react";
 import styled from "styled-components";
 import { CRIPS_WEBSITE_ID } from "../../lib/constants";
 import { useChatVisibleState } from "../../providers/ChatVisible.provider";
 import { useThemeState } from "../../providers/Theme.provider";
-// import Footer from "../Footer";
+import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
+//import dynamic from "next/dynamic";
 // const TopBar = dynamic(() => import("../TopBar"));
-const Footer = dynamic(() => import("../Footer"));
+// const Footer = dynamic(() => import("../Footer"));
 // const Metadata = dynamic(() => import("../Metadata"));
 
 type Props = {

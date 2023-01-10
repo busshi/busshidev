@@ -7,8 +7,9 @@ import Titles from "../components/Titles";
 import { useThemeState } from "../providers/Theme.provider";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { Products } from "../components/Products";
-import dynamic from "next/dynamic";
-const Technos = dynamic(() => import("../components/Technos"));
+import Technos from "../components/Technos";
+//import dynamic from "next/dynamic";
+//const Technos = dynamic(() => import("../components/Technos"));
 
 export const FirstPage = ({
   fontColor,
