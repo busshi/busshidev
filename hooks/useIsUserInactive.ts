@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
  * @param {number} delay - Delay inactivity (default: 10 seconds)
  */
 
-export const useIsUserInactive = (delay = 10) => {
+export const useIsUserInactive = (delay: number = 10) => {
   const [isUserInactive, setIsUserInactive] = useState<boolean>(false);
   let skip = false;
 
