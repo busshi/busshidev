@@ -96,7 +96,7 @@ const Item = ({
           ))}
         </ActionsBox>
       </Wrapper>
-      {/* {!replicated && solution.example} */}
+      {!replicated && solution.example}
     </Product>
   );
 };

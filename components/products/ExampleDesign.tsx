@@ -12,7 +12,7 @@ import Products from "../Products";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { SITE_URL } from "../../lib/constants";
 
-const AUTO_SWITCH_DELAY = 3000;
+const AUTO_SWITCH_DELAY = 1500;
 
 const ExampleDesign = () => {
   const { isDarkMode, theme } = useThemeState();
@@ -80,6 +80,10 @@ const ExampleDesign = () => {
       implementation: { color: theme.secondaryFontColor },
     });
   }, [isDarkMode, theme]);
+
+  useEffect(() => {
+    if (!isElementVisible) setCount(0);
+  }, [isElementVisible]);
 
   return (
     <Container

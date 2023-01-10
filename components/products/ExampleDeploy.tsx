@@ -2,17 +2,17 @@
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { useThemeState } from "../../providers/Theme.provider";
-import NoSsr from "../NoSsr";
-import world from "../../lib/world.json";
-import travel from "../../lib/globeArcs.json";
+// import NoSsr from "../NoSsr";
+// import world from "../../lib/world.json";
+// import travel from "../../lib/globeArcs.json";
 import { useEffect, useRef } from "react";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
 //import { Container } from "./ExampleDesign";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import styled from "styled-components";
 
-let Globe = () => null;
-if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
+// let Globe = () => null;
+// if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 
 const FAST_ROTATE_SPEED = 5;
 const SLOW_ROTATE_SPEED = 2;
@@ -20,8 +20,8 @@ const SLOW_ROTATE_SPEED = 2;
 const ExampleDeploy = () => {
   const [ratio, globeRef] = useIntersectionRatio<HTMLDivElement>(1);
   const { theme } = useThemeState();
-  const dimensions = useGetElementDimensions("sample");
-  const { isDarkMode } = useThemeState();
+  //const dimensions = useGetElementDimensions("sample");
+  //const { isDarkMode } = useThemeState();
   const ref = useRef();
   const isMobile = useIsMobile();
 
@@ -46,7 +46,7 @@ const ExampleDeploy = () => {
       }}
       ref={globeRef}
     >
-      <NoSsr>
+      {/* <NoSsr>
         <Globe //@ts-ignore
           width={dimensions.width}
           height={dimensions.height}
@@ -81,7 +81,7 @@ const ExampleDeploy = () => {
             }
           }}
         />
-      </NoSsr>
+      </NoSsr> */}
     </Container>
   );
 };
