@@ -58,3 +58,57 @@ body {
 * {
   text-decoration: none;
 }
+
+/**
+* useSlideIntoView hook for Products example component visibility and transition
+* Transition from right to left when appearence on laptop
+*/
+.slideIntoViewRight {
+  transition: var(--slide-transition);
+}
+
+.slideIntoViewRight[data-view="inview-top"],
+.slideIntoViewRight[data-view="inview-bottom"] {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.slideIntoViewRight[data-view="outview-top"],
+.slideIntoViewRight[data-view="outview-bottom"] {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
+/**
+* Transition from bottom to top when appearence on mobile screen
+*/
+@media (max-width: 768px) {
+  .slideIntoViewRight[data-view="outview-top"] {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+
+  .slideIntoViewRight[data-view="outview-bottom"] {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+}
+
+/**
+* useSlideIntoView hook for Products component visibility and transition
+*/
+.slideIntoViewLeft {
+  transition: var(--slide-transition);
+}
+
+.slideIntoViewLeft[data-view="inview-top"],
+.slideIntoViewLeft[data-view="inview-bottom"] {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slideIntoViewLeft[data-view="outview-top"],
+.slideIntoViewLeft[data-view="outview-bottom"] {
+  transform: translateX(-50px);
+  opacity: 0;
+}

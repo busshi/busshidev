@@ -33,7 +33,7 @@ const Item = ({
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
 
-  useSlideIntoView();
+  useSlideIntoView(".slideIntoViewLeft");
 
   useEffect(() => {
     setHeight(isMobile ? ratio * (productHeight - 200) : ratio * productHeight);
@@ -51,7 +51,7 @@ const Item = ({
         gradientColor={gradientColor}
       />
       {isMobile !== undefined && (
-        <Wrapper className="slideIntoView" isMobile={isMobile}>
+        <Wrapper className="slideIntoViewLeft" isMobile={isMobile}>
           <Circle
             index={index}
             style={{
@@ -145,23 +145,7 @@ const Product = styled.div<{ replicated: boolean }>`
   }
 `;
 
-const Wrapper = styled.div<{ isMobile: boolean }>`
-  &.slideIntoView {
-    transition: var(--slide-transition);
-  }
-
-  &.slideIntoView[data-view="inview-top"],
-  &.slideIntoView[data-view="inview-bottom"] {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  &.slideIntoView[data-view="outview-top"],
-  &.slideIntoView[data-view="outview-bottom"] {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-`;
+const Wrapper = styled.div<{ isMobile: boolean }>``;
 
 const Border = styled.div<{
   highlightedColor: Color;

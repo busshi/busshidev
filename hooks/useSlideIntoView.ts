@@ -5,14 +5,18 @@ import { buildThresholdList } from "../lib/observerIntersection";
  * Utility function to animate element visibility
  * Add an attribute to the element to trigger the CSS
  *
+ * @param {string} className - Element classname used for CSS
  * @param {string} rootMargin - Element margin in pixels
  *
  * @example
- * useSlideIntoView("50px 0px")
+ * useSlideIntoView(className, "50px 0px")
  */
 
-export const useSlideIntoView = (rootMargin: string = "-50px 50px") => {
-  const elementClassName = ".slideIntoView";
+export const useSlideIntoView = (
+  className: string,
+  rootMargin: string = "-50px 50px"
+) => {
+  //  const elementClassName = `.${className}`;
   const attribute = "data-view";
 
   useEffect(() => {
@@ -54,9 +58,9 @@ export const useSlideIntoView = (rootMargin: string = "-50px 50px") => {
       () => observer.disconnect();
     }, config);
 
-    const viewbox = document.querySelectorAll(elementClassName);
+    const viewbox = document.querySelectorAll(className);
     viewbox.forEach((image) => {
       observer.observe(image);
     });
-  }, [elementClassName, attribute]);
+  }, [className, attribute]);
 };

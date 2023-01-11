@@ -88,7 +88,7 @@ const ExampleDesign = () => {
       isMobile={isMobile}
       ref={ref}
       id="example-design"
-      className="slideIntoView"
+      className="slideIntoViewRight"
     >
       <MockupWrapper dimensions={dimensions}>
         <Mockup>
@@ -165,28 +165,6 @@ const Container = styled.div<{ isMobile: boolean }>`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  &.slideIntoView {
-    transition: var(--slide-transition);
-  }
-
-  &.slideIntoView[data-view="inview-top"],
-  &.slideIntoView[data-view="inview-bottom"] {
-    transform: translate(0);
-    opacity: 1;
-  }
-
-  &.slideIntoView[data-view="outview-top"] {
-    transform: ${(props) =>
-      props.isMobile ? "translateY(-300px)" : "translateX(50px)"};
-    opacity: 0;
-  }
-
-  &.slideIntoView[data-view="outview-bottom"] {
-    transform: ${(props) =>
-      props.isMobile ? "translateY(300px)" : "translateX(50px)"};
-    opacity: 0;
-  }
 `;
 
 const MockupWrapper = styled.div<{
