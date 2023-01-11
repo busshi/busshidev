@@ -16,8 +16,9 @@ export const Technos = () => {
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>(1.2);
   const { theme } = useThemeState();
+
   useEffect(() => {
-    if (!isMobile) return;
+    //  if (!isMobile) return;
     let i = 0;
     let reverse = false;
     const items = document.getElementById("items");
