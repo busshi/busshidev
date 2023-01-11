@@ -32,7 +32,7 @@ export const Column = ({
               {!isMobile ? (
                 item.name
               ) : (
-                <span style={{ color: theme.footerBackground }}>.</span>
+                <span style={{ display: "none" }}>.</span>
               )}
             </LinkWrapper>
           );
