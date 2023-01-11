@@ -8,7 +8,8 @@ import ExampleBoost from "../components/products/ExampleBoost";
 import ExampleDevelop from "../components/products/ExampleDevelop";
 import dynamic from "next/dynamic";
 const ExampleDeploy = dynamic(
-  () => import("../components/products/ExampleDeploy"),
+  () =>
+    import("../components/products/ExampleDeploy").then((mod) => mod.default),
   { ssr: false }
 );
 export const buildSolutionsMenu = (size: number, color?: string) => [
