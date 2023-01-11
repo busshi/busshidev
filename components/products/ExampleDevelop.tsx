@@ -1,20 +1,23 @@
 import styled from "styled-components";
-// import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
+import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useIsMobile } from "../../hooks/useIsMobile";
-// import { useThemeState } from "../../providers/Theme.provider";
-// import SystemIcons from "../SystemIcons";
+import { useSlideIntoView } from "../../hooks/useSlideIntoView";
+import { useThemeState } from "../../providers/Theme.provider";
+import SystemIcons from "../SystemIcons";
 
 const ExampleDevelop = () => {
-  //  const { theme } = useThemeState();
-  //const dimensions = useGetElementDimensions("example-develop");
+  const { theme } = useThemeState();
+  const dimensions = useGetElementDimensions("example-develop");
   const isMobile = useIsMobile();
+  useSlideIntoView();
+
   return (
     <Container
       isMobile={isMobile}
       id="example-develop"
       className="slideIntoView"
     >
-      {/* <TerminalWrapper dimensions={dimensions}>
+      <TerminalWrapper dimensions={dimensions}>
         <Terminal>
           <TopBar
             style={{
@@ -31,38 +34,38 @@ const ExampleDevelop = () => {
             <Cursor />
           </Screen>
         </Terminal>
-      </TerminalWrapper> */}
+      </TerminalWrapper>
     </Container>
   );
 };
 
-const Container = styled.div<{ isMobile: boolean; isGlobe?: boolean }>`
+const Container = styled.div<{ isMobile: boolean }>`
   //height: ${(props) => (props.isMobile ? "400px" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
-  align-items: ${(props) => (props.isGlobe ? "flex-end" : "flex-start")};
+  align-items: center;
 
   &.slideIntoView {
-    transition: all var(--transition-delay) ease;
+    transition: var(--slide-transition);
   }
 
   &.slideIntoView[data-view="inview-top"],
   &.slideIntoView[data-view="inview-bottom"] {
-    transform: translateY(0);
+    transform: translate(0);
     opacity: 1;
   }
 
   &.slideIntoView[data-view="outview-top"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(-300px)" : "translateY(-400px)"};
+      props.isMobile ? "translateY(-300px)" : "translateX(50px)"};
     opacity: 0;
   }
 
   &.slideIntoView[data-view="outview-bottom"] {
     transform: ${(props) =>
-      props.isMobile ? "translateY(300px)" : "translateY(400px)"};
+      props.isMobile ? "translateY(300px)" : "translateX(50px)"};
     opacity: 0;
   }
 `;

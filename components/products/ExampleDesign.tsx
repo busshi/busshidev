@@ -33,11 +33,7 @@ const ExampleDesign = () => {
 
   useEffect(() => {
     const autoSwitch = () => {
-      if (
-        isElementVisible &&
-        count < 2 //||
-        //    (!isElementVisible && count < 2 && count)
-      ) {
+      if (isElementVisible && count < 2) {
         setIsExampleDark(!isExampleDark);
         setColors({
           top: {
