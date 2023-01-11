@@ -5,7 +5,7 @@ import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { ComponentProps, Dispatch, ReactNode, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
 import { BLOG_URL } from "../lib/constants";
@@ -13,17 +13,14 @@ import { useThemeState } from "../providers/Theme.provider";
 
 const Button = ({
   children,
-  onClick,
 }: {
   children: ReactNode;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-}) => {
+} & ComponentProps<typeof ButtonWrapper>) => {
   const { theme } = useThemeState();
   return (
     <ButtonWrapper
       color={theme.middleFontColor}
       hoverColor={theme.mainColorInverted}
-      onClick={onClick}
     >
       {children}
     </ButtonWrapper>

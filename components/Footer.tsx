@@ -27,13 +27,10 @@ export const Column = ({
               key={item.id}
               href={item.url}
               style={{ color: theme.middleFontColor }}
+              hoverColor={theme.mainColorInverted}
             >
               {!isDarkMode ? item.logoDark : item.logo}
-              {!isMobile ? (
-                item.name
-              ) : (
-                <span style={{ display: "none" }}>.</span>
-              )}
+              {!isMobile && item.name}
             </LinkWrapper>
           );
         })}
@@ -132,7 +129,7 @@ const Span = styled.span`
   margin-bottom: 0.5rem;
 `;
 
-const LinkWrapper = styled(Link)`
+const LinkWrapper = styled(Link)<{ hoverColor: string }>`
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -140,20 +137,23 @@ const LinkWrapper = styled(Link)`
   font-size: 0.8rem;
   padding: 0.5rem;
 
-  transition: color 0.3s ease;
   :hover {
-    color: var(--main-light-font-color);
+    color: ${(props) => props.hoverColor};
   }
+  transition: color 0.3s ease;
+  // :hover {
+  //   color: var(--main-light-font-color);
+  // }
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :hover {
-      color: var(--main-dark-font-color);
-    }
-  }
+  // @media (prefers-color-scheme: dark) {
+  //   :hover {
+  //     color: var(--main-dark-font-color);
+  //   }
+  // }
 `;
 
 const LinksBox = styled.div`

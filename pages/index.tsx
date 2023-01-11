@@ -20,7 +20,7 @@ export const Home: NextPage = () => {
           margin: "0 1rem 0 0",
         }}
         firstPageStyle={{ gap: "4rem", minHeight: "90vh", margin: "0rem" }}
-        introStyle={{ fontSize: "1.5rem" }}
+        introStyle={{ fontSize: isMobile ? "1rem" : "1.5rem" }}
         getADemoStyle={{
           width: "15rem",
           height: "3rem",
