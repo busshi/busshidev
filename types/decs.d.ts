@@ -1,1 +1,2 @@
-//declare module "my-untyped-module";
+declare module "globejs";
+declare module "glob";

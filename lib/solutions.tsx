@@ -3,10 +3,14 @@ import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
 import ExampleDesign from "../components/products/ExampleDesign";
-import ExampleDeploy from "../components/products/ExampleDeploy";
+//import ExampleDeploy from "../components/products/ExampleDeploy";
 import ExampleBoost from "../components/products/ExampleBoost";
 import ExampleDevelop from "../components/products/ExampleDevelop";
-
+import dynamic from "next/dynamic";
+const ExampleDeploy = dynamic(
+  () => import("../components/products/ExampleDeploy"),
+  { ssr: false }
+);
 export const buildSolutionsMenu = (size: number, color?: string) => [
   {
     title: "Design.",
