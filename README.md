@@ -5,9 +5,9 @@ Coded in Typescript with NextJS
 
 ## Usage
 
-- `yarn install` to install node modules
-- `yarn run dev` to start in development mode
-- `yarn run build` to create the production build ready to be deployed
+- `yarn` to install node modules
+- `yarn dev` to start in development mode
+- `yarn build` to create the production build ready to be deployed
 
 ## Challenges
 

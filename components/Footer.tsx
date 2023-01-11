@@ -29,7 +29,11 @@ export const Column = ({
               style={{ color: theme.middleFontColor }}
             >
               {!isDarkMode ? item.logoDark : item.logo}
-              {!isMobile && item.name}
+              {!isMobile ? (
+                item.name
+              ) : (
+                <span style={{ color: theme.footerBackground }}>.</span>
+              )}
             </LinkWrapper>
           );
         })}
@@ -61,7 +65,7 @@ const Logo = () => {
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
-  
+
   const { theme } = useThemeState();
 
   return (
@@ -142,7 +146,7 @@ const LinkWrapper = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -169,6 +173,8 @@ const ImageBox = styled(Image)`
 `;
 
 const Hr = styled.hr`
+  // margin: 0;
+  // padding: 0;
   width: 15vw;
   height: 2px;
   border-width: 0;
