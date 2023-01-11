@@ -34,7 +34,7 @@ const ExampleDeploy = () => {
       ref.current.controls().autoRotateSpeed = FAST_ROTATE_SPEED;
   }, [ratio, ref]);
 
-  return (
+  return isMobile !== undefined ? (
     <Container
       isMobile={isMobile}
       id="sample"
@@ -81,6 +81,8 @@ const ExampleDeploy = () => {
             />
           </NoSsr> */}
     </Container>
+  ) : (
+    <></>
   );
 };
 

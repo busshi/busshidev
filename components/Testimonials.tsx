@@ -16,6 +16,7 @@ const DOT_WIDTH = 44;
 export const Testimonials = () => {
   const [idVisible, setIdVisible] = useState(0);
   const isMobile = useIsMobile();
+
   const { refs, testimonialIdVisible } = useTestimonialVisibleState();
   const [isTestimonialsVisible, ref] =
     useIntersectionObserver<HTMLDivElement>();

@@ -50,52 +50,55 @@ const Item = ({
         highlightedColor={COLORS[index]}
         gradientColor={gradientColor}
       />
-      <Wrapper className="slideIntoView" isMobile={isMobile}>
-        <Circle
-          index={index}
-          style={{
-            color: theme.fontColor,
-            width: replicated ? "2rem" : "3rem",
-            height: replicated ? "2rem" : "3rem",
-          }}
-        >
-          {index + 1}
-        </Circle>
-        <TitleBox>
-          <Title
-            isShiny={true}
-            highlightedColor={COLORS[index]}
-            style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
-            fontColor={theme.fontColor}
+      {isMobile !== undefined && (
+        <Wrapper className="slideIntoView" isMobile={isMobile}>
+          <Circle
+            index={index}
+            style={{
+              color: theme.fontColor,
+              width: replicated ? "2rem" : "3rem",
+              height: replicated ? "2rem" : "3rem",
+            }}
           >
-            {solution.title.substring(0, solution.title.length - 1)}
-          </Title>
-        </TitleBox>
-        <Description
-          style={{
-            color: theme.fontColor,
-            fontSize: replicated ? "1.5rem" : "2.5rem",
-          }}
-        >
-          {solution.description}
-        </Description>
-        <ActionsBox>
-          {solution.icon}
-          {solution.actions.map((item) => (
-            <div key={item} style={{ display: "flex", gap: "1rem" }}>
-              <TextBox
-                style={{
-                  fontSize: replicated ? "0.8rem" : "1rem",
-                  color: theme.secondaryFontColor,
-                }}
-              >
-                {item}
-              </TextBox>
-              {item === "Dark mode" && <DarkModeSwitcher />}
-            </div>
-          ))}
-        </ActionsBox>
-      </Wrapper>
+            {index + 1}
+          </Circle>
+          <TitleBox>
+            <Title
+              isShiny={true}
+              highlightedColor={COLORS[index]}
+              style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
+              fontColor={theme.fontColor}
+              // replicated={replicated}
+            >
+              {solution.title.substring(0, solution.title.length - 1)}
+            </Title>
+          </TitleBox>
+          <Description
+            style={{
+              color: theme.fontColor,
+              fontSize: replicated ? "1.5rem" : "2.5rem",
+            }}
+          >
+            {solution.description}
+          </Description>
+          <ActionsBox>
+            {solution.icon}
+            {solution.actions.map((item) => (
+              <div key={item} style={{ display: "flex", gap: "1rem" }}>
+                <TextBox
+                  style={{
+                    fontSize: replicated ? "0.8rem" : "1rem",
+                    color: theme.secondaryFontColor,
+                  }}
+                >
+                  {item}
+                </TextBox>
+                {item === "Dark mode" && <DarkModeSwitcher />}
+              </div>
+            ))}
+          </ActionsBox>
+        </Wrapper>
+      )}
       {!replicated && solution.example}
     </Product>
   );

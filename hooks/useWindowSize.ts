@@ -9,12 +9,12 @@ import { useEffect, useState } from "react";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
-    width: 0,
-    height: 0,
+    width: 1024,
+    height: 768,
   });
 
+  // only execute all the code below in client side
   useEffect(() => {
-    // only execute all the code below in client side
     // Handler to call on window resize
     const handleResize = () => {
       setWindowSize({

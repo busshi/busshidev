@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { useIsMobile } from "../../hooks/useIsMobile";
+// import { useIsMobile } from "../../hooks/useIsMobile";
 
 const ExampleBoost = () => {
-  const isMobile = useIsMobile();
-  return <Container isMobile={isMobile}></Container>;
+  // const isMobile = useIsMobile();
+  // return isMobile !== undefined ? (
+  // <Container isMobile={isMobile}></Container>
+  // ) : (
+  return <></>;
+  // );
 };
 
 const Container = styled.div<{ isMobile: boolean }>`

@@ -7,10 +7,6 @@ import { useThemeState } from "../../providers/Theme.provider";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
-//import dynamic from "next/dynamic";
-// const TopBar = dynamic(() => import("../TopBar"));
-// const Footer = dynamic(() => import("../Footer"));
-// const Metadata = dynamic(() => import("../Metadata"));
 
 type Props = {
   children: React.ReactNode;

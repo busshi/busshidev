@@ -61,6 +61,7 @@ const Logo = () => {
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
+  
   const { theme } = useThemeState();
 
   return (

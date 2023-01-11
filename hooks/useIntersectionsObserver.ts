@@ -8,7 +8,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
  * @param {number | number[]} threshold - Breaking points list array
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/thresholds
  * 
- * @param {string} rootMargin - Margin element like CSS "2px 1px 2px 1px"
+ * @param {string} rootMargin - Margin element like CSS "2px 1px 2px 1px"
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/rootMargin
 
  * @example

@@ -8,9 +8,11 @@ import { buildSolutionsMenu } from "../lib/solutions";
 export const Titles = ({
   fontColor,
   style,
+//  replicated,
 }: {
   fontColor: string;
   style: CSSProperties;
+  //replicated: boolean;
 }) => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
@@ -30,6 +32,7 @@ export const Titles = ({
           highlightedColor={highlightedColor}
           fontColor={fontColor}
           style={{ ...style }}
+       //   replicated={replicated}
         >
           {title}
         </Title>
@@ -39,12 +42,12 @@ export const Titles = ({
 };
 
 const Container = styled.div`
-  margin: 20px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   text-align: center;
   flex-wrap: wrap;
+  flex-direction: row;
+  margin: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -56,6 +59,7 @@ export const Title = styled.div<{
   highlightedColor: Color;
   isShiny: boolean;
   fontColor: string;
+//  replicated: boolean;
 }>`
   cursor: pointer;
   background: ${(props) =>
@@ -68,10 +72,6 @@ export const Title = styled.div<{
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: var(--letter-spacing);
-
-  @media (max-width: 768px) {
-    line-height: 1.1;
-  }
 `;
 
 export default Titles;

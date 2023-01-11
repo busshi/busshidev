@@ -12,13 +12,12 @@ interface Theme {
   cardBackground: string;
   footerBackground: string;
 }
+
 interface ThemeContextType {
   theme: Theme;
   setTheme: (value: any) => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
-  count: number;
-  setCount: (value: number) => void;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
@@ -56,17 +55,17 @@ export const ThemeProvider = ({ children }: Props) => {
   //const isDark = useIsDarkMode();
   const [theme, setTheme] = useState(colors.dark);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [count, setCount] = useState(0);
 
   const value = {
     theme,
     setTheme,
     isDarkMode,
     setIsDarkMode,
-    count,
-    setCount,
   };
 
+  /**
+   * Effect to trigger auto switch based on the system preferences (disabled)
+   */
   // useEffect(() => {
   //   setIsDarkMode(isDark);
   // }, [isDark]);

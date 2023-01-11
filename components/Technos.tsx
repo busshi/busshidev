@@ -7,6 +7,7 @@ import { getTechnos } from "../lib/technos";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useThemeState } from "../providers/Theme.provider";
+import { useMediaQuery } from "react-responsive";
 
 export const Technos = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
@@ -17,9 +18,9 @@ export const Technos = () => {
     useIntersectionRatio<HTMLDivElement>(1.2);
   const { theme } = useThemeState();
   useEffect(() => {
+    if (!isMobile) return;
     let i = 0;
     let reverse = false;
-    // if (isMobile) return;
     const items = document.getElementById("items");
     if (isElementVisible && items) {
       setTimeout(

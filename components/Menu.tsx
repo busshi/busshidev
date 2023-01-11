@@ -16,7 +16,7 @@ export const Menu = ({
   const [solutionsOpened, setSolutionsOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
   const { isDarkMode, theme } = useThemeState();
-  // Build solutions array with icon size of 20px
+  // Build solutions array with icon size of 16px
   const solutions = buildSolutionsMenu(16);
   const contacts = BuildContactsMenu(setMenuOpened);
 

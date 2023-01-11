@@ -54,6 +54,7 @@ const Cross = styled.div`
   top: 12px;
   left: 12px;
   cursor: pointer;
+  color: var(--middle-font-color);
 `;
 
 export default Contact;

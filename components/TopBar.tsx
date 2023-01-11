@@ -114,6 +114,13 @@ const LinkBox = styled(Link)`
 
 const ImageBox = styled(Image)`
   margin: 1rem;
+  width: 80px;
+  height: 80px;
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const MenuIcon = styled.div`

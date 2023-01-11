@@ -54,11 +54,6 @@ const Button = styled.div<{ highlightedColor: Color }>`
 
 const LinkBox = styled(Link)`
   cursor: pointer;
-  //color: black;
-
-  //  @media (prefers-color-scheme: dark) {
-  //  color: white;
-  //}
 
   &:hover {
     color: white;

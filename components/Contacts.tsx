@@ -4,7 +4,7 @@ import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import { EMAIL } from "../lib/constants";
-import { useIsMobile } from "../hooks/useIsMobile";
+ import { useIsMobile } from "../hooks/useIsMobile";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import dynamic from "next/dynamic";
 import { useThemeState } from "../providers/Theme.provider";

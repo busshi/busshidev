@@ -7,10 +7,10 @@ import SystemIcons from "../SystemIcons";
 import { MdIosShare } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { FirstPage } from "../../pages";
 import Products from "../Products";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { SITE_URL } from "../../lib/constants";
+import FirstPage from "../FirstPage";
 
 const AUTO_SWITCH_DELAY = 1500;
 
@@ -21,6 +21,7 @@ const ExampleDesign = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [isExampleDark, setIsExampleDark] = useState(isDarkMode);
   const isMobile = useIsMobile();
+
   const [colors, setColors] = useState({
     top: {
       background: theme.cardBackground,
@@ -33,8 +34,9 @@ const ExampleDesign = () => {
   useEffect(() => {
     const autoSwitch = () => {
       if (
-        (isElementVisible && count < 2) ||
-        (!isElementVisible && count < 2 && count)
+        isElementVisible &&
+        count < 2 //||
+        //    (!isElementVisible && count < 2 && count)
       ) {
         setIsExampleDark(!isExampleDark);
         setColors({
@@ -138,6 +140,7 @@ const ExampleDesign = () => {
                 fontSize: isMobile ? "6px" : "0.5rem",
               }}
               fontColor={colors.screen.color}
+              // replicated={true}
             />
             <Products
               replicated={true}
@@ -173,8 +176,7 @@ const Container = styled.div<{ isMobile: boolean }>`
 
   &.slideIntoView[data-view="inview-top"],
   &.slideIntoView[data-view="inview-bottom"] {
-    transform: translateY(0);
-    transform: translateX(0);
+    transform: translate(0);
     opacity: 1;
   }
 
