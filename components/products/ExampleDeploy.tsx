@@ -47,10 +47,13 @@ const GetLine = ({
         busshidev
       </Prompt>
       <Prompt color="var(--git-prompt-git)" marginRight="0rem">
-        git:
+        git:(
       </Prompt>
-      <Prompt color="var(--git-prompt-branch)" marginRight="0.5rem">
-        (main)
+      <Prompt color="var(--git-prompt-branch)" marginRight="0rem">
+        main
+      </Prompt>
+      <Prompt color="var(--git-prompt-git)" marginRight=".5rem">
+        )
       </Prompt>
       <MobilePrompt>~ </MobilePrompt>
       <div style={{ display: "flex" }}>
