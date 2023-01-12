@@ -7,7 +7,7 @@ import SystemIcons from "../SystemIcons";
 
 const ExampleDevelop = () => {
   const { theme } = useThemeState();
-  const dimensions = useGetElementDimensions("example-develop");
+  const dimensions = useGetElementDimensions("develop");
   const isMobile = useIsMobile();
   useSlideIntoView(".slideIntoViewRight");
 
@@ -24,7 +24,8 @@ const ExampleDevelop = () => {
               background: theme.cardBackground,
             }}
           >
-            <SystemIcons /> <p>busshidev@laptop:~</p>
+            <SystemIcons style={{ position: "absolute", left: 0 }} />{" "}
+            <p>busshidev@laptop:~</p>
           </TopBar>
           <Screen>
             1 import useThemeState from coucou;
@@ -40,7 +41,7 @@ const ExampleDevelop = () => {
 };
 
 const Container = styled.div<{ isMobile: boolean }>`
-  //height: ${(props) => (props.isMobile ? "400px" : "100%")};
+  height: ${(props) => (props.isMobile ? "100%" : "100%")};
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
@@ -51,8 +52,8 @@ const Container = styled.div<{ isMobile: boolean }>`
 const TerminalWrapper = styled.div<{
   dimensions: { width: number; height: number };
 }>`
-  width: ${(props) => `${props.dimensions.width * 0.9}px`};
-  height: ${(props) => `${props.dimensions.height * 0.9}px`};
+  width: ${(props) => `${props.dimensions.width}px`};
+  height: ${(props) => `${props.dimensions.height * 0.3}px`};
 `;
 
 const Terminal = styled.div`

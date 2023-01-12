@@ -164,14 +164,14 @@ const Container = styled.div<{ isMobile: boolean }>`
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const MockupWrapper = styled.div<{
   dimensions: { width: number; height: number };
 }>`
   width: ${(props) => `${props.dimensions.width * 0.9}px`};
-  height: ${(props) => `${props.dimensions.height * 0.9}px`};
+  height: ${(props) => `${props.dimensions.height * 0.8}px`};
 `;
 
 const Mockup = styled.div`

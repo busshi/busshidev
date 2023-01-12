@@ -50,55 +50,53 @@ const Item = ({
         highlightedColor={COLORS[index]}
         gradientColor={gradientColor}
       />
-      {isMobile !== undefined && (
-        <Wrapper className="slideIntoViewLeft" isMobile={isMobile}>
-          <Circle
-            index={index}
-            style={{
-              color: theme.fontColor,
-              width: replicated ? "2rem" : "3rem",
-              height: replicated ? "2rem" : "3rem",
-            }}
+      <div className="slideIntoViewLeft">
+        <Circle
+          index={index}
+          style={{
+            color: theme.fontColor,
+            width: replicated ? "2rem" : "3rem",
+            height: replicated ? "2rem" : "3rem",
+          }}
+        >
+          {index + 1}
+        </Circle>
+        <TitleBox>
+          <Title
+            isShiny={true}
+            highlightedColor={COLORS[index]}
+            style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
+            fontColor={theme.fontColor}
+            // replicated={replicated}
           >
-            {index + 1}
-          </Circle>
-          <TitleBox>
-            <Title
-              isShiny={true}
-              highlightedColor={COLORS[index]}
-              style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
-              fontColor={theme.fontColor}
-              // replicated={replicated}
-            >
-              {solution.title.substring(0, solution.title.length - 1)}
-            </Title>
-          </TitleBox>
-          <Description
-            style={{
-              color: theme.fontColor,
-              fontSize: replicated ? "1.5rem" : "2.5rem",
-            }}
-          >
-            {solution.description}
-          </Description>
-          <ActionsBox>
-            {solution.icon}
-            {solution.actions.map((item) => (
-              <div key={item} style={{ display: "flex", gap: "1rem" }}>
-                <TextBox
-                  style={{
-                    fontSize: replicated ? "0.8rem" : "1rem",
-                    color: theme.secondaryFontColor,
-                  }}
-                >
-                  {item}
-                </TextBox>
-                {item === "Dark mode" && <DarkModeSwitcher />}
-              </div>
-            ))}
-          </ActionsBox>
-        </Wrapper>
-      )}
+            {solution.title.substring(0, solution.title.length - 1)}
+          </Title>
+        </TitleBox>
+        <Description
+          style={{
+            color: theme.fontColor,
+            fontSize: replicated ? "1.5rem" : "2.5rem",
+          }}
+        >
+          {solution.description}
+        </Description>
+        <ActionsBox>
+          {solution.icon}
+          {solution.actions.map((item) => (
+            <div key={item} style={{ display: "flex", gap: "1rem" }}>
+              <TextBox
+                style={{
+                  fontSize: replicated ? "0.8rem" : "1rem",
+                  color: theme.secondaryFontColor,
+                }}
+              >
+                {item}
+              </TextBox>
+              {item === "Dark mode" && <DarkModeSwitcher />}
+            </div>
+          ))}
+        </ActionsBox>
+      </div>
       {!replicated && solution.example}
     </Product>
   );
@@ -145,8 +143,6 @@ const Product = styled.div<{ replicated: boolean }>`
   }
 `;
 
-const Wrapper = styled.div<{ isMobile: boolean }>``;
-
 const Border = styled.div<{
   highlightedColor: Color;
   gradientColor: string;
@@ -163,7 +159,6 @@ const Description = styled.div`
   justify-content: flex-start;
   line-height: var(--line-height);
   font-weight: var(--font-weight);
-  // font-size: 2.5rem;
 
   margin: 3rem;
   @media (max-width: 768px) {
@@ -204,8 +199,6 @@ const Circle = styled.div<{ index: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  // width: 3rem;
-  // height: 3rem;
   border-radius: 99999px;
   position: relative;
   text-align: center;

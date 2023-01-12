@@ -1,10 +1,8 @@
-import styled from "styled-components";
-import { useIsMobile } from "../hooks/useIsMobile";
+import styled, { CSSProperties } from "styled-components";
 
-const SystemIcons = () => {
-  const isMobile = useIsMobile();
+const SystemIcons = ({ style }: { style?: CSSProperties }) => {
   return (
-    <IconBox style={{ left: isMobile ? "1rem" : "2rem" }}>
+    <IconBox style={style}>
       <Icon color="red" />
       <Icon color="orange" />
       <Icon color="green" />
