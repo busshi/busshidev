@@ -39,7 +39,7 @@ const SpinningGlobe = () => {
           }
         }}
         showAtmosphere={true}
-        atmosphereColor={!isDarkMode ? "#3a228a" : "#000000"}
+        atmosphereColor={isDarkMode ? "#3a228a" : "#000000"}
         atmosphereAltitude={0.25}
         // arcsData={travel}
         // arcDashLength={0.9}
