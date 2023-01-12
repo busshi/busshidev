@@ -5,6 +5,7 @@ import SystemIcons from "../SystemIcons";
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useEffect, useState } from "react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { TbArrowNarrowRight } from "react-icons/tb";
 
 const TEXT_INTERVAL = 50;
 
@@ -21,27 +22,40 @@ const GetLine = ({
 }) => {
   const [textDisplayed, setTextDisplayed] = useState("");
 
-  // useEffect(() => {
-  //   let intervalId: string | number | NodeJS.Timer | undefined;
-  //   if (isElementVisible) {
-  //     intervalId = setInterval(
-  //       () => setTextDisplayed(line.substring(0, textDisplayed.length + 1)),
-  //       TEXT_INTERVAL
-  //     );
-  //   }
-  //   if (textDisplayed === line) setFinished(finished + 1);
-  //   return () => {
-  //     intervalId && clearInterval(intervalId);
-  //     if (!isElementVisible && textDisplayed.length === line.length)
-  //       setTextDisplayed("");
-  //   };
-  // }, [textDisplayed, isElementVisible]);
+  useEffect(() => {
+    let intervalId: string | number | NodeJS.Timer | undefined;
+    if (isElementVisible) {
+      intervalId = setInterval(
+        () => setTextDisplayed(line.substring(0, textDisplayed.length + 1)),
+        TEXT_INTERVAL
+      );
+    }
+    if (textDisplayed === line) setFinished(finished + 1);
+    return () => {
+      intervalId && clearInterval(intervalId);
+      if (!isElementVisible && textDisplayed.length === line.length)
+        setTextDisplayed("");
+    };
+  }, [textDisplayed, isElementVisible]);
+
   return (
     <LineWrapper>
-      <Prompt>busshidev@laptop ~ $</Prompt>
-      <MobilePrompt>bash-3.2$</MobilePrompt>
+      <TbArrowNarrowRight
+        style={{ marginRight: "0.5rem", color: "var(--git-prompt-arrow)" }}
+      />
+      <Prompt color="var(--git-prompt-user)" marginRight="0.5rem">
+        busshidev
+      </Prompt>
+      <Prompt color="var(--git-prompt-git)" marginRight="0rem">
+        git:
+      </Prompt>
+      <Prompt color="var(--git-prompt-branch)" marginRight="0.5rem">
+        (main)
+      </Prompt>
+      <MobilePrompt>~ </MobilePrompt>
       <div style={{ display: "flex" }}>
-        <div>{textDisplayed}</div> {textDisplayed !== line && <Cursor />}
+        <div>{textDisplayed}</div>{" "}
+        {<Cursor isCursorAnimated={textDisplayed !== line ? false : true} />}
       </div>
     </LineWrapper>
   );
@@ -52,7 +66,7 @@ const ExampleDeploy = () => {
   const { theme } = useThemeState();
   // const dimensions = useGetElementDimensions("sample");
   const dimensions = useGetElementDimensions("develop");
-  const lines = ["git add *", 'git commit -m "ready to deploy"', "git push"];
+  const lines = ["git add .", 'git commit -m "ready to deploy"', "git push"];
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
 
   const Screen = () => {
@@ -66,7 +80,7 @@ const ExampleDeploy = () => {
     console.log(finished);
 
     return (
-      <ScreenWrapper style={{ display: "flex", flexDirection: "row" }}>
+      <ScreenWrapper>
         <div>
           {items.map((line, i) => {
             return (
@@ -157,15 +171,15 @@ const ScreenWrapper = styled.div`
   color: white;
 `;
 
-const Cursor = styled.div`
+const Cursor = styled.div<{ isCursorAnimated: boolean }>`
   width: 0.5rem;
   height: 1.1rem;
   background: gray;
-  margin: 0 0 0 0.5rem;
+  // margin: 0 0 0 0.5rem;
   display: flex;
   align-items: flex-end;
 
-  animation: cursor 1s 5;
+  animation: ${(props) => (props.isCursorAnimated ? "cursor 1s 5" : "none")};
 
   @keyframes cursor {
     from {
@@ -182,18 +196,21 @@ const Cursor = styled.div`
 
 const LineWrapper = styled.div`
   display: flex;
+  align-items: flex-end;
   color: var(--secondary-dark-font-color);
 `;
 
-const Prompt = styled.div`
-  margin-right: 0.8rem;
+const Prompt = styled.div<{ color: string; marginRight: string }>`
+  margin-right: ${(props) => props.marginRight};
   display: block;
+  color: ${(props) => props.color};
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
 const MobilePrompt = styled.div`
+  color: var(--git-prompt-user);
   margin-right: 0.8rem;
   display: none;
   @media (max-width: 768px) {
