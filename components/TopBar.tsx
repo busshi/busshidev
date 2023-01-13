@@ -54,41 +54,39 @@ export const TopBar = ({
             alt="busshiDev"
           />
         </LinkBox>
-        {isMobile ? (
-          <MenuIcon
-            style={{ color: theme.mainColorInverted }}
-            onClick={() => setMenuOpened(menuOpened ? false : true)}
+        {/* Menu for mobile screen */}
+        <MobileMenuIcon
+          style={{ color: theme.mainColorInverted }}
+          onClick={() => setMenuOpened(menuOpened ? false : true)}
+        >
+          {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
+        </MobileMenuIcon>
+
+        {/* Menu for laptop screen */}
+        <LaptopButtons>
+          <Button
+            onClick={() =>
+              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
+            }
           >
-            {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
-          </MenuIcon>
-        ) : (
-          <Buttons>
-            <Button
-              onClick={() =>
-                isHome
-                  ? scrollIntoView("solutions")
-                  : router.push("/#solutions")
-              }
-            >
-              Solutions
-            </Button>
-            <Link href={BLOG_URL}>
-              <Button>About me</Button>
-            </Link>
-            <Button
-              onClick={() =>
-                isHome
-                  ? scrollIntoView("testi", "center")
-                  : router.push("/#testi")
-              }
-            >
-              Testimonials
-            </Button>
-            <Link href="/contact">
-              <Button>Get a demo</Button>
-            </Link>
-          </Buttons>
-        )}
+            Solutions
+          </Button>
+          <Link href={BLOG_URL}>
+            <Button>About me</Button>
+          </Link>
+          <Button
+            onClick={() =>
+              isHome
+                ? scrollIntoView("testi", "center")
+                : router.push("/#testi")
+            }
+          >
+            Testimonials
+          </Button>
+          <Link href="/contact">
+            <Button>Get a demo</Button>
+          </Link>
+        </LaptopButtons>
       </Container>
       {menuOpened && <Menu setMenuOpened={setMenuOpened} />}
     </div>
@@ -120,15 +118,23 @@ const ImageBox = styled(Image)`
   }
 `;
 
-const MenuIcon = styled.div`
+const MobileMenuIcon = styled.div`
   cursor: pointer;
   margin: 0 1rem 0 0;
+
+  @media (min-width: 769px) {
+    display: fnone;
+  }
 `;
 
-const Buttons = styled.div`
+const LaptopButtons = styled.div`
   display: flex;
   gap: 1rem;
   margin-right: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`

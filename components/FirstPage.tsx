@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { scrollIntoView } from "../lib/scroll";
 import GetADemo from "./GetADemo";
 import Titles from "./Titles";
 
 export const FirstPage = ({
+  className,
   fontColor,
   titlesStyle,
   firstPageStyle,
@@ -12,17 +13,18 @@ export const FirstPage = ({
   implementationStyle,
 }: //  replicated
 {
+  className: string;
   fontColor: string;
-  titlesStyle: any;
-  firstPageStyle: any;
-  introStyle: any;
-  getADemoStyle: any;
-  implementationStyle: any;
+  titlesStyle: CSSProperties;
+  firstPageStyle: CSSProperties;
+  introStyle: CSSProperties;
+  getADemoStyle: CSSProperties;
+  implementationStyle: CSSProperties;
   //replicated: boolean;
 }) => {
   //console.log(replicated, titlesStyle);
   return (
-    <FirstPageWrapper style={{ ...firstPageStyle }}>
+    <FirstPageWrapper style={{ ...firstPageStyle }} className={className}>
       <Titles
         style={{ ...titlesStyle }}
         fontColor={fontColor}
@@ -46,6 +48,20 @@ const FirstPageWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+
+  &.mobile {
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &.laptop {
+    display: flex;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 const Intro = styled.div`

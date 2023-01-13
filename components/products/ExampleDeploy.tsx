@@ -114,22 +114,23 @@ const ExampleDeploy = () => {
   // }, [ratio, ref]);
 
   return (
-    <Container id="example-deploy" className="slideIntoViewRight">
-      <TerminalWrapper ref={ref} dimensions={dimensions}>
-        <Terminal>
-          <TopBar
-            style={{
-              background: theme.cardBackground,
-              height: "3rem",
-            }}
-          >
-            <SystemIcons style={{ position: "absolute", left: 0 }} />
-            <div>busshidev@laptop:~</div>
-          </TopBar>
-          <Screen />
-        </Terminal>
-      </TerminalWrapper>
-    </Container>
+    <></>
+    // <Container id="example-deploy" className="slideIntoViewRight">
+    //   <TerminalWrapper ref={ref} dimensions={dimensions}>
+    //     <Terminal>
+    //       <TopBar
+    //         style={{
+    //           background: theme.cardBackground,
+    //           height: "3rem",
+    //         }}
+    //       >
+    //         <SystemIcons style={{ position: "absolute", left: 0 }} />
+    //         <div>busshidev@laptop:~</div>
+    //       </TopBar>
+    //       <Screen />
+    //     </Terminal>
+    //   </TerminalWrapper>
+    // </Container>
   );
 };
 

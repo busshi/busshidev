@@ -6,10 +6,12 @@ import { Color } from "../types/interfaces";
 import { buildSolutionsMenu } from "../lib/solutions";
 
 export const Titles = ({
+  //  className,
   fontColor,
   style,
-//  replicated,
-}: {
+}: //  replicated,
+{
+  //className: string;
   fontColor: string;
   style: CSSProperties;
   //replicated: boolean;
@@ -32,7 +34,7 @@ export const Titles = ({
           highlightedColor={highlightedColor}
           fontColor={fontColor}
           style={{ ...style }}
-       //   replicated={replicated}
+          //   replicated={replicated}
         >
           {title}
         </Title>
@@ -59,7 +61,7 @@ export const Title = styled.div<{
   highlightedColor: Color;
   isShiny: boolean;
   fontColor: string;
-//  replicated: boolean;
+  //  replicated: boolean;
 }>`
   cursor: pointer;
   background: ${(props) =>

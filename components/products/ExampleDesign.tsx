@@ -114,6 +114,7 @@ const ExampleDesign = () => {
             }}
           >
             <FirstPage
+              className="laptop"
               titlesStyle={{
                 margin: isMobile ? "0.1rem" : "0.5rem",
                 fontSize: isMobile ? "2rem" : "2.5rem",

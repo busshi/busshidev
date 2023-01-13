@@ -12,31 +12,32 @@ const ExampleDevelop = () => {
   useSlideIntoView(".slideIntoViewRight");
 
   return (
-    <Container
-      isMobile={isMobile}
-      id="example-develop"
-      className="slideIntoViewRight"
-    >
-      <TerminalWrapper dimensions={dimensions}>
-        <Terminal>
-          <TopBar
-            style={{
-              background: theme.cardBackground,
-            }}
-          >
-            <SystemIcons style={{ position: "absolute", left: 0 }} />{" "}
-            <p>busshidev@laptop:~</p>
-          </TopBar>
-          <Screen>
-            1 import useThemeState from coucou;
-            <br /> 2 function App()
-            <br />3 const theme = useThemeState();
-            <br />
-            <Cursor />
-          </Screen>
-        </Terminal>
-      </TerminalWrapper>
-    </Container>
+    <></>
+    // <Container
+    //   isMobile={isMobile}
+    //   id="example-develop"
+    //   className="slideIntoViewRight"
+    // >
+    //   <TerminalWrapper dimensions={dimensions}>
+    //     <Terminal>
+    //       <TopBar
+    //         style={{
+    //           background: theme.cardBackground,
+    //         }}
+    //       >
+    //         <SystemIcons style={{ position: "absolute", left: 0 }} />{" "}
+    //         <p>busshidev@laptop:~</p>
+    //       </TopBar>
+    //       <Screen>
+    //         1 import useThemeState from coucou;
+    //         <br /> 2 function App()
+    //         <br />3 const theme = useThemeState();
+    //         <br />
+    //         <Cursor />
+    //       </Screen>
+    //     </Terminal>
+    //   </TerminalWrapper>
+    // </Container>
   );
 };
 
