@@ -70,7 +70,6 @@ const Intro = styled.div`
   font-weight: var(--font-weight);
 
   @media (max-width: 768px) {
-    //   font-size: 1.1rem;
     margin: 0;
   }
 `;

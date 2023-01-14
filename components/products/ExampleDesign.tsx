@@ -8,7 +8,6 @@ import { MdIosShare } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import Products from "../Products";
-import { useIsMobile } from "../../hooks/useIsMobile";
 import { SITE_URL } from "../../lib/constants";
 import FirstPage from "../FirstPage";
 
@@ -20,7 +19,6 @@ const ExampleDesign = () => {
   const [count, setCount] = useState(0);
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [isExampleDark, setIsExampleDark] = useState(isDarkMode);
-  const isMobile = useIsMobile();
 
   const [colors, setColors] = useState({
     top: {
@@ -84,12 +82,7 @@ const ExampleDesign = () => {
   }, [isElementVisible]);
 
   return (
-    <Container
-      isMobile={isMobile}
-      ref={ref}
-      id="example-design"
-      className="slideIntoViewRight"
-    >
+    <Container ref={ref} id="example-design" className="slideIntoViewRight">
       <MockupWrapper dimensions={dimensions}>
         <Mockup>
           <Bar
@@ -106,8 +99,9 @@ const ExampleDesign = () => {
               <HiDotsHorizontal />
             </BrowserIcons>
           </Bar>
+          {/* Laptop Component */}
           <Screen
-            isMobile={isMobile}
+            className="laptop"
             style={{
               background: colors.screen.background,
               color: colors.screen.color,
@@ -116,25 +110,25 @@ const ExampleDesign = () => {
             <FirstPage
               className="laptop"
               titlesStyle={{
-                margin: isMobile ? "0.1rem" : "0.5rem",
-                fontSize: isMobile ? "2rem" : "2.5rem",
+                margin: "0.5rem",
+                fontSize: "2.5rem",
                 color: colors.screen.color,
               }}
-              introStyle={{ fontSize: isMobile ? "0.5rem" : "0.8rem" }}
+              introStyle={{ fontSize: "0.8rem" }}
               firstPageStyle={{
-                gap: isMobile ? "2rem" : "1rem",
+                gap: "1rem",
                 minHeight: "100%",
-                margin: isMobile ? "1rem" : 0,
+                margin: 0,
               }}
               getADemoStyle={{
-                width: isMobile ? "7rem" : "10rem",
-                height: isMobile ? "1.2rem" : "2rem",
-                fontSize: isMobile ? "0.4rem" : "0.6rem",
+                width: "10rem",
+                height: "2rem",
+                fontSize: "0.6rem",
                 color: colors.screen.color,
               }}
               implementationStyle={{
                 color: colors.implementation.color,
-                fontSize: isMobile ? "6px" : "0.5rem",
+                fontSize: "0.5rem",
               }}
               fontColor={colors.screen.color}
               // replicated={true}
@@ -143,7 +137,48 @@ const ExampleDesign = () => {
               replicated={true}
               gradientColor={colors.screen.background}
             />
-            {/* <Testimonials
+          </Screen>
+
+          {/* Mobile Component */}
+          <Screen
+            className="mobile"
+            style={{
+              background: colors.screen.background,
+              color: colors.screen.color,
+            }}
+          >
+            <FirstPage
+              className="mobile"
+              titlesStyle={{
+                margin: "0.1rem",
+                fontSize: "2rem",
+                color: colors.screen.color,
+              }}
+              introStyle={{ fontSize: "0.5rem" }}
+              firstPageStyle={{
+                gap: "2rem",
+                minHeight: "100%",
+                margin: "1rem",
+              }}
+              getADemoStyle={{
+                width: "7rem",
+                height: "1.2rem",
+                fontSize: "0.4rem",
+                color: colors.screen.color,
+              }}
+              implementationStyle={{
+                color: colors.implementation.color,
+                fontSize: "6px",
+              }}
+              fontColor={colors.screen.color}
+              // replicated={true}
+            />
+            <Products
+              replicated={true}
+              gradientColor={colors.screen.background}
+            />
+          </Screen>
+          {/* <Testimonials
               replicated={true}
               style={{
                 display: "flex",
@@ -152,15 +187,14 @@ const ExampleDesign = () => {
                 justifyContent: "flex-start",
               }}
             /> */}
-          </Screen>
         </Mockup>
       </MockupWrapper>
     </Container>
   );
 };
 
-const Container = styled.div<{ isMobile: boolean }>`
-  height: ${(props) => (props.isMobile ? "400px" : "100%")};
+const Container = styled.div`
+  height: 100%;
   width: 100%;
   border-radius: var(--border-radius);
   display: flex;
@@ -189,16 +223,31 @@ const Bar = styled.div`
   transition: all var(--theme-transition-delay) ease;
 `;
 
-const Screen = styled.div<{ isMobile: boolean }>`
+const Screen = styled.div`
   border: 1px solid var(--middle-font-color);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  height: ${(props) => (props.isMobile ? "330px" : "90%")};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   transition: all var(--theme-transition-delay) ease;
   overflow: auto;
+
+  &.mobile {
+    display: none;
+    height: 350px;
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &.laptop {
+    display: flex;
+    height: 95%;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 const AdressBar = styled.div`
