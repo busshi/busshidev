@@ -123,7 +123,7 @@ const MobileMenuIcon = styled.div`
   margin: 0 1rem 0 0;
 
   @media (min-width: 769px) {
-    display: fnone;
+    display: none;
   }
 `;
 
