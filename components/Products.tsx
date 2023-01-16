@@ -29,28 +29,31 @@ const Item = ({
     buildThresholdList(100)
   );
   const [height, setHeight] = useState(0);
-  const productHeight = useGetElementDimensions(solution.id).height;
+  const productHeight = useGetElementDimensions(
+    replicated ? `${solution.id}-replicated` : solution.id
+  ).height;
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
 
   useSlideIntoView(".slideIntoViewLeft");
 
   useEffect(() => {
-    setHeight(isMobile ? ratio * (productHeight - 200) : ratio * productHeight);
-  }, [ratio, productHeight, isMobile]);
+    setHeight(
+      isMobile ? ratio * productHeight * 1.5 : ratio * productHeight * 1.2
+    );
+  }, [ratio, productHeight]);
 
   return (
-    <Product
-      ref={ref}
-      id={replicated ? "" : solution.id}
-      replicated={replicated}
-    >
+    <Product ref={ref} replicated={replicated}>
       <Border
         style={{ height: `${height}px` }}
         highlightedColor={COLORS[index]}
         gradientColor={gradientColor}
       />
-      <div className="slideIntoViewLeft">
+      <div
+        className="slideIntoViewLeft"
+        id={replicated ? `${solution.id}-replicated` : solution.id}
+      >
         <Circle
           index={index}
           style={{
