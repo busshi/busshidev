@@ -91,13 +91,13 @@ body {
 */
 @media (max-width: 768px) {
   .slideIntoViewRight[data-view="outview-top"] {
-    transform: translateY(-300px);
-    opacity: 0;
+    transform: translate(0);
+    opacity: 1;
   }
 
   .slideIntoViewRight[data-view="outview-bottom"] {
-    transform: translateY(300px);
-    opacity: 0;
+    transform: translate(0);
+    opacity: 1;
   }
 }
 

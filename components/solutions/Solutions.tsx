@@ -42,7 +42,7 @@ const Item = ({
       isMobile ? ratio * productHeight * 1.5 : ratio * productHeight * 1.2
     );
   }, [ratio, productHeight, isMobile]);
-
+  console.log(ratio, productHeight, height);
   return (
     <Product ref={ref} replicated={replicated}>
       <Border
