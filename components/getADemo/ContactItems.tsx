@@ -80,7 +80,13 @@ export const ContactItems = () => {
             <Text>Chat with me</Text>
           </>
         </Test>
-        <Test setRef={setRef2} onClick={() => setIsCalendlyVisible(true)}>
+        <Test
+          setRef={setRef2}
+          onClick={() => {
+            setIsContactMenuOpened(false);
+            setIsCalendlyVisible(true);
+          }}
+        >
           <>
             <SiGooglemeet size={80} />
             <Text>Book a meeting</Text>
@@ -99,9 +105,14 @@ export const ContactItems = () => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 const Cross = styled(RxCrossCircled)`

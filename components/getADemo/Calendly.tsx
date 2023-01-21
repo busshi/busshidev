@@ -6,24 +6,32 @@ export const Calendly = () => {
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
 
   return (
-    <Calendar>
-      <Cross onClick={() => setIsCalendlyVisible(false)}>
-        <RxCrossCircled size={26} color={"var(--middle-font-color)"} />
-      </Cross>
-      <iframe
-        width="100%"
-        height="100%"
-        title={"Schedule an interview"}
-        src="https://calendly.com/busshidev/30min"
-      ></iframe>
-    </Calendar>
+    <Container>
+      <Calendar>
+        <Cross onClick={() => setIsCalendlyVisible(false)}>
+          <RxCrossCircled size={26} color={"var(--middle-font-color)"} />
+        </Cross>
+        <iframe
+          width="100%"
+          height="100%"
+          title={"Schedule an interview"}
+          src="https://calendly.com/busshidev/30min"
+        ></iframe>
+      </Calendar>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+`;
+
 const Calendar = styled.div`
-  // width: 620px;
-  // height: 920px;
-  height: 100vh;
+  width: 620px;
+  height: 920px;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;

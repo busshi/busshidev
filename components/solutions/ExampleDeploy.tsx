@@ -25,6 +25,8 @@ const GetLine = ({
 
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timer | undefined;
+    // isElementVisible &&
+    //   setTextDisplayed(line.substring(0, textDisplayed.length + 1));
     if (isElementVisible) {
       intervalId = setInterval(
         () => setTextDisplayed(line.substring(0, textDisplayed.length + 1)),
@@ -32,6 +34,7 @@ const GetLine = ({
       );
     }
     if (textDisplayed === line && index < linesLength - 1) setIsFinished(true);
+
     return () => {
       intervalId && clearInterval(intervalId);
       if (!isElementVisible && textDisplayed.length === line.length)
@@ -72,11 +75,11 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
 
   /**
-   * TImeout to add next line
+   * Timeout to add next line
    */
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (displayedLines.length < lines.length)
+      if (displayedLines.length < lines.length && isElementVisible)
         setDisplayedLines([...displayedLines, lines[displayedLines.length]]);
     }, 1800);
     return () => {
@@ -94,18 +97,46 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   return (
     <ScreenWrapper>
       <div>
-        {displayedLines.map((line, index) => {
-          return (
-            <div key={line}>
-              <GetLine
-                isElementVisible={isElementVisible}
-                line={line}
-                index={index}
-                linesLength={lines.length}
-              />
+        {!displayedLines.length ? (
+          <LineWrapper>
+            <TbArrowNarrowRight
+              style={{
+                marginRight: "0.5rem",
+                color: "var(--git-prompt-arrow)",
+              }}
+            />
+            <Prompt color="var(--git-prompt-user)" marginRight="0.5rem">
+              busshidev
+            </Prompt>
+            <Prompt color="var(--git-prompt-git)" marginRight="0rem">
+              git:(
+            </Prompt>
+            <Prompt color="var(--git-prompt-branch)" marginRight="0rem">
+              main
+            </Prompt>
+            <Prompt color="var(--git-prompt-git)" marginRight=".5rem">
+              )
+            </Prompt>
+            <MobilePrompt>~ </MobilePrompt>
+            <div style={{ display: "flex" }}>
+              {" "}
+              <Cursor isCursorAnimated={true} />
             </div>
-          );
-        })}
+          </LineWrapper>
+        ) : (
+          displayedLines.map((line, index) => {
+            return (
+              <div key={line}>
+                <GetLine
+                  isElementVisible={isElementVisible}
+                  line={line}
+                  index={index}
+                  linesLength={lines.length}
+                />
+              </div>
+            );
+          })
+        )}
       </div>
     </ScreenWrapper>
   );

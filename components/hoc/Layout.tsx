@@ -28,13 +28,11 @@ const Layout = ({ children }: Props) => {
       <Metadata />
       {isContactMenuOpened ? (
         <ContactMenu />
-      ) : isCalendlyVisible ? (
-        <Calendly />
       ) : (
         <>
           <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
           <Wrapper menuOpened={isMenuOpened}>
-            {children}
+            {isCalendlyVisible ? <Calendly /> : children}
             <Footer />
           </Wrapper>
         </>
