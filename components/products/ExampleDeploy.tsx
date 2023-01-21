@@ -11,16 +11,17 @@ const TEXT_INTERVAL = 50;
 
 const GetLine = ({
   isElementVisible,
-  finished,
-  setFinished,
   line,
+  index,
+  linesLength,
 }: {
   isElementVisible: boolean;
-  finished: number;
-  setFinished: (value: number) => void;
   line: string;
+  index: number;
+  linesLength: number;
 }) => {
   const [textDisplayed, setTextDisplayed] = useState("");
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     let intervalId: string | number | NodeJS.Timer | undefined;
@@ -30,7 +31,7 @@ const GetLine = ({
         TEXT_INTERVAL
       );
     }
-    if (textDisplayed === line) setFinished(finished + 1);
+    if (textDisplayed === line && index < linesLength - 1) setIsFinished(true);
     return () => {
       intervalId && clearInterval(intervalId);
       if (!isElementVisible && textDisplayed.length === line.length)
@@ -58,9 +59,46 @@ const GetLine = ({
       <MobilePrompt>~ </MobilePrompt>
       <div style={{ display: "flex" }}>
         <div>{textDisplayed}</div>{" "}
-        {<Cursor isCursorAnimated={textDisplayed !== line ? false : true} />}
+        {!isFinished && (
+          <Cursor isCursorAnimated={textDisplayed !== line ? false : true} />
+        )}
       </div>
     </LineWrapper>
+  );
+};
+
+const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
+  const lines = ["git add .", 'git commit -m "ready to deploy"', "git push"];
+  const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (displayedLines.length < lines.length)
+        setDisplayedLines([...displayedLines, lines[displayedLines.length]]);
+    }, 1800);
+    return () => {
+      clearInterval(intervalId);
+      // setDisplayedLines([lines[0]]);
+    };
+  }, []);
+
+  return (
+    <ScreenWrapper>
+      <div>
+        {displayedLines.map((line, index) => {
+          return (
+            <div key={line}>
+              <GetLine
+                isElementVisible={isElementVisible}
+                line={line}
+                index={index}
+                linesLength={lines.length}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </ScreenWrapper>
   );
 };
 
@@ -69,47 +107,8 @@ const ExampleDeploy = () => {
   const { theme } = useThemeState();
   // const dimensions = useGetElementDimensions("sample");
   const dimensions = useGetElementDimensions("develop");
-  const lines = ["git add .", 'git commit -m "ready to deploy"', "git push"];
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-
-  const Screen = () => {
-    const [finished, setFinished] = useState(0);
-    const [items, setItems] = useState([lines[0]]);
-
-    useEffect(() => {
-      //      setDisplayedLines([...items, lines[finished]]);
-    }, [finished]);
-
-    return (
-      <ScreenWrapper>
-        <div>
-          {items.map((line, i) => {
-            return (
-              <div key={line}>
-                <GetLine
-                  isElementVisible={isElementVisible}
-                  finished={finished}
-                  setFinished={setFinished}
-                  line={line}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </ScreenWrapper>
-    );
-  };
 
   useSlideIntoView(".slideIntoViewRight");
-
-  // useEffect(() => {
-  //   if (ref.current && ratio === 1) {
-  //     //@ts-ignore
-  //     ref.current.controls().autoRotateSpeed = SLOW_ROTATE_SPEED;
-  //   } else if (ref.current)
-  //     //@ts-ignore
-  //     ref.current.controls().autoRotateSpeed = FAST_ROTATE_SPEED;
-  // }, [ratio, ref]);
 
   return (
     <Container id="example-deploy" className="slideIntoViewRight">
@@ -124,7 +123,7 @@ const ExampleDeploy = () => {
             <SystemIcons style={{ position: "absolute", left: 0 }} />
             <div>busshidev@laptop:~</div>
           </TopBar>
-          <Screen />
+          <Screen isElementVisible={isElementVisible} />
         </Terminal>
       </TerminalWrapper>
     </Container>
@@ -220,48 +219,3 @@ const MobilePrompt = styled.div`
 `;
 
 export default ExampleDeploy;
-
-// <Container
-//   isMobile={isMobile}
-//   id="sample"
-//   className="slideIntoView"
-//   style={{
-//     color: theme.middleFontColor,
-//   }}
-//   ref={globeRef}
-// >
-//   {/* <Globe //@ts-ignore
-//     width={dimensions.width}
-//     height={dimensions.height}
-//     polygonsData={world}
-//     polygonCapColor={() => "#3a228a"}
-//     backgroundColor={isDarkMode ? "#121212" : "#f1f1f1"}
-//     ref={ref}
-//     arcsData={travel}
-//     arcColor={() => "#ff4d4d"}
-//     arcDashLength={0.5}
-//     arcDashGap={4}
-//     arcDashAnimateTime={4000}
-//     arcsTransitionDuration={1000}
-//     arcStroke={"stroke"}
-//     arcCircularResolution={64}
-//     // pointOfView={{ lat: 48.856788 }}
-//     enablePointerInteraction={false}
-//     onGlobeReady={() => {
-//       if (ref.current) {
-//         //@ts-ignore
-//         ref.current.controls().autoRotate = true;
-//         //@ts-ignore
-//         ref.current.controls().autoRotateSpeed = FAST_ROTATE_SPEED;
-//         //@ts-ignore
-//         ref.current.controls().enableZoom = false;
-//         //@ts-ignore
-//         ref.current.controls().minPolarAngle = Math.PI / 3.5;
-//         //@ts-ignore
-//         ref.current.controls().maxPolarAngle = Math.PI - Math.PI / 3;
-//         //@ts-ignore
-//         //ref.current.pointOfView({ altitude: 3.5 });
-//       }
-//     }}
-//   /> */}
-// </Container>
