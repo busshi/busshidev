@@ -36,6 +36,7 @@ export const TopBar = ({
 }) => {
   const isMobile = useIsMobile();
   const { theme, isDarkMode } = useThemeState();
+  const { setIsContactMenuOpened } = useContactMenuOpenedState();
 
   return (
     <div>
@@ -69,7 +70,13 @@ export const TopBar = ({
           <Button onClick={() => scrollIntoView("testi", "center")}>
             Testimonials
           </Button>
-          <Button>Get a demo</Button>
+          <DemoButton
+            onClick={() => setIsContactMenuOpened(true)}
+            color={theme.background}
+            background={theme.mainColorInverted}
+          >
+            Get a Demo
+          </DemoButton>
         </LaptopButtons>
       </Container>
       {menuOpened && <Menu setMenuOpened={setMenuOpened} />}
@@ -122,7 +129,7 @@ const LaptopButtons = styled.div`
 `;
 
 const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
-  padding: 0 1rem 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -132,6 +139,24 @@ const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
 
   :hover {
     color: ${(props) => props.hoverColor};
+  }
+`;
+
+const DemoButton = styled.div<{ color: string; background: string }>`
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  transition: color, background, border var(--transition-delay) ease;
+  cursor: pointer;
+  border: 1px solid ${(props) => props.background};
+
+  color: ${(props) => props.color};
+  background: ${(props) => props.background};
+
+  :hover {
+    color: ${(props) => props.background};
+    background: ${(props) => props.color};
   }
 `;
 

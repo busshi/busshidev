@@ -2,10 +2,10 @@ import { SlRocket } from "react-icons/sl";
 import { FiFigma } from "react-icons/fi";
 import { BsTerminalFill } from "react-icons/bs";
 import { BsGraphUp } from "react-icons/bs";
-import ExampleDesign from "../components/products/ExampleDesign";
-import ExampleDeploy from "../components/products/ExampleDeploy";
-import ExampleBoost from "../components/products/ExampleBoost";
-import ExampleDevelop from "../components/products/ExampleDevelop";
+import ExampleDesign from "../components/solutions/ExampleDesign";
+import ExampleDeploy from "../components/solutions/ExampleDeploy";
+import ExampleBoost from "../components/solutions/ExampleBoost";
+import ExampleDevelop from "../components/solutions/ExampleDevelop";
 // import dynamic from "next/dynamic";
 
 // const ExampleDeploy = dynamic(

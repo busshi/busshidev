@@ -104,7 +104,7 @@ const Item = ({
     </Product>
   );
 };
-export const Products = ({
+export const Solutions = ({
   replicated,
   gradientColor,
 }: {
@@ -217,4 +217,4 @@ const Circle = styled.div<{ index: number }>`
   }
 `;
 
-export default Products;
+export default Solutions;
