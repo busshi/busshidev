@@ -3,13 +3,13 @@ import Image from "next/image";
 import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
-import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
 import { ComponentProps, Dispatch, ReactNode, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
-import { BLOG_URL } from "../lib/constants";
+// import { BLOG_URL } from "../lib/constants";
 import { useThemeState } from "../providers/Theme.provider";
+import { useContactMenuOpenedState } from "../providers/ContactMenu.provider";
 
 const Button = ({
   children,
@@ -35,8 +35,6 @@ export const TopBar = ({
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
   const isMobile = useIsMobile();
-  const router = useRouter();
-  const isHome = router.asPath !== "/contact";
   const { theme, isDarkMode } = useThemeState();
 
   return (
@@ -64,28 +62,14 @@ export const TopBar = ({
 
         {/* Menu for laptop screen */}
         <LaptopButtons>
-          <Button
-            onClick={() =>
-              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
-            }
-          >
-            Solutions
-          </Button>
-          <Link href={BLOG_URL}>
+          <Button onClick={() => scrollIntoView("solutions")}>Solutions</Button>
+          {/* <Link href={BLOG_URL}>
             <Button>About me</Button>
-          </Link>
-          <Button
-            onClick={() =>
-              isHome
-                ? scrollIntoView("testi", "center")
-                : router.push("/#testi")
-            }
-          >
+          </Link> */}
+          <Button onClick={() => scrollIntoView("testi", "center")}>
             Testimonials
           </Button>
-          <Link href="/contact">
-            <Button>Get a demo</Button>
-          </Link>
+          <Button>Get a demo</Button>
         </LaptopButtons>
       </Container>
       {menuOpened && <Menu setMenuOpened={setMenuOpened} />}

@@ -1,6 +1,6 @@
 import styled, { CSSProperties } from "styled-components";
 import { scrollIntoView } from "../lib/scroll";
-import GetADemo from "./GetADemo";
+import GetADemo from "./getADemo/GetADemo";
 import Titles from "./Titles";
 
 export const FirstPage = ({

@@ -7,7 +7,7 @@ import SystemIcons from "../SystemIcons";
 import { MdIosShare } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
-import Products from "../Products";
+import Products from "./Products";
 import { SITE_URL } from "../../lib/constants";
 import FirstPage from "../FirstPage";
 

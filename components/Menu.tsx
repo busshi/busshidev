@@ -2,9 +2,9 @@ import styled, { keyframes } from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { BLOG_URL, COLORS } from "../lib/constants";
+import { COLORS } from "../lib/constants";
 import { buildSolutionsMenu } from "../lib/solutions";
-import { BuildContactsMenu } from "../lib/menu";
+import { BuildContactsMenu } from "../lib/mobileMenu";
 import { useThemeState } from "../providers/Theme.provider";
 
 export const Menu = ({
@@ -57,9 +57,9 @@ export const Menu = ({
         )}
       </MenuItem>
 
-      <MenuItem id="menuAbout" onClick={() => router.push(BLOG_URL)}>
+      {/* <MenuItem id="menuAbout" onClick={() => router.push(BLOG_URL)}>
         <Item isDarkMode={isDarkMode}>About me</Item>
-      </MenuItem>
+      </MenuItem> */}
 
       <MenuItem
         id="menuTesti"

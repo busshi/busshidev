@@ -1,6 +1,6 @@
 import { RxCrossCircled } from "react-icons/rx";
 import styled from "styled-components";
-import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
+import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 
 export const Calendly = () => {
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
@@ -21,8 +21,9 @@ export const Calendly = () => {
 };
 
 const Calendar = styled.div`
-  width: 620px;
-  height: 920px;
+  // width: 620px;
+  // height: 920px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;

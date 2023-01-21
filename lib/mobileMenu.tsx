@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { HiOutlineMail } from "react-icons/hi";
 import { SiGooglemeet } from "react-icons/si";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
@@ -10,8 +9,6 @@ import { useThemeState } from "../providers/Theme.provider";
 import { EMAIL } from "./constants";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
-  const router = useRouter();
-  const isHome = router.asPath !== "/contact";
   const { setIsChatVisible } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
@@ -22,7 +19,6 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       text: "Chat with me",
       icon: <TfiHeadphoneAlt size={16} color="var(--middle-font-color)" />,
       onClick: () => {
-        isHome && router.push("/contact");
         setIsChatVisible(true);
         setMenuOpened(false);
       },
@@ -32,7 +28,6 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       text: "Book a meeting",
       icon: <SiGooglemeet size={16} color="var(--middle-font-color)" />,
       onClick: () => {
-        isHome && router.push("/contact");
         setMenuOpened(false);
         setIsCalendlyVisible(true);
       },

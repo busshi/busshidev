@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import Testimonials from "../components/Testimonials";
 import { useThemeState } from "../providers/Theme.provider";
-import { Products } from "../components/Products";
+import { Products } from "../components/products/Products";
 import Technos from "../components/Technos";
 import FirstPage from "../components/FirstPage";
 

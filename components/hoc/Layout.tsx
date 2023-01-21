@@ -3,10 +3,14 @@ import { useState } from "react";
 import styled from "styled-components";
 import { CRIPS_WEBSITE_ID } from "../../lib/constants";
 import { useChatVisibleState } from "../../providers/ChatVisible.provider";
+import { useContactMenuOpenedState } from "../../providers/ContactMenu.provider";
 import { useThemeState } from "../../providers/Theme.provider";
+import ContactMenu from "../getADemo/ContactMenu";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
+import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
+import Calendly from "../getADemo/Calendly";
 
 type Props = {
   children: React.ReactNode;
@@ -15,16 +19,26 @@ type Props = {
 const Layout = ({ children }: Props) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const { isChatVisible } = useChatVisibleState();
+  const { isContactMenuOpened } = useContactMenuOpenedState();
+  const { isCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
 
   return (
     <Html style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
-      <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
-      <Wrapper menuOpened={isMenuOpened}>
-        {children}
-        <Footer />
-      </Wrapper>
+      {isContactMenuOpened ? (
+        <ContactMenu />
+      ) : isCalendlyVisible ? (
+        <Calendly />
+      ) : (
+        <>
+          <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
+          <Wrapper menuOpened={isMenuOpened}>
+            {children}
+            <Footer />
+          </Wrapper>
+        </>
+      )}
 
       {/* Crisp.chat integration */}
       {isChatVisible && (

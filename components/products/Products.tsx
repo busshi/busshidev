@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useGetElementDimensions } from "../hooks/useGetElementDimensions";
-import useIntersectionRatio from "../hooks/useIntersectionRatio";
-import { useIsMobile } from "../hooks/useIsMobile";
-import { useSlideIntoView } from "../hooks/useSlideIntoView";
-import { COLORS } from "../lib/constants";
-import { buildThresholdList } from "../lib/observerIntersection";
-import { buildSolutionsMenu } from "../lib/solutions";
-import { useThemeState } from "../providers/Theme.provider";
-import { Color, Solution } from "../types/interfaces";
-import DarkModeSwitcher from "./DarkModeSwitcher";
-import { Title } from "./Titles";
+import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
+import useIntersectionRatio from "../../hooks/useIntersectionRatio";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { useSlideIntoView } from "../../hooks/useSlideIntoView";
+import { COLORS } from "../../lib/constants";
+import { buildThresholdList } from "../../lib/observerIntersection";
+import { buildSolutionsMenu } from "../../lib/solutions";
+import { useThemeState } from "../../providers/Theme.provider";
+import { Color, Solution } from "../../types/interfaces";
+import DarkModeSwitcher from "../DarkModeSwitcher";
+import { Title } from "../Titles";
 
 const Item = ({
   solution,

@@ -1,20 +1,27 @@
-import Link from "next/link";
 import styled, { CSSProperties } from "styled-components";
-import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
-import { Color } from "../types/interfaces";
+import { useContactMenuOpenedState } from "../../providers/ContactMenu.provider";
+import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
+import { Color } from "../../types/interfaces";
 
 export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { highlightedColor } = useHighlightedColorState();
+  const { setIsContactMenuOpened } = useContactMenuOpenedState();
+
   return (
-    <LinkBox href="/contact">
-      <Button highlightedColor={highlightedColor} style={{ ...style }}>
+    <>
+      <Button
+        highlightedColor={highlightedColor}
+        style={{ ...style }}
+        onClick={() => setIsContactMenuOpened(true)}
+      >
         Get a Demo
       </Button>
-    </LinkBox>
+    </>
   );
 };
 
 const Button = styled.div<{ highlightedColor: Color }>`
+  cursor: pointer;
   width: 15rem;
   height: 3rem;
   z-index: 0;
@@ -49,18 +56,6 @@ const Button = styled.div<{ highlightedColor: Color }>`
   &:hover {
     background: ${(props) =>
       `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
-  }
-`;
-
-const LinkBox = styled(Link)`
-  cursor: pointer;
-
-  &:hover {
-    color: white;
-
-    @media (prefers-color-scheme: dark) {
-      color: black;
-    }
   }
 `;
 
