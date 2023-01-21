@@ -37,7 +37,7 @@ const GetLine = ({
       if (!isElementVisible && textDisplayed.length === line.length)
         setTextDisplayed("");
     };
-  }, [textDisplayed, isElementVisible]);
+  }, [textDisplayed, isElementVisible, index, line, linesLength]);
 
   return (
     <LineWrapper>
@@ -71,16 +71,25 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   const lines = ["git add .", 'git commit -m "ready to deploy"', "git push"];
   const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
 
+  /**
+   * TImeout to add next line
+   */
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const timeout = setTimeout(() => {
       if (displayedLines.length < lines.length)
         setDisplayedLines([...displayedLines, lines[displayedLines.length]]);
     }, 1800);
     return () => {
-      clearInterval(intervalId);
-      // setDisplayedLines([lines[0]]);
+      clearTimeout(timeout);
     };
-  }, []);
+  }, [isElementVisible, displayedLines]);
+
+  /**
+   * Reset displayed lines on terminal component out of viewport
+   */
+  useEffect(() => {
+    if (!isElementVisible) setDisplayedLines([]);
+  }, [isElementVisible]);
 
   return (
     <ScreenWrapper>
