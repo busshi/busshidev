@@ -1,3 +1,5 @@
+![build](https://github.com/busshi/busshidev/actions/workflows/build.yml/badge.svg)
+
 # BUSSHIDEV
 
 Coded in Typescript with NextJS

@@ -15,7 +15,7 @@ jobs:
       - name: Push image to Dockerhub
         run: |
           echo "$DOCKERHUB_API_KEY" | docker login --username $DOCKERHUB_LOGIN --password-stdin
-          docker push busshi/busshidev:latest
+          docker push busshi/busshidev
         env:
           DOCKERHUB_API_KEY: ${{ secrets.DOCKERHUB_API_KEY }}
           DOCKERHUB_LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
