@@ -18,8 +18,10 @@ import {
   SetStateAction,
   useState,
 } from "react";
+import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
+import { Color } from "../../types/interfaces";
 
-const Test = ({
+const Item = ({
   setRef,
   children,
   onClick,
@@ -29,18 +31,21 @@ const Test = ({
   onClick?: () => void;
 } & ComponentProps<typeof ContactItems>) => {
   const { theme } = useThemeState();
+  const { highlightedColor } = useHighlightedColorState();
 
   return (
-    <Item
+    <ItemWrapper
       ref={setRef}
       style={{ backgroundColor: theme.background }}
       hoverColor={theme.mainColorInverted}
       onClick={onClick}
+      highlightedColor={highlightedColor}
     >
       {children}
-    </Item>
+    </ItemWrapper>
   );
 };
+
 export const ContactItems = () => {
   const isMobile = useIsMobile();
   const { setIsChatVisible } = useChatVisibleState();
@@ -68,7 +73,7 @@ export const ContactItems = () => {
       />
       <Title>CONNECT FROM EVERYWHERE</Title>
       <ItemsWrapper>
-        <Test
+        <Item
           setRef={setRef1}
           onClick={() => {
             setIsChatVisible(true);
@@ -79,8 +84,8 @@ export const ContactItems = () => {
             <TfiHeadphoneAlt size={80} />
             <Text>Chat with me</Text>
           </>
-        </Test>
-        <Test
+        </Item>
+        <Item
           setRef={setRef2}
           onClick={() => {
             setIsContactMenuOpened(false);
@@ -91,13 +96,13 @@ export const ContactItems = () => {
             <SiGooglemeet size={80} />
             <Text>Book a meeting</Text>
           </>
-        </Test>
-        <Test setRef={setRef3}>
+        </Item>
+        <Item setRef={setRef3}>
           <Link href={`mailto:${EMAIL}`}>
-            <HiOutlineMail size={isMobile ? 24 : 40} />
+            <HiOutlineMail size={isMobile ? 28 : 54} />
             <Text>Send an email</Text>
           </Link>
-        </Test>
+        </Item>
       </ItemsWrapper>
     </Container>
   );
@@ -126,13 +131,11 @@ const Title = styled.div`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: 0.5rem;
-  // margin: 0 1rem 1rem 1rem;
   text-align: center;
-  // z-index: 2;
 
-  font-size: 5rem;
+  font-size: 3rem;
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -140,14 +143,12 @@ const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  // margin: 5rem 0 20rem 0;
-
-  @media (max-width: 768px) {
-    // margin: 5rem 0 5rem 0;
-  }
 `;
 
-export const Item = styled.div<{ hoverColor: string }>`
+export const ItemWrapper = styled.div<{
+  hoverColor: string;
+  highlightedColor: Color;
+}>`
   cursor: pointer;
   margin: 2rem;
   padding: 2rem;
@@ -157,11 +158,12 @@ export const Item = styled.div<{ hoverColor: string }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // z-index: 2;
+  color: ${(props) => `${props.highlightedColor.stop}`};
 
   text-align: center;
-  border: 1px solid;
   border-radius: var(--border-radius);
+  opacity: 0.8;
+  z-index: 0;
 
   @media (max-width: 768px) {
     margin: 1.7rem;
@@ -170,25 +172,35 @@ export const Item = styled.div<{ hoverColor: string }>`
   }
 
   a {
-    color: var(--middle-font-color);
+    color: ${(props) => `${props.highlightedColor.stop}`};
   }
 
+  box-shadow: ${(props) => `0px 0px 30px 0px ${props.highlightedColor.start}`};
   :hover {
-    border: 1px solid transparent;
     box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
   }
 
   transition: box-shadow var(--transition-delay) ease;
-  transition: background-color var(--long-transition-delay) ease;
+
+  // Text gradient color
+  background: ${(props) =>
+    `-webkit-linear-gradient(180deg, ${props.highlightedColor.stop}, ${props.highlightedColor.start})`};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const Text = styled.div`
   margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--middle-letter-spacing);
 
   @media (max-width: 768px) {
     margin-top: 0.5rem;
     font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0;
   }
 `;
 
