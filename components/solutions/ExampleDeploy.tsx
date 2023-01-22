@@ -262,7 +262,7 @@ const ScreenWrapper = styled.div`
   padding: 1rem;
   display: flex;
   color: white;
-  height: 70%;
+  height: 80%;
 
   @media (max-width: 768px) {
     height: 200px;

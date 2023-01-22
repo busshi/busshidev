@@ -10,58 +10,13 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import Products from "./Solutions";
 import { SITE_URL } from "../../lib/constants";
 import FirstPage from "../FirstPage";
-
-const AUTO_SWITCH_DELAY = 1500;
+import { useAutoSwitchDarkMode } from "../../hooks/useAutoSwitchDarkMode";
 
 const ExampleDesign = () => {
   const { isDarkMode, theme } = useThemeState();
   const dimensions = useGetElementDimensions("design");
-  const [count, setCount] = useState(0);
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
-  const [isExampleDark, setIsExampleDark] = useState(isDarkMode);
-
-  const [colors, setColors] = useState({
-    top: {
-      background: theme.cardBackground,
-      color: theme.fontColor,
-    },
-    screen: { background: "black", color: "white" },
-    implementation: { color: theme.secondaryFontColor },
-  });
-
-  useEffect(() => {
-    const autoSwitch = () => {
-      if (isElementVisible && count < 2) {
-        setIsExampleDark(!isExampleDark);
-        setColors({
-          top: {
-            background: isExampleDark
-              ? "var(--card-light-background)"
-              : "var(--card-dark-background)",
-            color: isExampleDark
-              ? "var(--main-light-font-color)"
-              : "var(--main-dark-font-color)",
-          },
-          screen: {
-            background: !isExampleDark ? "black" : "white",
-            color: isExampleDark ? "black" : "white",
-          },
-          implementation: {
-            color: !isExampleDark
-              ? "var(--secondary-dark-font-color)"
-              : "var(--secondary-light-font-color)",
-          },
-        });
-        setCount(count + 1);
-      }
-    };
-
-    const interval = setInterval(autoSwitch, AUTO_SWITCH_DELAY);
-
-    return () => {
-      interval && clearInterval(interval);
-    };
-  }, [isExampleDark, isElementVisible, count]);
+  const [colors, setColors] = useAutoSwitchDarkMode(isElementVisible);
 
   useEffect(() => {
     setColors({
@@ -76,10 +31,6 @@ const ExampleDesign = () => {
       implementation: { color: theme.secondaryFontColor },
     });
   }, [isDarkMode, theme]);
-
-  useEffect(() => {
-    if (!isElementVisible) setCount(0);
-  }, [isElementVisible]);
 
   return (
     <Container ref={ref} id="example-design" className="slideIntoViewRight">
