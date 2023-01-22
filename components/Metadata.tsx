@@ -19,7 +19,7 @@ export const Metadata: React.FC = () => (
     <meta name="author" content="BusshiDev" />
     <meta
       name="keywords"
-      content="busshiDev, Freelance, Fullstack developer, Developer, ReactJS, NextJS, NestJS, ExpressJS, SEO, Docker"
+      content="busshiDev, Freelance, Fullstack developer, Developer, ReactJS, NextJS, NestJS, NodeJS, SEO, Docker"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
