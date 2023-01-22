@@ -18,12 +18,23 @@ export const useGetScrollDimensions = (
   });
 
   useEffect(() => {
-    const element = document.getElementById(id);
-    if (element)
-      setScrollDimensions({
-        width: element.scrollWidth,
-        height: element.scrollHeight,
-      });
+    // Handler to call on resize
+    const handleScroll = () => {
+      const element = document.getElementById(id);
+      if (element)
+        setScrollDimensions({
+          width: element.scrollWidth,
+          height: element.scrollHeight,
+        });
+    };
+
+    // Add event listener
+    window.addEventListener("resize", handleScroll);
+
+    handleScroll();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleScroll);
   }, [id]);
 
   return scrollDimensions;

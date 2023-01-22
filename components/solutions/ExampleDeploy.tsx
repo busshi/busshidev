@@ -6,7 +6,7 @@ import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useEffect, useState } from "react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { TbArrowNarrowRight } from "react-icons/tb";
-//import { useGetScrollHeight } from "../../hooks/useGetScrollWidth copy";
+import { useGetScrollDimensions } from "../../hooks/useGetScrollDimensions";
 
 const CHAR_INTERVAL = 20;
 const LINE_INTERVAL = 900;
@@ -131,8 +131,7 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   ];
   const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
   const [isFinished, setIsFinished] = useState(false);
-  // const terminalBottomRef = useRef<HTMLDivElement>(null);
-  // const scrollHeight = useGetScrollHeight("screen-wrapper");
+  const scrollHeight = useGetScrollDimensions("screen-wrapper").height;
 
   /**
    * Timeout to add next line
@@ -158,29 +157,13 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
     }
   }, [isElementVisible]);
 
-  // useEffect(() => {
-  //   const el = document.getElementById("screen-wrapper");
-  //   if (el) el.scrollTo(scrollHeight, 0);
-  // }, [displayedLines]);
-  // console.log(scrollHeight);
-
-  /* Scroll to bottom if a new message is sent */
-  // useEffect(() => {
-  // if (terminalBottomRef.current)
-  //   terminalBottomRef.current.scrollIntoView({
-  //     behavior: "smooth",
-  //   });
-  // const element = document.getElementById("bottom");
-  // element?.scrollIntoView({ behavior: "smooth" });
-  // const element = document.getElementById("bottom");
-  // const topPos = element?.offsetTop;
-  // const el = document.getElementById("screen-wrapper");
-  // console.log("topPos", topPos);
-  // if (el) {
-  //   if (topPos) el.scrollTop = topPos;
-  //   console.log("ici");
-  // }
-  // }, [terminalBottomRef]);
+  /**
+   * Scroll to bottom if the terminal
+   * */
+  useEffect(() => {
+    const el = document.getElementById("screen-wrapper");
+    el?.scrollTo(scrollHeight, scrollHeight);
+  }, [displayedLines, scrollHeight, isFinished]);
 
   return (
     <ScreenWrapper id="screen-wrapper">
@@ -203,7 +186,6 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
               );
             })}
             {isFinished && <Line isFinished={false} textDisplayed="" line="" />}
-            {/* <div ref={terminalBottomRef} /> */}
           </div>
         )}
       </div>
@@ -260,7 +242,6 @@ const TerminalWrapper = styled.div<{
 
 const Terminal = styled.div`
   height: 100%;
-  position: relative;
 `;
 
 const TopBar = styled.div`
@@ -277,7 +258,7 @@ const ScreenWrapper = styled.div`
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   background: black;
   text-align: left;
-  overflow: auto;
+  overflow-y: auto;
   padding: 1rem;
   display: flex;
   color: white;
@@ -294,7 +275,6 @@ const Cursor = styled.div<{ isCursorAnimated: boolean }>`
   height: 1.1rem;
   background: gray;
   display: flex;
-  // align-items: flex-end;
 
   animation: ${(props) => (props.isCursorAnimated ? "cursor 1s 5" : "none")};
 
@@ -315,6 +295,7 @@ const LineWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   height: 1.1rem;
+  padding-bottom: 0.2rem;
 
   color: var(--secondary-dark-font-color);
 `;
@@ -352,4 +333,5 @@ const LineBox = styled.div<{ margin: string; mobileMargin: string }>`
     margin-bottom: ${(props) => props.mobileMargin};
   }
 `;
+
 export default ExampleDeploy;
