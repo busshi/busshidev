@@ -3,10 +3,6 @@ import styled from "styled-components";
 
 const Globe = () => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "./scripts/globe.js";
-    document.head.appendChild(script);
-
     const script2 = document.createElement("script");
     script2.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.js";
     document.head.appendChild(script2);
@@ -21,12 +17,16 @@ const Globe = () => {
       "https://rawgit.com/spite/THREE.MeshLine/master/src/THREE.MeshLine.js";
     document.head.appendChild(script4);
 
+    const script = document.createElement("script");
+    script.src = "./scripts/globe.js";
+    document.head.appendChild(script);
+
     return () => {
       // clean up the script when the component in unmounted
-      document.head.removeChild(script);
       document.head.removeChild(script2);
       document.head.removeChild(script3);
       document.head.removeChild(script4);
+      document.head.removeChild(script);
     };
   }, []);
 
