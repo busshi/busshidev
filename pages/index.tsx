@@ -13,6 +13,7 @@ export const Home: NextPage = () => {
     <Container>
       {/* Laptop Component */}
       <FirstPage
+        replicated={false}
         className="laptop"
         titlesStyle={{
           fontSize: "6rem",
@@ -36,6 +37,7 @@ export const Home: NextPage = () => {
       />
       {/* Mobile Component */}
       <FirstPage
+        replicated={false}
         className="mobile"
         titlesStyle={{
           fontSize: "4rem",

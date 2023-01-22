@@ -11,6 +11,7 @@ export const FirstPage = ({
   introStyle,
   getADemoStyle,
   implementationStyle,
+  replicated,
 }: {
   className: string;
   fontColor: string;
@@ -19,10 +20,15 @@ export const FirstPage = ({
   introStyle: CSSProperties;
   getADemoStyle: CSSProperties;
   implementationStyle: CSSProperties;
+  replicated: boolean;
 }) => {
   return (
     <FirstPageWrapper style={{ ...firstPageStyle }} className={className}>
-      <Titles style={{ ...titlesStyle }} fontColor={fontColor} />
+      <Titles
+        replicated={replicated}
+        style={{ ...titlesStyle }}
+        fontColor={fontColor}
+      />
       <Intro style={{ ...introStyle }}>
         You have dreams. I have skills. We can build the future together...
       </Intro>

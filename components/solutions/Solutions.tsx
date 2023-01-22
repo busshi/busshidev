@@ -30,7 +30,7 @@ const Item = ({
   );
   const [height, setHeight] = useState(0);
   const productHeight = useGetElementDimensions(
-    replicated ? `${solution.id}-replicated` : solution.id
+    replicated ? solution.id : solution.id
   ).height;
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
@@ -39,10 +39,10 @@ const Item = ({
 
   useEffect(() => {
     setHeight(
-      isMobile ? ratio * productHeight * 1.5 : ratio * productHeight * 1.2
+      isMobile ? ratio * productHeight * 1.3 : ratio * productHeight * 1.2
     );
   }, [ratio, productHeight, isMobile]);
-  // console.log(ratio, productHeight, height);
+  // replicated && console.log(ratio, productHeight, height);
   return (
     <Product ref={ref} replicated={replicated}>
       <Border
@@ -77,7 +77,7 @@ const Item = ({
         </TitleBox>
         <Description
           style={{
-            color: theme.fontColor,
+            color: "theme.fontColor",
             fontSize: replicated ? "1.5rem" : "2.5rem",
           }}
         >
@@ -90,7 +90,7 @@ const Item = ({
               <TextBox
                 style={{
                   fontSize: replicated ? "0.8rem" : "1rem",
-                  color: theme.secondaryFontColor,
+                  color: "theme.secondaryFontColor",
                 }}
               >
                 {item}

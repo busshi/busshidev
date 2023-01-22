@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
@@ -7,7 +7,7 @@ import SystemIcons from "../SystemIcons";
 import { MdIosShare } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
-import Products from "./Solutions";
+import Products, { Solutions } from "./Solutions";
 import { SITE_URL } from "../../lib/constants";
 import FirstPage from "../FirstPage";
 import { useAutoSwitchDarkMode } from "../../hooks/useAutoSwitchDarkMode";
@@ -59,6 +59,7 @@ const ExampleDesign = () => {
             }}
           >
             <FirstPage
+              replicated={true}
               className="laptop"
               titlesStyle={{
                 margin: "0.2rem",
@@ -99,17 +100,18 @@ const ExampleDesign = () => {
             }}
           >
             <FirstPage
+              replicated={true}
               className="mobile"
               titlesStyle={{
-                margin: "0.1rem",
+                margin: "0 0.5rem 0 0",
                 fontSize: "2rem",
                 color: colors.screen.color,
               }}
               introStyle={{ fontSize: "0.5rem", marginTop: "1.6rem" }}
               firstPageStyle={{
-                gap: "1.5rem",
+                gap: "1rem",
                 minHeight: "100%",
-                margin: "0rem",
+                margin: "1rem",
               }}
               getADemoStyle={{
                 width: "7rem",
@@ -125,7 +127,7 @@ const ExampleDesign = () => {
               fontColor={colors.screen.color}
               // replicated={true}
             />
-            <Products
+            <Solutions
               replicated={true}
               gradientColor={colors.screen.background}
             />
@@ -157,8 +159,11 @@ const Container = styled.div`
 const MockupWrapper = styled.div<{
   dimensions: { width: number; height: number };
 }>`
-  width: ${(props) => `${props.dimensions.width * 0.9}px`};
+  width: 90%;
   height: ${(props) => `${props.dimensions.height * 0.8}px`};
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 `;
 
 const Mockup = styled.div`
@@ -187,7 +192,7 @@ const Screen = styled.div`
 
   &.mobile {
     display: none;
-    height: 350px;
+    height: 250px;
     @media (max-width: 768px) {
       display: flex;
     }

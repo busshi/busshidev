@@ -6,22 +6,20 @@ import { Color } from "../types/interfaces";
 import { buildSolutionsMenu } from "../lib/solutions";
 
 export const Titles = ({
-  //  className,
   fontColor,
   style,
-}: //  replicated,
-{
-  //className: string;
+  replicated,
+}: {
   fontColor: string;
   style: CSSProperties;
-  //replicated: boolean;
+  replicated: boolean;
 }) => {
   const { highlighted, setHighlighted, setHighlightedColor, highlightedColor } =
     useHighlightedColorState();
   const solutions = buildSolutionsMenu(40);
 
   return (
-    <Container>
+    <Container replicated={replicated}>
       {solutions.map(({ title }, i) => (
         <Title
           key={title}
@@ -34,7 +32,6 @@ export const Titles = ({
           highlightedColor={highlightedColor}
           fontColor={fontColor}
           style={{ ...style }}
-          //   replicated={replicated}
         >
           {title}
         </Title>
@@ -43,7 +40,7 @@ export const Titles = ({
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ replicated: boolean }>`
   display: flex;
   justify-content: center;
   text-align: center;
@@ -52,7 +49,7 @@ const Container = styled.div`
   margin: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: ${(props) => (props.replicated ? "row" : "column")};
     margin: 0;
   }
 `;
@@ -61,7 +58,6 @@ export const Title = styled.div<{
   highlightedColor: Color;
   isShiny: boolean;
   fontColor: string;
-  //  replicated: boolean;
 }>`
   cursor: pointer;
   background: ${(props) =>
