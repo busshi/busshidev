@@ -15,6 +15,21 @@ export const EMAIL = "busshidev@icloud.com";
 export const PAGE_SPEED_URL =
   "https://pagespeed.web.dev/report?url=https%3A%2F%2Fbusshidev.fr%2F&form_factor=desktop";
 
+export const PAGE_SPEED_RESULTS = {
+  mobile: {
+    performances: 97,
+    bestPractices: 100,
+    accessibility: 97,
+    seo: 100,
+  },
+  laptop: {
+    performances: 100,
+    bestPractices: 100,
+    accessibility: 100,
+    seo: 100,
+  },
+};
+
 export const CRIPS_WEBSITE_ID = "e1e85931-34f5-415c-bc4b-f38fc7264ef6";
 
 /**

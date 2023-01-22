@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PAGE_SPEED_URL } from "../lib/constants";
 
-const CHART_TIMEOUT = 3;
+const CHART_TIMEOUT = 10;
 
 const PieWrapper = ({
   maxValue,

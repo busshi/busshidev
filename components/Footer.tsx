@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
       >
         <Column span="OPEN SOURCE CONTRIBUTIONS" elements={OPENSOURCES} />
         {isMobile && <Hr />}
-        <Column span="CONTACTS" elements={CONTACTS} />
+        <Column span="STAY IN TOUCH" elements={CONTACTS} />
         {isMobile && <Hr />}
       </Container>
       <Logo />

@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import { COLORS } from "../../lib/constants";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { COLORS, PAGE_SPEED_RESULTS } from "../../lib/constants";
 import PieChart from "../PieChart";
 
 const ExampleBoost = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
+  const isMobile = useIsMobile();
 
   return (
     <Container ref={ref} id="example-developn" className="slideIntoViewRight">
       <Wrapper>
         <PieChart
           color={COLORS[3].start}
-          maxValue={100}
+          maxValue={PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].seo}
           text="SEO"
           isElementVisible={isElementVisible}
           fontSize="1.5rem"

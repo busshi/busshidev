@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { COLORS } from "../../lib/constants";
+import { COLORS, PAGE_SPEED_RESULTS } from "../../lib/constants";
 import { useThemeState } from "../../providers/Theme.provider";
 import PieChart from "../PieChart";
 
@@ -10,9 +10,20 @@ const ExampleDevelop = () => {
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
   const charts = [
-    { id: "Performances", maxValue: 100 },
-    { id: "Best Practices", maxValue: 100 },
-    { id: "Accessibility", maxValue: 100 },
+    {
+      id: "Performances",
+      maxValue: PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].performances,
+    },
+    {
+      id: "Best Practices",
+      maxValue:
+        PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].bestPractices,
+    },
+    {
+      id: "Accessibility",
+      maxValue:
+        PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].accessibility,
+    },
   ];
 
   return (
