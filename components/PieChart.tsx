@@ -41,11 +41,15 @@ const PieChart = ({
   maxValue,
   isElementVisible,
   color,
+  fontSize = "1rem",
+  mobileFontSize = "0.7rem",
 }: {
   text: string;
   maxValue: number;
   isElementVisible: boolean;
   color: string;
+  fontSize?: string;
+  mobileFontSize?: string;
 }) => {
   return (
     <PieContainer>
@@ -54,7 +58,7 @@ const PieChart = ({
         color={color}
         isElementVisible={isElementVisible}
       />
-      <Text color={color}>
+      <Text fontSize={fontSize} mobileFontSize={mobileFontSize} color={color}>
         {text} <StyledLink href={PAGE_SPEED_URL}>*</StyledLink>
       </Text>
     </PieContainer>
@@ -132,8 +136,13 @@ const Pie = styled.div<{ p: number; color: string }>`
   }
 }`;
 
-const Text = styled.div<{ color: string }>`
+const Text = styled.div<{
+  color: string;
+  fontSize: string;
+  mobileFontSize: string;
+}>`
   position: relative;
+  font-size: ${(props) => props.fontSize};
 
   a {
     font-size: 2rem;
@@ -141,7 +150,7 @@ const Text = styled.div<{ color: string }>`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.7rem;
+    font-size: ${(props) => props.mobileFontSize};
 
     a {
       font-size: 1rem;

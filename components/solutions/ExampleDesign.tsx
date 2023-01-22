@@ -159,7 +159,7 @@ const Container = styled.div`
 const MockupWrapper = styled.div<{
   dimensions: { width: number; height: number };
 }>`
-  width: 90%;
+  width: 100%;
   height: ${(props) => `${props.dimensions.height * 0.8}px`};
   @media (max-width: 768px) {
     height: 300px;
