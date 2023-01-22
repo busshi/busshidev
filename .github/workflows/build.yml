@@ -1,0 +1,21 @@
+name: build
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: build and push to dockerhub
+    steps:
+      - name: Clone app
+        uses: actions/checkout@v2
+
+      - name: Build image
+        run: |
+          docker build . -t busshidev/busshidev
+      - name: Push image to Dockerhub
+        run: |
+          echo "$DOCKERHUB_API_KEY" | docker login --username $DOCKERHUB_LOGIN --password-stdin
+          docker push busshi/busshidev:latest
+        env:
+          DOCKERHUB_API_KEY: ${{ secrets.DOCKERHUB_API_KEY }}
+          DOCKERHUB_LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
