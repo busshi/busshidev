@@ -19,7 +19,7 @@ export const PAGE_SPEED_URL =
 
 export const PAGE_SPEED_RESULTS = {
   mobile: {
-    performances: 97,
+    performances: 98,
     bestPractices: 100,
     accessibility: 97,
     seo: 100,
