@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import { COLORS } from "../../lib/constants";
 import { useThemeState } from "../../providers/Theme.provider";
 import PieChart from "../PieChart";
@@ -7,6 +8,7 @@ import PieChart from "../PieChart";
 const ExampleDevelop = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const { theme } = useThemeState();
+  const isMobile = useIsMobile();
   const charts = [
     { id: "Performances", maxValue: 100 },
     { id: "Best Practices", maxValue: 100 },
@@ -15,7 +17,9 @@ const ExampleDevelop = () => {
 
   return (
     <Container ref={ref} id="example-developn" className="slideIntoViewRight">
-      <Wrapper style={{ background: theme.backgroundColor }}>
+      <Wrapper
+        style={{ background: isMobile ? "none" : theme.backgroundColor }}
+      >
         {charts.map(({ id, maxValue }) => (
           <PieChart
             key={id}

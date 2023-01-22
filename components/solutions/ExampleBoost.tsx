@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import { COLORS } from "../../lib/constants";
 import { useThemeState } from "../../providers/Theme.provider";
 import PieChart from "../PieChart";
@@ -7,10 +8,13 @@ import PieChart from "../PieChart";
 const ExampleBoost = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const { theme } = useThemeState();
+  const isMobile = useIsMobile();
 
   return (
     <Container ref={ref} id="example-developn" className="slideIntoViewRight">
-      <Wrapper style={{ background: theme.backgroundColor }}>
+      <Wrapper
+        style={{ background: isMobile ? "none" : theme.backgroundColor }}
+      >
         <PieChart
           color={COLORS[3].start}
           maxValue={100}
@@ -36,7 +40,7 @@ const Wrapper = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 60%;
-  width: 100%;
+  width: 60%;
 `;
 
 export default ExampleBoost;
