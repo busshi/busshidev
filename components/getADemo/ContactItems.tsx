@@ -109,7 +109,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 3rem;
-
+  z-index: 2;
   @media (max-width: 768px) {
     gap: 2rem;
   }
