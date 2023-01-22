@@ -3,9 +3,10 @@ import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { useThemeState } from "../../providers/Theme.provider";
 import SystemIcons from "../SystemIcons";
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { TbArrowNarrowRight } from "react-icons/tb";
+//import { useGetScrollHeight } from "../../hooks/useGetScrollWidth copy";
 
 const CHAR_INTERVAL = 20;
 const LINE_INTERVAL = 900;
@@ -37,12 +38,12 @@ const Line = ({
         )
       </Prompt>
       <MobilePrompt>~ </MobilePrompt>
-      <div style={{ display: "flex" }}>
+      <TextAnimated>
         <div>{textDisplayed}</div>{" "}
         {!isFinished && (
           <Cursor isCursorAnimated={textDisplayed !== line ? false : true} />
         )}
-      </div>
+      </TextAnimated>
     </LineWrapper>
   );
 };
@@ -112,7 +113,9 @@ const GetLine = ({
       }}
     >
       {displayedReplies.map((line) => (
-        <div key={line}>{line}</div>
+        <LineBox key={line} margin="0.3rem" mobileMargin="0.1rem">
+          {line}
+        </LineBox>
       ))}
     </div>
   );
@@ -129,6 +132,7 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
   const [isFinished, setIsFinished] = useState(false);
   // const terminalBottomRef = useRef<HTMLDivElement>(null);
+  // const scrollHeight = useGetScrollHeight("screen-wrapper");
 
   /**
    * Timeout to add next line
@@ -154,6 +158,12 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
     }
   }, [isElementVisible]);
 
+  // useEffect(() => {
+  //   const el = document.getElementById("screen-wrapper");
+  //   if (el) el.scrollTo(scrollHeight, 0);
+  // }, [displayedLines]);
+  // console.log(scrollHeight);
+
   /* Scroll to bottom if a new message is sent */
   // useEffect(() => {
   // if (terminalBottomRef.current)
@@ -173,15 +183,15 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   // }, [terminalBottomRef]);
 
   return (
-    <ScreenWrapper>
-      <div id="screen-wrapper">
+    <ScreenWrapper id="screen-wrapper">
+      <div>
         {!displayedLines.length ? (
           <Line isFinished={false} textDisplayed="" line="" />
         ) : (
-          <>
+          <div>
             {displayedLines.map((line, index) => {
               return (
-                <div key={line} style={{ margin: "0 0 0.3rem 0" }}>
+                <LineBox key={line} margin="0.5rem" mobileMargin="0.2rem">
                   <GetLine
                     isElementVisible={isElementVisible}
                     line={line}
@@ -189,16 +199,12 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
                     linesLength={lines.length}
                     isInput={index === 2 || index === 4 ? false : true}
                   />
-                </div>
+                </LineBox>
               );
             })}
-            {isFinished && (
-              <div id="bottom">
-                <Line isFinished={false} textDisplayed="" line="" />
-              </div>
-            )}
+            {isFinished && <Line isFinished={false} textDisplayed="" line="" />}
             {/* <div ref={terminalBottomRef} /> */}
-          </>
+          </div>
         )}
       </div>
     </ScreenWrapper>
@@ -288,7 +294,7 @@ const Cursor = styled.div<{ isCursorAnimated: boolean }>`
   height: 1.1rem;
   background: gray;
   display: flex;
-  align-items: flex-end;
+  // align-items: flex-end;
 
   animation: ${(props) => (props.isCursorAnimated ? "cursor 1s 5" : "none")};
 
@@ -308,12 +314,17 @@ const Cursor = styled.div<{ isCursorAnimated: boolean }>`
 const LineWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+  height: 1.1rem;
+
   color: var(--secondary-dark-font-color);
 `;
 
 const Prompt = styled.div<{ color: string; marginRight: string }>`
   margin-right: ${(props) => props.marginRight};
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  height: 1.1rem;
+
   color: ${(props) => props.color};
   @media (max-width: 768px) {
     display: none;
@@ -325,8 +336,20 @@ const MobilePrompt = styled.div`
   margin-right: 0.8rem;
   display: none;
   @media (max-width: 768px) {
-    display: block;
+    display: flex;
+    align-items: flex-end;
   }
 `;
 
+const TextAnimated = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const LineBox = styled.div<{ margin: string; mobileMargin: string }>`
+  margin-bottom: ${(props) => props.margin};
+  @media (max-width: 768px) {
+    margin-bottom: ${(props) => props.mobileMargin};
+  }
+`;
 export default ExampleDeploy;
