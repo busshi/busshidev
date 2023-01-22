@@ -37,7 +37,7 @@ export const CRIPS_WEBSITE_ID = "e1e85931-34f5-415c-bc4b-f38fc7264ef6";
  */
 export const GTAG = "G-K4ERH99TW7";
 export const GOOGLE_SITE_VERIFICATION =
-  "uYYzUQDBJBHy3-Obtuz4DQxkMJkeDU0TVN6H5Hcc9BE";
+  "9zfrcdtOL120_Di_ZUTyg-Tce-YNx4ZA5PYx9yK4aJo";
 
 /**
  * Color constants
