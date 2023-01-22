@@ -13,11 +13,11 @@ import ContactMenuProvider from "../providers/ContactMenu.provider";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DarkModeProvider>
-      <ContactMenuProvider>
-        <ChatVisibleProvider>
-          <CalendlyVisibleProvider>
-            <Layout>
-              <HighlightedColorProvider>
+      <HighlightedColorProvider>
+        <ContactMenuProvider>
+          <ChatVisibleProvider>
+            <CalendlyVisibleProvider>
+              <Layout>
                 <TestimonialVisibleProvider>
                   {/* Google Tag Manager */}
                   <noscript
@@ -30,11 +30,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
                   <Component {...pageProps} />
                 </TestimonialVisibleProvider>
-              </HighlightedColorProvider>
-            </Layout>
-          </CalendlyVisibleProvider>
-        </ChatVisibleProvider>
-      </ContactMenuProvider>
+              </Layout>
+            </CalendlyVisibleProvider>
+          </ChatVisibleProvider>
+        </ContactMenuProvider>
+      </HighlightedColorProvider>
     </DarkModeProvider>
   );
 }
