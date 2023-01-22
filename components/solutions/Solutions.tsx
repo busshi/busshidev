@@ -95,7 +95,9 @@ const Item = ({
               >
                 {item}
               </TextBox>
-              {item === "Dark mode" && <DarkModeSwitcher />}
+              {item === "Dark mode" && (
+                <DarkModeSwitcher replicated={replicated} />
+              )}
             </div>
           ))}
         </ActionsBox>

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { useThemeState } from "../providers/Theme.provider";
 
-const DarkModeSwitcher = () => {
+const DarkModeSwitcher = ({ replicated }: { replicated: boolean }) => {
   const { isDarkMode, setIsDarkMode, theme } = useThemeState();
 
   return (
     <Button
-      onClick={() => setIsDarkMode(isDarkMode ? false : true)}
+      onClick={() => {
+        setIsDarkMode(isDarkMode ? false : true);
+      }}
       style={{
         background: theme.mainColor,
         border: `1px solid ${theme.mainColorInverted}`,

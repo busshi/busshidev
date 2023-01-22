@@ -42,7 +42,7 @@ export const Home: NextPage = () => {
           color: theme.fontColor,
           margin: "0 1rem 0 0",
         }}
-        firstPageStyle={{ gap: "4rem", minHeight: "90vh", margin: "0rem" }}
+        firstPageStyle={{ gap: "3.5rem", minHeight: "90vh", margin: "0rem" }}
         introStyle={{ fontSize: "1rem" }}
         getADemoStyle={{
           width: "15rem",

@@ -110,13 +110,13 @@ const ExampleDesign = () => {
             <FirstPage
               className="laptop"
               titlesStyle={{
-                margin: "0.5rem",
+                margin: "0.2rem",
                 fontSize: "2.5rem",
                 color: colors.screen.color,
               }}
               introStyle={{ fontSize: "0.8rem" }}
               firstPageStyle={{
-                gap: "1rem",
+                gap: "0rem",
                 minHeight: "100%",
                 margin: 0,
               }}
@@ -154,17 +154,18 @@ const ExampleDesign = () => {
                 fontSize: "2rem",
                 color: colors.screen.color,
               }}
-              introStyle={{ fontSize: "0.5rem" }}
+              introStyle={{ fontSize: "0.5rem", marginTop: "1.6rem" }}
               firstPageStyle={{
-                gap: "2rem",
+                gap: "1.5rem",
                 minHeight: "100%",
-                margin: "1rem",
+                margin: "0rem",
               }}
               getADemoStyle={{
                 width: "7rem",
                 height: "1.2rem",
                 fontSize: "0.4rem",
                 color: colors.screen.color,
+                marginTop: "1rem",
               }}
               implementationStyle={{
                 color: colors.implementation.color,

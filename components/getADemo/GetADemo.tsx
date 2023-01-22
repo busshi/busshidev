@@ -8,7 +8,7 @@ export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { setIsContactMenuOpened } = useContactMenuOpenedState();
 
   return (
-    <>
+    <Container>
       <Button
         highlightedColor={highlightedColor}
         style={{ ...style }}
@@ -16,14 +16,17 @@ export const GetADemo = ({ style }: { style: CSSProperties }) => {
       >
         Get a Demo
       </Button>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  height: 3rem;
+`;
 
 const Button = styled.div<{ highlightedColor: Color }>`
   cursor: pointer;
   width: 15rem;
-  height: 3rem;
   z-index: 0;
   display: flex;
   justify-content: center;
