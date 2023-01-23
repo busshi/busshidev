@@ -9,6 +9,8 @@ import { useTestimonialVisibleState } from "../providers/TestimonialVisible.prov
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import { useThemeState } from "../providers/Theme.provider";
+import qcAvatar from "../public/avatars/qc.webp";
+import mcAvatar from "../public/avatars/mc.png";
 
 const SCROLL_TIMEOUT = 6000;
 const DOT_WIDTH = 44;
@@ -90,7 +92,7 @@ export const Testimonials = () => {
             <Testimonial style={{ backgroundColor: theme.backgroundColor }}>
               <Author>
                 <ImageBox
-                  src={testimonial.avatar}
+                  src={testimonial.id !== "third" ? qcAvatar : mcAvatar}
                   width={50}
                   height={50}
                   alt={testimonial.author}

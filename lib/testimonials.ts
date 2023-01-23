@@ -12,7 +12,6 @@ export const TESTIMONIALS = [
           utile dès le premier jour. Avec plaisir pour retravailler ensemble dès
           que possible.`,
     date: "November, 10 2022",
-    avatar: "/avatars/qc.webp",
   },
   {
     id: "second",
@@ -25,7 +24,6 @@ export const TESTIMONIALS = [
     quote: `Je recommande à 100% Alex, compréhension de la mission, force de
           proposition et beaucoup de boulot sur une mission fullstack JS.`,
     date: "October, 10 2022",
-    avatar: "/avatars/qc.webp",
   },
   {
     id: "third",
@@ -40,6 +38,5 @@ export const TESTIMONIALS = [
           les sécuriser. Très bon relationnel également, au plaisir de
           retravailler ensemble.`,
     date: "March, 12 2022",
-    avatar: "/avatars/mc.png",
   },
 ];
