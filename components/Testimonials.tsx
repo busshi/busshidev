@@ -91,12 +91,7 @@ export const Testimonials = () => {
           >
             <Testimonial style={{ backgroundColor: theme.backgroundColor }}>
               <Author>
-                <ImageBox
-                  src={testimonial.id !== "third" ? qcAvatar : mcAvatar}
-                  width={50}
-                  height={50}
-                  alt={testimonial.author}
-                />
+                {testimonial.avatar}
                 {testimonial.author}
                 <br />
                 {testimonial.company}
@@ -221,10 +216,6 @@ const Testimonial = styled.div`
     color: var(--middle-font-color);
     text-decoration: underline;
   }
-`;
-
-const ImageBox = styled(Image)`
-  border-radius: 50%;
 `;
 
 const Author = styled.div`
