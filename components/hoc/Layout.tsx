@@ -11,7 +11,6 @@ import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 import Calendly from "../getADemo/Calendly";
-import { Html } from "next/document";
 
 type Props = {
   children: React.ReactNode;
@@ -25,10 +24,7 @@ const Layout = ({ children }: Props) => {
   const { theme } = useThemeState();
 
   return (
-    <App
-      lang="en"
-      style={{ color: theme.fontColor, background: theme.background }}
-    >
+    <App style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
       {isContactMenuOpened ? (
         <ContactMenu />
@@ -65,7 +61,7 @@ const Layout = ({ children }: Props) => {
   );
 };
 
-const App = styled(Html)`
+const App = styled.div`
   min-width: 100%;
   min-height: 100vh;
 
