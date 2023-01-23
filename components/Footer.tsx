@@ -28,7 +28,7 @@ export const Column = ({
               href={item.url}
               style={{ color: theme.middleFontColor }}
             >
-              {!isDarkMode ? item.logoDark : item.logo}
+              {isDarkMode ? item.logoDark : item.logo}
               {!isMobile && (
                 <LinkName hoverColor={theme.mainColorInverted}>
                   {item.name}

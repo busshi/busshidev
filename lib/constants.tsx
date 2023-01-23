@@ -2,7 +2,6 @@ import { FaDocker, FaLinkedin, FaNpm } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
 import { HiOutlineMail } from "react-icons/hi";
 import Image from "next/image";
-import malt from "../public/icons/malt.png";
 
 export const SITE_URL =
   process.env.NODE_ENV === "production"
@@ -86,8 +85,10 @@ export const CONTACTS = [
     id: "malt",
     name: "Malt",
     url: "https://www.malt.fr/profile/alexandredubar",
-    logo: <Image src={malt} width={25} height={25} alt="malt" />,
-    logoDark: <Image src={malt} width={25} height={25} alt="malt" />,
+    logo: <Image src="/icons/malt.svg" width={25} height={25} alt="malt" />,
+    logoDark: (
+      <Image src="/icons/malt-dark.svg" width={25} height={25} alt="malt" />
+    ),
   },
   {
     id: "email",
@@ -107,15 +108,15 @@ export const OPENSOURCES = [
     id: "github",
     name: "Github",
     url: "https://github.com/busshi",
-    logo: <ImGithub color="var(--main-light-color)" size={25} />,
-    logoDark: <ImGithub color="var(--main-dark-color)" size={25} />,
+    logo: <ImGithub color="var(--main-dark-color)" size={25} />,
+    logoDark: <ImGithub color="var(--main-light-color)" size={25} />,
   },
   {
     id: "npm",
     name: "NPM",
     url: "https://npmjs.com/~busshi",
-    logo: <FaNpm color="var(--main-light-color)" size={25} />,
-    logoDark: <FaNpm color="var(--main-dark-color)" size={25} />,
+    logo: <FaNpm color="var(--main-dark-color)" size={25} />,
+    logoDark: <FaNpm color="var(--main-light-color)" size={25} />,
   },
   {
     id: "dockerhub",
