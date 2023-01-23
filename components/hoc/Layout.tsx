@@ -24,7 +24,7 @@ const Layout = ({ children }: Props) => {
   const { theme } = useThemeState();
 
   return (
-    <Html style={{ color: theme.fontColor, background: theme.background }}>
+    <App style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
       {isContactMenuOpened ? (
         <ContactMenu />
@@ -57,11 +57,11 @@ const Layout = ({ children }: Props) => {
           }}
         />
       )}
-    </Html>
+    </App>
   );
 };
 
-const Html = styled.div`
+const App = styled.div`
   min-width: 100%;
   min-height: 100vh;
 

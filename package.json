@@ -2,6 +2,7 @@
   "name": "busshidev",
   "version": "2.0",
   "private": false,
+  "licence": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
