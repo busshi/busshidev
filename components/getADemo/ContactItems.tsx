@@ -56,9 +56,9 @@ export const ContactItems = () => {
   const [ref1, setRef1] = useState<HTMLElement | null>(null);
   const [ref2, setRef2] = useState<HTMLElement | null>(null);
   const [ref3, setRef3] = useState<HTMLElement | null>(null);
-  useListenForOutsideClicks([ref1, ref2, ref3], () =>
-    setIsContactMenuOpened(false)
-  );
+  // useListenForOutsideClicks([ref1, ref2, ref3], () =>
+  //   setIsContactMenuOpened(false)
+  // );
 
   return (
     <Container
@@ -176,8 +176,11 @@ export const ItemWrapper = styled.div<{
   }
 
   box-shadow: ${(props) => `0px 0px 30px 0px ${props.highlightedColor.start}`};
-  :hover {
-    box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
+
+  @media (min-width: 769px) {
+    :hover {
+      box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
+    }
   }
 
   transition: box-shadow var(--transition-delay) ease;

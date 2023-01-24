@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
 import qcAvatar from "../public/avatars/qc.webp";
-import mcAvatar from "../public/avatars/mc.png";
-
-const ImageBox = styled(Image)`
-  border-radius: 50%;
-`;
-
 export const TESTIMONIALS = [
   {
     id: "first",
@@ -21,9 +15,7 @@ export const TESTIMONIALS = [
           utile dès le premier jour. Avec plaisir pour retravailler ensemble dès
           que possible.`,
     date: "November, 10 2022",
-    avatar: (
-      <ImageBox src={qcAvatar} width={50} height={50} alt="Quentin Chantelot" />
-    ),
+    avatar: "/avatars/qc.webp",
   },
   {
     id: "second",
@@ -36,9 +28,7 @@ export const TESTIMONIALS = [
     quote: `Je recommande à 100% Alex, compréhension de la mission, force de
           proposition et beaucoup de boulot sur une mission fullstack JS.`,
     date: "October, 10 2022",
-    avatar: (
-      <ImageBox src={qcAvatar} width={50} height={50} alt="Quentin Chantelot" />
-    ),
+    avatar: "/avatars/qc.webp",
   },
   {
     id: "third",
@@ -53,8 +43,6 @@ export const TESTIMONIALS = [
           les sécuriser. Très bon relationnel également, au plaisir de
           retravailler ensemble.`,
     date: "March, 12 2022",
-    avatar: (
-      <ImageBox src={mcAvatar} width={50} height={50} alt="Martial Carriere" />
-    ),
+    avatar: "/avatars/mc.png",
   },
 ];
