@@ -147,7 +147,7 @@ const DemoButton = styled.div<{ color: string; background: string }>`
   align-items: center;
   border-radius: var(--border-radius);
   padding: 0.5rem 1rem 0.5rem 1rem;
-  transition: color, background, border var(--transition-delay) ease;
+  transition: all var(--transition-delay) ease;
   cursor: pointer;
   border: 1px solid ${(props) => props.background};
 
