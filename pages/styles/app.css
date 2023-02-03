@@ -119,9 +119,3 @@ body {
   transform: translateX(-50px);
   opacity: 0;
 }
-
-@property --p {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
