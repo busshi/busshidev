@@ -125,7 +125,7 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   const lines = [
     "git add .",
     'git commit -m "ready to deploy"',
-    "[master 9347ad1] cursor waiting cursor into the terminal waiting for the element to be visible\\n5 files changed, 81 insertions(+), 33 deletions(-)",
+    "[main 9347ad1] ready to deploy\\n5 files changed, 81 insertions(+), 33 deletions(-)",
     "git push",
     "Counting objects: 100% (21/21), done\\nEnumerating objects: 21, done.\\nDelta compression using up to 8 threads\\nCompressing objects: 100% (10/10), done.\\nWriting objects: 100% (11/11), 1.51 KiB | 1.51 MiB/s, done.\\nTotal 11 (delta 8), reused 0 (delta 0), pack-reused 0\\nremote: Resolving deltas: 100% (8/8), completed with 8 local objects.\\nTo github.com:busshi/busshidev.git\\n   b391a4..9347ad1  main -> main",
   ];
