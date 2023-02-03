@@ -6,6 +6,7 @@ import { CONTACTS, OPENSOURCES } from "../lib/constants";
 import { scrollIntoView } from "../lib/scroll";
 import { useThemeState } from "../providers/Theme.provider";
 import { LinkItem } from "../types/interfaces";
+import Logo from "./svg/Logo";
 
 export const Column = ({
   span,
@@ -42,30 +43,23 @@ export const Column = ({
   );
 };
 
-const Logo = () => {
-  const { theme, isDarkMode } = useThemeState();
+const LogoWrapper = () => {
+  const { theme } = useThemeState();
   return (
     <LogoContainer
       style={{
         background: theme.footerBackground,
         color: theme.mainColor,
       }}
-      isDarkMode={isDarkMode}
+      onClick={() => scrollIntoView("top")}
     >
-      <ImageBox
-        onClick={() => scrollIntoView("top")}
-        src="/logo.svg"
-        alt="busshiDev"
-        width={80}
-        height={80}
-      />
+      <Logo size={80} />
     </LogoContainer>
   );
 };
 
 export const Footer: React.FC = () => {
   const isMobile = useIsMobile();
-
   const { theme } = useThemeState();
 
   return (
@@ -80,7 +74,7 @@ export const Footer: React.FC = () => {
         <Column span="STAY IN TOUCH" elements={CONTACTS} />
         {isMobile && <Hr />}
       </Container>
-      <Logo />
+      <LogoWrapper />
     </footer>
   );
 };
@@ -97,18 +91,16 @@ const Container = styled.div`
   }
 `;
 
-const LogoContainer = styled.div<{ isDarkMode: boolean }>`
+const LogoContainer = styled.div`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 1rem;
 
   @media (max-width: 768px) {
     padding: 2rem;
-  }
-
-  img {
-    filter: invert(${(props) => (props.isDarkMode ? 1 : 0)});
   }
 `;
 
@@ -156,16 +148,11 @@ const LinkName = styled.div<{ hoverColor: string }>`
 const LinksBox = styled.div`
   display: flex;
   flex-direction: column;
+
   @media (max-width: 768px) {
     flex-direction: row;
     justify-content: center;
   }
-`;
-
-const ImageBox = styled(Image)`
-  cursor: pointer;
-  border: solid;
-  margin-bottom: 1rem;
 `;
 
 const Hr = styled.hr`

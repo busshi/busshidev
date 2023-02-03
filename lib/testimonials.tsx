@@ -1,5 +1,5 @@
-import McAvatar from "../components/avatars/McAvatar";
-import QcAvatar from "../components/avatars/QcAvatar";
+import McAvatar from "../components/svg/McAvatar";
+import QcAvatar from "../components/svg/QcAvatar";
 
 export const TESTIMONIALS = [
   {

@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
-import { useEffect } from "react";
-import { useGetScrollDimensions } from "../hooks/useGetScrollDimensions";
+import { useEffect, useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
 import { getTechnos } from "../lib/technos";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useThemeState } from "../providers/Theme.provider";
 
+const AUTO_SCROLL_INTERVAL = 500;
+
 export const Technos = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
-  const scrollWidth = useGetScrollDimensions("items").width;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
   const isMobile = useIsMobile();
   const technos = getTechnos(isMobile ? 30 : 80);
   const [intersectionRatio, containerRef] =
@@ -18,28 +20,19 @@ export const Technos = () => {
   const { theme } = useThemeState();
 
   useEffect(() => {
-    //  if (!isMobile) return;
-    let i = 0;
-    let reverse = false;
-    const items = document.getElementById("items");
-    if (isElementVisible && items) {
-      setTimeout(
-        () =>
-          setInterval(() => {
-            if (i === scrollWidth + 70) reverse = true;
-            else if (!i) reverse = false;
-            items.scrollBy({
-              top: 0,
-              left: reverse ? -1 : 1,
-              behavior: "smooth",
-            });
-            i = reverse ? i - 1 : i + 1;
-          }, 1),
-        600
-      );
+    let interval: NodeJS.Timeout;
+    if (isElementVisible) {
+      interval = setInterval(() => {
+        if (
+          (currentIndex === technos.length + 10 && direction === 1) ||
+          (currentIndex === -2 && direction === -1)
+        )
+          setDirection(direction * -1);
+        setCurrentIndex(currentIndex + direction);
+      }, AUTO_SCROLL_INTERVAL);
     }
-    () => items?.scrollTo(0, 0);
-  }, [isElementVisible, scrollWidth, isMobile]);
+    return () => interval && clearInterval(interval);
+  }, [isElementVisible, currentIndex, technos.length]);
 
   return (
     <Container
@@ -50,9 +43,15 @@ export const Technos = () => {
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>
       <SliderWrapper ref={containerRef} opacity={intersectionRatio}>
-        <Items id="items" ref={ref} className="hideScrollBar">
-          {technos.map((techno, i) => (
-            <Techno key={i}>{techno}</Techno>
+        <Items ref={ref} className="hideScrollBar">
+          {technos.map((item, index) => (
+            <Item
+              key={`${index}-${index}`}
+              index={index}
+              currentIndex={currentIndex}
+            >
+              {item}
+            </Item>
           ))}
         </Items>
       </SliderWrapper>
@@ -72,6 +71,7 @@ const SliderWrapper = styled.div<{ opacity: number }>`
 `;
 
 const Items = styled.div`
+  display: flex;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -82,17 +82,19 @@ const Items = styled.div`
 
   -ms-overflow-style: none; /* Hide scroll bar for IE and Edge */
   scrollbar-width: none; /* Hide scroll bar Firefox */
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 `;
 
-const Techno = styled.div`
-  margin: 1rem;
-  display: inline-block;
+const Item = styled.div<{ index: number; currentIndex: number }>`
+  flex-shrink: 0;
+  margin: 1rem 0 1rem 0;
+  transition: transform 2s linear;
+
+  transform: ${(props) =>
+    `translateX(${
+      props.index < props.currentIndex
+        ? -50 * (props.currentIndex - props.index)
+        : 50 * (props.index - props.currentIndex)
+    }%)`};
 `;
 
 export default Technos;
