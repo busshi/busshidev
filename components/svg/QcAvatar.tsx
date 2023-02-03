@@ -9,7 +9,7 @@ const QcAvatar = () => (
     width="80px"
     height="80px"
     viewBox="0 0 80 80"
-    enable-background="new 0 0 80 80"
+    enableBackground="new 0 0 80 80"
     xmlSpace="preserve"
   >
     <circle cx="25" cy="25" r="25" fill="url(#pattern1)" />

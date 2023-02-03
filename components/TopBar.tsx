@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
@@ -10,6 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 // import { BLOG_URL } from "../lib/constants";
 import { useThemeState } from "../providers/Theme.provider";
 import { useContactMenuOpenedState } from "../providers/ContactMenu.provider";
+import Logo from "./svg/Logo";
 
 const Button = ({
   children,
@@ -45,14 +45,15 @@ export const TopBar = ({
         style={{ color: theme.mainColorInverted }}
         isDarkMode={isDarkMode}
       >
-        <LinkBox href="/">
-          <ImageBox
+        <LogoBox href="/">
+          <Logo size={isMobile ? 50 : 80} />
+          {/* <ImageBox
             src="/logo.svg"
             width={isMobile ? 50 : 80}
             height={isMobile ? 50 : 80}
             alt="busshiDev"
-          />
-        </LinkBox>
+          /> */}
+        </LogoBox>
         {/* Menu for mobile screen */}
         <MobileMenuIcon
           style={{ color: theme.mainColorInverted }}
@@ -94,19 +95,9 @@ const Container = styled.div<{ isDarkMode: boolean }>`
   }
 `;
 
-const LinkBox = styled(Link)`
+const LogoBox = styled(Link)`
   cursor: pointer;
-`;
-
-const ImageBox = styled(Image)`
   margin: 1rem;
-  width: 80px;
-  height: 80px;
-
-  @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-  }
 `;
 
 const MobileMenuIcon = styled.div`
@@ -147,7 +138,7 @@ const DemoButton = styled.div<{ color: string; background: string }>`
   align-items: center;
   border-radius: var(--border-radius);
   padding: 0.5rem 1rem 0.5rem 1rem;
-  transition: color, background, border var(--transition-delay) ease;
+  transition: all var(--transition-delay) ease;
   cursor: pointer;
   border: 1px solid ${(props) => props.background};
 
