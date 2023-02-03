@@ -42,7 +42,7 @@ const Item = ({
       isMobile ? ratio * productHeight * 1.3 : ratio * productHeight * 1.2
     );
   }, [ratio, productHeight, isMobile]);
-  // replicated && console.log(ratio, productHeight, height);
+
   return (
     <Product ref={ref} replicated={replicated}>
       <Border
@@ -70,7 +70,6 @@ const Item = ({
             highlightedColor={COLORS[index]}
             style={{ fontSize: replicated ? "1rem" : "1.5rem" }}
             fontColor={theme.fontColor}
-            // replicated={replicated}
           >
             {solution.title.substring(0, solution.title.length - 1)}
           </Title>
@@ -132,7 +131,6 @@ export const Solutions = ({
 
 const Product = styled.div<{ replicated: boolean }>`
   position: relative;
-  // margin: 0 2rem 0 2rem;
   margin: 2rem;
   padding: 2rem 0 2rem 0;
 

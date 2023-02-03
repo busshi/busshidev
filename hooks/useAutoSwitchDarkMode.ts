@@ -23,10 +23,9 @@ interface Color {
 export const useAutoSwitchDarkMode = (
   isElementVisible: boolean
 ): [Color, (value: Color) => void] => {
-  const { isDarkMode, theme } = useThemeState();
+  const { theme, isExampleDark, setIsExampleDark } = useThemeState();
   const [count, setCount] = useState(0);
 
-  const [isExampleDark, setIsExampleDark] = useState(isDarkMode);
   const [colors, setColors] = useState({
     top: {
       background: theme.cardBackground,

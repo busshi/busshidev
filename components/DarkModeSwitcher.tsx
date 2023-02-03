@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { useThemeState } from "../providers/Theme.provider";
 
 const DarkModeSwitcher = ({ replicated }: { replicated: boolean }) => {
-  const { isDarkMode, setIsDarkMode, theme } = useThemeState();
+  const { isDarkMode, setIsDarkMode, isExampleDark, setIsExampleDark, theme } =
+    useThemeState();
 
   return (
     <Button
       onClick={() => {
-        setIsDarkMode(isDarkMode ? false : true);
+        !replicated
+          ? setIsDarkMode(!isDarkMode)
+          : setIsExampleDark(!isExampleDark);
       }}
       style={{
         background: theme.mainColor,
