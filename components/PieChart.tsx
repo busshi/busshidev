@@ -83,58 +83,82 @@ const Pie = styled.div<{ p: number; color: string }>`
   font-weight: bold;
   font-family: sans-serif;
 
-  :before {
+  &::before {
     content: "";
     position: absolute;
     border-radius: 50%;
     inset: 0;
-    -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - 20px),#000 calc(100% - 20px)));
-          mask:radial-gradient(farthest-side,#0000 calc(99% - 20px),#000 calc(100% - 20px));
-    background: ${(
-      props
-    ) => `radial-gradient(farthest-side,${props.color} 98%,#0000) top/20px 20px no-repeat,
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(99% - 20px),
+      #000 calc(100% - 20px)
+    );
+    -moz-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(99% - 20px),
+      #000 calc(100% - 20px)
+    );
+    mask: radial-gradient(
+      farthest-side,
+      #0000 calc(99% - 20px),
+      #000 calc(100% - 20px)
+    );
+    background: ${(props) =>
+      `radial-gradient(farthest-side,${props.color} 98%,#0000) top/20px 20px no-repeat,
       conic-gradient(${props.color} calc(${props.p}*1%),#0000 0)`};
   }
-  
+
   // to round second border
-  :after {
+  &::after {
     content: "";
     position: absolute;
     border-radius: 50%;
-    inset: calc(50% - 20px/2);
+    inset: calc(50% - 20px / 2);
     background: ${(props) => props.color};
     transform: ${(props) =>
-      `rotate(calc(${props.p}*3.6deg)) translateY(calc(50% - 150px/2))`};
+      `rotate(calc(${props.p} * 3.6deg)) translateY(calc(50% - 150px / 2))`};
   }
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     width: 80px;
-  font-size: 20px;
+    font-size: 20px;
 
-    :before {
+    &::before {
       content: "";
       position: absolute;
       border-radius: 50%;
       inset: 0;
-      -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - 5px),#000 calc(100% - 5px)));
-          mask:radial-gradient(farthest-side,#0000 calc(99% - 5px),#000 calc(100% - 5px));
-      background: ${(
-        props
-      ) => `radial-gradient(farthest-side,${props.color} 98%,#0000) top/5px 5px no-repeat,
+      -webkit-mask: radial-gradient(
+        farthest-side,
+        #0000 calc(99% - 5px),
+        #000 calc(100% - 5px)
+      );
+      -moz-mask: radial-gradient(
+        farthest-side,
+        #0000 calc(99% - 5px),
+        #000 calc(100% - 5px)
+      );
+      mask: radial-gradient(
+        farthest-side,
+        #0000 calc(99% - 5px),
+        #000 calc(100% - 5px)
+      );
+      background: ${(props) =>
+        `radial-gradient(farthest-side,${props.color} 98%,#0000) top/5px 5px no-repeat,
         conic-gradient(${props.color} calc(${props.p}*1%),#0000 0)`};
     }
-  
-    :after {
+
+    &::after {
       content: "";
       position: absolute;
       border-radius: 50%;
-      inset: calc(50% - 5px/2);
+      inset: calc(50% - 5px / 2);
       background: ${(props) => props.color};
       transform: ${(props) =>
         `rotate(calc(${props.p}*3.6deg)) translateY(calc(50% - 80px/2))`};
     }
   }
-}`;
+`;
 
 const Text = styled.div<{
   color: string;
