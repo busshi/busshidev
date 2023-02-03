@@ -89,24 +89,25 @@ export const Testimonials = () => {
           >
             <Testimonial style={{ backgroundColor: theme.backgroundColor }}>
               <Author>
-                <ImageBox
+                {testimonial.svg}
+                {/* <ImageBox
                   src={testimonial.avatar}
                   width={50}
                   height={50}
                   alt={testimonial.author}
-                />
+                /> */}
                 {testimonial.author}
                 <br />
                 {testimonial.company}
               </Author>
-              <div>
+              <Job>
                 {testimonial.url && (
                   <Link href={testimonial.url}>{testimonial.company}</Link>
                 )}{" "}
                 {testimonial.job}
                 <br />
                 {testimonial.location && testimonial.location}
-              </div>
+              </Job>
               {testimonial.rating}
               <Quote>{testimonial.quote} </Quote>
               <div>{testimonial.date}</div>
@@ -212,7 +213,6 @@ const Testimonial = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  gap: 2rem;
   border-radius: var(--border-radius);
 
   a {
@@ -221,18 +221,18 @@ const Testimonial = styled.div`
   }
 `;
 
-const ImageBox = styled(Image)`
-  border-radius: 50%;
-`;
-
 const Author = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 2rem;
+`;
+
+const Job = styled.div`
+  margin: 1rem 0 1.5rem 0;
 `;
 
 const Quote = styled.div`
   line-height: 2;
+  margin: 1.5rem 0 1.5rem 0;
 `;
 
 const Scroller = styled.div`

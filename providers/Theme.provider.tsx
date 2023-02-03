@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-import { useIsDarkMode } from "../hooks/useIsDarkMode";
+// import { useIsDarkMode } from "../hooks/useIsDarkMode";
 
 interface Theme {
   mainColor: string;
@@ -18,6 +18,8 @@ interface ThemeContextType {
   setTheme: (value: any) => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
+  isExampleDark: boolean;
+  setIsExampleDark: (value: boolean) => void;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
@@ -55,12 +57,15 @@ export const ThemeProvider = ({ children }: Props) => {
   //const isDark = useIsDarkMode();
   const [theme, setTheme] = useState(colors.dark);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isExampleDark, setIsExampleDark] = useState(true);
 
   const value = {
     theme,
     setTheme,
     isDarkMode,
     setIsDarkMode,
+    isExampleDark,
+    setIsExampleDark,
   };
 
   /**
@@ -72,6 +77,7 @@ export const ThemeProvider = ({ children }: Props) => {
 
   useEffect(() => {
     setTheme(isDarkMode ? colors.dark : colors.light);
+    setIsExampleDark(isDarkMode);
   }, [isDarkMode]);
 
   return (

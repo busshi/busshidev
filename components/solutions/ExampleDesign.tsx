@@ -13,7 +13,7 @@ import FirstPage from "../FirstPage";
 import { useAutoSwitchDarkMode } from "../../hooks/useAutoSwitchDarkMode";
 
 const ExampleDesign = () => {
-  const { isDarkMode, theme } = useThemeState();
+  const { isDarkMode, theme, isExampleDark } = useThemeState();
   const dimensions = useGetElementDimensions("design");
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const [colors, setColors] = useAutoSwitchDarkMode(isElementVisible);
@@ -31,6 +31,31 @@ const ExampleDesign = () => {
       implementation: { color: theme.secondaryFontColor },
     });
   }, [isDarkMode, theme]);
+
+  /**
+   * Effect to switch dark/light colors inside the example with the button
+   */
+  useEffect(() => {
+    setColors({
+      top: {
+        background: !isExampleDark
+          ? "var(--card-light-background)"
+          : "var(--card-dark-background)",
+        color: !isExampleDark
+          ? "var(--main-light-font-color)"
+          : "var(--main-dark-font-color)",
+      },
+      screen: {
+        background: isExampleDark ? "black" : "white",
+        color: !isExampleDark ? "black" : "white",
+      },
+      implementation: {
+        color: isExampleDark
+          ? "var(--secondary-dark-font-color)"
+          : "var(--secondary-light-font-color)",
+      },
+    });
+  }, [isExampleDark]);
 
   return (
     <Container ref={ref} id="example-design" className="slideIntoViewRight">
@@ -83,7 +108,6 @@ const ExampleDesign = () => {
                 fontSize: "0.5rem",
               }}
               fontColor={colors.screen.color}
-              // replicated={true}
             />
             <Products
               replicated={true}
@@ -125,7 +149,6 @@ const ExampleDesign = () => {
                 fontSize: "6px",
               }}
               fontColor={colors.screen.color}
-              // replicated={true}
             />
             <Solutions
               replicated={true}
