@@ -66,7 +66,7 @@ const Wrapper = styled.div`
 
   @media (max-width: 768px) {
     padding: 0rem;
-  } ;
+  }
 `;
 
 export default ExampleDevelop;
