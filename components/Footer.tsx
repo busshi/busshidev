@@ -1,11 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useIsMobile } from "../hooks/useIsMobile";
 import { CONTACTS, OPENSOURCES } from "../lib/constants";
 import { scrollIntoView } from "../lib/scroll";
 import { useThemeState } from "../providers/Theme.provider";
 import { LinkItem } from "../types/interfaces";
 import Logo from "./svg/Logo";
+import { useIsMobile } from "@busshi/react-hooks";
 
 export const Column = ({
   span,
