@@ -34,7 +34,6 @@ export const TopBar = ({
   menuOpened: boolean;
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const isMobile = useIsMobile();
   const { theme, isDarkMode } = useThemeState();
   const { setIsContactMenuOpened } = useContactMenuOpenedState();
 
@@ -45,10 +44,10 @@ export const TopBar = ({
         style={{ color: theme.mainColorInverted }}
         isDarkMode={isDarkMode}
       >
-        <LogoBox href="/" style={{ color: theme.background }}>
-          <Logo size={isMobile ? 50 : 80} />.
-        </LogoBox>
         {/* Menu for mobile screen */}
+        <MobileLogoBox href="/" style={{ color: theme.background }}>
+          <Logo size={50} />.
+        </MobileLogoBox>
         <MobileMenuIcon
           style={{ color: theme.mainColorInverted }}
           onClick={() => setMenuOpened(menuOpened ? false : true)}
@@ -57,6 +56,9 @@ export const TopBar = ({
         </MobileMenuIcon>
 
         {/* Menu for laptop screen */}
+        <LogoBox href="/" style={{ color: theme.background }}>
+          <Logo size={80} />.
+        </LogoBox>
         <LaptopButtons>
           <Button onClick={() => scrollIntoView("solutions")}>Solutions</Button>
           {/* <Link href={BLOG_URL}>
@@ -89,6 +91,20 @@ const Container = styled.div<{ isDarkMode: boolean }>`
 const LogoBox = styled(Link)`
   cursor: pointer;
   margin: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileLogoBox = styled(Link)`
+  cursor: pointer;
+  margin: 1rem;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const MobileMenuIcon = styled.div`
