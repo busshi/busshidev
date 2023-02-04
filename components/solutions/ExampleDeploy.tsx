@@ -3,7 +3,7 @@ import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { useThemeState } from "../../providers/Theme.provider";
 import SystemIcons from "../SystemIcons";
 import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { TbArrowNarrowRight } from "react-icons/tb";
 import { useGetScrollDimensions } from "../../hooks/useGetScrollDimensions";
@@ -83,7 +83,7 @@ const GetLine = ({
     return () => {
       clearTimeout(timeout);
     };
-  }, [isElementVisible, displayedReplies]);
+  }, [isElementVisible, displayedReplies, isInput, replies]);
 
   useEffect(() => {
     if (!isInput) return;
@@ -101,7 +101,7 @@ const GetLine = ({
       if (!isElementVisible && textDisplayed.length === line.length)
         setTextDisplayed("");
     };
-  }, [textDisplayed, isElementVisible, index, line, linesLength]);
+  }, [textDisplayed, isElementVisible, index, line, linesLength, isInput]);
 
   return isInput ? (
     <Line isFinished={isFinished} textDisplayed={textDisplayed} line={line} />
@@ -122,13 +122,16 @@ const GetLine = ({
 };
 
 const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
-  const lines = [
-    "git add .",
-    'git commit -m "ready to deploy"',
-    "[main 9347ad1] ready to deploy\\n5 files changed, 81 insertions(+), 33 deletions(-)",
-    "git push",
-    "Counting objects: 100% (21/21), done\\nEnumerating objects: 21, done.\\nDelta compression using up to 8 threads\\nCompressing objects: 100% (10/10), done.\\nWriting objects: 100% (11/11), 1.51 KiB | 1.51 MiB/s, done.\\nTotal 11 (delta 8), reused 0 (delta 0), pack-reused 0\\nremote: Resolving deltas: 100% (8/8), completed with 8 local objects.\\nTo github.com:busshi/busshidev.git\\n   b391a4..9347ad1  main -> main",
-  ];
+  const lines = useMemo(
+    () => [
+      "git add .",
+      'git commit -m "ready to deploy"',
+      "[main 9347ad1] ready to deploy\\n5 files changed, 81 insertions(+), 33 deletions(-)",
+      "git push",
+      "Counting objects: 100% (21/21), done\\nEnumerating objects: 21, done.\\nDelta compression using up to 8 threads\\nCompressing objects: 100% (10/10), done.\\nWriting objects: 100% (11/11), 1.51 KiB | 1.51 MiB/s, done.\\nTotal 11 (delta 8), reused 0 (delta 0), pack-reused 0\\nremote: Resolving deltas: 100% (8/8), completed with 8 local objects.\\nTo github.com:busshi/busshidev.git\\n   b391a4..9347ad1  main -> main",
+    ],
+    []
+  );
   const [displayedLines, setDisplayedLines] = useState<string[]>([lines[0]]);
   const [isFinished, setIsFinished] = useState(false);
   const scrollHeight = useGetScrollDimensions("screen-wrapper").height;
@@ -145,7 +148,7 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [isElementVisible, displayedLines]);
+  }, [isElementVisible, displayedLines, lines]);
 
   /**
    * Reset displayed lines on terminal component out of viewport

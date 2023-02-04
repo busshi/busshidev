@@ -27,7 +27,7 @@ const PieWrapper = ({
       clearTimeout(timeout);
       !isElementVisible && setPercentage(0);
     };
-  }, [percentage, isElementVisible]);
+  }, [percentage, isElementVisible, maxValue]);
 
   return (
     <Pie p={percentage} color={color}>
