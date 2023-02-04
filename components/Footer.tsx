@@ -29,10 +29,12 @@ export const Column = ({
               style={{ color: theme.middleFontColor }}
             >
               {isDarkMode ? item.logoDark : item.logo}
-              {!isMobile && (
+              {!isMobile ? (
                 <LinkName hoverColor={theme.mainColorInverted}>
                   {item.name}
                 </LinkName>
+              ) : (
+                <div style={{ color: theme.background }}>.</div>
               )}
             </LinkWrapper>
           );
@@ -109,7 +111,7 @@ const Links = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 768px) {
-    margin: 2rem;
+    margin: 2rem 0 1rem 0;
     align-items: center;
   }
 `;
@@ -133,6 +135,7 @@ const LinkWrapper = styled(Link)`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 0;
   }
 `;
 
