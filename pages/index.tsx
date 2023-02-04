@@ -33,7 +33,6 @@ export const Home: NextPage = () => {
           color: theme.secondaryFontColor,
         }}
         fontColor={theme.fontColor}
-        // replicated={false}
       />
       {/* Mobile Component */}
       <FirstPage
@@ -57,7 +56,6 @@ export const Home: NextPage = () => {
           color: theme.secondaryFontColor,
         }}
         fontColor={theme.fontColor}
-        // replicated={false}
       />
       <Solutions replicated={false} gradientColor={theme.mainColor} />
       <Testimonials

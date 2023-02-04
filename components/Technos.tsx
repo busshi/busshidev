@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { SectionTitle } from "./Testimonials";
 import { useEffect, useState } from "react";
-import { useIsMobile } from "../hooks/useIsMobile";
 import { getTechnos } from "../lib/technos";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useThemeState } from "../providers/Theme.provider";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const AUTO_SCROLL_INTERVAL = 500;
 
@@ -14,7 +14,7 @@ export const Technos = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const isMobile = useIsMobile();
-  const technos = getTechnos(isMobile ? 30 : 80);
+  const technos = getTechnos(isMobile ? 50 : 80);
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>(1.2);
   const { theme } = useThemeState();
@@ -24,7 +24,9 @@ export const Technos = () => {
     if (isElementVisible) {
       interval = setInterval(() => {
         if (
-          (currentIndex === technos.length + 10 && direction === 1) ||
+          (currentIndex ===
+            (isMobile ? technos.length + 20 : technos.length + 2) &&
+            direction === 1) ||
           (currentIndex === -2 && direction === -1)
         )
           setDirection(direction * -1);
@@ -49,6 +51,7 @@ export const Technos = () => {
               key={`${index}-${index}`}
               index={index}
               currentIndex={currentIndex}
+              space={isMobile ? 50 : 120}
             >
               {item}
             </Item>
@@ -84,7 +87,7 @@ const Items = styled.div`
   scrollbar-width: none; /* Hide scroll bar Firefox */
 `;
 
-const Item = styled.div<{ index: number; currentIndex: number }>`
+const Item = styled.div<{ index: number; currentIndex: number; space: number }>`
   flex-shrink: 0;
   margin: 1rem 0 1rem 0;
   transition: transform 2s linear;
@@ -92,8 +95,8 @@ const Item = styled.div<{ index: number; currentIndex: number }>`
   transform: ${(props) =>
     `translateX(${
       props.index < props.currentIndex
-        ? -50 * (props.currentIndex - props.index)
-        : 50 * (props.index - props.currentIndex)
+        ? -props.space * (props.currentIndex - props.index)
+        : props.space * (props.index - props.currentIndex)
     }%)`};
 `;
 

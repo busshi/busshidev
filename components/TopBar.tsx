@@ -45,14 +45,8 @@ export const TopBar = ({
         style={{ color: theme.mainColorInverted }}
         isDarkMode={isDarkMode}
       >
-        <LogoBox href="/">
-          <Logo size={isMobile ? 50 : 80} />
-          {/* <ImageBox
-            src="/logo.svg"
-            width={isMobile ? 50 : 80}
-            height={isMobile ? 50 : 80}
-            alt="busshiDev"
-          /> */}
+        <LogoBox href="/" style={{ color: theme.background }}>
+          <Logo size={isMobile ? 50 : 80} />.
         </LogoBox>
         {/* Menu for mobile screen */}
         <MobileMenuIcon
@@ -90,9 +84,6 @@ const Container = styled.div<{ isDarkMode: boolean }>`
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
-  img {
-    filter: invert(${(props) => (props.isDarkMode ? 1 : 0)});
-  }
 `;
 
 const LogoBox = styled(Link)`

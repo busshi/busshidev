@@ -35,7 +35,7 @@ export const buildSolutionsMenu = (size: number, color?: string) => [
       "Building incredibly blazing fast websites with latest frameworks and tools",
       "Best code practices:",
       "- Typescript privilegied to facilitate collaboration",
-      "- Code well documented easy to maintain",
+      "- Code well organized and documented, easy to maintain",
     ],
     id: "develop",
     icon: <BsTerminalFill size={size} color={color} />,
