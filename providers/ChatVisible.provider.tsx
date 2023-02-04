@@ -1,5 +1,5 @@
+import { useIsUserInactive } from "@busshi/react-hooks";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-import { useIsUserInactive } from "../hooks/useIsUserInactive";
 
 interface ChatVisibleContextType {
   isChatVisible: boolean;

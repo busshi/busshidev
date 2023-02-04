@@ -4,13 +4,11 @@ import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import { EMAIL } from "../../lib/constants";
-import { useIsMobile } from "../../hooks/useIsMobile";
 import { useChatVisibleState } from "../../providers/ChatVisible.provider";
 import { useThemeState } from "../../providers/Theme.provider";
 import { RxCrossCircled } from "react-icons/rx";
 import { useContactMenuOpenedState } from "../../providers/ContactMenu.provider";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
-import { useListenForOutsideClicks } from "../../hooks/useListenForOutsideClick";
 import {
   ComponentProps,
   Dispatch,
@@ -20,6 +18,7 @@ import {
 } from "react";
 import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
 import { Color } from "../../types/interfaces";
+import { useIsMobile } from "@busshi/react-hooks";
 
 const Item = ({
   setRef,

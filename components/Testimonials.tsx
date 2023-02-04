@@ -1,14 +1,13 @@
 import Link from "next/link";
-import Image from "next/image";
 import styled from "styled-components";
 import { TESTIMONIALS } from "../lib/testimonials";
-import { useIsMobile } from "../hooks/useIsMobile";
 import { scrollIntoView } from "../lib/scroll";
 import { useEffect, useState } from "react";
 import { useTestimonialVisibleState } from "../providers/TestimonialVisible.provider";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import { useThemeState } from "../providers/Theme.provider";
+import { useIsMobile } from "@busshi/react-hooks";
 
 const SCROLL_TIMEOUT = 6000;
 const DOT_WIDTH = 44;

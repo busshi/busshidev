@@ -1,6 +1,6 @@
+import { useIsMobile } from "@busshi/react-hooks";
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import { useIsMobile } from "../../hooks/useIsMobile";
 import { COLORS, PAGE_SPEED_RESULTS } from "../../lib/constants";
 import { useThemeState } from "../../providers/Theme.provider";
 import PieChart from "../PieChart";
@@ -63,6 +63,10 @@ const Wrapper = styled.div`
   width: 100%;
   padding: 2rem;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0rem;
+  } ;
 `;
 
 export default ExampleDevelop;

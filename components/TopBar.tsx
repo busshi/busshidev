@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useIsMobile } from "../hooks/useIsMobile";
 import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
 import { AiOutlineMenu } from "react-icons/ai";

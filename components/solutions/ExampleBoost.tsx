@@ -1,6 +1,6 @@
+import { useIsMobile } from "@busshi/react-hooks";
 import styled from "styled-components";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import { useIsMobile } from "../../hooks/useIsMobile";
 import { COLORS, PAGE_SPEED_RESULTS } from "../../lib/constants";
 import PieChart from "../PieChart";
 
