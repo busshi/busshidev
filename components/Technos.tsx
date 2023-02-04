@@ -34,7 +34,7 @@ export const Technos = () => {
       }, AUTO_SCROLL_INTERVAL);
     }
     return () => interval && clearInterval(interval);
-  }, [isElementVisible, currentIndex, technos.length]);
+  }, [isElementVisible, currentIndex, technos.length, direction, isMobile]);
 
   return (
     <Container

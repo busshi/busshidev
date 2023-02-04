@@ -30,7 +30,7 @@ const ExampleDesign = () => {
       },
       implementation: { color: theme.secondaryFontColor },
     });
-  }, [isDarkMode, theme]);
+  }, [isDarkMode, theme, setColors]);
 
   /**
    * Effect to switch dark/light colors inside the example with the button
@@ -55,7 +55,7 @@ const ExampleDesign = () => {
           : "var(--secondary-light-font-color)",
       },
     });
-  }, [isExampleDark]);
+  }, [isExampleDark, setColors]);
 
   return (
     <Container ref={ref} id="example-design" className="slideIntoViewRight">
