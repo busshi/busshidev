@@ -86,7 +86,7 @@ export const jsonLdFAQ = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Open source contribution",
+      name: "Open source contributions",
       acceptedAnswer: {
         "@type": "Answer",
         text: `<ul><li><a href="${OPENSOURCES[0].url}">${OPENSOURCES[0].name}</li><li><a href="${OPENSOURCES[1].url}">${OPENSOURCES[1].name}</a></li><li><a href="${OPENSOURCES[2].url}">${OPENSOURCES[2].name}</a></li></ul>`,

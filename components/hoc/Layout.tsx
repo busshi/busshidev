@@ -5,12 +5,16 @@ import { CRIPS_WEBSITE_ID } from "../../lib/constants";
 import { useChatVisibleState } from "../../providers/ChatVisible.provider";
 import { useContactMenuOpenedState } from "../../providers/ContactMenu.provider";
 import { useThemeState } from "../../providers/Theme.provider";
-import ContactMenu from "../getADemo/ContactMenu";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 import Calendly from "../getADemo/Calendly";
+import ContactMenu from "../getADemo/ContactMenu";
+// import dynamic from "next/dynamic";
+// const ContactMenu = dynamic(() => import("../getADemo/ContactMenu"), {
+//   ssr: false,
+// });
 
 type Props = {
   children: React.ReactNode;
