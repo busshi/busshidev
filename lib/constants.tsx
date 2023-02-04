@@ -21,7 +21,7 @@ export const PAGE_SPEED_RESULTS = {
   mobile: {
     performances: 98,
     bestPractices: 100,
-    accessibility: 97,
+    accessibility: 100,
     seo: 100,
   },
   laptop: {
