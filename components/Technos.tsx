@@ -76,8 +76,7 @@ const SliderWrapper = styled.div<{ opacity: number }>`
 const Items = styled.div`
   display: flex;
   white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  overflow: hidden;
 
   &.hideScrollBar::-webkit-scrollbar {
     display: none; /* Hide scroll bar for Safari, Chrome, Opera */
