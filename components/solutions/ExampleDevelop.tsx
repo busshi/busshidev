@@ -56,10 +56,13 @@ const Container = styled.div`
 const Wrapper = styled.div`
   border-radius: var(--border-radius);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  height: 60%;
+  min-height: 60%;
   width: 100%;
+  padding: 2rem;
+  gap: 1rem;
 `;
 
 export default ExampleDevelop;

@@ -158,7 +158,7 @@ const Screen = ({ isElementVisible }: { isElementVisible: boolean }) => {
   }, [isElementVisible]);
 
   /**
-   * Scroll to bottom if the terminal
+   * Scroll to bottom in the terminal
    * */
   useEffect(() => {
     const el = document.getElementById("screen-wrapper");
