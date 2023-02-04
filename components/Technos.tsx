@@ -5,7 +5,7 @@ import { getTechnos } from "../lib/technos";
 import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useThemeState } from "../providers/Theme.provider";
-import { useIsMobile } from "../hooks/useIsMobile";
+import { useIsMobile } from "@busshi/react-hooks";
 
 const AUTO_SCROLL_INTERVAL = 500;
 
