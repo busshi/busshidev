@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { useThemeState } from "../../providers/Theme.provider";
 import SystemIcons from "../SystemIcons";
-import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import { useEffect, useMemo, useState } from "react";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { TbArrowNarrowRight } from "react-icons/tb";
-import { useGetScrollDimensions } from "../../hooks/useGetScrollDimensions";
+import {
+  useGetElementDimensions,
+  useGetScrollDimensions,
+} from "@busshi/react-hooks";
 
 const CHAR_INTERVAL = 20;
 const LINE_INTERVAL = 900;

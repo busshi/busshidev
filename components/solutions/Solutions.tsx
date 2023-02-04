@@ -1,8 +1,7 @@
+import { useGetElementDimensions, useIsMobile } from "@busshi/react-hooks";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import useIntersectionRatio from "../../hooks/useIntersectionRatio";
-import { useIsMobile } from "../../hooks/useIsMobile";
 import { useSlideIntoView } from "../../hooks/useSlideIntoView";
 import { COLORS } from "../../lib/constants";
 import { buildThresholdList } from "../../lib/observerIntersection";

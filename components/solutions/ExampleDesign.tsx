@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import { useGetElementDimensions } from "../../hooks/useGetElementDimensions";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useThemeState } from "../../providers/Theme.provider";
 import SystemIcons from "../SystemIcons";
@@ -11,6 +10,7 @@ import Products, { Solutions } from "./Solutions";
 import { SITE_URL } from "../../lib/constants";
 import FirstPage from "../FirstPage";
 import { useAutoSwitchDarkMode } from "../../hooks/useAutoSwitchDarkMode";
+import { useGetElementDimensions } from "@busshi/react-hooks";
 
 const ExampleDesign = () => {
   const { isDarkMode, theme, isExampleDark } = useThemeState();
