@@ -84,7 +84,7 @@ const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
     content: "";
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: -30px;
     right: 0;
     width: 20vw;
     z-index: 1;
@@ -97,7 +97,7 @@ const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
     content: "";
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: -30px;
     left: 0;
     width: 20vw;
     z-index: 1;
