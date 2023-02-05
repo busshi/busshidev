@@ -1,9 +1,10 @@
+import dynamic from "next/dynamic";
 import { RxCrossCircled } from "react-icons/rx";
 import styled from "styled-components";
 import { CALENDLY_URL } from "../../lib/constants";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 import ContactItems from "./ContactItems";
-import Globe from "./Globe";
+const Globe = dynamic(() => import("./Globe"), { ssr: false });
 
 const ContactMenu = () => {
   const { isCalendlyVisible, setIsCalendlyVisible } = useCalendlyVisibleState();
