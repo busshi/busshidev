@@ -27,7 +27,7 @@ const ExampleDevelop = () => {
   ];
 
   return (
-    <Container ref={ref} id="example-developn" className="slideIntoViewRight">
+    <Container ref={ref} id="example-develop" className="slideIntoViewRight">
       <Wrapper
         style={{ background: isMobile ? "none" : theme.backgroundColor }}
       >
