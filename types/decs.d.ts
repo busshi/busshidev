@@ -1,2 +1,2 @@
-declare module "globejs";
-declare module "glob";
+// declare module "globejs";
+// declare module "glob";

@@ -44,7 +44,11 @@ export const Technos = () => {
       <SectionTitle margin="10rem 2rem 5rem 2rem">
         FAVORITES EDGE TECHNOLOGIES
       </SectionTitle>
-      <SliderWrapper ref={containerRef} opacity={intersectionRatio}>
+      <SliderWrapper
+        shadowColor={theme.background}
+        ref={containerRef}
+        opacity={intersectionRatio}
+      >
         <Items ref={ref} className="hideScrollBar">
           {technos.map((item, index) => (
             <Item
@@ -64,13 +68,43 @@ export const Technos = () => {
 
 const Container = styled.div`
   margin-bottom: 10rem;
+  position: relative;
 `;
 
-const SliderWrapper = styled.div<{ opacity: number }>`
-  overflow: hidden;
+const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
   box-shadow: ${(props) =>
-    `-10px 0px 10px rgba(255, 255, 255, ${props.opacity})`};
+    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
+  -webkit-box-shadow: ${(props) =>
+    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
+  -moz-box-shadow: ${(props) =>
+    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
   opacity: ${(props) => props.opacity};
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 20vw;
+    z-index: 1;
+    background: ${(props) =>
+      `linear-gradient(to left, ${props.shadowColor}, transparent)`};
+    box-sizing: border-box;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20vw;
+    z-index: 1;
+    background: ${(props) =>
+      `linear-gradient(to right, ${props.shadowColor}, transparent)`};
+    box-sizing: border-box;
+  }
 `;
 
 const Items = styled.div`

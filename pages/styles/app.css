@@ -82,7 +82,7 @@ body {
 
 .slideIntoViewRight[data-view="outview-top"],
 .slideIntoViewRight[data-view="outview-bottom"] {
-  transform: translateX(50px);
+  transform: translateX(30px);
   opacity: 0;
 }
 

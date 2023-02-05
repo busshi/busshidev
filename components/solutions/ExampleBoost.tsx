@@ -9,7 +9,7 @@ const ExampleBoost = () => {
   const isMobile = useIsMobile();
 
   return (
-    <Container ref={ref} id="example-developn" className="slideIntoViewRight">
+    <Container ref={ref} id="example-boost" className="slideIntoViewRight">
       <Wrapper>
         <PieChart
           color={COLORS[3].start}
