@@ -10,11 +10,11 @@ import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 import Calendly from "../getADemo/Calendly";
-import ContactMenu from "../getADemo/ContactMenu";
-// import dynamic from "next/dynamic";
-// const ContactMenu = dynamic(() => import("../getADemo/ContactMenu"), {
-//   ssr: false,
-// });
+//import ContactMenu from "../getADemo/ContactMenu";
+import dynamic from "next/dynamic";
+const ContactMenu = dynamic(() => import("../getADemo/ContactMenu"), {
+  ssr: false,
+});
 
 type Props = {
   children: React.ReactNode;
