@@ -64,7 +64,7 @@ export const Menu = ({
       <MenuItem
         id="menuTesti"
         onClick={() => {
-          router.push("/#testiTitle");
+          router.push("/#testi-title");
           setMenuOpened(false);
         }}
       >

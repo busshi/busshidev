@@ -12,14 +12,17 @@ import Logo from "./svg/Logo";
 
 const Button = ({
   children,
+  onClick,
 }: {
   children: ReactNode;
-} & ComponentProps<typeof ButtonWrapper>) => {
+  onClick: () => void;
+}) => {
   const { theme } = useThemeState();
   return (
     <ButtonWrapper
       color={theme.middleFontColor}
       hoverColor={theme.mainColorInverted}
+      onClick={onClick}
     >
       {children}
     </ButtonWrapper>
@@ -63,7 +66,7 @@ export const TopBar = ({
           {/* <Link href={BLOG_URL}>
             <Button>About me</Button>
           </Link> */}
-          <Button onClick={() => scrollIntoView("testi", "center")}>
+          <Button onClick={() => scrollIntoView("testi-title")}>
             Testimonials
           </Button>
           <DemoButton
