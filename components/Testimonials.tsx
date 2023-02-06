@@ -47,7 +47,7 @@ export const Testimonials = () => {
   // auto scroll
   useEffect(() => {
     if (isTestimonialsVisible && isMobile) {
-      scrollIntoView(items[idVisible]);
+      scrollIntoView(items[idVisible], "nearest");
     }
   }, [idVisible, isMobile, items, isTestimonialsVisible]);
 
@@ -76,7 +76,7 @@ export const Testimonials = () => {
       ref={containerRef}
       style={{ opacity: intersectionRatio < 1 ? intersectionRatio : 1 }}
     >
-      <SectionTitle id="testiTitle" style={{ color: theme.middleFontColor }}>
+      <SectionTitle id="testi-title" style={{ color: theme.middleFontColor }}>
         TRUSTED BY STARTUPS
       </SectionTitle>
       <TestiBox id="testi" className="hideScrollBar" ref={ref}>
@@ -89,12 +89,6 @@ export const Testimonials = () => {
             <Testimonial style={{ backgroundColor: theme.backgroundColor }}>
               <Author>
                 {testimonial.svg}
-                {/* <ImageBox
-                  src={testimonial.avatar}
-                  width={50}
-                  height={50}
-                  alt={testimonial.author}
-                /> */}
                 {testimonial.author}
                 <br />
                 {testimonial.company}
