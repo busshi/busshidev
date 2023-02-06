@@ -9,8 +9,8 @@ const ExampleBoost = () => {
   const isMobile = useIsMobile();
 
   return (
-    <Container ref={ref} id="example-boost" className="slideIntoViewRight">
-      <Wrapper>
+    <Container id="example-boost" className="slideIntoViewRight">
+      <Wrapper ref={ref}>
         <PieChart
           color={COLORS[3].start}
           maxValue={PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].seo}
