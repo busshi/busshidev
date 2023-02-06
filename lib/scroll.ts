@@ -13,7 +13,6 @@ export const scrollIntoView = (
   block: ScrollLogicalPosition = "start"
 ) => {
   const elem = document.getElementById(id);
-  console.log("elem", elem);
   elem && elem.scrollIntoView({ behavior: "smooth", block });
 };
 

@@ -9,27 +9,27 @@ const ExampleDevelop = () => {
   const [isElementVisible, ref] = useIntersectionObserver<HTMLDivElement>();
   const { theme } = useThemeState();
   const isMobile = useIsMobile();
+  const index = isMobile ? "mobile" : "laptop";
   const charts = [
     {
       id: "Performances",
-      maxValue: PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].performances,
+      maxValue: PAGE_SPEED_RESULTS[index].performances,
     },
     {
       id: "Best Practices",
-      maxValue:
-        PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].bestPractices,
+      maxValue: PAGE_SPEED_RESULTS[index].bestPractices,
     },
     {
       id: "Accessibility",
-      maxValue:
-        PAGE_SPEED_RESULTS[isMobile ? "mobile" : "laptop"].accessibility,
+      maxValue: PAGE_SPEED_RESULTS[index].accessibility,
     },
   ];
 
   return (
-    <Container ref={ref} id="example-develop" className="slideIntoViewRight">
+    <Container id="example-develop" className="slideIntoViewRight">
       <Wrapper
         style={{ background: isMobile ? "none" : theme.backgroundColor }}
+        ref={ref}
       >
         {charts.map(({ id, maxValue }) => (
           <PieChart
