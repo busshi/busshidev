@@ -1,5 +1,6 @@
 import { RxCrossCircled } from "react-icons/rx";
 import styled from "styled-components";
+import { CALENDLY_URL } from "../../lib/constants";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 
 export const Calendly = () => {
@@ -15,7 +16,7 @@ export const Calendly = () => {
           width="100%"
           height="100%"
           title={"Schedule an interview"}
-          src="https://calendly.com/busshidev/30min"
+          src={CALENDLY_URL}
         ></iframe>
       </Calendar>
     </Container>

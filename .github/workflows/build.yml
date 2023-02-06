@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKERHUB_API_KEY }}
 
-      - name: Generate .env
+      - name: Generate .sentryclirc
         run: |
           cat >> ./.sentryclirc << END
           [auth]
