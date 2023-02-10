@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){window.dataLayer.push(arguments);}
                     gtag('js', new Date());
-                    gtag('config', ${GTAG});
+                    gtag('config', '${GTAG}');
                    `}
                   </Script>
 
