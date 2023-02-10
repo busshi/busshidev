@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PAGE_SPEED_URL } from "../lib/constants";
 
-const CHART_TIMEOUT = 10;
+const CHART_TIMEOUT = 5;
 
 const PieWrapper = ({
   maxValue,
@@ -21,11 +21,24 @@ const PieWrapper = ({
       setPercentage(percentage === maxValue ? percentage : percentage + 1);
     };
 
-    const timeout = setTimeout(increment, CHART_TIMEOUT);
+    const timeout = setTimeout(
+      increment,
+      percentage < 80
+        ? CHART_TIMEOUT
+        : percentage < 90
+        ? percentage * 0.5
+        : percentage < 95
+        ? percentage
+        : percentage < 98
+        ? percentage * 3
+        : percentage * 5
+    );
 
     return () => {
       clearTimeout(timeout);
-      !isElementVisible && setPercentage(0);
+      if (!isElementVisible) {
+        setPercentage(0);
+      }
     };
   }, [percentage, isElementVisible, maxValue]);
 
