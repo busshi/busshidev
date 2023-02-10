@@ -20,17 +20,26 @@ export default function App({ Component, pageProps }: AppProps) {
             <CalendlyVisibleProvider>
               <Layout>
                 <TestimonialVisibleProvider>
-                  {/* Google Tag Manager */}
-                  <noscript
-                    dangerouslySetInnerHTML={{
-                      __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTAG}" height="0" width="0" style="display: none; visibility: hidden;" />`,
-                    }}
+                  {/* Global site tag (gtag.js) - Google Analytics */}
+                  <Script
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GTAG}`}
+                    strategy="afterInteractive"
                   />
+                  <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){window.dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', ${GTAG});
+                   `}
+                  </Script>
+
+                  {/* Vercel Analytics */}
+                  <Analytics />
+
                   {/* Calendly integration */}
                   <Script src="https://assets.calendly.com/assets/external/widget.js" />
-
                   <Component {...pageProps} />
-                  <Analytics />
                 </TestimonialVisibleProvider>
               </Layout>
             </CalendlyVisibleProvider>
