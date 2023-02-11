@@ -81,14 +81,14 @@ export const Footer: React.FC = () => {
 };
 
 const Container = styled.div`
-  padding: 2rem;
+  padding: 4rem 2rem 2rem 2rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: 0;
+    padding: 1rem 0;
   }
 `;
 
@@ -98,11 +98,7 @@ const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1rem;
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-  }
+  padding-bottom: 2rem;
 `;
 
 const Links = styled.div`

@@ -1,10 +1,10 @@
 /**
- * Utility function to get threshold array breakpoints
+ * Utility function to build threshold array breakpoints
  *
  * @param {number} numSteps - Number of breakpoints in the array
  *
  * @example
- * const array = getThreshold(10)
+ * const array = buildThresholdList(10)
  */
 
 export const buildThresholdList = (numSteps: number = 20) => {
