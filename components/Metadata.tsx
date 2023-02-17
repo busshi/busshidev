@@ -14,7 +14,7 @@ export const Metadata: React.FC = () => (
     <title>BusshiDev - Design. Develop. Deploy. Boost</title>
     <meta
       name="description"
-      content="BusshiDev - Design. Develop. Deploy. Boost"
+      content="BusshiDev - Design. Develop. Deploy. Boost. - Freelance developer passionated about building great products. Experts in ReactJS, NextJS, NestJS, NodeJS, SEO, Docker and more..."
     />
     <meta name="author" content="BusshiDev" />
     <meta
@@ -32,7 +32,7 @@ export const Metadata: React.FC = () => (
     <meta property="og:url" content={SITE_URL} />
     <meta
       property="og:title"
-      content="BusshiDev - Design. Develop. Deploy. Boost"
+      content="BusshiDev - Design. Develop. Deploy. Boost."
     />
 
     {/* Google search console verification code */}
