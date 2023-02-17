@@ -24,14 +24,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKERHUB_API_KEY }}
 
-      - name: Generate .sentryclirc
-        run: |
-          cat >> ./.sentryclirc << END
-          [auth]
-          token=$SENTRY_AUTH_TOKEN
-          END
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      # - name: Generate .sentryclirc
+      #   run: |
+      #     cat >> ./.sentryclirc << END
+      #     [auth]
+      #     token=$SENTRY_AUTH_TOKEN
+      #     END
+      #   env:
+      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: Build and push image
         uses: docker/build-push-action@v2

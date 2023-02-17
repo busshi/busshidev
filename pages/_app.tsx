@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
-import { GTAG } from "../lib/constants";
+// import { GTAG } from "../lib/constants";
 import CalendlyVisibleProvider from "../providers/CalendlyVisible.provider";
 import { ChatVisibleProvider } from "../providers/ChatVisible.provider";
 import { HighlightedColorProvider } from "../providers/HighlightedColor.provider";
@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <Layout>
                 <TestimonialVisibleProvider>
                   {/* Global site tag (gtag.js) - Google Analytics */}
-                  <Script
+                  {/* <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=${GTAG}`}
                     strategy="afterInteractive"
                   />
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     gtag('js', new Date());
                     gtag('config', '${GTAG}');
                    `}
-                  </Script>
+                  </Script> */}
 
                   {/* Vercel Analytics */}
                   <Analytics />
