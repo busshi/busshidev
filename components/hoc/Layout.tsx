@@ -34,8 +34,11 @@ const Layout = ({ children }: Props) => {
         <ContactMenu />
       ) : (
         <>
-          <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
-          <Wrapper menuOpened={isMenuOpened}>
+          <TopBar
+            isMenuOpened={isMenuOpened}
+            setIsMenuOpened={setIsMenuOpened}
+          />
+          <Wrapper isMenuOpened={isMenuOpened}>
             {isCalendlyVisible ? <Calendly /> : children}
             <Footer />
           </Wrapper>
@@ -76,8 +79,8 @@ const App = styled.div`
   transition: color, background var(--theme-transition-delay) ease;
 `;
 
-const Wrapper = styled.div<{ menuOpened: boolean }>`
-  display: ${(props) => (props.menuOpened ? "none" : "block")};
+const Wrapper = styled.div<{ isMenuOpened: boolean }>`
+  display: ${(props) => (props.isMenuOpened ? "none" : "block")};
 `;
 
 export default Layout;

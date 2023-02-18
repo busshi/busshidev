@@ -11,8 +11,6 @@ var groups = {
   main: null, // A group containing everything
   globe: null, // A group containing the globe sphere (and globe dots)
   globeDots: null, // A group containing the globe dots
-  lines: null, // A group containing the lines between each country
-  lineDots: null, // A group containing the line dots
 };
 
 // Map properties for creation and rendering
@@ -57,7 +55,6 @@ var camera = {
 
 // Booleans and values for animations
 var animations = {
-  finishedIntro: true, // Boolean of when the intro animations have finished
   dots: {
     current: 0, // Animation frames of the globe dots introduction animation
     total: 170, // Total frames (duration) of the globe dots introduction animation,
@@ -66,17 +63,6 @@ var animations = {
   globe: {
     current: 0, // Animation frames of the globe introduction animation
     total: 80, // Total frames (duration) of the globe introduction animation,
-  },
-  countries: {
-    active: false, // Boolean if the country elements have been added and made active
-    animating: false, // Boolean if the countries are currently being animated
-    current: 0, // Animation frames of country elements introduction animation
-    total: 120, // Total frames (duration) of the country elements introduction animation
-    selected: null, // Three group object of the currently selected country
-    index: null, // Index of the country in the data array
-    timeout: null, // Timeout object for cycling to the next country
-    initialDuration: 5000, // Initial timeout duration before starting the country cycle
-    duration: 2000, // Timeout duration between cycling to the next country
   },
 };
 
@@ -250,17 +236,8 @@ function animate() {
     requestAnimationFrame(animate);
   }
 
-  if (groups.globeDots) {
-    introAnimate();
-  }
-
-  if (animations.finishedIntro === true) {
-    animateDots();
-  }
-
-  if (animations.countries.animating === true) {
-    animateCountryCycle();
-  }
+  introAnimate();
+  animateDots();
 
   camera.controls.setAzimuthalAngle(Math.cos(Date.now() * 0.0000005) * -360);
   camera.controls.setPolarAngle(1);
@@ -362,63 +339,6 @@ function addGlobeDots() {
   // Add the points to the scene
   groups.globeDots = new THREE.Points(geometry, material);
   groups.globe.add(groups.globeDots);
-}
-
-/* COUNTRY LINES AND DOTS */
-
-function addLineDots() {
-  /*
-    This function will create a number of dots (props.dotsAmount) which will then later be
-    animated along the lines. The dots are set to not be visible as they are later
-    assigned a position after the introduction animation.
-  */
-
-  var radius = props.globeRadius / 120;
-  var segments = 32;
-  var rings = 32;
-
-  var geometry = new THREE.SphereGeometry(radius, segments, rings);
-  var material = new THREE.MeshBasicMaterial({
-    color: props.colours.lineDots,
-  });
-
-  // Returns a sphere geometry positioned at coordinates
-  var returnLineDot = function () {
-    var sphere = new THREE.Mesh(geometry, material);
-    return sphere;
-  };
-
-  for (var i = 0; i < props.dotsAmount; i++) {
-    // Get the country path geometry vertices and create the dot at the first vertex
-    var targetDot = returnLineDot();
-    targetDot.visible = false;
-
-    // Add custom variables for custom path coordinates and index
-    targetDot._pathIndex = null;
-    targetDot._path = null;
-
-    // Add the dot to the dots group
-    groups.lineDots.add(targetDot);
-  }
-}
-
-function assignDotsToRandomLine(target) {
-  // Get a random line from the current country
-  var randomLine =
-    Math.random() * (animations.countries.selected.children.length - 1);
-  randomLine = animations.countries.selected.children[randomLine.toFixed(0)];
-
-  // Assign the random country path to the dot and set the index at 0
-  target._path = randomLine._path;
-}
-
-function reassignDotsToNewLines() {
-  for (var i = 0; i < groups.lineDots.children.length; i++) {
-    var target = groups.lineDots.children[i];
-    if (target._path !== null && target._pathIndex !== null) {
-      assignDotsToRandomLine(target);
-    }
-  }
 }
 
 function animateDots() {
@@ -571,94 +491,6 @@ function introAnimate() {
 
     animations.globe.current++;
   }
-
-  if (
-    animations.countries.active === true &&
-    animations.finishedIntro === false
-  ) {
-    animations.finishedIntro = true;
-    // Start country cycle
-    animations.countries.timeout = setTimeout(
-      showNextCountry,
-      animations.countries.initialDuration
-    );
-    addLineDots();
-  }
-}
-
-/* COUNTRY CYCLE */
-
-function changeCountry(key, init) {
-  if (animations.countries.selected !== undefined) {
-    animations.countries.selected.visible = false;
-  }
-
-  for (var name in elements) {
-    if (name === key) {
-      elements[name].element.classList.add("active");
-    } else {
-      elements[name].element.classList.remove("active");
-    }
-  }
-
-  // Show the select country lines
-  animations.countries.selected = groups.lines.getObjectByName(key);
-  animations.countries.selected.visible = true;
-
-  if (init !== true) {
-    camera.angles.current.azimuthal = camera.controls.getAzimuthalAngle();
-    camera.angles.current.polar = camera.controls.getPolarAngle();
-
-    var targetAngles = returnCameraAngles(
-      data.countries[key].x,
-      data.countries[key].y
-    );
-    camera.angles.target.azimuthal = targetAngles.azimuthal;
-    camera.angles.target.polar = targetAngles.polar;
-
-    animations.countries.animating = true;
-    reassignDotsToNewLines();
-  }
-}
-
-function animateCountryCycle() {
-  if (animations.countries.current <= animations.countries.total) {
-    var progress = easeInOutQuad(
-      animations.countries.current / animations.countries.total
-    );
-
-    var azimuthalDifference =
-      (camera.angles.current.azimuthal - camera.angles.target.azimuthal) *
-      progress;
-    azimuthalDifference = camera.angles.current.azimuthal - azimuthalDifference;
-    camera.controls.setAzimuthalAngle(azimuthalDifference);
-
-    var polarDifference =
-      (camera.angles.current.polar - camera.angles.target.polar) * progress;
-    polarDifference = camera.angles.current.polar - polarDifference;
-    //camera.controls.setPolarAngle(polarDifference);
-
-    animations.countries.current++;
-  } else {
-    animations.countries.animating = false;
-    animations.countries.current = 0;
-
-    animations.countries.timeout = setTimeout(
-      showNextCountry,
-      animations.countries.duration
-    );
-  }
-}
-
-function showNextCountry() {
-  animations.countries.index++;
-
-  if (animations.countries.index >= Object.keys(data.countries).length) {
-    animations.countries.index = 0;
-  }
-
-  var key = Object.keys(data.countries)[animations.countries.index];
-  changeCountry(key, false);
 }
 
 /* COORDINATE CALCULATIONS */
