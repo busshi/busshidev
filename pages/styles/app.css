@@ -38,6 +38,7 @@
   --middle-transition-delay: 0.5s;
   --long-transition-delay: 1s;
   --font-weight: 800;
+  --middle-font-weight: 500;
   --line-height: 1.2;
   --letter-spacing: -0.06rem;
   --middle-letter-spacing: 0.3rem;
@@ -52,9 +53,6 @@
   --git-prompt-user: #7ad2db;
   --git-prompt-git: #89befa;
   --git-prompt-branch: #f2a59c;
-  /* --git-prompt-user: #69c0cd; */
-  /* --git-prompt-git: #5b3fd1; */
-  /* --git-prompt-branch: #c65339; */
 }
 
 body {

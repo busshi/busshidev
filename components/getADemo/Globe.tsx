@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Globe = () => {
   const [scriptsLoaded, setScriptsLoaded] = useState(0);
-
+  console.log(scriptsLoaded);
   return (
     <GlobeContainer>
       <Script

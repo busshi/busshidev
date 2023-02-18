@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
-import { AiOutlineMenu } from "react-icons/ai";
-import { ComponentProps, Dispatch, ReactNode, SetStateAction } from "react";
+import { RiMenu2Fill } from "react-icons/ri";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
 // import { BLOG_URL } from "../lib/constants";
@@ -30,11 +30,11 @@ const Button = ({
 };
 
 export const TopBar = ({
-  menuOpened,
-  setMenuOpened,
+  isMenuOpened,
+  setIsMenuOpened,
 }: {
-  menuOpened: boolean;
-  setMenuOpened: Dispatch<SetStateAction<boolean>>;
+  isMenuOpened: boolean;
+  setIsMenuOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { theme, isDarkMode } = useThemeState();
   const { setIsContactMenuOpened } = useContactMenuOpenedState();
@@ -52,9 +52,9 @@ export const TopBar = ({
         </MobileLogoBox>
         <MobileMenuIcon
           style={{ color: theme.mainColorInverted }}
-          onClick={() => setMenuOpened(menuOpened ? false : true)}
+          onClick={() => setIsMenuOpened(isMenuOpened ? false : true)}
         >
-          {menuOpened ? <RxCross2 size={24} /> : <AiOutlineMenu size={24} />}
+          {isMenuOpened ? <RxCross2 size={24} /> : <RiMenu2Fill size={24} />}
         </MobileMenuIcon>
 
         {/* Menu for laptop screen */}
@@ -78,7 +78,7 @@ export const TopBar = ({
           </DemoButton>
         </LaptopButtons>
       </Container>
-      {menuOpened && <Menu setMenuOpened={setMenuOpened} />}
+      {isMenuOpened && <Menu setMenuOpened={setIsMenuOpened} />}
     </div>
   );
 };

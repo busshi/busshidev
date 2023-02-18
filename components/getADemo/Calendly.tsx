@@ -32,7 +32,6 @@ const Container = styled.div`
 const Calendar = styled.div`
   width: 620px;
   height: 920px;
-  // height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;

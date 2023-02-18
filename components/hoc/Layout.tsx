@@ -10,7 +10,6 @@ import Metadata from "../Metadata";
 import TopBar from "../TopBar";
 import { useCalendlyVisibleState } from "../../providers/CalendlyVisible.provider";
 import Calendly from "../getADemo/Calendly";
-//import ContactMenu from "../getADemo/ContactMenu";
 import dynamic from "next/dynamic";
 const ContactMenu = dynamic(() => import("../getADemo/ContactMenu"), {
   ssr: false,
@@ -34,8 +33,11 @@ const Layout = ({ children }: Props) => {
         <ContactMenu />
       ) : (
         <>
-          <TopBar menuOpened={isMenuOpened} setMenuOpened={setIsMenuOpened} />
-          <Wrapper menuOpened={isMenuOpened}>
+          <TopBar
+            isMenuOpened={isMenuOpened}
+            setIsMenuOpened={setIsMenuOpened}
+          />
+          <Wrapper isMenuOpened={isMenuOpened}>
             {isCalendlyVisible ? <Calendly /> : children}
             <Footer />
           </Wrapper>
@@ -76,8 +78,8 @@ const App = styled.div`
   transition: color, background var(--theme-transition-delay) ease;
 `;
 
-const Wrapper = styled.div<{ menuOpened: boolean }>`
-  display: ${(props) => (props.menuOpened ? "none" : "block")};
+const Wrapper = styled.div<{ isMenuOpened: boolean }>`
+  display: ${(props) => (props.isMenuOpened ? "none" : "block")};
 `;
 
 export default Layout;
