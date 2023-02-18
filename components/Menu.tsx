@@ -141,6 +141,11 @@ const Item = styled.div<{ isDarkMode: boolean }>`
   height: 50px;
   align-items: center;
   transition: all 0.5s ease;
+  font-size: 1.3rem;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
+  padding: 12px;
 
   :hover {
     color: ${(props) =>
@@ -156,11 +161,13 @@ const SubMenuItems = styled.div`
 const SubMenuItem = styled.div<{ isDarkMode: boolean; hoverColor?: string }>`
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   transition: opacity var(--transition-delay) ease;
   gap: 1rem;
   margin: 0.6rem;
   transition: color 0.5s ease;
+  font-weight: var(--middle-font-weight);
+  letter-spacing: var(--letter-spacing);
 
   a {
     color: var(--main-dark-color);
