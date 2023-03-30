@@ -8,20 +8,18 @@ import TestimonialVisibleProvider from "../providers/TestimonialVisible.provider
 import "./styles/app.css";
 import DarkModeProvider from "../providers/Theme.provider";
 import Layout from "../components/hoc/Layout";
-import ContactMenuProvider from "../providers/ContactMenu.provider";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DarkModeProvider>
       <HighlightedColorProvider>
-        <ContactMenuProvider>
-          <ChatVisibleProvider>
-            <CalendlyVisibleProvider>
-              <Layout>
-                <TestimonialVisibleProvider>
-                  {/* Global site tag (gtag.js) - Google Analytics */}
-                  {/* <Script
+        <ChatVisibleProvider>
+          <CalendlyVisibleProvider>
+            <Layout>
+              <TestimonialVisibleProvider>
+                {/* Global site tag (gtag.js) - Google Analytics */}
+                {/* <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=${GTAG}`}
                     strategy="afterInteractive"
                   />
@@ -34,17 +32,16 @@ export default function App({ Component, pageProps }: AppProps) {
                    `}
                   </Script> */}
 
-                  {/* Vercel Analytics */}
-                  <Analytics />
+                {/* Vercel Analytics */}
+                <Analytics />
 
-                  {/* Calendly integration */}
-                  <Script src="https://assets.calendly.com/assets/external/widget.js" />
-                  <Component {...pageProps} />
-                </TestimonialVisibleProvider>
-              </Layout>
-            </CalendlyVisibleProvider>
-          </ChatVisibleProvider>
-        </ContactMenuProvider>
+                {/* Calendly integration */}
+                <Script src="https://assets.calendly.com/assets/external/widget.js" />
+                <Component {...pageProps} />
+              </TestimonialVisibleProvider>
+            </Layout>
+          </CalendlyVisibleProvider>
+        </ChatVisibleProvider>
       </HighlightedColorProvider>
     </DarkModeProvider>
   );

@@ -1,27 +1,29 @@
+import Link from "next/link";
 import styled, { CSSProperties } from "styled-components";
-import { useContactMenuOpenedState } from "../../providers/ContactMenu.provider";
 import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
+import { useThemeState } from "../../providers/Theme.provider";
 import { Color } from "../../types/interfaces";
 
 export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { highlightedColor } = useHighlightedColorState();
-  const { setIsContactMenuOpened } = useContactMenuOpenedState();
+  const { isDarkMode } = useThemeState();
 
   return (
-    <Container>
-      <Button
-        highlightedColor={highlightedColor}
-        style={{ ...style }}
-        onClick={() => setIsContactMenuOpened(true)}
-      >
-        Get a Demo
-      </Button>
+    <Container isDarkMode={isDarkMode}>
+      <Link href="/contact">
+        <Button highlightedColor={highlightedColor} style={{ ...style }}>
+          Get a Demo
+        </Button>
+      </Link>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkMode: boolean }>`
   height: 3rem;
+  a {
+    color: ${(props) => (props.isDarkMode ? "white" : "black")};
+  }
 `;
 
 const Button = styled.div<{ highlightedColor: Color }>`
