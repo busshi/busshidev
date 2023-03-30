@@ -108,7 +108,6 @@ const Container = styled.div<{ isDarkMode: boolean }>`
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
-  font-size: 1.1rem;
 `;
 
 const LogoBox = styled(Link)`
