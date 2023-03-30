@@ -2,13 +2,18 @@ import styled from "styled-components";
 import Link from "next/link";
 import { scrollIntoView } from "../lib/scroll";
 import { RiMenu2Fill } from "react-icons/ri";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import Menu from "./Menu";
 import { RxCross2 } from "react-icons/rx";
-// import { BLOG_URL } from "../lib/constants";
 import { useThemeState } from "../providers/Theme.provider";
-import { useContactMenuOpenedState } from "../providers/ContactMenu.provider";
 import Logo from "./svg/Logo";
+import { useRouter } from "next/router";
 
 const Button = ({
   children,
@@ -37,7 +42,9 @@ export const TopBar = ({
   setIsMenuOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { theme, isDarkMode } = useThemeState();
-  const { setIsContactMenuOpened } = useContactMenuOpenedState();
+  const router = useRouter();
+  const isHome =
+    router.pathname !== "/contact" && router.query.schedule !== "true";
 
   return (
     <div>
@@ -62,20 +69,33 @@ export const TopBar = ({
           <Logo size={80} />.
         </LogoBox>
         <LaptopButtons>
-          <Button onClick={() => scrollIntoView("solutions")}>Solutions</Button>
+          <Button
+            onClick={() =>
+              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
+            }
+          >
+            Solutions
+          </Button>
           {/* <Link href={BLOG_URL}>
             <Button>About me</Button>
           </Link> */}
-          <Button onClick={() => scrollIntoView("testi-title")}>
+          <Button
+            onClick={() =>
+              isHome
+                ? scrollIntoView("testi-title")
+                : router.push("/#testi-title")
+            }
+          >
             Testimonials
           </Button>
-          <DemoButton
-            onClick={() => setIsContactMenuOpened(true)}
-            color={theme.background}
-            background={theme.mainColorInverted}
-          >
-            Get a Demo
-          </DemoButton>
+          <Link href={isHome ? "/contact" : "/"}>
+            <DemoButton
+              color={theme.background}
+              background={theme.mainColorInverted}
+            >
+              {isHome ? "Get a Demo" : "Home"}
+            </DemoButton>
+          </Link>
         </LaptopButtons>
       </Container>
       {isMenuOpened && <Menu setMenuOpened={setIsMenuOpened} />}
@@ -88,6 +108,7 @@ const Container = styled.div<{ isDarkMode: boolean }>`
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
+  font-size: 1.1rem;
 `;
 
 const LogoBox = styled(Link)`
@@ -145,12 +166,13 @@ const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
 const DemoButton = styled.div<{ color: string; background: string }>`
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100px;
   border-radius: var(--border-radius);
   padding: 0.5rem 1rem 0.5rem 1rem;
   transition: all var(--transition-delay) ease;
   cursor: pointer;
   border: 1px solid ${(props) => props.background};
-
   color: ${(props) => props.color};
   background: ${(props) => props.background};
 
