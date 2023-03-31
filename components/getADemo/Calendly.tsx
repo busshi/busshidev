@@ -45,7 +45,8 @@ const Calendar = styled.div`
 const Cross = styled.div`
   position: absolute;
   top: 12px;
-  left: 12px;
+  left: -12px;
+  // left: 12px;
   cursor: pointer;
 `;
 

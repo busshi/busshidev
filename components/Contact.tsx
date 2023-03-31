@@ -3,13 +3,39 @@ import styled from "styled-components";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
-import { EMAIL } from "../lib/constants";
+import { CONTACTS, EMAIL } from "../lib/constants";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import { useThemeState } from "../providers/Theme.provider";
 import dynamic from "next/dynamic";
+import { ReactNode } from "react";
+import MaltIcon from "./svg/Malt";
+
 const SpinningGlobe = dynamic(() => import("./getADemo/SpinningGlobe"), {
   ssr: false,
 });
+
+const Item = ({
+  className,
+  onClick,
+  children,
+}: {
+  className?: string;
+  onClick?: () => void;
+  children: ReactNode;
+}) => {
+  const { theme } = useThemeState();
+
+  return (
+    <ItemWrapper
+      className={className ?? ""}
+      style={{ backgroundColor: theme.background }}
+      hoverColor={theme.mainColorInverted}
+      onClick={onClick && onClick}
+    >
+      {children}
+    </ItemWrapper>
+  );
+};
 
 export const Contact = ({
   setIsCalendlyVisible,
@@ -17,47 +43,53 @@ export const Contact = ({
   setIsCalendlyVisible: (value: boolean) => void;
 }) => {
   const { setIsChatVisible } = useChatVisibleState();
-  const { theme } = useThemeState();
+  const { isDarkMode, theme } = useThemeState();
 
   return (
     <Container style={{ color: theme.middleFontColor }}>
       <Title>CONNECT FROM EVERYWHERE</Title>
       <SpinningGlobe />
       <ItemsWrapper>
-        <Item
-          style={{ backgroundColor: theme.background }}
-          hoverColor={theme.mainColorInverted}
-          onClick={() => setIsChatVisible(true)}
-        >
+        <Item onClick={() => setIsChatVisible(true)}>
           <TfiHeadphoneAlt size={80} />
           <Text>Chat with me</Text>
         </Item>
-        <Item
-          style={{ backgroundColor: theme.background }}
-          hoverColor={theme.mainColorInverted}
-          onClick={() => setIsCalendlyVisible(true)}
-        >
+        <Item onClick={() => setIsCalendlyVisible(true)}>
           <SiGooglemeet size={80} />
           <Text>Book a meeting</Text>
         </Item>
-        <Item
-          className="laptop"
-          style={{ backgroundColor: theme.background }}
-          hoverColor={theme.mainColorInverted}
-        >
+        {/* Laptop Items with big icon size */}
+        <Item className="laptop">
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={40} />
             <Text>Send an email</Text>
           </Link>
         </Item>
-        <Item
-          className="mobile"
-          style={{ backgroundColor: theme.background }}
-          hoverColor={theme.mainColorInverted}
-        >
+        <Item className="laptop">
+          <Link href={CONTACTS[1].url}>
+            <MaltIcon
+              color={theme.middleFontColor}
+              backgroundColor={theme.backgroundColor}
+              size="40px"
+            />
+            <Text>Work together</Text>
+          </Link>
+        </Item>
+        {/* Mobile Items with small icon size */}
+        <Item className="mobile">
           <Link href={`mailto:${EMAIL}`}>
             <HiOutlineMail size={24} />
             <Text>Send an email</Text>
+          </Link>
+        </Item>
+        <Item className="mobile">
+          <Link href={CONTACTS[1].url}>
+            <MaltIcon
+              color={theme.middleFontColor}
+              backgroundColor={theme.backgroundColor}
+              size="25px"
+            />
+            <Text>Work together</Text>
           </Link>
         </Item>
       </ItemsWrapper>
@@ -89,13 +121,15 @@ const ItemsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
+  gap: 3rem;
   margin-top: 8rem;
   @media (max-width: 768px) {
+    gap: 0;
     margin-top: 3rem;
   }
 `;
 
-export const Item = styled.div<{ hoverColor: string }>`
+export const ItemWrapper = styled.div<{ hoverColor: string }>`
   cursor: pointer;
   margin: 2rem;
   padding: 2rem;
