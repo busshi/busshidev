@@ -89,9 +89,9 @@ const ItemsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  margin-top: 10rem;
+  margin-top: 8rem;
   @media (max-width: 768px) {
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
 `;
 
@@ -106,6 +106,7 @@ export const Item = styled.div<{ hoverColor: string }>`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  opacity: 0.8;
 
   text-align: center;
   border: 1px solid;
@@ -122,6 +123,7 @@ export const Item = styled.div<{ hoverColor: string }>`
   }
 
   :hover {
+    opacity: 1;
     border: 1px solid transparent;
     box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
   }
