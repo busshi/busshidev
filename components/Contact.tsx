@@ -143,7 +143,9 @@ export const ItemWrapper = styled.div<{ hoverColor: string }>`
   opacity: 0.8;
 
   text-align: center;
-  border: 1px solid;
+
+  border: 1px solid transparent;
+  box-shadow: ${(props) => `0px 0px 1rem 0px ${props.hoverColor}`};
   border-radius: var(--border-radius);
 
   @media (max-width: 768px) {
@@ -158,7 +160,6 @@ export const ItemWrapper = styled.div<{ hoverColor: string }>`
 
   :hover {
     opacity: 1;
-    border: 1px solid transparent;
     box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
   }
 
