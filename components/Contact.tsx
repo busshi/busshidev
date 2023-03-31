@@ -89,7 +89,7 @@ const ItemsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  margin-top: 15rem;
+  margin-top: 10rem;
   @media (max-width: 768px) {
     margin-top: 4rem;
   }
