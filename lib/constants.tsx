@@ -2,6 +2,7 @@ import { FaDocker, FaLinkedin, FaNpm } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
 import { HiOutlineMail } from "react-icons/hi";
 import Image from "next/image";
+import MaltIcon from "../components/svg/Malt";
 
 export const SITE_URL =
   process.env.NODE_ENV === "production"
@@ -85,9 +86,19 @@ export const CONTACTS = [
     id: "malt",
     name: "Malt",
     url: "https://www.malt.fr/profile/alexandredubar",
-    logo: <Image src="/icons/malt.svg" width={25} height={25} alt="malt" />,
+    logo: (
+      <MaltIcon
+        color="var(--malt-color)"
+        backgroundColor="var(--malt-light-background)"
+        size="25px"
+      />
+    ),
     logoDark: (
-      <Image src="/icons/malt-dark.svg" width={25} height={25} alt="malt" />
+      <MaltIcon
+        color="var(--malt-color)"
+        backgroundColor="var(--malt-dark-background)"
+        size="25px"
+      />
     ),
   },
   {

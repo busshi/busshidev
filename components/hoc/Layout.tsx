@@ -28,11 +28,12 @@ const Layout = ({ children }: Props) => {
 
       {/* Crisp.chat integration */}
       {isChatVisible && (
-        <Script
-          id="crisp-widget"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        <>
+          <Script
+            id="crisp-widget"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
       window.$crisp=[];
       window.CRISP_WEBSITE_ID=\`${CRIPS_WEBSITE_ID}\`;
       (function(){
@@ -42,8 +43,10 @@ const Layout = ({ children }: Props) => {
         s.async = 1;
         d.getElementsByTagName("head")[0].appendChild(s);
       })();`,
-          }}
-        />
+            }}
+          />
+          {/* <Test/> */}
+        </>
       )}
     </App>
   );
@@ -63,5 +66,15 @@ const App = styled.div`
 const Wrapper = styled.div<{ isMenuOpened: boolean }>`
   display: ${(props) => (props.isMenuOpened ? "none" : "block")};
 `;
+
+// const Test = styled.div`
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background: rgba(89, 103, 114, 0.2);
+//   backdrop-filter: blur(5px);
+// `;
 
 export default Layout;

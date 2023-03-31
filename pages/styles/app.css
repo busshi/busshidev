@@ -49,6 +49,9 @@
   */
   --docker-color: #539be8;
   --linkedin-color: #2d64bc;
+  --malt-color: #fc5656;
+  --malt-light-background: #f5f5f5;
+  --malt-dark-background: #181717;
   --git-prompt-arrow: #8df77b;
   --git-prompt-user: #7ad2db;
   --git-prompt-git: #89befa;
