@@ -91,7 +91,7 @@ const ItemsWrapper = styled.div`
 
   margin-top: 15rem;
   @media (max-width: 768px) {
-    margin-top: 7rem;
+    margin-top: 4rem;
   }
 `;
 
