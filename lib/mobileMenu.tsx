@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { HiOutlineMail } from "react-icons/hi";
 import { SiGooglemeet } from "react-icons/si";
@@ -12,6 +13,8 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
   const { setIsChatVisible } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
+
+  const router = useRouter();
 
   return [
     {
@@ -29,7 +32,9 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       icon: <SiGooglemeet size={16} color="var(--middle-font-color)" />,
       onClick: () => {
         setMenuOpened(false);
-        setIsCalendlyVisible(true);
+        if (router.pathname === "/") {
+          router.push("/contact?schedule=true");
+        } else setIsCalendlyVisible(true);
       },
     },
     {
