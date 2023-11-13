@@ -19,7 +19,7 @@ import {
   SiJavascript,
   SiTypescript,
 } from "react-icons/si";
-import { GoMarkGithub } from "react-icons/go";
+import { AiFillGithub } from "react-icons/ai";
 
 export const getTechnos = (size: number) => [
   <FaReact size={size} key="react" />,
@@ -34,7 +34,7 @@ export const getTechnos = (size: number) => [
   <FaPython size={size} key="python" />,
   <FaDocker size={size} key="docker" />,
   <FaNpm size={size} key="npm" />,
-  <GoMarkGithub size={size} key="github" />,
+  <AiFillGithub size={size} key="github" />,
   <FaGoogle size={size} key="google" />,
   <FaLinux size={size} key="linux" />,
   <SiKalilinux size={size} key="kali" />,
