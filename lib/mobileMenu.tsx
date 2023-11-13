@@ -7,11 +7,13 @@ import { useCalendlyVisibleState } from "../providers/CalendlyVisible.provider";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import { useThemeState } from "../providers/Theme.provider";
 import { EMAIL } from "./constants";
+import { useRouter } from "next/router";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
   const { setIsChatVisible } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
+  const router = useRouter();
 
   return [
     {
@@ -29,7 +31,9 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       icon: <SiGooglemeet size={16} color="var(--middle-font-color)" />,
       onClick: () => {
         setMenuOpened(false);
-        setIsCalendlyVisible(true);
+        if (router.pathname === "/") {
+          router.push("/contact?schedule=true");
+        } else setIsCalendlyVisible(true);
       },
     },
     {
