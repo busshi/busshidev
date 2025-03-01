@@ -12,7 +12,7 @@ export const BLOG_URL = "https://busshi.fr";
 
 export const EMAIL = "busshidev@icloud.com";
 
-export const CALENDLY_URL = "https://calendly.com/busshidev/30min";
+export const CALENDLY_URL = "https://calendly.com/busshidev/meeting";
 
 export const PAGE_SPEED_URL =
   "https://pagespeed.web.dev/report?url=https%3A%2F%2Fbusshidev.fr%2F&form_factor=desktop";
