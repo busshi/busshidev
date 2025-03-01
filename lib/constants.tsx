@@ -1,7 +1,6 @@
 import { FaDocker, FaLinkedin, FaNpm } from "react-icons/fa";
 import { ImGithub } from "react-icons/im";
 import { HiOutlineMail } from "react-icons/hi";
-import Image from "next/image";
 import MaltIcon from "../components/svg/Malt";
 
 export const SITE_URL =
