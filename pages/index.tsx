@@ -58,13 +58,7 @@ export const Home: NextPage = () => {
         fontColor={theme.fontColor}
       />
       <Solutions replicated={false} gradientColor={theme.mainColor} />
-      <Testimonials
-      // replicated={false}
-      // style={{
-      //   alignItems: "flex-start",
-      //   justifyContent: "center",
-      // }}
-      />
+      <Testimonials />
       <Technos />
     </Container>
   );
