@@ -43,7 +43,7 @@ export const Contact = ({
   setIsCalendlyVisible: (value: boolean) => void;
 }) => {
   const { setIsChatVisible } = useChatVisibleState();
-  const { isDarkMode, theme } = useThemeState();
+  const { theme } = useThemeState();
 
   return (
     <Container style={{ color: theme.middleFontColor }}>
