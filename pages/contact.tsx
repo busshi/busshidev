@@ -25,7 +25,7 @@ const ContactPage: NextPage = () => {
             width="100%"
             height="100%"
             title={"Schedule an interview"}
-            src="https://calendly.com/busshidev/30min"
+            src="https://calendly.com/busshidev/meeting"
           ></iframe>
         </Calendar>
       ) : (
