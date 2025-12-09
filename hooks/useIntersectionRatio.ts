@@ -20,7 +20,7 @@ export default function useIntersectionRatio<Element extends HTMLElement>(
   ratio: number = 1,
   rootMargin: string = "0px",
   threshold?: number | number[]
-): [number, RefObject<Element>] {
+): [number, RefObject<Element | null>] {
   const [intersectionRatio, setIntersectionRatio] = useState<number>(0);
   const ref = createRef<Element>();
 

@@ -19,7 +19,7 @@ export default function useIntersectionsObserver<Element extends HTMLElement>(
   elements: string[],
   threshold: number | number[] = 1,
   rootMargin: string = "0px"
-): [boolean, RefObject<Element>[]] {
+): [boolean, RefObject<Element | null>[]] {
   const [isElementVisible, setIsElementVisible] = useState(false);
   const refs = elements.map(() => useRef(null));
 

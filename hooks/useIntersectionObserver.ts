@@ -1,7 +1,7 @@
 import { createRef, RefObject, useEffect, useState } from "react";
 
 /**
- * Utility hook to if an element is in the viewport
+ * Utility hook to check if an element is in the viewport
  *
  * @param {number | number[]} threshold - Breaking points list array
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/thresholds
@@ -16,7 +16,7 @@ import { createRef, RefObject, useEffect, useState } from "react";
 export default function useIntersectionObserver<Element extends HTMLElement>(
   threshold: number | number[] = 1,
   rootMargin: string = "0px"
-): [boolean, RefObject<Element>] {
+): [boolean, RefObject<Element | null>] {
   const [isElementVisible, setIsElementVisible] = useState(false);
   const ref = createRef<Element>();
 

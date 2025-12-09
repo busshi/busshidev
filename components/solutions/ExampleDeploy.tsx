@@ -89,7 +89,7 @@ const GetLine = ({
 
   useEffect(() => {
     if (!isInput) return;
-    let intervalId: string | number | NodeJS.Timer | undefined;
+    let intervalId: string | number | NodeJS.Timeout | undefined;
     if (isElementVisible) {
       intervalId = setInterval(
         () => setTextDisplayed(line.substring(0, textDisplayed.length + 1)),
