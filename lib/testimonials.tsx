@@ -1,9 +1,41 @@
+import JuliaAvatar from "../components/svg/JuliaAvatar";
 import McAvatar from "../components/svg/McAvatar";
 import QcAvatar from "../components/svg/QcAvatar";
+import QcAvatar2 from "../components/svg/QcAvatar2";
 
 export const TESTIMONIALS = [
   {
     id: "first",
+    author: "Quentin Chantelot",
+    url: "https://zest.email",
+    company: "Zest",
+    job: "Founder & CTO",
+    location: "Station F Paris",
+    rating: "⭐️⭐️⭐️⭐️⭐️",
+    quote: `Alexandre Dubar is a committed and loyal developer
+          that will always try his best for your product success.
+          I recommend him!!`,
+    date: "April, 28 2025",
+    svg: <QcAvatar2 />,
+  },
+  {
+    id: "second",
+    author: "Julia Georgi",
+    url: "https://price-bee.com",
+    company: "Price Bee",
+    job: "Founder & Product Owner",
+    location: "La Baule",
+    rating: "⭐️⭐️⭐️⭐️⭐️",
+    quote: `J'ai fait appel à Alexandre pour nous aider à construire 
+          une solution de tarification et de devis très complexe, 
+          et je ne le regrette pas une seconde. 
+          Alexandre est une personne compétente, agréable et fiable. 
+          Ce fut un vrai plaisir de travailler avec lui.`,
+    date: "March, 24 2025",
+    svg: <JuliaAvatar />,
+  },
+  {
+    id: "third",
     author: "Quentin Chantelot",
     url: "https://notice.studio",
     company: "Notice",
@@ -18,7 +50,7 @@ export const TESTIMONIALS = [
     svg: <QcAvatar />,
   },
   {
-    id: "second",
+    id: "fourth",
     author: "Quentin Chantelot",
     url: "https://notice.studio",
     company: "Notice",
@@ -31,7 +63,7 @@ export const TESTIMONIALS = [
     svg: <QcAvatar />,
   },
   {
-    id: "third",
+    id: "fifth",
     author: "Martial Carriere",
     url: "",
     company: "MCI",
