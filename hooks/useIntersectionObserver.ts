@@ -1,7 +1,7 @@
 import { createRef, RefObject, useEffect, useState } from "react";
 
 /**
- * Utility hook to if an element is in the viewport
+ * Utility hook to check if an element is in the viewport
  *
  * @param {number | number[]} threshold - Breaking points list array
  * @see https://developer.mozilla.org/fr/docs/Web/API/IntersectionObserver/thresholds
