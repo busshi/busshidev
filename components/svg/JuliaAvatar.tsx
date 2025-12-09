@@ -20,11 +20,11 @@ const JuliaAvatar = () => (
         width="1"
         height="1"
       >
-        <use xlinkHref="#image0" transform="scale(0.0125)" />
+        <use xlinkHref="#image1" transform="scale(0.0125)" />
       </pattern>
 
       <image
-        id="image0"
+        id="image1"
         width="80"
         height="80"
         x="0"

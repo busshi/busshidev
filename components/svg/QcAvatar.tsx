@@ -1,7 +1,7 @@
 const QcAvatar = () => (
   <svg
     version="1.1"
-    id="Layer_1"
+    id="Layer_3"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     x="0px"
@@ -12,19 +12,19 @@ const QcAvatar = () => (
     enableBackground="new 0 0 80 80"
     xmlSpace="preserve"
   >
-    <circle cx="25" cy="25" r="25" fill="url(#pattern1)" />
+    <circle cx="25" cy="25" r="25" fill="url(#pattern3)" />
     <defs>
       <pattern
-        id="pattern1"
+        id="pattern3"
         patternContentUnits="objectBoundingBox"
         width="1"
         height="1"
       >
-        <use xlinkHref="#image0" transform="scale(0.0125)" />
+        <use xlinkHref="#image3" transform="scale(0.0125)" />
       </pattern>
 
       <image
-        id="image0"
+        id="image3"
         width="80"
         height="80"
         x="0"
