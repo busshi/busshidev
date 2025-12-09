@@ -17,9 +17,9 @@
     "@vercel/analytics": "^0.1.8",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
-    "next": "14.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^16.0.8",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-globe.gl": "2.22.10",
     "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
@@ -32,5 +32,8 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
