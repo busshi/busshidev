@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export interface Solution {
   id: string;
   title: string;

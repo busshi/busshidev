@@ -8,7 +8,7 @@ if (typeof window !== "undefined") Globe = require("react-globe.gl").default;
 
 const SpinningGlobe = () => {
   const { isDarkMode } = useThemeState();
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const size = useWindowSize();
 
   return (
