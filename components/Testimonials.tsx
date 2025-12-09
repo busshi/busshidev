@@ -74,7 +74,9 @@ export const Testimonials = () => {
   return (
     <Container
       ref={containerRef}
-      style={{ opacity: intersectionRatio < 1 ? intersectionRatio : 1 }}
+      style={{
+        opacity: intersectionRatio < 1 ? intersectionRatio : 1,
+      }}
     >
       <SectionTitle id="testi-title" style={{ color: theme.middleFontColor }}>
         TRUSTED BY STARTUPS
@@ -161,7 +163,7 @@ export const SectionTitle = styled.div<{ margin?: string }>`
 
 const TestiBox = styled.div`
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
 
@@ -187,7 +189,7 @@ const TestiBox = styled.div`
 `;
 
 const TestimonialWrapper = styled.div`
-  min-width: 300px;
+  width: 300px;
 
   @media (max-width: 1024px) {
     min-height: 65vh;
@@ -202,6 +204,7 @@ const TestimonialWrapper = styled.div`
 `;
 
 const Testimonial = styled.div`
+  height: 550px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -211,6 +214,14 @@ const Testimonial = styled.div`
   a {
     color: var(--middle-font-color);
     text-decoration: underline;
+  }
+
+  @media (max-width: 1024px) {
+    height: 550px;
+  }
+
+  @media (max-width: 768px) {
+    height: 420px;
   }
 `;
 
