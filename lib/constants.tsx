@@ -10,7 +10,7 @@ export const SITE_URL =
 
 export const BLOG_URL = "https://busshi.fr";
 
-export const EMAIL = "busshidev@icloud.com";
+export const EMAIL = "contact@busshidev.fr";
 
 export const CALENDLY_URL = "https://calendly.com/busshidev/meeting";
 
