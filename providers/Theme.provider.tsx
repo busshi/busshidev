@@ -7,6 +7,7 @@ interface Theme {
   fontColor: string;
   secondaryFontColor: string;
   middleFontColor: string;
+  sectionTitleColor: string;
   background: string;
   backgroundColor: string;
   cardBackground: string;
@@ -18,8 +19,6 @@ interface ThemeContextType {
   setTheme: (value: any) => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
-  isExampleDark: boolean;
-  setIsExampleDark: (value: boolean) => void;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
@@ -31,6 +30,7 @@ const colors = {
     fontColor: "var(--main-dark-font-color)",
     secondaryFontColor: "var(--secondary-dark-font-color)",
     middleFontColor: "var(--middle-font-color)",
+    sectionTitleColor: "var(--middle-font-color)",
     background: "var(--main-dark-color)",
     backgroundColor: "var(--dark-background)",
     cardBackground: "var(--card-dark-background)",
@@ -42,6 +42,7 @@ const colors = {
     fontColor: "var(--main-light-font-color)",
     secondaryFontColor: "var(--secondary-light-font-color)",
     middleFontColor: "var(--middle-font-color)",
+    sectionTitleColor: "var(--section-title-light)",
     background: "var(--main-light-color)",
     backgroundColor: "var(--light-background)",
     cardBackground: "var(--card-light-background)",
@@ -53,31 +54,50 @@ interface Props {
   children: ReactNode;
 }
 
+const THEME_STORAGE_KEY = "busshidev-theme";
+
 export const ThemeProvider = ({ children }: Props) => {
-  //const isDark = useIsDarkMode();
   const [theme, setTheme] = useState(colors.dark);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isExampleDark, setIsExampleDark] = useState(true);
+  const [isDarkMode, setIsDarkModeState] = useState(true);
+
+  /**
+   * Follow the system's color scheme by default. If the user explicitly
+   * toggles the switcher, their choice is persisted and takes over from
+   * then on, even if the system preference changes afterwards.
+   */
+  useEffect(() => {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === "dark" || stored === "light") {
+      setIsDarkModeState(stored === "dark");
+      return;
+    }
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDarkModeState(media.matches);
+
+    const listener = (event: MediaQueryListEvent) => {
+      if (!window.localStorage.getItem(THEME_STORAGE_KEY)) {
+        setIsDarkModeState(event.matches);
+      }
+    };
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  const setIsDarkMode = (value: boolean) => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, value ? "dark" : "light");
+    setIsDarkModeState(value);
+  };
 
   const value = {
     theme,
     setTheme,
     isDarkMode,
     setIsDarkMode,
-    isExampleDark,
-    setIsExampleDark,
   };
-
-  /**
-   * Effect to trigger auto switch based on the system preferences (disabled)
-   */
-  // useEffect(() => {
-  //   setIsDarkMode(isDark);
-  // }, [isDark]);
 
   useEffect(() => {
     setTheme(isDarkMode ? colors.dark : colors.light);
-    setIsExampleDark(isDarkMode);
   }, [isDarkMode]);
 
   return (

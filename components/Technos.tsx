@@ -6,6 +6,7 @@ import useIntersectionRatio from "../hooks/useIntersectionRatio";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useThemeState } from "../providers/Theme.provider";
 import { useIsMobile } from "@busshi/react-hooks";
+import { useTranslation } from "../hooks/useTranslation";
 
 const AUTO_SCROLL_INTERVAL = 500;
 
@@ -18,6 +19,7 @@ export const Technos = () => {
   const [intersectionRatio, containerRef] =
     useIntersectionRatio<HTMLDivElement>(1.2);
   const { theme } = useThemeState();
+  const t = useTranslation();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -41,21 +43,24 @@ export const Technos = () => {
       id="technos"
       style={{ opacity: intersectionRatio, color: theme.middleFontColor }}
     >
-      <SectionTitle margin="10rem 2rem 5rem 2rem">
-        FAVORITES EDGE TECHNOLOGIES
+      <SectionTitle
+        $margin="0 2rem var(--section-inner-gap) 2rem"
+        style={{ color: theme.sectionTitleColor }}
+      >
+        {t.technos.sectionTitle}
       </SectionTitle>
       <SliderWrapper
-        shadowColor={theme.background}
+        $shadowColor={theme.background}
         ref={containerRef}
-        opacity={intersectionRatio}
+        $opacity={intersectionRatio}
       >
         <Items ref={ref} className="hideScrollBar">
           {technos.map((item, index) => (
             <Item
               key={`${index}-${index}`}
-              index={index}
-              currentIndex={currentIndex}
-              space={isMobile ? 50 : 120}
+              $index={index}
+              $currentIndex={currentIndex}
+              $space={isMobile ? 50 : 120}
             >
               {item}
             </Item>
@@ -67,18 +72,18 @@ export const Technos = () => {
 };
 
 const Container = styled.div`
-  margin-bottom: 10rem;
+  margin-bottom: var(--section-gap);
   position: relative;
 `;
 
-const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
+const SliderWrapper = styled.div<{ $opacity: number; $shadowColor: string }>`
   box-shadow: ${(props) =>
-    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
+    `0px 0px 25px rgba(255, 255, 255, ${props.$opacity})`};
   -webkit-box-shadow: ${(props) =>
-    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
+    `0px 0px 25px rgba(255, 255, 255, ${props.$opacity})`};
   -moz-box-shadow: ${(props) =>
-    `0px 0px 25px rgba(255, 255, 255, ${props.opacity})`};
-  opacity: ${(props) => props.opacity};
+    `0px 0px 25px rgba(255, 255, 255, ${props.$opacity})`};
+  opacity: ${(props) => props.$opacity};
 
   &::before {
     content: "";
@@ -89,7 +94,7 @@ const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
     width: 20vw;
     z-index: 1;
     background: ${(props) =>
-      `linear-gradient(to left, ${props.shadowColor}, transparent)`};
+      `linear-gradient(to left, ${props.$shadowColor}, transparent)`};
     box-sizing: border-box;
   }
 
@@ -102,7 +107,7 @@ const SliderWrapper = styled.div<{ opacity: number; shadowColor: string }>`
     width: 20vw;
     z-index: 1;
     background: ${(props) =>
-      `linear-gradient(to right, ${props.shadowColor}, transparent)`};
+      `linear-gradient(to right, ${props.$shadowColor}, transparent)`};
     box-sizing: border-box;
   }
 `;
@@ -120,16 +125,20 @@ const Items = styled.div`
   scrollbar-width: none; /* Hide scroll bar Firefox */
 `;
 
-const Item = styled.div<{ index: number; currentIndex: number; space: number }>`
+const Item = styled.div<{
+  $index: number;
+  $currentIndex: number;
+  $space: number;
+}>`
   flex-shrink: 0;
   margin: 1rem 0 1rem 0;
   transition: transform 2s linear;
 
   transform: ${(props) =>
     `translateX(${
-      props.index < props.currentIndex
-        ? -props.space * (props.currentIndex - props.index)
-        : props.space * (props.index - props.currentIndex)
+      props.$index < props.$currentIndex
+        ? -props.$space * (props.$currentIndex - props.$index)
+        : props.$space * (props.$index - props.$currentIndex)
     }%)`};
 `;
 

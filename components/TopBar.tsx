@@ -14,6 +14,8 @@ import { RxCross2 } from "react-icons/rx";
 import { useThemeState } from "../providers/Theme.provider";
 import Logo from "./svg/Logo";
 import { useRouter } from "next/router";
+import DarkModeSwitcher from "./DarkModeSwitcher";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Button = ({
   children,
@@ -26,7 +28,7 @@ const Button = ({
   return (
     <ButtonWrapper
       color={theme.middleFontColor}
-      hoverColor={theme.mainColorInverted}
+      $hoverColor={theme.mainColorInverted}
       onClick={onClick}
     >
       {children}
@@ -41,18 +43,14 @@ export const TopBar = ({
   isMenuOpened: boolean;
   setIsMenuOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { theme, isDarkMode } = useThemeState();
+  const { theme } = useThemeState();
   const router = useRouter();
-  const isHome =
-    router.pathname !== "/contact" && router.query.schedule !== "true";
+  const t = useTranslation();
+  const isHome = router.pathname === "/";
 
   return (
     <div>
-      <Container
-        id="top"
-        style={{ color: theme.mainColorInverted }}
-        isDarkMode={isDarkMode}
-      >
+      <Container id="top" style={{ color: theme.mainColorInverted }}>
         {/* Menu for mobile screen */}
         <MobileLogoBox href="/" style={{ color: theme.background }}>
           <Logo size={50} />.
@@ -71,14 +69,11 @@ export const TopBar = ({
         <LaptopButtons>
           <Button
             onClick={() =>
-              isHome ? scrollIntoView("solutions") : router.push("/#solutions")
+              isHome ? scrollIntoView("services") : router.push("/#services")
             }
           >
-            Solutions
+            {t.nav.services}
           </Button>
-          {/* <Link href={BLOG_URL}>
-            <Button>About me</Button>
-          </Link> */}
           <Button
             onClick={() =>
               isHome
@@ -86,14 +81,24 @@ export const TopBar = ({
                 : router.push("/#testi-title")
             }
           >
-            Testimonials
+            {t.nav.testimonials}
           </Button>
+          <Button
+            onClick={() =>
+              isHome ? scrollIntoView("faq") : router.push("/#faq")
+            }
+          >
+            {t.nav.faq}
+          </Button>
+          <SwitcherBox>
+            <DarkModeSwitcher />
+          </SwitcherBox>
           <Link href={isHome ? "/contact" : "/"}>
             <DemoButton
               color={theme.background}
-              background={theme.mainColorInverted}
+              $background={theme.mainColorInverted}
             >
-              {isHome ? "Get a Demo" : "Home"}
+              {isHome ? t.nav.bookCall : t.nav.home}
             </DemoButton>
           </Link>
         </LaptopButtons>
@@ -103,7 +108,7 @@ export const TopBar = ({
   );
 };
 
-const Container = styled.div<{ isDarkMode: boolean }>`
+const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -140,6 +145,7 @@ const MobileMenuIcon = styled.div`
 
 const LaptopButtons = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-right: 1rem;
 
@@ -148,7 +154,13 @@ const LaptopButtons = styled.div`
   }
 `;
 
-const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
+const SwitcherBox = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 0.25rem;
+`;
+
+const ButtonWrapper = styled.div<{ color: string; $hoverColor: string }>`
   padding: 0.5rem 1rem 0.5rem 1rem;
   cursor: pointer;
   display: flex;
@@ -157,26 +169,27 @@ const ButtonWrapper = styled.div<{ color: string; hoverColor: string }>`
   transition: color var(--transition-delay) ease;
   color: ${(props) => props.color};
 
-  :hover {
-    color: ${(props) => props.hoverColor};
+  &:hover {
+    color: ${(props) => props.$hoverColor};
   }
 `;
 
-const DemoButton = styled.div<{ color: string; background: string }>`
+const DemoButton = styled.div<{ color: string; $background: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  min-width: 100px;
+  white-space: nowrap;
   border-radius: var(--border-radius);
   padding: 0.5rem 1rem 0.5rem 1rem;
   transition: all var(--transition-delay) ease;
   cursor: pointer;
-  border: 1px solid ${(props) => props.background};
+  border: 1px solid ${(props) => props.$background};
   color: ${(props) => props.color};
-  background: ${(props) => props.background};
+  background: ${(props) => props.$background};
 
-  :hover {
-    color: ${(props) => props.background};
+  &:hover {
+    color: ${(props) => props.$background};
     background: ${(props) => props.color};
   }
 `;

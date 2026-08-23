@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 /**
  * Utility hook to check if an element is in the viewport
@@ -18,7 +18,7 @@ export default function useIntersectionObserver<Element extends HTMLElement>(
   rootMargin: string = "0px"
 ): [boolean, RefObject<Element | null>] {
   const [isElementVisible, setIsElementVisible] = useState(false);
-  const ref = createRef<Element>();
+  const ref = useRef<Element>(null);
 
   useEffect(() => {
     const cachedRef = ref.current;

@@ -1,0 +1,33 @@
+# BusshiDev
+
+> BusshiDev conçoit des sites web, des applications métier sur mesure et des automatisations IA pour des PME en croissance. Recommandé par des fondateurs de Station F, score Google PageSpeed 100/100.
+
+BusshiDev est le studio indépendant d'Alexandre Dubar, développeur freelance basé en France, travaillant en full remote. Le studio conçoit, développe et livre des projets web et logiciels de bout en bout — conception, développement, hébergement, sécurité et suivi post-lancement — sans qu'aucune compétence technique ne soit requise côté client.
+
+## Services
+
+- Sites Web : sites vitrine et e-commerce pour PME, UI/UX et identité visuelle sur mesure, responsive, optimisés SEO dès le départ.
+- Applications sur mesure : outils métier et logiciels internes, portails clients, dashboards, prise de rendez-vous, code TypeScript maintenable.
+- Agents IA & Automatisation : agents qui exécutent de vraies tâches (pas juste du chat), connectés au CRM/boîte mail/outils du client, sécurisés et supervisés. Les projets d'agents IA plus poussés sont réalisés avec [agentic-factory.fr](https://agentic-factory.fr), le studio IA dédié.
+
+## Méthode de travail
+
+1. Découverte — cadrage de l'activité, des utilisateurs et de ce à quoi ressemble la réussite.
+2. Conception & Développement — maquettes validées par le client, puis développement en React et TypeScript.
+3. Mise en ligne — déploiement sur une infrastructure sécurisée et rapide.
+4. Croissance — SEO, optimisation des performances et suivi continu après la mise en ligne.
+
+## Pages
+
+- [Accueil](https://busshidev.fr/) : présentation, services, avis clients, FAQ, contact.
+- [Contact](https://busshidev.fr/contact) : réserver un appel gratuit de 30 minutes, discuter en direct, ou envoyer un email.
+- [Mentions légales](https://busshidev.fr/mentions-legales)
+- [CGU](https://busshidev.fr/cgu)
+
+Une version anglaise du site est disponible sous [/en](https://busshidev.fr/en).
+
+## Contact
+
+- Email : contact@busshidev.fr
+- Réserver un appel : https://calendly.com/busshidev/meeting
+- LinkedIn et Malt : liens disponibles dans le pied de page du site.

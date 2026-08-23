@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["fr", "en"],
+    defaultLocale: "fr",
   },
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
     styledComponents: true,
   },
