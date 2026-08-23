@@ -21,7 +21,7 @@ const Layout = ({ children }: Props) => {
     <App style={{ color: theme.fontColor, background: theme.background }}>
       <Metadata />
       <TopBar isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />
-      <Wrapper isMenuOpened={isMenuOpened}>
+      <Wrapper $isMenuOpened={isMenuOpened}>
         {children}
         <Footer />
       </Wrapper>
@@ -63,8 +63,8 @@ const App = styled.div`
   transition: color, background var(--theme-transition-delay) ease;
 `;
 
-const Wrapper = styled.div<{ isMenuOpened: boolean }>`
-  display: ${(props) => (props.isMenuOpened ? "none" : "block")};
+const Wrapper = styled.div<{ $isMenuOpened: boolean }>`
+  display: ${(props) => (props.$isMenuOpened ? "none" : "block")};
 `;
 
 // const Test = styled.div`

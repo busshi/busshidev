@@ -3,30 +3,32 @@ import styled, { CSSProperties } from "styled-components";
 import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
 import { useThemeState } from "../../providers/Theme.provider";
 import { Color } from "../../types/interfaces";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { highlightedColor } = useHighlightedColorState();
   const { isDarkMode } = useThemeState();
+  const t = useTranslation();
 
   return (
-    <Container isDarkMode={isDarkMode}>
+    <Container $isDarkMode={isDarkMode}>
       <Link href="/contact">
-        <Button highlightedColor={highlightedColor} style={{ ...style }}>
-          Get a Demo
+        <Button $highlightedColor={highlightedColor} style={{ ...style }}>
+          {t.nav.bookCall}
         </Button>
       </Link>
     </Container>
   );
 };
 
-const Container = styled.div<{ isDarkMode: boolean }>`
+const Container = styled.div<{ $isDarkMode: boolean }>`
   height: 3rem;
   a {
-    color: ${(props) => (props.isDarkMode ? "white" : "black")};
+    color: ${(props) => (props.$isDarkMode ? "white" : "black")};
   }
 `;
 
-const Button = styled.div<{ highlightedColor: Color }>`
+const Button = styled.div<{ $highlightedColor: Color }>`
   cursor: pointer;
   width: 15rem;
   z-index: 0;
@@ -39,7 +41,7 @@ const Button = styled.div<{ highlightedColor: Color }>`
 
   font-weight: var(--font-weight);
 
-  box-shadow: ${(props) => `0px 0px 30px 0px ${props.highlightedColor.start}`};
+  box-shadow: ${(props) => `0px 0px 30px 0px ${props.$highlightedColor.start}`};
 
   &:before {
     content: "";
@@ -49,7 +51,7 @@ const Button = styled.div<{ highlightedColor: Color }>`
     padding: 1px;
     border-radius: var(--border-radius);
     background: ${(props) =>
-      `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
+      `linear-gradient(180deg, ${props.$highlightedColor.start}, ${props.$highlightedColor.stop})`};
     -webkit-mask: linear-gradient(var(--main-light-color) 0 0) content-box,
       linear-gradient(var(--main-light-color) 0 0);
     mask: linear-gradient(var(--main-light-color) 0 0) content-box,
@@ -60,7 +62,7 @@ const Button = styled.div<{ highlightedColor: Color }>`
 
   &:hover {
     background: ${(props) =>
-      `linear-gradient(180deg, ${props.highlightedColor.start}, ${props.highlightedColor.stop})`};
+      `linear-gradient(180deg, ${props.$highlightedColor.start}, ${props.$highlightedColor.stop})`};
   }
 `;
 

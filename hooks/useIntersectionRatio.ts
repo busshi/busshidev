@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { buildThresholdList } from "../lib/observerIntersection";
 
 /**
@@ -22,7 +22,7 @@ export default function useIntersectionRatio<Element extends HTMLElement>(
   threshold?: number | number[]
 ): [number, RefObject<Element | null>] {
   const [intersectionRatio, setIntersectionRatio] = useState<number>(0);
-  const ref = createRef<Element>();
+  const ref = useRef<Element>(null);
 
   useEffect(() => {
     const cachedRef = ref.current;

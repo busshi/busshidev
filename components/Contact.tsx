@@ -3,36 +3,57 @@ import styled from "styled-components";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { SiGooglemeet } from "react-icons/si";
 import { HiOutlineMail } from "react-icons/hi";
-import { CONTACTS, EMAIL } from "../lib/constants";
+import { CONTACTS, COLORS, EMAIL } from "../lib/constants";
 import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import { useThemeState } from "../providers/Theme.provider";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 import MaltIcon from "./svg/Malt";
+import { useTranslation } from "../hooks/useTranslation";
+import { Color } from "../types/interfaces";
 
 const SpinningGlobe = dynamic(() => import("./getADemo/SpinningGlobe"), {
   ssr: false,
 });
 
 const Item = ({
-  className,
+  area,
+  color,
   onClick,
-  children,
+  href,
+  icon,
+  label,
 }: {
-  className?: string;
+  area: "chat" | "meet" | "email" | "malt";
+  color: Color;
   onClick?: () => void;
-  children: ReactNode;
+  href?: string;
+  icon: ReactNode;
+  label: string;
 }) => {
-  const { theme } = useThemeState();
+  const { theme, isDarkMode } = useThemeState();
+
+  const content = (
+    <>
+      <IconCircle
+        style={{
+          background: `linear-gradient(135deg, ${color.start}, ${color.stop})`,
+          borderColor: "transparent",
+        }}
+      >
+        {icon}
+      </IconCircle>
+      <Text style={{ color: theme.fontColor }}>{label}</Text>
+    </>
+  );
 
   return (
     <ItemWrapper
-      className={className ?? ""}
-      style={{ backgroundColor: theme.background }}
-      hoverColor={theme.mainColorInverted}
-      onClick={onClick && onClick}
+      $isDarkMode={isDarkMode}
+      style={{ background: theme.cardBackground, gridArea: area }}
+      onClick={onClick}
     >
-      {children}
+      {href ? <Link href={href}>{content}</Link> : content}
     </ItemWrapper>
   );
 };
@@ -44,149 +65,203 @@ export const Contact = ({
 }) => {
   const { setIsChatVisible } = useChatVisibleState();
   const { theme } = useThemeState();
+  const t = useTranslation();
+  // Each icon just takes the page's own text color, same as the Offer
+  // cards' icons sitting on their own gradient circles.
+  const iconColor = theme.fontColor;
 
   return (
     <Container style={{ color: theme.middleFontColor }}>
-      <Title>CONNECT FROM EVERYWHERE</Title>
+      <Title style={{ color: theme.fontColor }}>{t.contact.title}</Title>
       <SpinningGlobe />
-      <ItemsWrapper>
-        <Item onClick={() => setIsChatVisible(true)}>
-          <TfiHeadphoneAlt size={80} />
-          <Text>Chat with me</Text>
-        </Item>
-        <Item onClick={() => setIsCalendlyVisible(true)}>
-          <SiGooglemeet size={80} />
-          <Text>Book a meeting</Text>
-        </Item>
-        {/* Laptop Items with big icon size */}
-        <Item className="laptop">
-          <Link href={`mailto:${EMAIL}`}>
-            <HiOutlineMail size={40} />
-            <Text>Send an email</Text>
-          </Link>
-        </Item>
-        <Item className="laptop">
-          <Link href={CONTACTS[1].url}>
-            <MaltIcon
-              color={theme.middleFontColor}
-              backgroundColor={theme.backgroundColor}
-              size="40px"
-            />
-            <Text>Work together</Text>
-          </Link>
-        </Item>
-        {/* Mobile Items with small icon size */}
-        <Item className="mobile">
-          <Link href={`mailto:${EMAIL}`}>
-            <HiOutlineMail size={24} />
-            <Text>Send an email</Text>
-          </Link>
-        </Item>
-        <Item className="mobile">
-          <Link href={CONTACTS[1].url}>
-            <MaltIcon
-              color={theme.middleFontColor}
-              backgroundColor={theme.backgroundColor}
-              size="25px"
-            />
-            <Text>Work together</Text>
-          </Link>
-        </Item>
-      </ItemsWrapper>
+      <CardStage>
+        <ItemsWrapper>
+          <Item
+            area="chat"
+            color={COLORS[0]}
+            onClick={() => setIsChatVisible(true)}
+            icon={<TfiHeadphoneAlt size={22} color={iconColor} />}
+            label={t.contact.chat}
+          />
+          <Item
+            area="meet"
+            color={COLORS[1]}
+            onClick={() => setIsCalendlyVisible(true)}
+            icon={<SiGooglemeet size={22} color={iconColor} />}
+            label={t.contact.meet}
+          />
+          <Item
+            area="email"
+            color={COLORS[2]}
+            href={`mailto:${EMAIL}`}
+            icon={<HiOutlineMail size={22} color={iconColor} />}
+            label={t.contact.email}
+          />
+          <Item
+            area="malt"
+            color={COLORS[3]}
+            href={CONTACTS[1].url}
+            icon={
+              <MaltIcon
+                color={iconColor}
+                backgroundColor="transparent"
+                size="22px"
+              />
+            }
+            label={t.contact.workTogether}
+          />
+        </ItemsWrapper>
+      </CardStage>
     </Container>
   );
 };
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
+  /* Unlike the homepage sections, Contact is the only thing on this page
+     before the footer — the usual --section-gap bottom margin would just
+     reserve dead space instead of letting the globe reach it. */
+  margin: 0 1.5rem 0 1.5rem;
+
+  @media (max-width: 768px) {
+    margin: 0 1rem var(--section-gap) 1rem;
+  }
 `;
 
 const Title = styled.div`
   line-height: var(--line-height);
   font-weight: var(--font-weight);
   letter-spacing: 0.5rem;
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem;
   text-align: center;
+  position: relative;
   z-index: 2;
 
-  font-size: 5rem;
+  font-size: 3rem;
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    letter-spacing: 0.25rem;
+  }
+`;
+
+const CardStage = styled.div`
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 26rem;
+  /* Same trap as ItemsWrapper below: this box spans the whole card region
+     above the globe, so its own empty background — not just ItemsWrapper's
+     — has to let pointer events fall through to the canvas. */
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    min-height: 20rem;
   }
 `;
 
 const ItemsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* The grid box spans the whole stage, including the empty middle gutter
+     where the globe should stay interactive — without this, that gutter
+     silently swallows mouse events meant for the canvas underneath. */
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 14rem 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:
+    "chat . meet"
+    "email . malt";
+  align-items: center;
+  align-content: center;
+  column-gap: 1.5rem;
+  row-gap: 2rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 
-  gap: 3rem;
-  margin-top: 8rem;
   @media (max-width: 768px) {
-    gap: 0;
-    margin-top: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-template-areas:
+      "chat meet"
+      "email malt";
+    gap: 1rem;
+    max-width: none;
+    padding: 0;
   }
 `;
 
-export const ItemWrapper = styled.div<{ hoverColor: string }>`
+const ItemWrapper = styled.div<{ $isDarkMode: boolean }>`
   cursor: pointer;
-  margin: 2rem;
-  padding: 2rem;
-  width: 8rem;
-  height: 8rem;
+  pointer-events: auto;
+  padding: 0.75rem 1.5rem 0.75rem 0.75rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  z-index: 2;
-  opacity: 0.8;
+  gap: 0.9rem;
+  text-align: left;
+  border-radius: 99999px;
+  transition: transform var(--transition-delay) ease,
+    box-shadow var(--transition-delay) ease;
+  /* The fill barely differs from the page/globe behind it — dark mode gets
+     away with that since the hover glow does the work, but on light the
+     cards need a border + resting shadow just to read as cards instead of
+     blending into the white behind them. */
+  border: 1px solid
+    ${(props) =>
+      props.$isDarkMode ? "rgba(255, 255, 255, 0.06)" : "rgba(15, 23, 42, 0.08)"};
+  box-shadow: ${(props) =>
+    props.$isDarkMode ? "none" : "0 0.4rem 1.1rem rgba(15, 23, 42, 0.1)"};
 
-  text-align: center;
-
-  border: 1px solid transparent;
-  box-shadow: ${(props) => `0px 0px 1rem 0px ${props.hoverColor}`};
-  border-radius: var(--border-radius);
-
-  @media (max-width: 768px) {
-    margin: 1.7rem;
-    width: 4rem;
-    height: 4rem;
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: ${(props) =>
+      props.$isDarkMode
+        ? "0 0.75rem 1.5rem rgba(0, 0, 0, 0.15)"
+        : "0 0.75rem 1.75rem rgba(15, 23, 42, 0.16)"};
   }
 
   a {
-    color: var(--middle-font-color);
-  }
-
-  :hover {
-    opacity: 1;
-    box-shadow: ${(props) => `0px 0px 3rem 0px ${props.hoverColor}`};
-  }
-
-  transition: box-shadow var(--transition-delay) ease;
-  transition: background-color var(--long-transition-delay) ease;
-
-  &.mobile {
-    display: none;
-    @media (max-width: 768px) {
-      display: flex;
-    }
-  }
-
-  &.laptop {
     display: flex;
-    @media (max-width: 768px) {
-      display: none;
-    }
+    flex-direction: row;
+    align-items: center;
+    gap: 0.9rem;
+    color: inherit;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+    gap: 0.65rem;
+  }
+`;
+
+const IconCircle = styled.div`
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 99999px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 2.25rem;
+    height: 2.25rem;
   }
 `;
 
 const Text = styled.div`
-  margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: var(--middle-font-weight);
+  line-height: var(--line-height);
+  white-space: nowrap;
 
   @media (max-width: 768px) {
-    margin-top: 0.5rem;
     font-size: 0.8rem;
   }
 `;

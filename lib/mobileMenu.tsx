@@ -8,17 +8,19 @@ import { useChatVisibleState } from "../providers/ChatVisible.provider";
 import { useThemeState } from "../providers/Theme.provider";
 import { EMAIL } from "./constants";
 import { useRouter } from "next/router";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
   const { setIsChatVisible } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
   const router = useRouter();
+  const t = useTranslation();
 
   return [
     {
       id: "chat",
-      text: "Chat with me",
+      text: t.contact.chat,
       icon: <TfiHeadphoneAlt size={16} color="var(--middle-font-color)" />,
       onClick: () => {
         setIsChatVisible(true);
@@ -27,7 +29,7 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
     },
     {
       id: "meet",
-      text: "Book a meeting",
+      text: t.contact.meet,
       icon: <SiGooglemeet size={16} color="var(--middle-font-color)" />,
       onClick: () => {
         setMenuOpened(false);
@@ -38,11 +40,11 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
     },
     {
       id: "email",
-      text: "Send an email",
+      text: t.contact.email,
       icon: (
         <Item href={`mailto:${EMAIL}`}>
           <HiOutlineMail size={16} color="var(--middle-font-color)" />
-          <Text hoverColor={theme.mainColorInverted}>Send an email</Text>
+          <Text $hoverColor={theme.mainColorInverted}>{t.contact.email}</Text>
         </Item>
       ),
       onClick: () => {
@@ -58,10 +60,10 @@ const Item = styled(Link)`
   gap: 1rem;
 `;
 
-const Text = styled.div<{ hoverColor: string }>`
+const Text = styled.div<{ $hoverColor: string }>`
   color: var(--middle-font-color);
 
-  :hover {
-    color: ${(props) => props.hoverColor};
+  &:hover {
+    color: ${(props) => props.$hoverColor};
   }
 `;

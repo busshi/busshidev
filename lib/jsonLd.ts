@@ -1,16 +1,16 @@
-import { BLOG_URL, CONTACTS, EMAIL, OPENSOURCES, SITE_URL } from "./constants";
+import { BLOG_URL, EMAIL, SITE_URL } from "./constants";
+import { getT, Lang } from "./i18n";
 
 /**
  * jsonLd Metadata
  * SEO - google rich snippet for website
  */
 
-export const jsonLdWebsite = {
+export const buildJsonLdWebsite = (lang: Lang) => ({
   "@context": "http://schema.org",
   "@type": "WebSite",
   name: "BusshiDev",
-  alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
-
+  alternateName: getT(lang).meta.title,
   url: `${SITE_URL}`,
   logo: `${SITE_URL}/banner.png`,
   sameAs: [
@@ -19,7 +19,7 @@ export const jsonLdWebsite = {
     "https://github.com/busshi",
     `${BLOG_URL}`,
   ],
-};
+});
 
 /**
  * jsonLd Metadata
@@ -40,21 +40,22 @@ export const jsonLdLogo = {
  * SEO - google rich snippet for organization
  */
 
-export const jsonLdOrganization = {
+export const buildJsonLdOrganization = (lang: Lang) => ({
   "@context": "http://schema.org",
   "@type": "Organization",
   name: "BusshiDev",
-  alternateName: "BusshiDev - Design. Develop. Deploy. Boost",
+  alternateName: getT(lang).meta.title,
+  description: getT(lang).meta.description,
   url: `${SITE_URL}`,
   logo: `${SITE_URL}/banner.png`,
-  slogan: "Design. Develop. Deploy. Boost.",
+  slogan: `${getT(lang).hero.headlineBefore} ${getT(lang).hero.headlineAccent}.`,
   sameAs: [
     "https://www.malt.fr/profile/alexandredubar",
     "https://www.linkedin.com/in/alexandre-dubar/",
     "https://github.com/busshi",
     `${BLOG_URL}`,
   ],
-};
+});
 
 /**
  * jsonLd Metadata
@@ -80,25 +81,15 @@ export const jsonLdOrganizationRating = {
  * SEO - google rich snippet for FAQ
  */
 
-export const jsonLdFAQ = {
+export const buildJsonLdFAQ = (lang: Lang) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Open source contributions",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `<ul><li><a href="${OPENSOURCES[0].url}">${OPENSOURCES[0].name}</li><li><a href="${OPENSOURCES[1].url}">${OPENSOURCES[1].name}</a></li><li><a href="${OPENSOURCES[2].url}">${OPENSOURCES[2].name}</a></li></ul>`,
-      },
+  mainEntity: getT(lang).faq.items.map(({ question, answer }) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
     },
-    {
-      "@type": "Question",
-      name: "Contacts",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `<ul><li><a href="${CONTACTS[0].url}">${CONTACTS[0].name}</li><li><a href="${CONTACTS[1].url}">${CONTACTS[1].name}</a></li><li><a href="${CONTACTS[2].url}">${CONTACTS[2].name}</a></li></ul>`,
-      },
-    },
-  ],
-};
+  })),
+});

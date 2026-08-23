@@ -8,8 +8,8 @@ const JuliaAvatar = () => (
     y="0px"
     width="80px"
     height="80px"
-    viewBox="0 0 80 80"
-    enableBackground="new 0 0 80 80"
+    viewBox="0 0 50 50"
+    enableBackground="new 0 0 50 50"
     xmlSpace="preserve"
   >
     <circle cx="25" cy="25" r="25" fill="url(#pattern1)" />

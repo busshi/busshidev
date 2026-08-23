@@ -1,46 +1,37 @@
 import styled from "styled-components";
+import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
 import { useThemeState } from "../providers/Theme.provider";
 
-const DarkModeSwitcher = ({ replicated }: { replicated: boolean }) => {
-  const { isDarkMode, setIsDarkMode, isExampleDark, setIsExampleDark, theme } =
-    useThemeState();
+const DarkModeSwitcher = () => {
+  const { isDarkMode, setIsDarkMode, theme } = useThemeState();
 
   return (
     <Button
-      onClick={() => {
-        !replicated
-          ? setIsDarkMode(!isDarkMode)
-          : setIsExampleDark(!isExampleDark);
-      }}
-      style={{
-        background: theme.mainColor,
-        border: `1px solid ${theme.mainColorInverted}`,
-      }}
+      type="button"
+      onClick={() => setIsDarkMode(!isDarkMode)}
+      style={{ color: theme.mainColorInverted }}
+      aria-label={
+        isDarkMode ? "Activer le mode clair" : "Activer le mode sombre"
+      }
     >
-      <Dot
-        style={{
-          background: theme.mainColorInverted,
-          border: `1px solid ${theme.mainColor}`,
-        }}
-      />
+      {isDarkMode ? <HiOutlineSun size={20} /> : <HiOutlineMoon size={20} />}
     </Button>
   );
 };
 
-const Button = styled.div`
+const Button = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 99999px;
-`;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity var(--transition-delay) ease;
 
-const Dot = styled.div`
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 99999px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 export default DarkModeSwitcher;
