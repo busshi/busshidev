@@ -28,13 +28,15 @@ export const Metadata: React.FC = () => {
       <meta name="color-scheme" content="dark light" />
       <meta property="og:image" content={`${SITE_URL}/banner.png`} />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:type" content="image" />
+      <meta property="og:type" content="website" />
       <meta property="og:image:width" content="2220" />
       <meta property="og:image:height" content="456" />
       <meta property="og:url" content={`${SITE_URL}${path}`} />
       <meta property="og:title" content={t.meta.title} />
+      <meta property="og:description" content={t.meta.description} />
       <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_US"} />
 
+      <link rel="canonical" href={`${SITE_URL}${path}`} />
       <link rel="alternate" hrefLang="fr" href={`${SITE_URL}${path}`} />
       <link rel="alternate" hrefLang="en" href={`${SITE_URL}/en${path}`} />
       <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${path}`} />

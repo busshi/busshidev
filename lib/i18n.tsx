@@ -84,9 +84,9 @@ export interface Translation {
 export const translations: Record<Lang, Translation> = {
   fr: {
     meta: {
-      title: "BusshiDev - Sites Web, Logiciels sur Mesure & Agents IA pour PME",
+      title: "BusshiDev - Sites Web, Logiciels & Agents IA pour PME",
       description:
-        "BusshiDev conçoit des sites web, des applications métier sur mesure et des automatisations IA pour PME en croissance. Recommandé par des fondateurs de Station F. Score Google PageSpeed 100/100.",
+        "BusshiDev conçoit sites web, applications métier sur mesure et automatisations IA pour PME en croissance. Recommandé par des fondateurs de Station F.",
       keywords:
         "BusshiDev, agence web, logiciel sur mesure, application métier, agents IA, automatisation, site PME, ReactJS, NextJS, SEO",
     },
@@ -245,7 +245,7 @@ export const translations: Record<Lang, Translation> = {
     meta: {
       title: "BusshiDev - Websites, Custom Software & AI Agents for SMEs",
       description:
-        "BusshiDev builds websites, custom business applications and AI-powered automations for growing SMEs. Trusted by Station F founders. 100/100 Google PageSpeed score.",
+        "BusshiDev builds websites, custom business applications and AI-powered automations for growing SMEs. Trusted by Station F founders.",
       keywords:
         "BusshiDev, web agency, custom software, business applications, AI agents, automation, SME websites, ReactJS, NextJS, SEO",
     },
