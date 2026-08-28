@@ -39,7 +39,7 @@ const MentionsLegales: NextPage = () => {
                   individuelle&quot;)
                 </li>
                 <li>SIREN number: 911 127 835</li>
-                <li>Intra-community VAT number: FR 5091112783</li>
+                <li>Intra-community VAT number: FR 50911127835</li>
                 <li>
                   Email: <Link href={`mailto:${EMAIL}`}>{EMAIL}</Link>
                 </li>
@@ -140,7 +140,7 @@ const MentionsLegales: NextPage = () => {
                 </li>
                 <li>Statut juridique : Entreprise individuelle</li>
                 <li>Numéro SIREN : 911 127 835</li>
-                <li>Numéro de TVA intracommunautaire : FR 5091112783</li>
+                <li>Numéro de TVA intracommunautaire : FR 50911127835</li>
                 <li>
                   Email : <Link href={`mailto:${EMAIL}`}>{EMAIL}</Link>
                 </li>
