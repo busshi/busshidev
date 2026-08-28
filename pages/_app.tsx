@@ -9,6 +9,7 @@ import "./styles/app.css";
 import DarkModeProvider from "../providers/Theme.provider";
 import Layout from "../components/hoc/Layout";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
                 {/* Vercel Analytics */}
                 <Analytics />
+                <SpeedInsights />
 
                 {/* Calendly integration */}
                 <Script src="https://assets.calendly.com/assets/external/widget.js" />
