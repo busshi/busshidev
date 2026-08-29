@@ -9,7 +9,6 @@ import { buildOffers } from "../lib/offers";
 import { BuildContactsMenu } from "../lib/mobileMenu";
 import { useThemeState } from "../providers/Theme.provider";
 import { useHighlightedColorState } from "../providers/HighlightedColor.provider";
-import DarkModeSwitcher from "./DarkModeSwitcher";
 import { useTranslation } from "../hooks/useTranslation";
 import { Lang } from "../lib/i18n";
 
@@ -143,11 +142,6 @@ export const Menu = ({
           </SubMenuInner>
         </SubMenuGrid>
       </MenuItem>
-
-      <DarkModeRow>
-        <ItemLabel>{t.nav.darkMode}</ItemLabel>
-        <DarkModeSwitcher />
-      </DarkModeRow>
     </Container>
   );
 };
@@ -258,15 +252,6 @@ const SubMenuItem = styled.div<{ $isDarkMode: boolean; $hoverColor?: string }>`
         ? "var(--main-light-color)"
         : "var(--main-dark-color)"};
   }
-`;
-
-const DarkModeRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 4px;
-  font-size: 1rem;
-  font-weight: var(--middle-font-weight);
 `;
 
 export default Menu;

@@ -14,7 +14,6 @@ import { RxCross2 } from "react-icons/rx";
 import { useThemeState } from "../providers/Theme.provider";
 import Logo from "./svg/Logo";
 import { useRouter } from "next/router";
-import DarkModeSwitcher from "./DarkModeSwitcher";
 import { useTranslation } from "../hooks/useTranslation";
 
 const Button = ({
@@ -90,9 +89,6 @@ export const TopBar = ({
           >
             {t.nav.faq}
           </Button>
-          <SwitcherBox>
-            <DarkModeSwitcher />
-          </SwitcherBox>
           <Link href={isHome ? "/contact" : "/"}>
             <DemoButton
               color={theme.background}
@@ -152,12 +148,6 @@ const LaptopButtons = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`;
-
-const SwitcherBox = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 0.25rem;
 `;
 
 const ButtonWrapper = styled.div<{ color: string; $hoverColor: string }>`

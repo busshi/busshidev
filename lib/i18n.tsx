@@ -28,7 +28,6 @@ export interface Translation {
     faq: string;
     bookCall: string;
     home: string;
-    darkMode: string;
   };
   hero: {
     eyebrow: string;
@@ -96,7 +95,6 @@ export const translations: Record<Lang, Translation> = {
       faq: "FAQ",
       bookCall: "Réserver un appel",
       home: "Accueil",
-      darkMode: "Mode sombre",
     },
     hero: {
       eyebrow: "AGENCE WEB & LOGICIELS POUR ENTREPRISES EN CROISSANCE",
@@ -255,7 +253,6 @@ export const translations: Record<Lang, Translation> = {
       faq: "FAQ",
       bookCall: "Book a Call",
       home: "Home",
-      darkMode: "Dark mode",
     },
     hero: {
       eyebrow: "WEBSITE & SOFTWARE STUDIO FOR GROWING BUSINESSES",
