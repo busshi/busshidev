@@ -9,6 +9,59 @@ import GetADemo from "./getADemo/GetADemo";
 import { useTranslation } from "../hooks/useTranslation";
 import { Lang } from "../lib/i18n";
 import { linkifyAgenticFactory } from "../lib/linkify";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { Color } from "../types/interfaces";
+
+type OfferItem = ReturnType<typeof buildOffers>[number];
+
+const OfferCard = ({
+  offer,
+  color,
+  cardBackground,
+  fontColor,
+  secondaryFontColor,
+}: {
+  offer: OfferItem;
+  color: Color;
+  cardBackground: string;
+  fontColor: string;
+  secondaryFontColor: string;
+}) => {
+  // Desktop reveals the neon bar on hover (see Card/NeonBar below). Mobile
+  // has no hover, so it's driven by scroll position instead: the bar
+  // grows in once the card is prominently in view, and recedes the same
+  // way once it isn't anymore.
+  const [isVisible, ref] = useIntersectionObserver<HTMLDivElement>(0.5);
+
+  return (
+    <Card ref={ref} id={offer.id} style={{ background: cardBackground }}>
+      <NeonBar
+        $active={isVisible}
+        style={{
+          background: `linear-gradient(90deg, ${color.start}, ${color.stop})`,
+          boxShadow: `0 0 0.75rem ${color.start}, 0 0 1.25rem ${color.stop}`,
+        }}
+      />
+      <IconCircle
+        style={{
+          background: `linear-gradient(135deg, ${color.start}, ${color.stop})`,
+        }}
+      >
+        {offer.icon}
+      </IconCircle>
+      <Title style={{ color: fontColor }}>{offer.title}</Title>
+      <Tagline style={{ color: secondaryFontColor }}>{offer.tagline}</Tagline>
+      <Bullets>
+        {offer.bullets.map((bullet) => (
+          <Bullet key={bullet} style={{ color: fontColor }}>
+            <FaCheck size={12} color={color.start} />
+            <span>{linkifyAgenticFactory(bullet)}</span>
+          </Bullet>
+        ))}
+      </Bullets>
+    </Card>
+  );
+};
 
 export const Offer = () => {
   const { theme } = useThemeState();
@@ -25,42 +78,16 @@ export const Offer = () => {
         {t.offers.sectionTitle}
       </SectionTitle>
       <Grid>
-        {offers.map((offer, index) => {
-          const color = COLORS[index % COLORS.length];
-          return (
-            <Card
-              key={offer.id}
-              id={offer.id}
-              style={{ background: theme.cardBackground }}
-            >
-              <NeonBar
-                style={{
-                  background: `linear-gradient(90deg, ${color.start}, ${color.stop})`,
-                  boxShadow: `0 0 0.75rem ${color.start}, 0 0 1.25rem ${color.stop}`,
-                }}
-              />
-              <IconCircle
-                style={{
-                  background: `linear-gradient(135deg, ${color.start}, ${color.stop})`,
-                }}
-              >
-                {offer.icon}
-              </IconCircle>
-              <Title style={{ color: theme.fontColor }}>{offer.title}</Title>
-              <Tagline style={{ color: theme.secondaryFontColor }}>
-                {offer.tagline}
-              </Tagline>
-              <Bullets>
-                {offer.bullets.map((bullet) => (
-                  <Bullet key={bullet} style={{ color: theme.fontColor }}>
-                    <FaCheck size={12} color={color.start} />
-                    <span>{linkifyAgenticFactory(bullet)}</span>
-                  </Bullet>
-                ))}
-              </Bullets>
-            </Card>
-          );
-        })}
+        {offers.map((offer, index) => (
+          <OfferCard
+            key={offer.id}
+            offer={offer}
+            color={COLORS[index % COLORS.length]}
+            cardBackground={theme.cardBackground}
+            fontColor={theme.fontColor}
+            secondaryFontColor={theme.secondaryFontColor}
+          />
+        ))}
       </Grid>
       <Footer>
         <FooterText style={{ color: theme.secondaryFontColor }}>
@@ -129,10 +156,11 @@ const Card = styled.div`
 `;
 
 // Neon accent strip along the top edge, in the card's own brand color.
-// Hidden at rest (scaleX(0), anchored left); on hover it grows left-to-
-// right, and shrinks back the same way when the card is no longer
-// hovered — plain CSS transition, no extra JS needed for the reverse.
-const NeonBar = styled.div`
+// Hidden at rest (scaleX(0), anchored left); grows in left-to-right and
+// recedes the same way — plain CSS transition, no extra JS needed for the
+// reverse. Desktop triggers it on hover; mobile has no hover, so it's
+// driven by the $active prop instead (scroll position — see OfferCard).
+const NeonBar = styled.div<{ $active: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -148,7 +176,7 @@ const NeonBar = styled.div`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    transform: ${(props) => (props.$active ? "scaleX(1)" : "scaleX(0)")};
   }
 `;
 

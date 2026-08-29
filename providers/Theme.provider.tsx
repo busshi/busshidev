@@ -1,5 +1,4 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
-// import { useIsDarkMode } from "../hooks/useIsDarkMode";
 
 interface Theme {
   mainColor: string;
@@ -16,9 +15,7 @@ interface Theme {
 
 interface ThemeContextType {
   theme: Theme;
-  setTheme: (value: any) => void;
   isDarkMode: boolean;
-  setIsDarkMode: (value: boolean) => void;
 }
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
@@ -54,51 +51,25 @@ interface Props {
   children: ReactNode;
 }
 
-const THEME_STORAGE_KEY = "busshidev-theme";
-
 export const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState(colors.dark);
-  const [isDarkMode, setIsDarkModeState] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  /**
-   * Follow the system's color scheme by default. If the user explicitly
-   * toggles the switcher, their choice is persisted and takes over from
-   * then on, even if the system preference changes afterwards.
-   */
+  // Always follows the system's color scheme — there's no manual switcher,
+  // so this is the only source of truth, and it stays live if the user
+  // changes their OS setting while the page is open.
   useEffect(() => {
-    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (stored === "dark" || stored === "light") {
-      setIsDarkModeState(stored === "dark");
-      return;
-    }
-
     const media = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDarkModeState(media.matches);
+    setIsDarkMode(media.matches);
 
-    const listener = (event: MediaQueryListEvent) => {
-      if (!window.localStorage.getItem(THEME_STORAGE_KEY)) {
-        setIsDarkModeState(event.matches);
-      }
-    };
+    const listener = (event: MediaQueryListEvent) => setIsDarkMode(event.matches);
     media.addEventListener("change", listener);
     return () => media.removeEventListener("change", listener);
   }, []);
 
-  const setIsDarkMode = (value: boolean) => {
-    window.localStorage.setItem(THEME_STORAGE_KEY, value ? "dark" : "light");
-    setIsDarkModeState(value);
-  };
-
   const value = {
-    theme,
-    setTheme,
+    theme: isDarkMode ? colors.dark : colors.light,
     isDarkMode,
-    setIsDarkMode,
   };
-
-  useEffect(() => {
-    setTheme(isDarkMode ? colors.dark : colors.light);
-  }, [isDarkMode]);
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
