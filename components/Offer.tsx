@@ -33,6 +33,12 @@ export const Offer = () => {
               id={offer.id}
               style={{ background: theme.cardBackground }}
             >
+              <NeonBar
+                style={{
+                  background: `linear-gradient(90deg, ${color.start}, ${color.stop})`,
+                  boxShadow: `0 0 0.75rem ${color.start}, 0 0 1.25rem ${color.stop}`,
+                }}
+              />
               <IconCircle
                 style={{
                   background: `linear-gradient(135deg, ${color.start}, ${color.stop})`,
@@ -95,6 +101,8 @@ const Grid = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -117,6 +125,30 @@ const Card = styled.div`
       transform: none;
       box-shadow: none;
     }
+  }
+`;
+
+// Neon accent strip along the top edge, in the card's own brand color.
+// Hidden at rest (scaleX(0), anchored left); on hover it grows left-to-
+// right, and shrinks back the same way when the card is no longer
+// hovered — plain CSS transition, no extra JS needed for the reverse.
+const NeonBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.2rem;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  pointer-events: none;
+
+  ${Card}:hover & {
+    transform: scaleX(1);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
