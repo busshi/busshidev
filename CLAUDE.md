@@ -221,6 +221,8 @@ Never commit changes unless explicitly requested.
 
 Never push changes to a remote repository.
 
+Never push directly to `main`/`master` under any circumstances, even if explicitly requested. Work happens on `dev` (or a feature branch); changes reach `main`/`master` only via a pull request.
+
 Never reset, revert, delete or overwrite existing user changes without explicit permission.
 
 Keep changes focused on the requested task.
