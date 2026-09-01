@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { GOOGLE_SITE_VERIFICATION, SITE_URL } from "../lib/constants";
 import { getT, Lang } from "../lib/i18n";
 import {
+  buildJsonLdBreadcrumb,
   buildJsonLdFAQ,
   jsonLdLogo,
   buildJsonLdOrganization,
@@ -15,6 +16,7 @@ export const Metadata: React.FC = () => {
   const lang = (locale as Lang) || "fr";
   const t = getT(lang);
   const path = asPath === "/" ? "" : asPath;
+  const breadcrumb = buildJsonLdBreadcrumb(lang, path);
 
   return (
     <Head>
@@ -89,6 +91,17 @@ export const Metadata: React.FC = () => {
           __html: JSON.stringify(buildJsonLdFAQ(lang)),
         }}
       />
+
+      {/* Breadcrumb rich snippet — skipped on the homepage, where a
+          one-item trail isn't meaningful */}
+      {breadcrumb && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumb),
+          }}
+        />
+      )}
     </Head>
   );
 };
