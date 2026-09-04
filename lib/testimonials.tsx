@@ -7,7 +7,7 @@ export const TESTIMONIALS = [
   {
     id: "first",
     author: "Quentin Chantelot",
-    url: "https://zest.email",
+    url: "",
     company: "Zest",
     logo: null,
     job: "Founder & CTO",
@@ -39,7 +39,7 @@ export const TESTIMONIALS = [
   {
     id: "third",
     author: "Quentin Chantelot",
-    url: "https://notice.studio",
+    url: "",
     company: "Notice",
     logo: "/logos/notice.jpeg",
     job: "Founder & CTO",
@@ -55,7 +55,7 @@ export const TESTIMONIALS = [
   {
     id: "fourth",
     author: "Quentin Chantelot",
-    url: "https://notice.studio",
+    url: "",
     company: "Notice",
     logo: "/logos/notice.jpeg",
     job: "Founder & CTO",
