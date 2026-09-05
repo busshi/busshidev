@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import styled, { keyframes } from "styled-components";
 import { TESTIMONIALS } from "../lib/testimonials";
@@ -30,7 +31,14 @@ const TestimonialCard = ({
   return (
     <Card style={{ backgroundColor }}>
       <Header>
-        <AvatarRing>{testimonial.svg}</AvatarRing>
+        <AvatarRing>
+          <Image
+            src={testimonial.avatar}
+            alt={testimonial.author}
+            width={96}
+            height={96}
+          />
+        </AvatarRing>
         <Names>
           <AuthorName style={{ color: theme.fontColor }}>
             {testimonial.author}
@@ -355,10 +363,12 @@ const AvatarRing = styled.div`
   width: 3rem;
   height: 3rem;
   border-radius: 99999px;
+  overflow: hidden;
 
-  svg {
+  img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 `;
 
