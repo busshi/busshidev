@@ -41,23 +41,22 @@ const theme: Theme = {
   footerBackground: "var(--footer-background)",
 };
 
-// A handful of components (logo/asset swapping, filters) branch on
-// isDarkMode directly rather than through the theme object above, so
-// this reads the value the blocking script already set on <html>
-// before hydration, instead of defaulting to true and correcting after
-// mount — matches what the browser already painted as closely as
-// React's hydration model allows.
-const getInitialIsDarkMode = () => {
-  if (typeof document === "undefined") return true;
-  return document.documentElement.dataset.theme !== "light";
-};
-
 interface Props {
   children: ReactNode;
 }
 
 export const ThemeProvider = ({ children }: Props) => {
-  const [isDarkMode, setIsDarkMode] = useState(getInitialIsDarkMode);
+  // Always starts at true, matching what the static build always
+  // renders server-side — seeding this from the data-theme attribute
+  // the blocking script sets would look tempting, but it backfires:
+  // React's hydration adopts the server-rendered DOM as-is without
+  // patching mismatched attributes, and only a genuine state change
+  // (not "already correct on mount") triggers the re-render that
+  // actually fixes them. A handful of components still branch on this
+  // boolean directly (rather than through the CSS-variable-based theme
+  // object below, which isn't affected by this) and briefly show the
+  // wrong value until the effect below corrects it.
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Always follows the system's color scheme — there's no manual switcher,
   // so this is the only source of truth, and it stays live if the user
