@@ -20,7 +20,7 @@ export const Menu = ({
   const router = useRouter();
   const [servicesOpened, setServicesOpened] = useState(true);
   const [contactOpened, setContactOpened] = useState(false);
-  const { isDarkMode, theme } = useThemeState();
+  const { theme } = useThemeState();
   const { highlightedColor } = useHighlightedColorState();
   const t = useTranslation();
   // Build offers array with icon size of 16px
@@ -38,7 +38,6 @@ export const Menu = ({
     >
       <MenuItem style={{ borderColor: theme.middleFontColor }}>
         <Item
-          $isDarkMode={isDarkMode}
           onClick={() => closeAllExcept(servicesOpened ? null : "services")}
         >
           <ItemLabel>
@@ -66,7 +65,6 @@ export const Menu = ({
                     setMenuOpened(false);
                   }}
                   $hoverColor={COLORS[index % COLORS.length].start}
-                  $isDarkMode={isDarkMode}
                 >
                   {icon}
                   {title}
@@ -79,7 +77,6 @@ export const Menu = ({
 
       <MenuItem style={{ borderColor: theme.middleFontColor }}>
         <Item
-          $isDarkMode={isDarkMode}
           onClick={() => {
             router.push("/#testi-title");
             setMenuOpened(false);
@@ -96,7 +93,6 @@ export const Menu = ({
 
       <MenuItem style={{ borderColor: theme.middleFontColor }}>
         <Item
-          $isDarkMode={isDarkMode}
           onClick={() => {
             router.push("/#faq");
             setMenuOpened(false);
@@ -113,7 +109,6 @@ export const Menu = ({
 
       <MenuItem style={{ borderColor: theme.middleFontColor }}>
         <Item
-          $isDarkMode={isDarkMode}
           onClick={() => closeAllExcept(contactOpened ? null : "contact")}
         >
           <ItemLabel>
@@ -134,7 +129,7 @@ export const Menu = ({
           <SubMenuInner>
             <SubMenuItems>
               {contacts.map(({ id, text, icon, onClick }) => (
-                <SubMenuItem key={id} onClick={onClick} $isDarkMode={isDarkMode}>
+                <SubMenuItem key={id} onClick={onClick}>
                   {icon} {id !== "email" && text}
                 </SubMenuItem>
               ))}
@@ -175,7 +170,7 @@ const MenuItem = styled.div`
   border-bottom: 1px solid;
 `;
 
-const Item = styled.div<{ $isDarkMode: boolean }>`
+const Item = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -189,8 +184,7 @@ const Item = styled.div<{ $isDarkMode: boolean }>`
   padding: 14px 4px;
 
   &:hover {
-    color: ${(props) =>
-      props.$isDarkMode ? "var(--main-light-color)" : "var(--main-dark-color)"};
+    color: var(--main-color-inverted);
   }
 `;
 
@@ -229,7 +223,7 @@ const SubMenuItems = styled.div`
   padding: 0.25rem 0 1.25rem 0;
 `;
 
-const SubMenuItem = styled.div<{ $isDarkMode: boolean; $hoverColor?: string }>`
+const SubMenuItem = styled.div<{ $hoverColor?: string }>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -245,12 +239,7 @@ const SubMenuItem = styled.div<{ $isDarkMode: boolean; $hoverColor?: string }>`
   }
 
   &:hover {
-    color: ${(props) =>
-      props.$hoverColor
-        ? props.$hoverColor
-        : props.$isDarkMode
-        ? "var(--main-light-color)"
-        : "var(--main-dark-color)"};
+    color: ${(props) => props.$hoverColor || "var(--main-color-inverted)"};
   }
 `;
 

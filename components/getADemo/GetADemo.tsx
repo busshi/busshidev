@@ -1,17 +1,15 @@
 import Link from "next/link";
 import styled, { CSSProperties } from "styled-components";
 import { useHighlightedColorState } from "../../providers/HighlightedColor.provider";
-import { useThemeState } from "../../providers/Theme.provider";
 import { Color } from "../../types/interfaces";
 import { useTranslation } from "../../hooks/useTranslation";
 
 export const GetADemo = ({ style }: { style: CSSProperties }) => {
   const { highlightedColor } = useHighlightedColorState();
-  const { isDarkMode } = useThemeState();
   const t = useTranslation();
 
   return (
-    <Container $isDarkMode={isDarkMode}>
+    <Container>
       <Link href="/contact">
         <Button $highlightedColor={highlightedColor} style={{ ...style }}>
           {t.nav.bookCall}
@@ -21,10 +19,14 @@ export const GetADemo = ({ style }: { style: CSSProperties }) => {
   );
 };
 
-const Container = styled.div<{ $isDarkMode: boolean }>`
+const Container = styled.div`
   height: 3rem;
   a {
-    color: ${(props) => (props.$isDarkMode ? "white" : "black")};
+    /* Every caller overrides this via the Button's own inline
+       style.color (theme.fontColor), but keep a theme-correct
+       fallback rather than an isDarkMode-driven pick that would be
+       wrong until a client re-render corrects it. */
+    color: var(--main-color-inverted);
   }
 `;
 
