@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { useIsMobile } from "@busshi/react-hooks";
 import { TESTIMONIALS } from "../lib/testimonials";
 import { PAGE_SPEED_RESULTS } from "../lib/constants";
@@ -130,19 +130,7 @@ type TrackItem =
   | { kind: "logo"; key: string; logo: TrustLogo }
   | { kind: "text"; key: string; label: string };
 
-const LogoImage = ({
-  logo,
-  isDarkMode,
-  height,
-}: {
-  logo: TrustLogo;
-  isDarkMode: boolean;
-  height: string;
-}) => {
-  const invert =
-    (logo.nativeOn === "light" && isDarkMode) ||
-    (logo.nativeOn === "dark" && !isDarkMode);
-
+const LogoImage = ({ logo, height }: { logo: TrustLogo; height: string }) => {
   // next/image blocks SVGs by default (dangerouslyAllowSVG is off) — a
   // plain <img> is the right tool for a small trusted local vector asset.
   if (logo.src.endsWith(".svg")) {
@@ -150,7 +138,7 @@ const LogoImage = ({
       <LogoSvg
         src={logo.src}
         alt={logo.name}
-        $invert={invert}
+        $nativeOn={logo.nativeOn}
         style={{ height }}
       />
     );
@@ -162,21 +150,15 @@ const LogoImage = ({
       alt={logo.name}
       width={logo.width}
       height={logo.height}
-      $invert={invert}
-      $blendMode={
-        logo.hasAlpha || logo.nativeOn !== "light"
-          ? "normal"
-          : isDarkMode
-            ? "screen"
-            : "multiply"
-      }
+      $nativeOn={logo.nativeOn}
+      $forceBlend={!logo.hasAlpha && logo.nativeOn === "light"}
       style={{ height, width: "auto" }}
     />
   );
 };
 
 export const TrustBar = () => {
-  const { theme, isDarkMode } = useThemeState();
+  const { theme } = useThemeState();
   const isMobile = useIsMobile();
   const t = useTranslation();
   const unlistedCompanies = getUnlistedCompanies();
@@ -218,39 +200,29 @@ export const TrustBar = () => {
                 item.logo.showLabel ? (
                   item.logo.labelPosition === "right" ? (
                     <LogoRow>
-                      <LogoImage
-                        logo={item.logo}
-                        isDarkMode={isDarkMode}
-                        height="2.25rem"
-                      />
+                      <LogoImage logo={item.logo} height="2.25rem" />
                       <LogoLabel style={{ color: theme.fontColor }}>
                         {item.logo.name}
                       </LogoLabel>
                     </LogoRow>
                   ) : (
                     <LogoStack>
-                      <LogoImage
-                        logo={item.logo}
-                        isDarkMode={isDarkMode}
-                        height="2.25rem"
-                      />
+                      <LogoImage logo={item.logo} height="2.25rem" />
                       <LogoLabel style={{ color: theme.fontColor }}>
                         {item.logo.name}
                       </LogoLabel>
                     </LogoStack>
                   )
                 ) : item.logo.plate ? (
-                  <LogoPlate $isDarkMode={isDarkMode}>
+                  <LogoPlate>
                     <LogoImage
                       logo={item.logo}
-                      isDarkMode={isDarkMode}
                       height={item.logo.scale ? "3.25rem" : "1.75rem"}
                     />
                   </LogoPlate>
                 ) : (
                   <LogoImage
                     logo={item.logo}
-                    isDarkMode={isDarkMode}
                     height={item.logo.scale ? "3.25rem" : "1.75rem"}
                   />
                 )
@@ -366,30 +338,70 @@ const Chip = styled.div`
   }
 `;
 
+// "light" logos (dark ink on a white/near-white file) get inverted in
+// dark mode so they read on a dark chip; "dark" logos (light/white
+// wordmark) get inverted in light mode instead. Driven by the
+// [data-theme] attribute — set on <html> before first paint (see
+// pages/_document.tsx) — rather than the isDarkMode boolean, so it's
+// correct from the very first frame instead of only after a client
+// re-render.
+const invertOnTheme = (nativeOn: TrustLogo["nativeOn"]) => {
+  if (nativeOn === "light") {
+    return css`
+      [data-theme="dark"] & {
+        filter: invert(1);
+      }
+    `;
+  }
+  if (nativeOn === "dark") {
+    return css`
+      [data-theme="light"] & {
+        filter: invert(1);
+      }
+    `;
+  }
+  return "";
+};
+
 const LogoImg = styled(Image)<{
-  $invert: boolean;
-  $blendMode: "normal" | "screen" | "multiply";
+  $nativeOn: TrustLogo["nativeOn"];
+  $forceBlend: boolean;
 }>`
   width: auto;
   max-width: 10rem;
   object-fit: contain;
   display: block;
-  filter: ${(props) => (props.$invert ? "invert(1)" : "none")};
+  filter: none;
+  mix-blend-mode: normal;
+
+  ${(props) => invertOnTheme(props.$nativeOn)}
+
   /* Logo files with an opaque near-white background leave a visible square
      that never quite matches the chip: in dark mode, inverting turns that
      background solid black, and "screen" treats black as a no-op; in light
      mode the un-inverted near-white background is close but not identical
      to the theme's off-white, and "multiply" treats white as a no-op. Both
      let the background disappear into the chip instead of standing out. */
-  mix-blend-mode: ${(props) => props.$blendMode};
+  ${(props) =>
+    props.$forceBlend &&
+    css`
+      [data-theme="dark"] & {
+        mix-blend-mode: screen;
+      }
+      [data-theme="light"] & {
+        mix-blend-mode: multiply;
+      }
+    `}
 `;
 
-const LogoSvg = styled.img<{ $invert: boolean }>`
+const LogoSvg = styled.img<{ $nativeOn: TrustLogo["nativeOn"] }>`
   width: auto;
   max-width: 10rem;
   object-fit: contain;
   display: block;
-  filter: ${(props) => (props.$invert ? "invert(1)" : "none")};
+  filter: none;
+
+  ${(props) => invertOnTheme(props.$nativeOn)}
 `;
 
 const TextItem = styled.div`
@@ -414,13 +426,17 @@ const LogoRow = styled.div`
 // See TrustLogo.plate — white only in dark mode, so a real-photo logo with
 // its own baked-in whites reads as a clean card there; in light mode it's
 // transparent and the logo just sits on the page's own background.
-const LogoPlate = styled.div<{ $isDarkMode: boolean }>`
+const LogoPlate = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
-  background: ${(props) => (props.$isDarkMode ? "#ffffff" : "transparent")};
+  background: transparent;
+
+  [data-theme="dark"] & {
+    background: #ffffff;
+  }
 `;
 
 const LogoLabel = styled.div`

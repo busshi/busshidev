@@ -1,21 +1,33 @@
 :root {
   /**
-  *   Main colors
+  *   Theme colors — dark values by default (matches ThemeProvider's
+  *   default before the system preference is known), overridden below
+  *   for [data-theme="light"]. Kept as semantic names rather than
+  *   separate dark/light variables so the blocking script in
+  *   pages/_document.tsx can set the right theme before first paint:
+  *   with fixed dark/light variable names, the choice of *which* one to
+  *   use was baked into the static HTML at build time (always dark),
+  *   causing a visible flash on load for light-mode visitors. See
+  *   providers/Theme.provider.tsx.
+  */
+  --main-color: #121212;
+  --main-color-inverted: #f1f1f1;
+  --font-color: #e7e7e7;
+  --secondary-font-color: #c3c3c3;
+  --middle-font-color: #888;
+  --section-title-color: var(--middle-font-color);
+  --page-background: #181717;
+  --card-background: #1e1e1e;
+  --footer-background: #181717;
+
+  /**
+  *   Fixed (theme-independent) colors — a few components pick between
+  *   these directly based on isDarkMode instead of going through the
+  *   semantic tokens above (e.g. Menu.tsx, GetADemo.tsx's mask trick).
+  *   Their literal values never change with the theme.
   */
   --main-dark-color: #121212;
   --main-light-color: #f1f1f1;
-  --main-dark-font-color: #e7e7e7;
-  --main-light-font-color: #1b1b1b;
-  --middle-font-color: #888;
-  --section-title-light: #666666;
-  --secondary-dark-font-color: #c3c3c3;
-  --secondary-light-font-color: #444444;
-  --footer-light-background: #f5f5f5;
-  --footer-dark-background: #181717;
-  --dark-background: #181717;
-  --light-background: #f5f5f5;
-  --card-dark-background: #1e1e1e;
-  --card-light-background: #f9f9f9f9;
 
   /**
   *   Gradient colors
@@ -58,6 +70,17 @@
   --git-prompt-user: #7ad2db;
   --git-prompt-git: #89befa;
   --git-prompt-branch: #f2a59c;
+}
+
+[data-theme="light"] {
+  --main-color: #f1f1f1;
+  --main-color-inverted: #121212;
+  --font-color: #1b1b1b;
+  --secondary-font-color: #444444;
+  --section-title-color: #666666;
+  --page-background: #f5f5f5;
+  --card-background: #f9f9f9f9;
+  --footer-background: #f5f5f5;
 }
 
 @media (max-width: 768px) {

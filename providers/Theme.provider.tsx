@@ -20,31 +20,25 @@ interface ThemeContextType {
 
 const ThemeContext = React.createContext<ThemeContextType | null>(null);
 
-const colors = {
-  dark: {
-    mainColor: "var(--main-dark-color)",
-    mainColorInverted: "var(--main-light-color)",
-    fontColor: "var(--main-dark-font-color)",
-    secondaryFontColor: "var(--secondary-dark-font-color)",
-    middleFontColor: "var(--middle-font-color)",
-    sectionTitleColor: "var(--middle-font-color)",
-    background: "var(--main-dark-color)",
-    backgroundColor: "var(--dark-background)",
-    cardBackground: "var(--card-dark-background)",
-    footerBackground: "var(--footer-dark-background)",
-  },
-  light: {
-    mainColor: "var(--main-light-color)",
-    mainColorInverted: "var(--main-dark-color)",
-    fontColor: "var(--main-light-font-color)",
-    secondaryFontColor: "var(--secondary-light-font-color)",
-    middleFontColor: "var(--middle-font-color)",
-    sectionTitleColor: "var(--section-title-light)",
-    background: "var(--main-light-color)",
-    backgroundColor: "var(--light-background)",
-    cardBackground: "var(--card-light-background)",
-    footerBackground: "var(--footer-light-background)",
-  },
+// Semantic CSS custom properties whose actual values flip via the
+// [data-theme] attribute (see pages/styles/app.css) instead of picking
+// between separate dark/light variable names here — the same names
+// resolve to the right theme regardless of isDarkMode, so nothing here
+// needs to change once the attribute is set. That attribute is applied
+// by the blocking script in pages/_document.tsx before the browser's
+// first paint, which is what avoids the flash a purely JS-driven pick
+// would cause on load.
+const theme: Theme = {
+  mainColor: "var(--main-color)",
+  mainColorInverted: "var(--main-color-inverted)",
+  fontColor: "var(--font-color)",
+  secondaryFontColor: "var(--secondary-font-color)",
+  middleFontColor: "var(--middle-font-color)",
+  sectionTitleColor: "var(--section-title-color)",
+  background: "var(--main-color)",
+  backgroundColor: "var(--page-background)",
+  cardBackground: "var(--card-background)",
+  footerBackground: "var(--footer-background)",
 };
 
 interface Props {
@@ -52,6 +46,16 @@ interface Props {
 }
 
 export const ThemeProvider = ({ children }: Props) => {
+  // Always starts at true, matching what the static build always
+  // renders server-side — seeding this from the data-theme attribute
+  // the blocking script sets would look tempting, but it backfires:
+  // React's hydration adopts the server-rendered DOM as-is without
+  // patching mismatched attributes, and only a genuine state change
+  // (not "already correct on mount") triggers the re-render that
+  // actually fixes them. A handful of components still branch on this
+  // boolean directly (rather than through the CSS-variable-based theme
+  // object below, which isn't affected by this) and briefly show the
+  // wrong value until the effect below corrects it.
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Always follows the system's color scheme — there's no manual switcher,
@@ -59,17 +63,19 @@ export const ThemeProvider = ({ children }: Props) => {
   // changes their OS setting while the page is open.
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDarkMode(media.matches);
+    const applyTheme = (isDark: boolean) => {
+      setIsDarkMode(isDark);
+      document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    };
 
-    const listener = (event: MediaQueryListEvent) => setIsDarkMode(event.matches);
+    applyTheme(media.matches);
+
+    const listener = (event: MediaQueryListEvent) => applyTheme(event.matches);
     media.addEventListener("change", listener);
     return () => media.removeEventListener("change", listener);
   }, []);
 
-  const value = {
-    theme: isDarkMode ? colors.dark : colors.light,
-    isDarkMode,
-  };
+  const value = { theme, isDarkMode };
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

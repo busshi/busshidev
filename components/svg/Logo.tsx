@@ -1,8 +1,4 @@
-import { useThemeState } from "../../providers/Theme.provider";
-
 const Logo = ({ size }: { size: number }) => {
-  const { isDarkMode } = useThemeState();
-
   return (
     <svg
       version="1.0"
@@ -14,7 +10,13 @@ const Logo = ({ size }: { size: number }) => {
     >
       <g
         transform="translate(0.000000,92.000000) scale(0.100000,-0.100000)"
-        fill={isDarkMode ? "#FFF" : "#000"}
+        // Fixed CSS var, not the isDarkMode boolean: its value flips via
+        // the [data-theme] attribute (see pages/styles/app.css), which
+        // is set before the browser's first paint — driving this from
+        // isDarkMode instead used to render the wrong fill until a
+        // client re-render corrected it (invisible in light mode until
+        // then, since the server always assumes dark).
+        fill="var(--main-color-inverted)"
         stroke="none"
       >
         <path
