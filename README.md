@@ -29,4 +29,4 @@ Coded in TypeScript with Next.js.
 - A themed 3D globe on the contact page, built with [react-globe.gl](https://github.com/vasturiano/react-globe.gl) (which wraps [Three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)), matching light/dark mode.
 - Two SaaS integrations:
   - [Calendly](https://calendly.com), for booking calls
-  - [Crisp](https://crisp.chat), for live chat
+  - [Ideta](https://ideta.io), for the live chatbot

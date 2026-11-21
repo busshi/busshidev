@@ -63,7 +63,7 @@ export const Contact = ({
 }: {
   setIsCalendlyVisible: (value: boolean) => void;
 }) => {
-  const { setIsChatVisible } = useChatVisibleState();
+  const { requestChatOpen } = useChatVisibleState();
   const { theme } = useThemeState();
   const t = useTranslation();
   // Each icon just takes the page's own text color, same as the Offer
@@ -79,7 +79,7 @@ export const Contact = ({
           <Item
             area="chat"
             color={COLORS[0]}
-            onClick={() => setIsChatVisible(true)}
+            onClick={requestChatOpen}
             icon={<TfiHeadphoneAlt size={22} color={iconColor} />}
             label={t.contact.chat}
           />

@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { CRIPS_WEBSITE_ID } from "../../lib/constants";
 import { useChatVisibleState } from "../../providers/ChatVisible.provider";
+import { openChat } from "../../lib/chat";
 import { useThemeState } from "../../providers/Theme.provider";
 import Footer from "../Footer";
 import Metadata from "../Metadata";
@@ -14,7 +15,8 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const { isChatVisible } = useChatVisibleState();
+  const { isChatVisible, isOpenRequested, clearOpenRequest } =
+    useChatVisibleState();
   const { theme } = useThemeState();
 
   return (
@@ -26,7 +28,20 @@ const Layout = ({ children }: Props) => {
         <Footer />
       </Wrapper>
 
-      {/* Crisp.chat integration */}
+      {/* Ideta chatbot: only loaded once visible (inactivity delay or click) */}
+      {isChatVisible && (
+        <Script
+          src="https://storage.googleapis.com/ideta-prod.appspot.com/bots/-P6xg3YweEgCY7aBrPNp/scripts/integration-web.js?GoogleAccessId=firebase-adminsdk-4b3yf%40ideta-prod.iam.gserviceaccount.com&Expires=16447017600&Signature=TckzqmDeZ3pX9fwnntpAF6TLNnD0HeIv4DGRGpZWmIHncSk7d5jUwyhzOwgkQkhJe5d21fw8IPmTr5eM0ERamuWm4NDCsjIPAXPTRUqr06lbIXwFWFL53zA%2BdU12HVPte2UHPCfTNPW55hEnK77JXkn%2FYI56n5C2Z%2Bh%2BDdXrvqcbH70Dg%2BkV96%2FWPDvFxw1I42oKoxCXP1kDqacEjEcwlObr1djkpSMtgPiQSxo6QfvwV99hfC4NYrXEaA9TwNSvwC62wXTAug2G4adRnxfKLDWy6ATFwIlctISGRDoD1Fylo%2B9oUECW8TTll%2FvEbusXhrGv86IAAoQ8plWG5luhoA%3D%3D"
+          strategy="afterInteractive"
+          onLoad={() => {
+            if (!isOpenRequested) return;
+            openChat();
+            clearOpenRequest();
+          }}
+        />
+      )}
+
+      {/* Crisp.chat integration (replaced by Ideta)
       {isChatVisible && (
         <>
           <Script
@@ -45,9 +60,10 @@ const Layout = ({ children }: Props) => {
       })();`,
             }}
           />
-          {/* <Test/> */}
+          {/* <Test/> * /}
         </>
       )}
+      */}
     </App>
   );
 };
