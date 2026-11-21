@@ -103,8 +103,11 @@ const MentionsLegales: NextPage = () => {
                   measurement of the Site.
                 </li>
                 <li>
-                  <strong>Crisp</strong>, for live chat, when you voluntarily
-                  enable it.
+                  <strong>Ideta</strong>, for the chatbot, loaded after a
+                  period of inactivity or when you open the chat. It stores
+                  a random visitor identifier in your browser&apos;s local
+                  storage and receives the address of the page you are
+                  viewing.
                 </li>
                 <li>
                   <strong>Calendly</strong>, for online scheduling, when you
@@ -205,8 +208,11 @@ const MentionsLegales: NextPage = () => {
                   d&apos;audience anonymisée du Site.
                 </li>
                 <li>
-                  <strong>Crisp</strong>, pour le chat en ligne, lorsque vous
-                  l&apos;activez volontairement.
+                  <strong>Ideta</strong>, pour le chatbot, chargé après un
+                  temps d&apos;inactivité ou lorsque vous ouvrez le chat. Il
+                  enregistre un identifiant visiteur aléatoire dans le
+                  stockage local de votre navigateur et reçoit l&apos;adresse
+                  de la page que vous consultez.
                 </li>
                 <li>
                   <strong>Calendly</strong>, pour la prise de rendez-vous en

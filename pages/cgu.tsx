@@ -83,9 +83,18 @@ const CGU: NextPage = () => {
               <ul>
                 <li>
                   <strong>Getting in touch</strong>: when you send an email,
-                  use the live chat (Crisp) or book a call via Calendly, the
+                  use the chatbot (Ideta) or book a call via Calendly, the
                   information you provide (name, email, content of the
                   exchange) is used exclusively to respond to your request.
+                </li>
+                <li>
+                  <strong>Chatbot</strong>: the Ideta chatbot is loaded after
+                  a period of inactivity or when you open the chat. When
+                  loaded, it receives the address of the page you are
+                  viewing and a random visitor identifier stored in your
+                  browser&apos;s local storage, which allows a conversation
+                  to be resumed on a later visit. Messages you write in the
+                  chat are processed by Ideta.
                 </li>
                 <li>
                   <strong>Audience measurement</strong>: the Site uses
@@ -99,7 +108,7 @@ const CGU: NextPage = () => {
                 interest in responding to contact requests. Data is kept for
                 as long as necessary to process your request and is not
                 shared with any third party beyond the technical processors
-                mentioned above (Crisp, Calendly, Vercel), each subject to
+                mentioned above (Ideta, Calendly, Vercel), each subject to
                 its own privacy terms.
               </p>
               <p>
@@ -131,7 +140,9 @@ const CGU: NextPage = () => {
               <p>
                 The Site places technical cookies necessary for its
                 operation, as well as third-party cookies related to Vercel
-                Analytics, Crisp and Calendly when these services are used.
+                Analytics and Calendly when these services are used. The
+                Ideta chatbot stores a visitor identifier in your
+                browser&apos;s local storage rather than in a cookie.
                 You can configure your browser to refuse or delete these
                 cookies at any time; some features (chat, scheduling) may
                 then become unavailable.
@@ -227,10 +238,20 @@ const CGU: NextPage = () => {
               <ul>
                 <li>
                   <strong>Prise de contact</strong> : lorsque vous envoyez
-                  un email, utilisez le chat en ligne (Crisp) ou réservez un
+                  un email, utilisez le chatbot (Ideta) ou réservez un
                   appel via Calendly, les informations que vous transmettez
                   (nom, email, contenu de l&apos;échange) sont utilisées
                   exclusivement pour répondre à votre demande.
+                </li>
+                <li>
+                  <strong>Chatbot</strong> : le chatbot Ideta est chargé
+                  après un temps d&apos;inactivité ou lorsque vous ouvrez le
+                  chat. Une fois chargé, il reçoit l&apos;adresse de la page
+                  que vous consultez et un identifiant visiteur aléatoire
+                  enregistré dans le stockage local de votre navigateur, ce
+                  qui permet de reprendre une conversation lors d&apos;une
+                  visite ultérieure. Les messages que vous écrivez dans le
+                  chat sont traités par Ideta.
                 </li>
                 <li>
                   <strong>Mesure d&apos;audience</strong> : le Site utilise
@@ -245,7 +266,7 @@ const CGU: NextPage = () => {
                 Les données sont conservées le temps nécessaire au
                 traitement de votre demande et ne sont transmises à aucun
                 tiers en dehors des sous-traitants techniques mentionnés
-                ci-dessus (Crisp, Calendly, Vercel), chacun soumis à ses
+                ci-dessus (Ideta, Calendly, Vercel), chacun soumis à ses
                 propres conditions de confidentialité.
               </p>
               <p>
@@ -280,8 +301,10 @@ const CGU: NextPage = () => {
               <p>
                 Le Site dépose des cookies techniques nécessaires à son
                 fonctionnement, ainsi que des cookies tiers liés à Vercel
-                Analytics, Crisp et Calendly lorsque ces services sont
-                utilisés. Vous pouvez configurer votre navigateur pour
+                Analytics et Calendly lorsque ces services sont
+                utilisés. Le chatbot Ideta enregistre un identifiant
+                visiteur dans le stockage local de votre navigateur plutôt
+                que dans un cookie. Vous pouvez configurer votre navigateur pour
                 refuser ou supprimer ces cookies à tout moment ; certaines
                 fonctionnalités (chat, prise de rendez-vous) pourraient
                 alors ne plus être disponibles.
