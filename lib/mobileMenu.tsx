@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "../hooks/useTranslation";
 
 export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
-  const { setIsChatVisible } = useChatVisibleState();
+  const { requestChatOpen } = useChatVisibleState();
   const { setIsCalendlyVisible } = useCalendlyVisibleState();
   const { theme } = useThemeState();
   const router = useRouter();
@@ -23,7 +23,7 @@ export const BuildContactsMenu = (setMenuOpened: (value: boolean) => void) => {
       text: t.contact.chat,
       icon: <TfiHeadphoneAlt size={16} color="var(--middle-font-color)" />,
       onClick: () => {
-        setIsChatVisible(true);
+        requestChatOpen();
         setMenuOpened(false);
       },
     },
