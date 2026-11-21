@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <DarkModeProvider>
       <HighlightedColorProvider>
-        <ChatVisibleProvider>
+        {/* <ChatVisibleProvider> */}
           <CalendlyVisibleProvider>
             <Layout>
               <TestimonialVisibleProvider>
@@ -39,11 +39,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
                 {/* Calendly integration */}
                 <Script src="https://assets.calendly.com/assets/external/widget.js" />
+
+                {/* Ideta Chabot Integration */}
+                <Script src="https://storage.googleapis.com/ideta-prod.appspot.com/bots/-P6xg3YweEgCY7aBrPNp/scripts/integration-web.js?GoogleAccessId=firebase-adminsdk-4b3yf%40ideta-prod.iam.gserviceaccount.com&Expires=16447017600&Signature=TckzqmDeZ3pX9fwnntpAF6TLNnD0HeIv4DGRGpZWmIHncSk7d5jUwyhzOwgkQkhJe5d21fw8IPmTr5eM0ERamuWm4NDCsjIPAXPTRUqr06lbIXwFWFL53zA%2BdU12HVPte2UHPCfTNPW55hEnK77JXkn%2FYI56n5C2Z%2Bh%2BDdXrvqcbH70Dg%2BkV96%2FWPDvFxw1I42oKoxCXP1kDqacEjEcwlObr1djkpSMtgPiQSxo6QfvwV99hfC4NYrXEaA9TwNSvwC62wXTAug2G4adRnxfKLDWy6ATFwIlctISGRDoD1Fylo%2B9oUECW8TTll%2FvEbusXhrGv86IAAoQ8plWG5luhoA%3D%3D" type="text/javascript" async />
                 <Component {...pageProps} />
               </TestimonialVisibleProvider>
             </Layout>
           </CalendlyVisibleProvider>
-        </ChatVisibleProvider>
+        {/* </ChatVisibleProvider> */}
       </HighlightedColorProvider>
     </DarkModeProvider>
   );
